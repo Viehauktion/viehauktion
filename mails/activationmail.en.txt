@@ -1,0 +1,17 @@
+Hi ___USERNAME___,
+ 
+you have successfully registered to ___APPNAME___
+ 
+To activate your account please visit this link:
+
+___LINK___
+
+
+
+Your ___APPNAME___ Team
+
+This email was generated automatically. Please do not reply.
+
+
+
+

@@ -1,0 +1,119 @@
+@font-face {
+   font-family: 'OpenSans-Regular';
+   src: url( ../assets/OpenSans-Regular.ttf);
+}
+
+@font-face {
+   font-family: 'OpenSans-Bold';
+   src: url( ../assets/OpenSans-Bold.ttf);
+}
+body{
+	
+
+	
+}
+
+.masthead{
+	background-color: #e6e6e6;
+border-top-width:3px;
+ border-top-style:solid;
+ border-top-color:#ffffff;
+
+	
+}
+
+.navigation{
+	height: 42px;
+
+	background-color: #3e937e;
+}
+.container{
+	
+	margin-right: auto;
+	margin-left: auto;
+}
+.page{
+	padding-top: 20px;
+	min-height: 400px;
+
+}
+
+.navigation{
+border-bottom-width:3px;
+ border-bottom-style:solid;
+ border-bottom-color:#25574b;
+}
+.navbar .navbar-inner {
+    	background-color: #3e937e;
+    background-image: none;
+    border: none;
+    font-size: 14px;
+    color: #FFFFFF;
+}
+
+
+
+.navbar .nav > li > a {
+	font-family: "OpenSans-Regular";
+	font-size: 14px;
+    color: #FFFFFF;
+    text-shadow:none;
+
+}
+.navbar .nav > .active > a, .navbar .nav > .active > a:hover, .navbar .nav > .active > a:focus {
+		font-family: "OpenSans-Bold";
+	background-color: #25574b;
+	 color: #FFFFFF;
+    text-shadow:none;
+}
+
+
+#stage{
+		margin-right: auto;
+	margin-left: auto;
+	width: 940px;
+	height: 382px;
+	background-image: url(../assets/start.jpg);
+
+}
+#stageBanner{
+	position: relative;
+	top: 280px;
+	left: 230px;
+	
+	color: #FFFFFF;
+
+}
+
+.mainbody{
+	margin-top: 50px;
+}
+
+
+.leftView{
+
+float:left;
+width: 350px;
+}
+
+.rightView{
+
+
+
+}
+
+.leftContent{
+float:left;
+width: 550px;
+
+}
+
+#footer{
+
+margin-top: 100px;
+margin-bottom: 50px;
+}
+
+a{
+	color:#3e937e;
+}
