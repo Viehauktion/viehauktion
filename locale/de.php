@@ -20,20 +20,24 @@ $texts['email_label']="E-Mailadresse: ";
 $texts['email_link']='<a href="mailto:simon.meyborg@hanseventures.com" >info@viehauktion.de</a>';
 $texts['page_vat']="VAT DE 12322233";
 
-$texts['signin_login']="Anmelden";
-$texts['signin_register']="Registrieren";
-$texts['signin_signedin_as']="Angemeldet als: ";
-$texts['signin_logout']="Abmelden";
-
-$texts['navi_news']="Aktuelles";
-$texts['navi_auction']="Auktionen ansehen";
-$texts['navi_auction_add']="Auktion einstellen";
+$texts['signin_login']="Einloggen";
+$texts['signin_register']="Neu anmelden";
+$texts['signin_signedin_as']="eingelogged als: ";
+$texts['signin_profil']="Profil";
+$texts['signin_logout']="Ausloggen";
 
 
 
 $texts['pigs']="Mastschweine";
 $texts['bulls']="Bullen";
 $texts['chicken']="Geflügel";
+
+
+
+
+$texts['navi_news']="Startseite";
+$texts['navi_auction']="Auktionen ansehen";
+$texts['navi_auction_add']="Auktion einstellen";
 
 $texts['navi_market']="Marktplatz";
 $texts['navi_market_add']="Vieh anbieten";

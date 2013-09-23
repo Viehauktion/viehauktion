@@ -1,31 +1,41 @@
 <!DOCTYPE html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title><? echo($texts["Page_Title"]);?></title>
-   <meta name="keywords" content="<? echo($texts["Page_Keywords"]);?>" />
-        <link rel="stylesheet" href="css/bootstrap.css" media="screen" type="text/css" />
-     
-        <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
-    
-        <script src="js/jquery-1.10.2.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-       <script src="js/main.js"></script>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title><? echo($texts["Page_Title"]);?></title>
+    <meta name="keywords" content="<? echo($texts["Page_Keywords"]);?>" />
+    <link rel="stylesheet" href="css/bootstrap.css" media="screen" type="text/css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" media="screen" type="text/css" />
+    <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
 
-</head>
-<body>
-<div class="masthead">
-<div class="container">
+<!-- SCRIPTS BELONG TO THE BOTTOM OF THE PAGE!!! -->    
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
 
-	<a href="/"><img src="/assets/logo.png" alt="REBELLE Logo" title="REBELLE"></a>
-<? include("signin.php") ?>
-</div>
-</div>
+  </head>
+  <body>
 
-<div class="navigation">
-<div class="container">
-<? include("navigation.php") ?>
-</div>
-</div>
+    <div class="masthead">
+      <div class="container">
+        <div class="row">
+          <div class="span6">
+            <a href="./" id="logo"><img src="./assets/logo.png" alt="Weser-Ems Schwein Logo" title="Weser-Ems Schwein / Ihre Schweinebörse"></a>
+          </div>
+          <div class="span6">
+            <? include("signin.php") ?>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="navigation">
+      <div class="container">
+        <div class="row">
+          <? include("navigation.php") ?>
+        </div>
+      </div>
+    </div>
+
 <div class="page">
 <div class="container">
 <? include($View.".php") ?>

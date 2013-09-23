@@ -1,6 +1,4 @@
-
-<div class="row"> 
-<div class="navbar">
+<div class="navbar navbar-static-top">
   <div class="navbar-inner">
   
     <ul class="nav">
@@ -15,9 +13,11 @@
 			  
 
   
-        <li <? if ($View=="faq") echo('class="active"'); ?> ><a href="?view=faq"><?  echo($texts['navi_faq']); ?></a></li>
+        
 
     </ul>
+    <ul class="nav pull-right">
+      <li class="<? if ($View=="faq") echo('active'); ?>" ><a href="?view=faq"><?  echo($texts['navi_faq']); ?></a></li>
+    </ul>
   </div>
-</div>
 </div>

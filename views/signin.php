@@ -1,18 +1,22 @@
-
-<div class="row"> 
-<div id="signin" class="pull-right inline">
-
-<?  if($gBase->User['id']!=""){ ?>
-<a href="?&view=profile" ><?  echo($texts['signin_signedin_as'].$gBase->User['username']); ?>&nbsp;<?  echo($texts['signin_profil']); ?></a>&nbsp;-&nbsp;
-<a href="?action=logout_user&view=home" ><?  echo($texts['signin_logout']); ?></a>
-
-<? }else{ ?>
-
-
-<a href="#loginModal" role="button"  data-toggle="modal"><?  echo($texts['signin_login']); ?></a>&nbsp;-&nbsp;
-<a href="?view=registration" ><?  echo($texts['signin_register']); ?></a>
-
-<? }?>
-
-</div>
+<div id="signin" class="pull-right">
+  <? if($gBase->User['id'] != "") { ?>
+    <span class="muted"><?= $texts['signin_signedin_as'] ?></span>
+    <a href="?&view=profile" <? if ($View=="profile") echo('class="active"'); ?>>
+      <?= $gBase->User['username'] ?>
+    </a>
+    <span class="muted">&bull;</span>
+    <a href="?action=logout_user&view=home" >
+      <i class="icon-signout"></i>
+      <?= $texts['signin_logout'] ?>
+    </a>
+  <? } else { ?>
+    <a href="#loginModal" role="button"  data-toggle="modal">
+      <i class="icon-signin"></i>
+      <?  echo($texts['signin_login']); ?>
+    </a>
+    <span class="muted">oder</span>
+    <a href="?view=registration" <? if ($View=="registration") echo('class="active"'); ?>>
+      <?  echo($texts['signin_register']); ?>!
+    </a>
+  <? } ?>
 </div>
