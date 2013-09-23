@@ -502,6 +502,11 @@ function getRunningAuction($county_id, $auction_id){
 															$lDB->closeAuction($auction_id);
 															$memcache->delete($auction_id);
 
+
+
+															
+
+
 														
 
 

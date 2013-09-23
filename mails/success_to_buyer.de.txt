@@ -1,0 +1,40 @@
+Sehr geehrte(r) ___BUYERFIRSTNAME___ ___BUYERLASTNAME___,
+ 
+
+herzlichen Glückwunsch! Sie haben eine Auktion gewonnen.
+
+Ihr Gebot von ___PRICE___ €/Kg war das letzte gültige Gebot.
+
+Anbieter der Auktion ist:
+
+___SELLERFIRSTNAME___ ___SELLERLASTNAME___
+___SELLERSTREET___ ___SELLERNUMBER___
+___SELLERPOSTCODE___ ___SELLERCITY___
+
+Telefon: ___SELLERPHONE___
+E-Mailaddresse: ___SELLEREMAIL___
+
+
+Bitte nehmen Sie zügig mit dem Verkäufer Kontakt auf, um die Details zur Lieferung zu besprechen.
+
+
+Sie finden alle Daten zur Auktion nochmal in Ihrem Profil zum Abruf.
+
+Wir hoffen, dass der Kauf nun erfolgreich von statten geht und hoffen, Sie demnächst wieder  auf ___SITENAME___ begrüßen zu dürfen.
+
+
+
+
+Ihr ___SITENAME___ Team
+
+
+Diese E-Mail wurde automatisch erstellt. Bitte antworten Sie Ihr nicht.
+
+
+___SITENAME___
+
+
+
+
+
+

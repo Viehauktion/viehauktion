@@ -71,16 +71,16 @@
 			$this->SetFont('Arial', 'B', 11);
 			$this->Cell(100, 4, "An", 0, 1, 'L');
 			$this->SetX(24);
-			$this->Cell(100, 4, $pCompany, 0, 1, 'L');
+			$this->Cell(100, 4, utf8_decode($pCompany), 0, 1, 'L');
 			$this->SetX(24);
-			$this->Cell(100, 4, $pName, 0, 1, 'L');
+			$this->Cell(100, 4, utf8_decode($pName), 0, 1, 'L');
 			$this->SetX(24);
-			$this->Cell(100, 4, $pStreet, 0, 1, 'L');
+			$this->Cell(100, 4, utf8_decode($pStreet), 0, 1, 'L');
 			$this->SetY(60);
 			$this->SetX(24);
-			$this->Cell(100, 4, $pCity, 0, 1, 'L');
+			$this->Cell(100, 4, utf8_decode($pCity), 0, 1, 'L');
 			$this->SetX(24);
-			$this->Cell(100, 4, $pCountry, 0, 1, 'L');
+			$this->Cell(100, 4, utf8_decode($pCountry), 0, 1, 'L');
 		}
 		
 	
@@ -89,15 +89,15 @@
 			$this->SetFont('Arial', '', 10);
 			$this->Cell(100, 4, "Die Tiere wurden ersteigert von:", 0, 1, 'L');
 			$this->SetX(60);
-			$this->Cell(100, 4, $pCompany, 0, 1, 'L');
+			$this->Cell(100, 4, utf8_decode($pCompany), 0, 1, 'L');
 			$this->SetX(60);
-			$this->Cell(100, 4, $pName, 0, 1, 'L');
+			$this->Cell(100, 4, utf8_decode($pName), 0, 1, 'L');
 			$this->SetX(60);
-			$this->Cell(100, 4, $pStreet, 0, 1, 'L');
+			$this->Cell(100, 4, utf8_decode($pStreet), 0, 1, 'L');
 			$this->SetX(60);
-			$this->Cell(100, 4, $pCity, 0, 1, 'L');
+			$this->Cell(100, 4, utf8_decode($pCity), 0, 1, 'L');
 			$this->SetX(60);
-			$this->Cell(100, 4, $pCountry, 0, 1, 'L');
+			$this->Cell(100, 4, utf8_decode($pCountry), 0, 1, 'L');
 		}
 		
 		

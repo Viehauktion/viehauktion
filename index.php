@@ -10,7 +10,7 @@ require_once('globals.inc.php');
 require_once('DB.inc.php');
 
 
-require_once('MMCache.php');
+
 
 require_once('Base.class.php');
 

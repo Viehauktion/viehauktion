@@ -8,7 +8,7 @@
     |---------------------------------------------------------------------------------------------------------------------------------*/
 
 
-	$GLOBALS["VIEHAUKTION"]["BASE"]["APPNAME"]			= "viehauktion";
+	$GLOBALS["VIEHAUKTION"]["BASE"]["APPNAME"]			= "viehauktion.com";
 	$GLOBALS["VIEHAUKTION"]["BASE"]["HTTPROOT"] 		= "http://www.viehauktion.com/"; 
 	//$GLOBALS["VIEHAUKTION"]["BASE"]["IMAGESROOT"] 	= 'http://quartett.s3-external-3.amazonaws.com/';
 		

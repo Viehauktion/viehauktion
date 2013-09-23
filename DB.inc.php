@@ -337,6 +337,27 @@ class DB {
 
  }
 
+
+
+function getUserWithAddressByID($user_id){
+
+				$lSQLQuery = "SELECT * FROM  users INNER JOIN user_addresses ON users.id = user_addresses.user_id WHERE  users.id ='".$user_id."' AND  user_addresses.type='invoice';";
+				
+
+					$lResult = $this->mysql_query_ex($lSQLQuery);
+					if ($lResult) {
+					
+							$lArray = mysql_fetch_assoc($lResult);
+							return $lArray;
+							
+							
+					}
+			
+					return false;	
+			
+
+ }
+
   function getUserAddressesById($addressid){
 	
 			
@@ -585,7 +606,35 @@ class DB {
 		}
 		
 
+function getEndedAuction(){
 
+
+
+			$lSQLQuery = "SELECT * FROM `auctions` WHERE `status`=  'ended' AND `mail_status`='';";
+	
+
+				
+				$list= array();
+						$j=0;
+						$lResult = $this->mysql_query_ex($lSQLQuery);
+						
+						if ($lResult) {
+							while($lRow = mysql_fetch_assoc($lResult)){
+							$list[$j]=$lRow;
+							
+							$j++;
+							}
+						}
+				if(count($list)){
+				return $list;
+			}else{
+
+				return false;
+			}
+
+
+
+}
 
 	function updateAuctionMetadata($auctionArray) {
 		
@@ -990,6 +1039,51 @@ function updateInviteCode($codeArray) {
 		}
 
 
+
+
+
+       function addInvoice($invoiceArray) {
+		
+		
+				$lSQLQuery = "INSERT INTO `invoices` ( `" . implode('`, `', array_keys($invoiceArray)) . "`, `date`) VALUES ('" . implode("' ,'", $invoiceArray) . "', NOW());";
+				$lResult = $this->mysql_query_ex($lSQLQuery);
+				if ($lResult) {
+					
+						
+							return true;
+							
+					
+					}
+			
+			return false;
+		}
+
+
+
+
+		 function getInvoiceByAuctionId($auction_id){
+	
+			
+			$lSQLQuery = "SELECT * FROM `invoices` WHERE `auction_id` =  '".mysql_real_escape_string($auction_id)."';";
+	
+	
+	
+				$lResult = $this->mysql_query_ex($lSQLQuery);
+					if ($lResult) {
+					
+							$lArray = mysql_fetch_assoc($lResult);
+							return $lArray;
+							
+							
+					}
+			
+					return false;	
+			
+				
+	
+	}
+
+		
 			
 }
 
