@@ -81,29 +81,24 @@ body {
   margin-top: 40px;
   color: #3e937e;
 }
-#home {
-  margin-top: -20px;
-}
-.container {
-  margin-right: auto;
-  margin-left: auto;
-}
-.page {
-  padding-top: 20px;
-  min-height: 400px;
-}
-#stage {
-  margin-right: auto;
-  margin-left: auto;
-  width: 940px;
+#home #stage {
   height: 382px;
   background-image: url(../assets/start.jpg);
 }
-#stageBanner {
+#home #stage ul {
+  font-style: italic;
+  font-size: 18px;
+  font-weight: 600;
+  color: #3e937e;
+}
+#home #stageBanner {
   position: relative;
   top: 280px;
   left: 230px;
   color: #FFFFFF;
+}
+.page {
+  min-height: 400px;
 }
 .mainbody {
   margin-top: 50px;

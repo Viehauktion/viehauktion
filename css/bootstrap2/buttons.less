@@ -17,24 +17,25 @@
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
-  .buttonBackground(@btnBackground, @btnBackgroundHighlight, @grayDark, 0 1px 1px rgba(255,255,255,.75));
+  .buttonBackground(@btnBackground, @btnBackground, @grayDark, 0 1px 1px rgba(255,255,255,.75));
   border: 1px solid @btnBorder;
   *border: 0; // Remove the border to prevent IE7's black border on input:focus
-  border-bottom-color: darken(@btnBorder, 10%);
   .border-radius(@baseBorderRadius);
   .ie7-restore-left-whitespace(); // Give IE7 some love
-  .box-shadow(~"inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05)");
+  //.box-shadow(~"inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05)");
+  box-shadow: 0 3px 0 darken(@btnBorder, 10%);
+  border-bottom: none;
 
   // Hover/focus state
   &:hover,
   &:focus {
     color: @grayDark;
     text-decoration: none;
-    background-position: 0 -15px;
+    background: #f5f5f5;
 
     // transition is only when going to hover/focus, otherwise the background
     // behind the gradient (there for IE<=9 fallback) gets mismatched
-    .transition(background-position .1s linear);
+    .transition(background .2s linear);
   }
 
   // Focus state for keyboard and accessibility
@@ -45,9 +46,11 @@
   // Active state
   &.active,
   &:active {
-    background-image: none;
-    outline: 0;
-    .box-shadow(~"inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05)");
+    position: relative;
+    top: 1px;
+    //background-image: none;
+    //outline: 0;
+    //.box-shadow(~"inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05)");
   }
 
   // Disabled state
@@ -147,8 +150,11 @@ input[type="button"] {
   font-weight: 600;
   box-shadow: 0 3px 0 @darkPaleGreen;
   text-shadow: 0 -1px 0 @darkPaleGreen;
-  border: 1px sold  @darkPaleGreen;
-  border: none;
+  border-bottom: none;
+  &:hover,
+  &:focus {
+    background: darken(@btnPrimaryBackground,10%);
+  }
 }
 // Warning appears are orange
 .btn-warning {

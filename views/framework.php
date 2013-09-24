@@ -38,6 +38,18 @@
 
     <div class="page">
       <div class="container">
+      <? if($View!=="home") { ?>
+        <div class="row">
+          <div class="span12">
+            <ul class="breadcrumb">
+              <li><a href="#">Startseite</a> <span class="divider"><i class="icon-angle-right"></i></span></li>
+              <li><a href="#">Auktionen</a> <span class="divider"><i class="icon-angle-right"></i></span></li>
+              <li class="active">Niedersachsen</li>
+            </ul>
+          </div>
+        </div>
+      <? } ?>
+
         <? include($View.".php") ?>
       </div>
     </div>
