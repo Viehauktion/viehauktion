@@ -36,19 +36,18 @@
       </div>
     </div>
 
-<div class="page">
-<div class="container">
-<? include($View.".php") ?>
-</div>
-</div>
+    <div class="page">
+      <div class="container">
+        <? include($View.".php") ?>
+      </div>
+    </div>
 
-<div id="footer">
-<div class="container">	
-<? include("footer.php") ?>
-<? include("modals.php") ?>
-</div>
-</div>
-
+    <div id="footer">
+      <div class="container">	
+        <? include("footer.php") ?>
+      </div>
+    </div>
+    <? include("modals.php") ?>
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -60,5 +59,5 @@
   ga('send', 'pageview');
 
 </script>
-</body>
+  </body>
 </html>

@@ -277,10 +277,10 @@ $texts['buy_offer_not_logged_in_error']="Um kaufen zu können, müssen sie sich 
 
 $texts['next_auctions']="Nächste Auktion";
 
-$texts['footer_agb']="AGB";
+$texts['footer_agb']="Allg. Geschäftsbedingungen";
 $texts['footer_contact']="Kontakt";
 $texts['footer_imprint']="Impressum";
-$texts['footer_team']="Team";
+$texts['footer_team']="Unser Team";
 
 $texts["faq_headline"]="Häufige Fragen";
 

@@ -4,7 +4,7 @@
 
 	
 
-   <h4><? echo($texts['select_running_headline']); ?></h4>
+   <h3><? echo($texts['select_running_headline']); ?></h3>
       <p><? echo($texts['select_running_auction_description']); ?></p>
  <form  class="form-horizontal" method="get"  id="select_running_auction">
       <fieldset>

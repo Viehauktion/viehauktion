@@ -18,21 +18,21 @@ $areAuctionsToday=false;
 
 ?>
 
-
+<div class="row">
+  <div class="span12">
    <h2><? echo($texts['navi_auction']); ?></h2>
 
 
-
-      <p><? if($areAuctionsToday){
- echo($texts['auctions_auction_today']);
-      }else{
- echo($texts['auctions_no_auction_today']);
-
-      }
-      ?>
-
-</p>
-
+    <div class="well">
+    <? if($areAuctionsToday){
+      echo($texts['auctions_auction_today']);
+    }else{
+      echo($texts['auctions_no_auction_today']);
+    }
+    ?>
+    </div>
+  </div>
+</div>
 
 <? if($areAuctionsToday){
 

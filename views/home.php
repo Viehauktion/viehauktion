@@ -21,6 +21,7 @@
 <p>- Gekauft Mail</p>
 <p>- Pagination</p>
 <p>- Darstellung nächster Auktionen</p>
+<p>- <strong>Breadcrumb</strong></p>
 </div>
 
 </div>
