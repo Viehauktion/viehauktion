@@ -701,8 +701,43 @@ function getEndedAuction(){
 		}
 
 
+		function getStateById($state_id){
+	
+			
+				$lSQLQuery = "SELECT * FROM `state` WHERE `id` =  '".mysql_real_escape_string($state_id)."';";
 
+					$lResult = $this->mysql_query_ex($lSQLQuery);
+					if ($lResult) {
+					
+							$lArray = mysql_fetch_assoc($lResult);
+							return $lArray;
+							
+							
+							
+					}
+			
+					return false;	
+		}
+   
 
+		function getCountyById($county_id){
+	
+			
+				$lSQLQuery = "SELECT * FROM `county` WHERE `id` =  '".mysql_real_escape_string($county_id)."';";
+
+					$lResult = $this->mysql_query_ex($lSQLQuery);
+					if ($lResult) {
+					
+							$lArray = mysql_fetch_assoc($lResult);
+							return $lArray;
+							
+							
+							
+					}
+			
+					return false;	
+		}
+   
 
 
 		function getCountiesOfPendingAuctions($state_id, $is_auction){

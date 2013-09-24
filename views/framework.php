@@ -42,9 +42,18 @@
         <div class="row">
           <div class="span12">
             <ul class="breadcrumb">
-              <li><a href="#">Startseite</a> <span class="divider"><i class="icon-angle-right"></i></span></li>
-              <li><a href="#">Auktionen</a> <span class="divider"><i class="icon-angle-right"></i></span></li>
-              <li class="active">Niedersachsen</li>
+<?
+
+for($i=0; $i<count($breadcrumb);$i++){
+    if($i<count($breadcrumb)-1){
+     echo('<li><a href="?view='.$breadlinks[$i].'">'.$breadcrumb[$i].'</a> <span class="divider"><i class="icon-angle-right"></i></span></li>');
+    }else{
+    echo('<li class="active">'.$breadcrumb[$i].'</li>');
+    }
+}
+
+?>
+
             </ul>
           </div>
         </div>

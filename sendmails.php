@@ -12,7 +12,7 @@ require_once('DB.inc.php');
 require_once("SRBill.class.php");
 
 
-
+require_once("amazonS3/S3.php");
 
 include("./phpmailer/class.phpmailer.php");
 
@@ -175,7 +175,7 @@ if($endedAuctions=$lDB->getEndedAuction()){
 
 																$currentInvoice=$lDB->getInvoiceByAuctionId($endedAuctions[$i]["id"]);
 
-																var_dump($seller);
+																
 
 																$pdf = new SRBill('P', 'mm', 'A4');
 																$pdf->AliasNbPages();
@@ -197,10 +197,12 @@ if($endedAuctions=$lDB->getEndedAuction()){
 
 
 
+																$s3 = new S3($GLOBALS["VIEHAUKTION"]["AMAZON"]["ID"], $GLOBALS["VIEHAUKTION"]["AMAZON"]["KEY"]);
 
 
-
-
+																$result=$s3->putObjectFile("./invoices/".$invoice["filename"], $GLOBALS["VIEHAUKTION"]["AMAZON"]["BUCKET"], "invoices/".$invoice["filename"], S3::ACL_PUBLIC_READ);
+			
+			
 															
 
 																if(sendEmail('./mails/success_to_seller.de.txt', $lSearch, $lReplacement, $sellersubject, $seller['email'])){

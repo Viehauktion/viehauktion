@@ -398,7 +398,7 @@ function getPendingCounties($state_id, $is_auction){
 
 }
 
-function getNextAuction($county_id, $is_auction){
+function getNextAuction($county_id, $state_id, $is_auction){
 
 	global $gBase;
 		
@@ -407,6 +407,10 @@ function getNextAuction($county_id, $is_auction){
 			if (!$lDB->failed){
 
 					$gBase->RawData=$lDB->getNextAuctions($county_id, $is_auction);
+					$county=$lDB->getCountyById($county_id);
+					$state=$lDB->getStateById($state_id);
+					$gBase->RawData["county_name"]=$county["name"];
+					$gBase->RawData["state_name"]=$state["name"];
 					
 
 			}
@@ -672,7 +676,7 @@ function checkTodaysOffers(){
 
 
 
-function getAuctionDetails($auction_id){
+function getAuctionDetails($auction_id, $county_id, $state_id){
 
 
 global $gBase;
@@ -711,6 +715,14 @@ global $gBase;
 
 
 						$gBase->CurrentAuction=$fullAuction;
+
+
+					$county=$lDB->getCountyById($county_id);
+					$state=$lDB->getStateById($state_id);
+					$gBase->RawData["county_name"]=$county["name"];
+					$gBase->RawData["state_name"]=$state["name"];
+					
+					
 
 			}
 

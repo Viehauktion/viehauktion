@@ -32,14 +32,26 @@
 	
 	/*
     |-----------------------------------------------------------------------------------------------------------------------------------
-    | globale Variablen     QUARTETT - E-MAIL-CONF
+    | globale Variablen    VIEHAUKTION - E-MAIL-CONF
     |
     |---------------------------------------------------------------------------------------------------------------------------------*/
+
 	$GLOBALS["VIEHAUKTION"]["EMAIL"]["SENDERNAME"]="Service | Viehauktion.com";
 	$GLOBALS["VIEHAUKTION"]["EMAIL"]["SENDERADDRESS"]="service@viehauktion.com";
 	$GLOBALS["VIEHAUKTION"]["EMAIL"]["SERVER"]="localhost";
 	
-	
+
+		
+	/*
+    |-----------------------------------------------------------------------------------------------------------------------------------
+    | globale Variablen    VIEHAUKTION - AMAZON
+    |
+    |---------------------------------------------------------------------------------------------------------------------------------*/
+
+		$GLOBALS["VIEHAUKTION"]["AMAZON"]["ID"]="AKIAIVIIEFOEB7DQN6GA";
+		$GLOBALS["VIEHAUKTION"]["AMAZON"]["KEY"]="IRELEZ5ZbBV1xLsHOJDbQhgMw515JtsCT77XNJz3";
+			
+		$GLOBALS["VIEHAUKTION"]["AMAZON"]["BUCKET"]="viehauktion";
 	
 	
 	?>

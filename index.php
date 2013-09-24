@@ -199,7 +199,7 @@ require_once("SRBill.class.php");
 
 					case 'login_user': loginUser($_REQUEST['identifier'], $_REQUEST['password']);  break;
 					case 'logout_user': logoutUser();  break;
-					case 'generate_new_password': generateNewUserPassword($_REQUEST['identifier']);  break;
+					case 'generate_new_password': generateNewUserPassword($_REQUEST['identifier'], $lang);  break;
 					case 'change_password': changePassword($_REQUEST['old_password'], $_REQUEST['new_password']);   break;
 					case 'change_email':  changeEmail($gBase->User, $_REQUEST['user_email'], $_REQUEST['user_oldpassword']);  break;
 					case 'change_username':  changeUsername($gBase->User, $_REQUEST['username'], $_REQUEST['user_oldpassword']);  break;
@@ -225,11 +225,11 @@ require_once("SRBill.class.php");
 
 					case "get_pending_auction_states":	getPendingStates($_REQUEST['start_time']); break;
 					case "get_pending_auction_counties":	getPendingCounties($_REQUEST['state_id'], $_REQUEST['is_auction']); break;
-					case "get_next_auction":		getNextAuction($_REQUEST['county_id'], $_REQUEST['is_auction']); break;
+					case "get_next_auction":		getNextAuction($_REQUEST['county_id'],$_REQUEST['state_id'], $_REQUEST['is_auction']); break;
 					case "get_running_auction":		getRunningAuction($_REQUEST['county_id'], $_REQUEST['auction_id']); break;
 
 
-					case "get_auction_details":		getAuctionDetails($_REQUEST['auction_id']); break;
+					case "get_auction_details":		getAuctionDetails($_REQUEST['auction_id'], $_REQUEST['county_id'], $_REQUEST['state_id']); break;
 					case "buy_offer":				buyOffer($_REQUEST['auction_id']); break;
 
 					case "bid_on_running_auction":  bidOnRunningAution($_REQUEST['county_id'], $_REQUEST['auction_id'], $_REQUEST['bid']); break;
@@ -261,6 +261,7 @@ require_once("SRBill.class.php");
 				}else{
 					
 					include('locale/'.$lang.'.php');
+					include('breadcrumb.php');
 					include('views/framework.php');
 			}
 		

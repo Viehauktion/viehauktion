@@ -270,7 +270,7 @@ function sendActivationMailAgain($user_email, $lang){
 		
 		
 		
-			function generateNewUserPassword($identifier){
+			function generateNewUserPassword($identifier, $lang){
 	global $gBase;
 			
 			
@@ -279,7 +279,8 @@ function sendActivationMailAgain($user_email, $lang){
 						$userArray=array();
 			
 						if (!$lDB->failed){
-								if($userArray=$lDB->getUserByEmail($identifier)){
+								
+								    if($userArray=$lDB->getUserByEmail($identifier)){
 									
 								
 									}else if($userArray=$lDB->getUserByUsername($identifier)){
@@ -300,14 +301,18 @@ function sendActivationMailAgain($user_email, $lang){
 									
 									//var_dump($userArray);
 									$lSearch = array();
+									$lSearch[] = "___FIRSTNAME___";
+									$lSearch[] = "___LASTNAME___";
+									$lSearch[] = "___SITENAME___";
 									$lSearch[] = "___USERNAME___";
-									$lSearch[] = "___APPNAME___";
 									$lSearch[] = "___PASSWORD___";
 									
 
 									$lReplacement = array();
-									$lReplacement[] =$userArray['username'];
+									$lReplacement[] =$userArray['firstname'];
+									$lReplacement[] =$userArray['lastname'];
 									$lReplacement[] =$GLOBALS["VIEHAUKTION"]["BASE"]["APPNAME"];
+									$lReplacement[] =$userArray['username'];
 									$lReplacement[] =$newpassword;
 									
 									$lRecipient=$userArray['email'];
@@ -315,7 +320,7 @@ function sendActivationMailAgain($user_email, $lang){
 									
 									switch($lang){
 										
-										case "de": $subject="Dein neues Passwort."; break;
+										case "de": $subject="Ihr neues Passwort."; break;
 										case "en": $subject="Your new password."; break;
 										default: $subject="Your new password.";
 										

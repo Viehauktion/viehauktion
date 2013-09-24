@@ -223,7 +223,7 @@ if(count($won_auctions)>0){
   <td><? echo($won_auctions[$i]["amount_of_animals"]); ?></td>
   <td><? echo($won_auctions[$i]["current_entity_price"]); ?></td>
   <td><? echo($won_auctions[$i]["city"]); ?></td>
-  <td> <a href="?view=show_full_auction&action=get_auction_details&is_auction=yes&auction_id=<? echo($won_auctions[$i]["id"]); ?>" class="btn" type="button" id="showAuction" ><?  echo($texts['auction_details']); ?></a></td>
+  <td> <a href="?from=profile&view=show_full_auction&action=get_auction_details&is_auction=yes&auction_id=<? echo($won_auctions[$i]["id"]); ?>" class="btn" type="button" id="showAuction" ><?  echo($texts['auction_details']); ?></a></td>
  
 </tr>
 
@@ -287,7 +287,7 @@ $counter++;
   <td><? echo($won_auctions[$i]["amount_of_animals"]); ?></td>
   <td><? echo($won_auctions[$i]["current_entity_price"]); ?></td>
   <td><? echo($won_auctions[$i]["city"]); ?></td>
-  <td> <a href="?view=show_full_auction&action=get_auction_details&is_auction=no&auction_id=<? echo($won_auctions[$i]["id"]); ?>" class="btn" type="button" id="showAuction" ><?  echo($texts['auction_details']); ?></a></td>
+  <td> <a href="?from=profile&view=show_full_auction&action=get_auction_details&is_auction=no&auction_id=<? echo($won_auctions[$i]["id"]); ?>" class="btn" type="button" id="showAuction" ><?  echo($texts['auction_details']); ?></a></td>
  
 </tr>
 
