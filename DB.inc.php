@@ -830,14 +830,41 @@ function getEndedAuction(){
 				$lSQLQuery = "";
 
 			 if($is_auction=="yes"){
-					$lSQLQuery = "SELECT * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.county_id =  '".mysql_real_escape_string($county_id)."' AND auctions.status='pending' ORDER BY auctions.id ASC LIMIT 1;";
+					$lSQLQuery = "SELECT * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.county_id =  '".mysql_real_escape_string($county_id)."' AND auctions.status='pending' ORDER BY auctions.id ASC;";
 	
 
 			 }else{
 
-					 $lSQLQuery = "SELECT * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.county_id =  '".mysql_real_escape_string($county_id)."' AND auctions.status='offering' ORDER BY auctions.id ASC LIMIT 1;";
+					 $lSQLQuery = "SELECT * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.county_id =  '".mysql_real_escape_string($county_id)."' AND auctions.status='offering' ORDER BY auctions.id ASC;";
 	
 			 }
+				
+				$list= array();
+						$j=0;
+						$lResult = $this->mysql_query_ex($lSQLQuery);
+						
+						if ($lResult) {
+							while($lRow = mysql_fetch_assoc($lResult)){
+							$list[$j]=$lRow;
+							
+							$j++;
+							}
+						}
+				
+				return $list;
+
+
+ 		}
+
+
+ 			function getTodaysRunningAuctions($county_id, $date){
+
+				$lSQLQuery = "";
+
+			
+					$lSQLQuery = "SELECT id, amount_of_animals, status, city, min_entity_price, current_entity_price, bids  FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.county_id =  '".mysql_real_escape_string($county_id)."' AND auctions.is_main='yes' AND auctions.start_time like '".$date."%' ORDER BY auctions.id ASC;";
+	
+
 				
 				$list= array();
 						$j=0;

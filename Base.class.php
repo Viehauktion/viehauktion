@@ -49,6 +49,7 @@
 			$_SESSION["UserSearchs"] 	= $this->UserSearchs;
 			$_SESSION["UserAddresses"]= $this->UserAddresses;
 			$_SESSION["CurrentAuction"]=$this->CurrentAuction;
+		
 			
 		}
 

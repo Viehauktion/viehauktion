@@ -179,12 +179,16 @@ $texts['buyer']="Käufer";
 $texts['show_auction_detail']="Autionsdetails";
 $texts['show_offer_detail']="Angebotsdetails";
 
+$texts['auction_main_auction']="Die Auktion soll im Rahmen der Hauptauktion stattfinden.";
+$texts['auction_side_auction']="Die ist eine Nebenauktion. Ich bestimme selbst, wann die Auktion enden soll.";
+
 $texts['auction_category']="Tierart:";
 $texts['auction_amount']="Anzahl der Tiere:";
 $texts['auction_min_entitity_price']="Mindestgebot";
 $texts['auction_origin']="Herkunft als Ferkel:";
 $texts['auction_city']="Ort:";
 $texts['auction_current_price']="Aktuell höchstes Gebot:";
+$texts['auction_highest_price']="Höchstgebot";
 $texts['auction_current_time']="Aktuelle Zeit:";
 $texts['auction_your_bid']="Ihr Gebot:";
 $texts['auction_your_bid_placeholder_1']="z.B.";
@@ -194,9 +198,10 @@ $texts['auction_end_time']="Auktionsende:";
 $texts['auction_start_time']="Auktionsbeginn:";
 $texts['auction_is_waiting']="Diese nächste Auktion startet in wenigen Sekunden.";
 $texts['auction_bids']="Anzahl bisheriger Gebote:";
+$texts['auction_bids_done']="Gebote";
 $texts['auction_bid_submit']="Verbindlich bieten.";
 $texts['add_auction_date']="Auktionstermin:";
-
+$texts['add_auction_end']="Auktionsende:";
 $texts['add_auction_time_entity']="Uhr";
 
 $texts['auction_pigs_classification']="Klassifizierungsart:";
@@ -265,6 +270,8 @@ $texts['select_running_headline']="Suchen Sie Ihre Region";
 $texts['select_running_description']="Auktionen finden deutschlandweit statt, wählen Sie zunächst einen Bundesland, danach ein Landkreis.<br/><i>Es werden Ihnen nur Landkreise angezeigt, in denen Auktionen stattfinden.</i>";
 $texts['select_running_auction_submit']="Auktion aufrufen";
 
+$texts['running_auctions_comming_up']="Nächste Auktionen - Warteschlange";
+$texts['running_auctions_finished']="Beendete Auktionen";
 
 
 $texts['auctions_auction_today']="Heute findet die nächsten Aukionen statt. Wählen Sie Ihren Landkreis, um den aktuellen Katalog aufzurufen oder direkt zur laufenden Auktion zu gelangen.";

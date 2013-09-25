@@ -6,14 +6,16 @@
     <link rel="stylesheet" href="css/bootstrap.css" media="screen" type="text/css" />
     <link rel="stylesheet" href="css/font-awesome.min.css" media="screen" type="text/css" />
     <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
-
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" media="screen" type="text/css" />
 <!-- SCRIPTS BELONG TO THE BOTTOM OF THE PAGE!!! -->    
-    <script src="js/jquery-1.10.2.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
+
 
   </head>
   <body>
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/main.js"></script>
 
     <div class="masthead">
       <div class="container">
@@ -80,5 +82,9 @@ for($i=0; $i<count($breadcrumb);$i++){
   ga('send', 'pageview');
 
 </script>
+
+
+    
+    
   </body>
 </html>
