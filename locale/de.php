@@ -107,15 +107,23 @@ $texts['recover_success']="Wir haben Ihnen eine E-Mail mit Ihrem neuen Passwort 
 $texts['profile_my_data']="Ihre Daten";
 $texts['profile_my_auctions']="Ihre Auktionen";
 $texts['profile_my_offers']="Ihre Festpreisangebote";
+$texts['profile_my_offers_to_confirm']="Ihre zu bestätigende Verkäufe";
 $texts['profile_no_auction']="Sie haben bisher keine Festpreisangebote eingestellt.";
 $texts['profile_no_offers']="Sie haben bisher keine Auktion durchgeführt.";
 $texts['profile_auctions_won']="Gewonnene Auktionen";
+
+$texts['profile_buyer_details']="Käufer Details";
+$texts['profile_confirm_sell']="Kauf bestätigen";
+$texts['profile_confirm_question']="Sind sie sicher? Sie verpflichten sich hierdurch zum Verkauf der Tiere.";
+$texts['profile_deny_sell']="Kauf ablehnen";
+
+
 
 $texts['profile_no_auction_won']="Sie haben bisher bei keiner Auktion den Zuschlag erhalten.";
 $texts['profile_add_auction']="Neue Auktion erstellen";
 $texts['profile_add_offer']="Neues Angebot einstellen";
 $texts['profile_get_invoice']="Rechnung herunterladen";
-
+$texts['profile_my_auctions_to_approve']="Abgeschlossene Auktionen zur Bestätigung";
 
 $texts['auction_buying_price']="Kaufpreis";
 $texts['auction_buying_location']="Ort";
@@ -129,8 +137,8 @@ $texts['offer']="Festpreisangebot";
 $texts['profile_offers_won']="Angenommen Angebote";
 $texts['bought_offer_date']="Kaufdatum";
 
-$tests['auction_last_bid']="Letztes Gebot";
-$tests['auction_status']="Status";
+$texts['auction_last_bid']="Letztes Gebot";
+$texts['auction_status']="Status";
 
 $texts['profile_delete_auction']="Löschen";
 $texts['profile_delete_auction_question']="Sind Sie sicher das Sie die Auktion löschen möchten?";
@@ -203,6 +211,7 @@ $texts['auction_bid_submit']="Verbindlich bieten.";
 $texts['add_auction_date']="Auktionstermin:";
 $texts['add_auction_end']="Auktionsende:";
 $texts['add_auction_time_entity']="Uhr";
+
 
 $texts['auction_pigs_classification']="Klassifizierungsart:";
 $texts['auction_pigs_form']="Form:";

@@ -228,7 +228,7 @@ require_once("SRBill.class.php");
 					case "get_next_auction":		getNextAuction($_REQUEST['county_id'],$_REQUEST['state_id'], $_REQUEST['is_auction']); break;
 					case "get_running_auction":		getRunningAuction($_REQUEST['county_id'], $_REQUEST['auction_id']); break;
 
-
+					case "confirm_auction":			confirmAuction($_REQUEST['auction_id']); break;
 					case "get_auction_details":		getAuctionDetails($_REQUEST['auction_id'], $_REQUEST['county_id'], $_REQUEST['state_id']); break;
 					case "buy_offer":				buyOffer($_REQUEST['auction_id']); break;
 

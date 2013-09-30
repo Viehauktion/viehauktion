@@ -22,10 +22,110 @@ if($gBase->User['is_seller']=="yes"){
 
 ?>
 
+
+
+
+
+<!--AUCTIONS-BEGIN-->
+
+      <?
+
+ $auctions=$gBase->UserAuctions;
+$counter=0;
+
+$auctionToApprove=false;
+
+for($j=0;$j<count($auctions);$j++){
+
+  if($auctions[$j]['status']=="ended"){
+    $auctionToApprove=true;
+    break;
+  }
+}
+
+
+if($auctionToApprove){
+
+
+
+   ?>
+
+  <div id="userauctionstoapprove">
+    <h2><? echo($texts['profile_my_auctions_to_approve']); ?></h2>
+    <p>
+
+
+
+ <table class="table table-striped span8">
+    <tr>
+      <td><? echo($texts['add_auction_date']); ?></td>
+      <td><? echo($texts['auction_amount']); ?></td>
+      <td><? echo($texts['auction_min_entitity_price']); ?></td>
+      <td><? echo($texts['auction_last_bid']); ?></td>
+     <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <?
+    for($i=0; $i<count($auctions); $i++){
+
+      if($auctions[$i]["is_auction"]=="yes" && $auctions[$i]['status']=="ended"){
+$counter++;
+      ?>
+
+<tr>
+ 
+ <td><? echo(date("d.m.Y", strtotime($auctions[$i]["end_time"]))); ?></td>
+  <td><? echo($auctions[$i]["amount_of_animals"]); ?></td>
+  <td><? echo($auctions[$i]["min_entity_price"]); ?></td>
+  <td><? echo($auctions[$i]["current_entity_price"]); ?></td>
+  <td> <a href="?from=profile&view=show_full_auction&action=get_auction_details&is_auction=yes&auction_id=<? echo($auctions[$i]["id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_buyer_details']); ?></a></td>
+  <td> <a href="?view=profile&action=confirm_auction&is_auction=yes&auction_id=<? echo($auctions[$i]["id"]); ?>" onclick = "if (! confirm('<? echo($texts['profile_confirm_question']); ?>')) { return false; }" class="btn" type="button" ><?  echo($texts['profile_confirm_sell']); ?></a></td>
+  <td> <a href="?view=profile&action=cancel_auction&auction_id=<? echo($auctions[$i]["id"]); ?>" onclick = "if (! confirm('<? echo($texts['profile_delete_auction_question']); ?>')) { return false; }" class="btn" type="button"  ><?  echo($texts['profile_deny_sell']); ?></a></td>
+</tr>
+
+      <?
+}
+  }
+  ?>
+</table>
+
+    </p>
+  </div>
+
+
+
+  <?
+}
+
+
+
+?>
+
+<!--AUCTIONS-END-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!--AUCTIONS-BEGIN-->
 
   <div id="userauctions">
+    <div class="pull-right"> <a href="?view=edit_auction&is_auction=yes" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_add_auction']); ?></a>
+</div>
     <h2><? echo($texts['profile_my_auctions']); ?></h2>
+
+
     <p>
       <?
 
@@ -33,6 +133,8 @@ if($gBase->User['is_seller']=="yes"){
 $counter=0;
 
 if(count($auctions)>0){
+
+
 
    ?>
   
@@ -42,30 +144,55 @@ if(count($auctions)>0){
 
  <table class="table table-striped span8">
     <tr>
- 
+      <td><? echo($texts['add_auction_date']); ?></td>
       <td><? echo($texts['auction_amount']); ?></td>
       <td><? echo($texts['auction_min_entitity_price']); ?></td>
-       <td><? echo($texts['auction_last_bid']); ?></td>
-      <td><? echo($texts['auction_status']); ?></td>
+      <td><? echo($texts['auction_last_bid']); ?></td>
       <td></td>
       <td></td>
+   
     </tr>
     <?
     for($i=0; $i<count($auctions); $i++){
 
-      if( $auctions[$i]["is_auction"]=="yes"){
+      if( $auctions[$i]["is_auction"]=="yes" && $auctions[$i]["status"]!="ended"){
 $counter++;
       ?>
 
 <tr>
  
+ <td><? echo(date("d.m.Y", strtotime($auctions[$i]["end_time"]))); ?></td>
   <td><? echo($auctions[$i]["amount_of_animals"]); ?></td>
   <td><? echo($auctions[$i]["min_entity_price"]); ?></td>
   <td><? echo($auctions[$i]["current_entity_price"]); ?></td>
-  <td><? echo($auctions[$i]["status"]); ?></td>
+   <?
+   if( $auctions[$i]["status"]=="pending"){
+
+      ?>
   <td> <a href="?view=edit_auction&is_auction=yes&auction_id=<? echo($auctions[$i]["id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_edit_auction']); ?></a></td>
-  <td> <a href="?action=get_invoice&is_auction=yes&auction_id=<? echo($auctions[$i]["id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_get_invoice']); ?></a></td>
   <td> <a href="?view=profile&action=remove_auction&auction_id=<? echo($auctions[$i]["id"]); ?>" onclick = "if (! confirm('<? echo($texts['profile_delete_auction_question']); ?>')) { return false; }" class="btn" type="button"  ><?  echo($texts['profile_delete_auction']); ?></a></td>
+
+
+ <?
+      }else if( $auctions[$i]["status"]=="confirmed"){
+
+      ?>
+
+  <td colspan="2"> <a href="?action=get_invoice&is_auction=yes&auction_id=<? echo($auctions[$i]["id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_get_invoice']); ?></a></td>
+  
+
+ <?
+
+     }else{
+
+      echo("<td></td>");
+      echo("<td></td>");
+
+
+
+     }
+
+      ?>
 </tr>
 
       <?
@@ -88,7 +215,6 @@ if($counter==0){
 
 ?>
 <br/>
- <a href="?view=edit_auction&is_auction=yes" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_add_auction']); ?></a>
 
     </p>
   </div>
@@ -98,10 +224,91 @@ if($counter==0){
 
 <!--OFFERS-BEGIN-->
 
+      <?
 
+ $auctions=$gBase->UserAuctions;
+
+$counter=0;
+
+
+$auctionToApprove=false;
+
+for($j=0;$j<count($auctions);$j++){
+
+  if($auctions[$j]['status']=="ended" && $auctions[$j]['is_auction']=="no" ){
+    $auctionToApprove=true;
+    break;
+  }
+}
+
+
+
+if($auctionToApprove){
+
+   ?>
+
+<div id="userofferstoconfirm">
+
+    <h2><? echo($texts['profile_my_offers_to_confirm']); ?></h2>
+    <p>
+
+
+ <table class="table table-striped span8">
+    <tr>
+      <td><? echo($texts['add_auction_date']); ?></td>
+      <td><? echo($texts['auction_amount']); ?></td>
+      <td><? echo($texts['offer_entitity_price']); ?></td>
+      <td></td>
+      <td></td>
+       <td></td>
+    </tr>
+    <?
+    for($i=0; $i<count($auctions); $i++){
+
+      if( $auctions[$i]["is_auction"]=="no"){
+$counter++;
+      ?>
+
+<tr>
+  <td><? echo(date("d.m.Y", strtotime($auctions[$i]["start_time"]))); ?></td>
+  <td><? echo($auctions[$i]["amount_of_animals"]); ?></td>
+  <td><? echo($auctions[$i]["min_entity_price"]); ?></td>
+
+  <td> <a href="?from=profile&view=show_full_auction&action=get_auction_details&is_auction=yes&auction_id=<? echo($auctions[$i]["id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_buyer_details']); ?></a></td>
+  <td> <a href="?view=profile&action=confirm_auction&is_auction=yes&auction_id=<? echo($auctions[$i]["id"]); ?>" onclick = "if (! confirm('<? echo($texts['profile_confirm_question']); ?>')) { return false; }" class="btn" type="button" ><?  echo($texts['profile_confirm_sell']); ?></a></td>
+  <td> <a href="?view=profile&action=cancel_auction&auction_id=<? echo($auctions[$i]["id"]); ?>" onclick = "if (! confirm('<? echo($texts['profile_delete_auction_question']); ?>')) { return false; }" class="btn" type="button"  ><?  echo($texts['profile_deny_sell']); ?></a></td>
+</tr>
+
+      <?
+}
+  }
+  ?>
+</table>
+
+
+
+
+<br/>
+ 
+    </p>
+  </div>
+
+
+  <?
+}
+
+
+
+
+?>
+
+
+<!--OFFERS-End-->
 
 
 <div id="useroffers">
+  <div class="pull-right"><a href="?view=edit_auction&is_auction=no" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_add_offer']); ?></a>
+</div>
     <h2><? echo($texts['profile_my_offers']); ?></h2>
     <p>
       <?
@@ -122,14 +329,14 @@ if(count($auctions)>0){
       <td><? echo($texts['add_auction_date']); ?></td>
       <td><? echo($texts['auction_amount']); ?></td>
       <td><? echo($texts['offer_entitity_price']); ?></td>
-      <td><? echo($texts['auction_status']); ?></td>
+
       <td></td>
       <td></td>
     </tr>
     <?
     for($i=0; $i<count($auctions); $i++){
 
-      if( $auctions[$i]["is_auction"]=="no"){
+      if( $auctions[$i]["is_auction"]=="no" && $auctions[$i]["status"]!="ended"){
 $counter++;
       ?>
 
@@ -137,11 +344,39 @@ $counter++;
   <td><? echo($auctions[$i]["start_time"]); ?></td>
   <td><? echo($auctions[$i]["amount_of_animals"]); ?></td>
   <td><? echo($auctions[$i]["min_entity_price"]); ?></td>
-  <td><? echo($auctions[$i]["status"]); ?></td>
-  <td> <a href="?view=edit_auction&is_auction=no&auction_id=<? echo($auctions[$i]["id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_edit_auction']); ?></a></td>
-  <td> <a href="?action=get_invoice&is_auction=no&auction_id=<? echo($auctions[$i]["id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_get_invoice']); ?></a></td>
+
+
+
+ <?
+   if( $auctions[$i]["status"]=="pending"){
+
+      ?>
+  <td> <a href="?view=edit_auction&is_auction=yes&auction_id=<? echo($auctions[$i]["id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_edit_auction']); ?></a></td>
   <td> <a href="?view=profile&action=remove_auction&auction_id=<? echo($auctions[$i]["id"]); ?>" onclick = "if (! confirm('<? echo($texts['profile_delete_auction_question']); ?>')) { return false; }" class="btn" type="button"  ><?  echo($texts['profile_delete_auction']); ?></a></td>
-</tr>
+
+
+ <?
+      }else if( $auctions[$i]["status"]=="confirmed"){
+
+      ?>
+
+  <td colspan="2"> <a href="?action=get_invoice&is_auction=yes&auction_id=<? echo($auctions[$i]["id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_get_invoice']); ?></a></td>
+
+
+ <?
+
+     }else{
+
+      echo("<td></td>");
+        echo("<td></td>");
+
+     }
+
+      ?>
+
+
+
+ </tr>
 
       <?
 }
@@ -163,8 +398,7 @@ if($counter==0){
 
 ?>
 <br/>
- <a href="?view=edit_auction&is_auction=no" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_add_offer']); ?></a>
-
+ 
     </p>
   </div>
 

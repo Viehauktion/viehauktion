@@ -71,7 +71,7 @@ $lDB=connectDB();
 			if (!$lDB->failed){
 			
 $endedAuctions=array();
-if($endedAuctions=$lDB->getEndedAuction("confirmed")){
+if($endedAuctions=$lDB->getEndedAuction("ended")){
 
 
 
@@ -155,7 +155,7 @@ if($endedAuctions=$lDB->getEndedAuction("confirmed")){
 
 															}else{
 																$sellersubject='Ihre Auktion war erfolgreich!';
-																$buyersubject='Sie haben eine Auktion gewonnen!';
+															
 
 																$metadata=$lDB->getAuctionMetadataByAuctionId($endedAuctions[$i]["id"]);
 
@@ -173,44 +173,15 @@ if($endedAuctions=$lDB->getEndedAuction("confirmed")){
 
 																$lDB->addInvoice($invoice);
 
-																$currentInvoice=$lDB->getInvoiceByAuctionId($endedAuctions[$i]["id"]);
-
 																
-
-																$pdf = new SRBill('P', 'mm', 'A4');
-																$pdf->AliasNbPages();
-																$pdf->AddPage();
-
-																$pdf->printRecipient($seller["company"], $seller["firstname"]." ".$seller["lastname"], $seller["street"].' '.$seller["number"], $seller["postcode"].' '.$seller["city"],  $seller["country"]);
-								
-
-																$pdf->SetLeftMargin(20);
-																$pdf->SetRightMargin(20);
-
-																$date=date("d.m.Y");
-
-																$pdf->printBillData($currentInvoice["invoice_number"], $endedAuctions[$i]["id"], $endedAuctions[$i]['user_id'], $date, $metadata["amount_of_animals"], $currentInvoice["provision"], $currentInvoice["vat"], 10); 
-
-																$pdf->printBuyer("", $buyer["firstname"]." ".$buyer["lastname"], $buyer["street"].' '.$buyer["number"], $buyer["postcode"].' '.$buyer["city"],  $buyer["country"]);
-																
-																$pdfStream=$pdf->Output("./invoices/".$invoice["filename"],"F");
-
-
-
-																$s3 = new S3($GLOBALS["VIEHAUKTION"]["AMAZON"]["ID"], $GLOBALS["VIEHAUKTION"]["AMAZON"]["KEY"]);
-
-
-																$result=$s3->putObjectFile("./invoices/".$invoice["filename"], $GLOBALS["VIEHAUKTION"]["AMAZON"]["BUCKET"], "invoices/".$invoice["filename"], S3::ACL_PUBLIC_READ);
-			
-			
 															
 
-																if(sendEmail('./mails/success_to_seller.de.txt', $lSearch, $lReplacement, $sellersubject, $seller['email'])){
+																if(sendEmail('./mails/ended_to_seller.de.txt', $lSearch, $lReplacement, $sellersubject, $seller['email'])){
 
 																	$flag=1;
 																}
 
-																if(sendEmail('./mails/success_to_buyer.de.txt', $lSearch, $lReplacement, $buyersubject, $buyer['email'])){
+																if(sendEmail('./mails/ended_to_buyer.de.txt', $lSearch, $lReplacement, $buyersubject, $buyer['email'])){
 																	if($flag==1){
 																			$flag=3;
 																		}else{
@@ -219,7 +190,6 @@ if($endedAuctions=$lDB->getEndedAuction("confirmed")){
 																		}
 
 																}
-
 																
 
 
@@ -229,15 +199,11 @@ if($endedAuctions=$lDB->getEndedAuction("confirmed")){
 
 															if($flag==3){
 
-																$endedAuctions[$i]["mail_status"]="mail_complete";
-
-															}else if($flag==2){
-																$endedAuctions[$i]["mail_status"]="buyer_sent";
-															}else if($flag==1){	
-																$endedAuctions[$i]["mail_status"]="seller_sent";
+																$endedAuctions[$i]["mail_status"]="ended_mail_complete";
 
 															}else{
-																$endedAuctions[$i]["mail_status"]="seller_error";
+
+																$endedAuctions[$i]["mail_status"]="ended_mail_failed";
 															}
 
 

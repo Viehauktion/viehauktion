@@ -734,10 +734,13 @@ global $gBase;
 
 					$fullAuction["address"]["postcode"]=$address['postcode'];
 
+					$buyer_address=$lDB->getInvoiceAddressByUserId($auctionArray["buyer_id"]);
+				
 					if($auctionArray["buyer_id"]!="" && ($auctionArray["status"]=="ended" || $auctionArray["status"]=="sold")){
 							$buyerArray=array();
 							$buyerArray=$lDB->getUserByID($auctionArray["buyer_id"]);
 							$fullAuction["buyer"]=$buyerArray;
+							$fullAuction["buyer"]["address"]=$buyer_address;
 					}
 
 
@@ -752,6 +755,30 @@ global $gBase;
 					
 
 			}
+
+
+}
+
+
+function confirmAuction($auction_id){
+
+global $gBase;
+		
+			$lDB=connectDB();
+			if (!$lDB->failed){
+					$auctionArray=array();
+					$auctionArray=$lDB->getAuctionById($auction_id);
+
+					if($auctionArray["user_id"]==$gBase->User['id']){
+					
+					$auctionArray["status"]="confirmed";
+					$auctionArray["mail_status"]="";
+				
+						$lDB->updateAuction($auctionArray);
+					}
+
+			}
+
 
 
 }

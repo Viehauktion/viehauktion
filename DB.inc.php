@@ -361,7 +361,7 @@ function getUserWithAddressByID($user_id){
   function getUserAddressesById($addressid){
 	
 			
-			$lSQLQuery = "SELECT * FROM `user_addresses` WHERE `id` =  '".mysql_real_escape_string ( $addressid)."';";
+			$lSQLQuery = "SELECT * FROM `user_addresses` WHERE `id` =  '".mysql_real_escape_string ($addressid)."';";
 	
 	
 	
@@ -459,7 +459,7 @@ function getUserWithAddressByID($user_id){
 	
 			
 				$lSQLQuery = "SELECT * FROM auctions WHERE id =  '".mysql_real_escape_string($auction_id)."'";
-				
+	
 
 					$lResult = $this->mysql_query_ex($lSQLQuery);
 					if ($lResult) {
@@ -606,13 +606,13 @@ function getUserWithAddressByID($user_id){
 		}
 		
 
-function getEndedAuction(){
+function getEndedAuction($status){
 
 
 
-			$lSQLQuery = "SELECT * FROM `auctions` WHERE `status`=  'ended' AND `mail_status`='';";
+			$lSQLQuery = "SELECT * FROM `auctions` WHERE `status`=  '".$status."' AND `mail_status`='';";
 	
-
+			
 				
 				$list= array();
 						$j=0;

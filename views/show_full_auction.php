@@ -61,7 +61,7 @@ echo("<p >".$texts['auction_is_seller']."</p>");
 
 
 
-<? if( $gBase->CurrentAuction["auction"]["status"]=="ended" && $gBase->CurrentAuction["auction"]["buyer_id"]==$gBase->User["id"]){ ?>
+<? if( ($gBase->CurrentAuction["auction"]["status"]=="ended" || $gBase->CurrentAuction["auction"]["status"]=="confirmed") && $gBase->CurrentAuction["auction"]["buyer_id"]==$gBase->User["id"]){ ?>
 
 <div id="seller_box"> 
   <h2><? echo($texts['seller']); ?></h2>
@@ -69,7 +69,7 @@ echo("<p >".$texts['auction_is_seller']."</p>");
      	<? echo($gBase->CurrentAuction["seller"]["firstname"]." ".$gBase->CurrentAuction["seller"]["lastname"]); ?><br />
 		<? echo($gBase->CurrentAuction["address"]["street"]." ".$gBase->CurrentAuction["address"]["number"]); ?><br />
 		<? echo($gBase->CurrentAuction["address"]["postcode"]." ".$gBase->CurrentAuction["address"]["city"]); ?><br />
-		<? echo($gBase->CurrentAuction["seller"]["phone"]."<br />".$gBase->CurrentAuction["seller"]["email"]); ?><br />
+		<? echo($texts['registration_phone'].": ".$gBase->CurrentAuction["seller"]["phone"]."<br />".$texts['registration_email'].": ".$gBase->CurrentAuction["seller"]["email"]); ?><br />
      </p>
        
 </div>
@@ -79,13 +79,16 @@ echo("<p >".$texts['auction_is_seller']."</p>");
 ?>
 
 
-<? if($gBase->CurrentAuction["auction"]["status"]=="ended" && $gBase->CurrentAuction["auction"]["user_id"]==$gBase->User["id"]){ ?>
+<? if(($gBase->CurrentAuction["auction"]["status"]=="ended" || $gBase->CurrentAuction["auction"]["status"]=="confirmed")  && $gBase->CurrentAuction["auction"]["user_id"]==$gBase->User["id"]){ ?>
 
 <div id="buyer_box"> 
   <h2><? echo($texts['buyer']); ?></h2>
      <p>
-     	<? echo($gBase->CurrentAuction["seller"]["firstname"]." ".$gBase->CurrentAuction["seller"]["lastname"]); ?><br />
-		<? echo($gBase->CurrentAuction["seller"]["phone"]."<br />".$gBase->CurrentAuction["seller"]["email"]); ?><br />
+     	<? echo($gBase->CurrentAuction["buyer"]["firstname"]." ".$gBase->CurrentAuction["buyer"]["lastname"]); ?><br />
+		<? echo($gBase->CurrentAuction["buyer"]["address"]["street"]." ".$gBase->CurrentAuction["buyer"]["address"]["number"]); ?><br />
+		<? echo($gBase->CurrentAuction["buyer"]["address"]["postcode"]." ".$gBase->CurrentAuction["buyer"]["address"]["city"]); ?><br />
+	
+		<? echo($texts['registration_phone'].": ".$gBase->CurrentAuction["buyer"]["phone"]."<br />".$texts['registration_email'].": ".$gBase->CurrentAuction["buyer"]["email"]); ?><br />
      </p>
        
 </div>
