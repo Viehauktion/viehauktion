@@ -104,7 +104,21 @@ $oldValues=nil;
       if($_REQUEST['is_auction']=="yes"){
         ?>
 
-  <div class="control-group">
+
+
+<label class="radio">
+  <input type="radio" name="is_main_auction" id="main_auction" value="yes" onclick="changeTime('main');" checked>
+  <? echo($texts['auction_main_auction']); ?>
+</label>
+<label class="radio">
+  <input type="radio" name="is_main_auction" id="side_auction" value="no" onclick="changeTime('side');">
+  <? echo($texts['auction_side_auction']); ?>
+</label>
+
+<br/>
+<br/>
+
+  <div class="control-group" id="main_time">
         <label class="control-label" for="auction_date"><? echo($texts['add_auction_date']); ?></label>
         <div class="controls">
           <select name="auction_date"  id="auction_date">
@@ -131,6 +145,25 @@ $oldValues=nil;
  <?
      }
         ?>
+
+
+
+
+<div class="hide" id="side_time">
+   <div class="control-group">
+        <label class="control-label" for="auction_amount"><? echo($texts['add_auction_end']); ?></label>
+      <div class="controls">
+
+  <div id="endtime" class="input-append date">
+    <input data-format="dd-MM-yyyy hh:mm" name="endtime" type="text"></input>
+    <span class="add-on">
+      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+      </i>
+    </span>
+  </div>
+</div>
+ </div>
+      </div>
 
       <div class="control-group">
         <label class="control-label" for="auction_amount"><? echo($texts['auction_amount']); ?></label>
@@ -432,6 +465,17 @@ echo ' selected="selected" ';
   </div>
   <script type="text/javascript">
 
+
+
+        
+    $('#endtime').datetimepicker({
+      language: 'de-DE'
+    });
+
+
+ picker=$('#endtime').data('datetimepicker');
+picker.setLocalDate(new Date());
+
 $("#pigs_auction #auction_preview").click(function(){
       $("#pigs_auction #view").val("show_running_auction");
       $("#pigs_auction #is_preview").val("yes");
@@ -450,7 +494,24 @@ $("#pigs_auction #auction_submit").click(function(){
 
    });
 
+function changeTime(toTime){
+
+if(toTime=='side'){
+
+  $("#main_time").hide();
+  $("#side_time").show();
+}else{
+  $("#side_time").hide();
+  $("#main_time").show();
+}
+
+}
+
 function sendForm(){
+
+  
+
+
 	
 	errorflag=false;
 	$("#pigs_auction #error_message").empty();

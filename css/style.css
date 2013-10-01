@@ -103,11 +103,3 @@ body {
 .mainbody {
   margin-top: 50px;
 }
-.leftView {
-  float: left;
-  width: 350px;
-}
-.leftContent {
-  float: left;
-  width: 550px;
-}
