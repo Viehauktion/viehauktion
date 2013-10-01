@@ -45,6 +45,10 @@
 										}
 
 
+									}else{
+
+											$userArray['password']=md5($password);
+
 									}
 									$userArray['company']=mysql_escape_string($company);
 

@@ -173,7 +173,31 @@ switch ($gBase->CurrentAuction["metadata"]["auction_loading_stations_vehicle"]) 
 	</table>
 </p>
 
+
+
+
   
+
+</div>
+
+<div id="schedule">
+
+
+<div id="comming_up"> 
+<h3><? echo($texts['running_auctions_comming_up']); ?></h3>
+     <table id="coming_up_table" class="table table-striped">
+
+
+	</table>
+</div>
+
+<div id="finished" > 
+<h3><? echo($texts['running_auctions_finished']); ?></h3>
+     <table id="finished_table" class="table table-striped">
+			
+
+	 </table>
+</div>
 
 </div>
 
@@ -181,12 +205,15 @@ switch ($gBase->CurrentAuction["metadata"]["auction_loading_stations_vehicle"]) 
 
 <script type="text/javascript">
 
+
+var scheduleNeedsUpdate=true;
+
 <? 
 
 if($_REQUEST['is_preview']!="yes"){
 
 ?>
-window.setInterval("getRunningAuction()", 1000);
+window.setInterval("getRunningAuction()", 2000);
 
 currentAuctionID='<? echo($gBase->CurrentAuction["id"]);?>';
 <?
@@ -232,6 +259,7 @@ function displayResponse(data){
 								if(data.current_auction.running=="no"){
 									$("#waiting_box").show();
 									$("#bid_box").hide();
+									scheduleNeedsUpdate=true;
 
 								}else{
 									$("#waiting_box").hide();
@@ -258,6 +286,61 @@ function displayResponse(data){
 								$("#stations_availability").html(data.current_auction.metadata.auction_loading_stations_availability+' <? echo($texts['auction_loading_stations_availability_til']);?> '+data.current_auction.metadata.auction_loading_stations_availability_til);
 								$("#additional_informations").html(data.current_auction.metadata.auction_additional_informations);
 
+						if(scheduleNeedsUpdate){
+							scheduleNeedsUpdate=false;
+								pendingHTML="";
+								finishedHTML="";
+
+								for(i=0; i<data.raw_data.length; i++){
+
+
+										if(data.raw_data[i].status=="pending"){
+
+											pendingHTML+='<tr>';
+								     	pendingHTML+='<td>';     	
+								     	pendingHTML+='<table class="table">';
+										pendingHTML+='<tr><td><strong><? echo($texts["auction_id"]) ;?>:</strong></td><td >'+data.raw_data[i].id+'</td></tr>';
+										pendingHTML+='<tr><td><strong><? echo($texts['auction_amount']); ?>:</strong></td><td >'+data.raw_data[i].amount_of_animals+'</td></tr>';
+										pendingHTML+='<tr><td><strong><? echo($texts['auction_city']); ?>:</strong></td><td  >'+data.raw_data[i].city+'</td></tr>';
+										pendingHTML+='</table>';
+										pendingHTML+='</td>';
+										pendingHTML+='<td>';     	
+								     	pendingHTML+='<table class="table">';
+										pendingHTML+='<tr><td><strong><? echo($texts['auction_min_entitity_price']) ;?>:</strong></td><td >'+data.raw_data[i].min_entity_price+'</td></tr>';
+										pendingHTML+='<tr><td><strong><? echo($texts['auction_highest_price']); ?>:</strong></td><td >'+data.raw_data[i].current_entity_price+'</td></tr>';
+										pendingHTML+='<tr><td><strong><? echo($texts['auction_bids_done']); ?>:</strong></td><td >'+data.raw_data[i].bids+'</td></tr>';
+										pendingHTML+='</table>';
+										pendingHTML+='</td>';
+										pendingHTML+='</tr>';
+
+
+										}
+
+										if(data.raw_data[i].status=="ended"){
+
+										finishedHTML+='<tr>';
+								     	finishedHTML+='<td>';     	
+								     	finishedHTML+='<table  class="table">';
+										finishedHTML+='<tr><td><strong><? echo($texts["auction_id"]) ;?>:</strong></td><td >'+data.raw_data[i].id+'</td></tr>';
+										finishedHTML+='<tr><td><strong><? echo($texts['auction_amount']); ?>:</strong></td><td >'+data.raw_data[i].amount_of_animals+'</td></tr>';
+										finishedHTML+='<tr><td><strong><? echo($texts['auction_city']); ?>:</strong></td><td  >'+data.raw_data[i].city+'</td></tr>';
+										finishedHTML+='</table>';
+										finishedHTML+='</td>';
+										finishedHTML+='<td>';     	
+								     	finishedHTML+='<table class="table">';
+										finishedHTML+='<tr><td><strong><? echo($texts['auction_min_entitity_price']) ;?>:</strong></td><td >'+data.raw_data[i].min_entity_price+'</td></tr>';
+										finishedHTML+='<tr><td><strong><? echo($texts['auction_highest_price']); ?>:</strong></td><td >'+data.raw_data[i].current_entity_price+'</td></tr>';
+										finishedHTML+='<tr><td><strong><? echo($texts['auction_bids_done']); ?>:</strong></td><td >'+data.raw_data[i].bids+'</td></tr>';
+										finishedHTML+='</table>';
+										finishedHTML+='</td>';
+										finishedHTML+='</tr>';
+										}
+
+								}
+								$("#coming_up_table").html(pendingHTML);
+
+								$("#finished_table").html(finishedHTML);
+							}	    	
 
 }
 
