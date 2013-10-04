@@ -43,7 +43,7 @@
 		$lDB=connectDB();
 		if (!$lDB->failed){
 	
-	
+
 									if($currentAuction=$lDB->getCurrentAuction($auction_id)){
 	
 										$gBase->CurrentAuction=$currentAuction;
@@ -60,7 +60,38 @@
 	
 	
 
-	
+	function saveAuction($auction_id, $is_auction, $is_main_auction){
+
+	global $gBase;
+		
+			$lDB=connectDB();
+			if (!$lDB->failed){
+			
+				if($auction_id!=""){
+				//Update Auction	
+			
+				$auctionArray=array();
+				if($auctionArray=$lDB->getAuctionById($auction_id)){
+				
+
+					if($is_auction=="yes"){
+								if($is_main_auction=="yes"){
+								$auctionArray['status']="pending"; 
+							}else{
+								$auctionArray['status']="going"; 
+							}
+						}else{
+								$auctionArray['status']="offering"; 
+						}
+
+						$lDB->updateAuction($auctionArray);
+
+				}
+			}
+		}
+
+
+	}
 	
 	
 	function editAuction($category_id, $auction_id, $is_preview, $is_auction, $is_main_auction, $auction_date, $auction_endtime, $auction_amount, $auction_min_entitity_price, $auction_origin, $form, $auction_pigs_form_value, $autoform, $auction_pigs_autoform_value, $auction_pigs_qs, $auction_pigs_samonelle_state, $address, $auction_loading_stations_amount, $auction_loading_stations_distance, $auction_loading_stations_vehicle, $auction_loading_stations_availability, $auction_loading_stations_availability_til, $auction_additional_informations){
@@ -479,7 +510,7 @@ if($gBase->CurrentAuction["current_entity_price"]<$bid){
 
 							$lDB->updateBid($auction_id, $bid, $currentAuction["bids"]+1, $gBase->User['id'], $endTime);
 
-							getCurrentAuctionFromDB($county_id);
+							getCurrentAuctionFromDB($county_id, "");
 
 					}
 
@@ -490,7 +521,7 @@ if($gBase->CurrentAuction["current_entity_price"]<$bid){
 
 }
 
-function getRunningAuction($county_id, $auction_id){
+function getRunningAuction($county_id, $state_id, $auction_id){
 
 	global $gBase;
 		
@@ -504,7 +535,7 @@ function getRunningAuction($county_id, $auction_id){
 									
 										$memcache->connect('127.0.0.1', 11211);
 										if(!$gBase->CurrentAuction=$memcache->get($auction_id)){
-													getCurrentAuctionFromDB($county_id);
+													getCurrentAuctionFromDB($county_id, "");
 													return;
 
 										}
@@ -513,6 +544,23 @@ function getRunningAuction($county_id, $auction_id){
 										$gBase->CurrentAuction['current_time']=date("H:i:s");
 										$gBase->CurrentAuction['running']="yes";
 
+
+										if($gBase->CurrentAuction["buyer_id"]==$gBase->User['id']){
+											$gBase->CurrentAuction["is_buyer"] ="yes";
+										}else{
+											$gBase->CurrentAuction["is_buyer"] ="no";
+
+
+										}
+										if($gBase->CurrentAuction["user_id"]==$gBase->User['id']){
+											$gBase->CurrentAuction["is_seller"] ="yes";
+										}else{
+											$gBase->CurrentAuction["is_seller"] ="no";
+
+
+										}
+										$gBase->CurrentAuction["user_id"]=""; 
+										$gBase->CurrentAuction["buyer_id"]=""; 
 
 										if(strtotime($gBase->CurrentAuction["start_time"])>time()){
 											$gBase->CurrentAuction['running']="no";
@@ -542,12 +590,15 @@ function getRunningAuction($county_id, $auction_id){
 
 			}
 
-		getCurrentAuctionFromDB($county_id);
+		getCurrentAuctionFromDB($county_id, $state_id);
+
+					
+					
 		
 }
 	
 
-function getCurrentAuctionFromDB($county_id){
+function getCurrentAuctionFromDB($county_id, $state_id){
 global $gBase;
 
 	$lDB=connectDB();
@@ -564,6 +615,8 @@ global $gBase;
 										$gBase->CurrentAuction["start_time"] =$currentAuction["start_time"];
 										$gBase->CurrentAuction["end_time"] =$currentAuction["end_time"];
 										$gBase->CurrentAuction["bids"] =$currentAuction["bids"];
+										$gBase->CurrentAuction["user_id"] =$currentAuction["user_id"];
+										$gBase->CurrentAuction["buyer_id"] =$currentAuction["buyer_id"];
 										if($currentAuction["buyer_id"]==$gBase->User['id']){
 											$gBase->CurrentAuction["is_buyer"] ="yes";
 										}else{
@@ -571,7 +624,7 @@ global $gBase;
 
 
 										}
-											if($currentAuction["user_id"]==$gBase->User['id']){
+										if($currentAuction["user_id"]==$gBase->User['id']){
 											$gBase->CurrentAuction["is_seller"] ="yes";
 										}else{
 											$gBase->CurrentAuction["is_seller"] ="no";
@@ -588,10 +641,14 @@ global $gBase;
 										$address=array();
 										$address=$lDB->getAddressById($metadata['address']);
 										$gBase->CurrentAuction['city']=$address['city'];
+
 										$gBase->CurrentAuction['metadata']=$metadata;
 
 
-
+										$county=$lDB->getCountyById($county_id);
+										$state=$lDB->getStateById($state_id);
+										$gBase->CurrentAuction["county_name"]=$county["name"];
+										$gBase->CurrentAuction["state_name"]=$state["name"];
 
 										$memcache = new Memcache;
 
@@ -606,6 +663,10 @@ global $gBase;
 										$gBase->RawData=$lDB->getTodaysRunningAuctions($county_id, date("Y-m-d"));
 										$memcache->set($county_id, $gBase->RawData, MEMCACHE_COMPRESSED, 400);
 	
+
+
+										$gBase->CurrentAuction["user_id"]=""; 
+										$gBase->CurrentAuction["buyer_id"]=""; 
 									}else{
 										$gBase->CurrentAuction=null;
 

@@ -7,6 +7,7 @@ $texts['hint']="Hinweis";
 $texts['edit']="Bearbeiten";
 $texts['yes']="Ja";
 $texts['no']="Nein";
+$texts['back']="Zurück";
 
 $texts['page_title']="Viehauktion.de";
 $texts["stage_banner"]="Willkommen auf viehauktion.com";
@@ -16,7 +17,7 @@ $texts['page_address']="Am Sandtorkai 71-72<br/>20457 Hamburg";
 $texts['page_phone']="+49 (0) 40 35 66 25 95";
 
 
-$texts['email_label']="E-Mailadresse: ";
+$texts['email_label']="E-Mailadresse";
 $texts['email_link']='<a href="mailto:simon.meyborg@hanseventures.com" >info@viehauktion.de</a>';
 $texts['page_vat']="VAT DE 12322233";
 
@@ -190,38 +191,49 @@ $texts['show_offer_detail']="Angebotsdetails";
 $texts['auction_main_auction']="Die Auktion soll im Rahmen der Hauptauktion stattfinden.";
 $texts['auction_side_auction']="Die ist eine Nebenauktion. Ich bestimme selbst, wann die Auktion enden soll.";
 
-$texts['auction_category']="Tierart:";
-$texts['auction_amount']="Anzahl der Tiere:";
+$texts['auction_category']="Tierart";
+$texts['auction_amount']="Anzahl der Tiere";
+$texts['auction_amount_placeholder']="z.B. 178";
+
 $texts['auction_min_entitity_price']="Mindestgebot";
-$texts['auction_origin']="Herkunft als Ferkel:";
-$texts['auction_city']="Ort:";
-$texts['auction_current_price']="Aktuell höchstes Gebot:";
+$texts['auction_min_entitity_price_placeholer']="z.B. 1.85";
+
+
+$texts['auction_origin']="Herkunft als Ferkel";
+$texts['auction_origin_placeholder']="z.B. Dänemark";
+
+$texts['auction_city']="Ort";
+$texts['auction_current_price']="Aktuell höchstes Gebot";
 $texts['auction_highest_price']="Höchstgebot";
-$texts['auction_current_time']="Aktuelle Zeit:";
-$texts['auction_your_bid']="Ihr Gebot:";
+$texts['auction_current_time']="Aktuelle Zeit";
+$texts['auction_your_bid']="Ihr Gebot";
 $texts['auction_your_bid_placeholder_1']="z.B.";
 $texts['auction_your_bid_placeholder_2']="€";
-$texts['auction_your_end_price']="Kaufpreis:";
-$texts['auction_end_time']="Auktionsende:";
-$texts['auction_start_time']="Auktionsbeginn:";
+$texts['auction_your_end_price']="Kaufpreis";
+$texts['auction_end_time']="Auktionsende";
+$texts['auction_start_time']="Auktionsbeginn";
 $texts['auction_is_waiting']="Diese nächste Auktion startet in wenigen Sekunden.";
-$texts['auction_bids']="Anzahl bisheriger Gebote:";
+$texts['auction_bids']="Anzahl bisheriger Gebote";
 $texts['auction_bids_done']="Gebote";
 $texts['auction_bid_submit']="Verbindlich bieten.";
-$texts['add_auction_date']="Auktionstermin:";
-$texts['add_auction_end']="Auktionsende:";
+$texts['add_auction_date']="Auktionstermin";
+$texts['add_auction_end']="Auktionsende";
 $texts['add_auction_time_entity']="Uhr";
 
 
-$texts['auction_pigs_classification']="Klassifizierungsart:";
-$texts['auction_pigs_form']="Form:";
-$texts['auction_pigs_form_entity']="MFA(%) ca.:";
-$texts['auction_pigs_autoform']="Auto Form:";
-$texts['auction_pigs_autoform_entity']="IXP/kg  ca.:";
+$texts['auction_pigs_classification']="Klassifizierungsart";
+$texts['auction_pigs_form']="Form";
+$texts['auction_pigs_form_entity']="MFA(%) ca.";
+$texts['auction_pigs_form_entity_placeholder']="z.B. 57";
 
-$texts['auction_pigs_qs']="QS:";
+$texts['auction_pigs_autoform']="Auto Form";
+$texts['auction_pigs_autoform_entity']="IXP/kg  ca.";
+$texts['auction_pigs_autoform_entity_placeholder']="z.B. 67";
 
-$texts['auction_pigs_samonelle_state']="Samonellen Status:";
+
+$texts['auction_pigs_qs']="QS";
+
+$texts['auction_pigs_samonelle_state']="Samonellen Status";
 $texts['auction_pigs_samonelle_state_unkown']="unbekannt";
 $texts['auction_pigs_samonelle_state_1']="Status I";
 $texts['auction_pigs_samonelle_state_2']="Status II";
@@ -229,21 +241,24 @@ $texts['auction_pigs_samonelle_state_3']="Status III";
 
 $texts['auction_pigs_calssification_hint']="Wählen Sie die Art der klassifizierung. Genaue Angaben zu den Masken finden Sie in dieser <a href='forms.php' target='_blank'>Übersicht</a>.";
 
-$texts['auction_address']="Adresse des Stalls:";
+$texts['auction_address']="Adresse des Stalls";
 $texts['auction_address_hint']="Ihre genaue Stallanschrift bleibt bis zum erfolgreichen Abschluss der Auktion geheim. Wir geben nur Ihre Postleitzahl und den Ort an.";
 $texts['auction_add_address']="Andere Stalladresse anlegen";
 
 $texts['auction_preview']="Vorschau";
 $texts['auction_submit']="Speichern";
 
-$texts['auction_additional_informations']="Weitere Informationen für die Bieter:";
+$texts['auction_additional_informations']="Weitere Informationen für die Bieter";
 $texts['auction_additional_informations_hint']="Hier können Sie Angaben zum gewünschten Ablieferungszeitpunkt oder andere Besonderheiten angeben.";
 
-$texts['auction_loading_stations_amount']="Anzahl an Verladestellen:";
-$texts['auction_loading_stations_distance']="Entfernung zwischen den Verladestellen (km):";
-$texts['auction_loading_stations_vehicle']="Verladung mit:";
-$texts['auction_loading_stations_availability']="Verladung von:";
+$texts['auction_loading_stations_amount']="Anzahl an Verladestellen";
+$texts['auction_loading_stations_distance']="Entfernung zwischen den Verladestellen (km)";
+$texts['auction_loading_stations_vehicle']="Verladung mit";
+
+$texts['auction_loading_stations_availability']="Verladung von";
+$texts['auction_loading_stations_availability_placeholder']="z.B. 6:00 Uhr";
 $texts['auction_loading_stations_availability_til']="bis";
+$texts['auction_loading_stations_availability_til_placeholder']="z.B. 10:00 Uhr";
 
 $texts['auction_is_seller']="Dies ist Ihre Auktion";
 $texts["auction_is_buyer"]="Sie sind der Höchstbieter";
@@ -370,11 +385,11 @@ $texts['modal_imprint_description']="Viehauktion.de ";
 
 $texts['modal_contact_headline']="Kontakt";
 $texts['modal_contact_description']="Wir freuen uns immer über Fragen und Anregungen zu Viehauktion.de.";
-$texts['modal_contact_name']="Ihr Name:";
+$texts['modal_contact_name']="Ihr Name";
 $texts['modal_contact_name_placeholder']="Max Musterbauer";
-$texts['modal_contact_email']="Ihre E-Mailadresse:";
+$texts['modal_contact_email']="Ihre E-Mailadresse";
 $texts['modal_contact_email_placeholder']="musterbauer@mail.de";
-$texts['modal_contact_message']="Ihre Message:";
+$texts['modal_contact_message']="Ihre Message";
 $texts['modal_contact_submit']="Absenden";
 
 $texts['contact_name_error']="Bitte geben Sie Ihren Namen an.";

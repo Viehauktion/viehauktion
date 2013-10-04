@@ -76,6 +76,24 @@
 									break;
 
 
+				case "show_running_auction": 
+										
+
+
+												array_push($breadcrumb, $texts['navi_auction']);  array_push($breadlinks, "auction");
+												array_push($breadcrumb, $gBase->CurrentAuction["state_name"]);  array_push($breadlinks, "auction");
+												array_push($breadcrumb, $gBase->CurrentAuction["county_name"]);
+												
+											
+
+
+
+
+									
+
+									break;					
+
+
 				case "show_next_auction": if($_REQUEST['is_auction']=='no'){
 												array_push($breadcrumb, $texts['navi_market']);  array_push($breadlinks, "market");
 												array_push($breadcrumb, $gBase->RawData["state_name"]);  array_push($breadlinks, "market");

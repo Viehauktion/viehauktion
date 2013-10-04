@@ -168,7 +168,7 @@ $oldValues=nil;
       <div class="control-group">
         <label class="control-label" for="auction_amount"><? echo($texts['auction_amount']); ?></label>
         <div class="controls">
-          <input type="text" id="auction_amount" name="auction_amount" placeholder="<? echo($texts['auction_amount']);  ?>" value="<? if($oldValues!=nil) echo($oldValues['auction_amount']); ?>" >
+          <input type="text" id="auction_amount" name="auction_amount" placeholder="<? echo($texts['auction_amount_placeholder']);  ?>" value="<? if($oldValues!=nil) echo($oldValues['auction_amount']); ?>" >
         </div>
       </div>
 
@@ -176,13 +176,13 @@ $oldValues=nil;
       
         <label class="control-label" for="auction_min_entitity_price"><? if($_REQUEST['is_auction']=="yes"){ echo($texts['auction_min_entitity_price']);}else{echo($texts['offer_entitity_price']);} ?></label>
         <div class="controls">
-          <input type="text" id="auction_min_entitity_price" name="auction_min_entitity_price" placeholder="" value="<? if($oldValues!=nil) echo($oldValues['auction_min_entitity_price']); ?>" >
+          <input type="text" id="auction_min_entitity_price" name="auction_min_entitity_price" placeholder="<? echo($texts['auction_min_entitity_price_placeholer']); ?>" value="<? if($oldValues!=nil) echo($oldValues['auction_min_entitity_price']); ?>" >
         </div>
       </div>
       <div class="control-group">
         <label class="control-label" for="auction_origin"><? echo($texts['auction_origin']); ?></label>
         <div class="controls">
-          <input type="text" id="auction_origin" name="auction_origin" placeholder="" value="<? if($oldValues!=nil) echo($oldValues['auction_origin']); ?>">
+          <input type="text" id="auction_origin" name="auction_origin" placeholder="<? echo($texts['auction_origin_placeholder']); ?>" value="<? if($oldValues!=nil) echo($oldValues['auction_origin']); ?>">
         </div>
       </div>
       <div class="control-group">
@@ -202,7 +202,7 @@ echo ' checked="checked" ';
       <div class="control-group">
         <label class="control-label" for="auction_pigs_form_value"><? echo($texts['auction_pigs_form_entity']); ?></label>
         <div class="controls">
-          <input type="text" id="auction_pigs_form_value" name="auction_pigs_form_value" placeholder="" value="<? if($oldValues!=nil) echo($oldValues['auction_pigs_form_value']); ?>">
+          <input type="text" id="auction_pigs_form_value" name="auction_pigs_form_value" placeholder="<? echo($texts['auction_pigs_form_entity_placeholder']); ?>" value="<? if($oldValues!=nil) echo($oldValues['auction_pigs_form_value']); ?>">
         </div>
       </div>
       <div class="control-group">
@@ -214,7 +214,7 @@ echo ' checked="checked" ';
       <div class="control-group">
         <label class="control-label" for="auction_pigs_autoform_value"><? echo($texts['auction_pigs_autoform_entity']); ?></label>
         <div class="controls">
-          <input type="text" id="auction_pigs_autoform_value" name="auction_pigs_autoform_value" placeholder="" value="<? if($oldValues!=nil) echo($oldValues['auction_pigs_autoform_value']); ?>">
+          <input type="text" id="auction_pigs_autoform_value" name="auction_pigs_autoform_value" placeholder="<? echo($texts['auction_pigs_autoform_entity_placeholder']); ?>" value="<? if($oldValues!=nil) echo($oldValues['auction_pigs_autoform_value']); ?>">
         </div>
       </div>
       <span class="help-block"><? echo($texts['auction_pigs_calssification_hint']); ?></span><br/>
@@ -440,13 +440,13 @@ echo ' selected="selected" ';
         <div class="control-group">
         <label class="control-label" for="auction_loading_stations_availability"><? echo($texts['auction_loading_stations_availability']); ?></label>
         <div class="controls">
-          <input type="text" name="auction_loading_stations_availability" id="auction_loading_stations_availability" placeholder="" value="<? if($oldValues!=nil) echo($oldValues['auction_loading_stations_availability']); ?>">
+          <input type="text" name="auction_loading_stations_availability" id="auction_loading_stations_availability" placeholder="<? echo($texts['auction_loading_stations_availability_placeholder']); ?>" value="<? if($oldValues!=nil) echo($oldValues['auction_loading_stations_availability']); ?>">
         </div>
       </div>
         <div class="control-group">
         <label class="control-label" for="auction_loading_stations_availability_til"><? echo($texts['auction_loading_stations_availability_til']); ?></label>
         <div class="controls">
-          <input type="text" name="auction_loading_stations_availability_til" id="auction_loading_stations_availability_til" placeholder="" value="<? if($oldValues!=nil) echo($oldValues['auction_loading_stations_availability_til']); ?>">
+          <input type="text" name="auction_loading_stations_availability_til" id="auction_loading_stations_availability_til" placeholder="<? echo($texts['auction_loading_stations_availability_til_placeholder']); ?>" value="<? if($oldValues!=nil) echo($oldValues['auction_loading_stations_availability_til']); ?>">
         </div>
       </div>
       
@@ -455,7 +455,7 @@ echo ' selected="selected" ';
       <div class="control-group">
         <label class="control-label" for="auction_additional_informations"><? echo($texts['auction_additional_informations']); ?></label>
         <div class="controls">
-          <textarea id="auction_additional_informations" name="auction_additional_informations" rows="3"><? echo($oldValues['auction_additional_informations']); ?></textarea>
+          <textarea id="auction_additional_informations" name="auction_additional_informations" rows="3"><? if($oldValues!=nil) echo($oldValues['auction_additional_informations']); ?></textarea>
         </div>
       </div>
        <button onclick="return false" class="btn btn-primary" id="auction_preview"><? echo($texts['auction_preview']); ?></button><button onclick="return false" class="btn btn-primary" id="auction_submit"><? echo($texts['auction_submit']); ?></button>
@@ -479,7 +479,7 @@ picker.setLocalDate(new Date());
 $("#pigs_auction #auction_preview").click(function(){
       $("#pigs_auction #view").val("show_running_auction");
       $("#pigs_auction #is_preview").val("yes");
-      $("#pigs_auction #auction_form").attr("target", "_blank");
+      //$("#pigs_auction #auction_form").attr("target", "_blank");
       sendForm();
 
 

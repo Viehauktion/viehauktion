@@ -210,9 +210,7 @@ require_once("SRBill.class.php");
 					case 'add_address':	addAddress($_REQUEST['street'], $_REQUEST['number'], $_REQUEST['postcode'],$_REQUEST['city'], $_REQUEST['county_id'],$_REQUEST['state_id']); break;
 					
 				
-					case "edit_auction":  editAuction($_REQUEST['category_id'], $_REQUEST['auction_id'], $_REQUEST['is_preview'], $_REQUEST['is_auction'], $_REQUEST['is_main_auction'], $_REQUEST['auction_date'], $_REQUEST['endtime'], $_REQUEST['auction_amount'], $_REQUEST['auction_min_entitity_price'], $_REQUEST['auction_origin'], $_REQUEST['form'], $_REQUEST['auction_pigs_form_value'], $_REQUEST['autoform'], $_REQUEST['auction_pigs_autoform_value'], $_REQUEST['auction_pigs_qs'], $_REQUEST['auction_pigs_samonelle_state'], $_REQUEST['address'], $_REQUEST['auction_loading_stations_amount'], $_REQUEST['auction_loading_stations_distance'], $_REQUEST['auction_loading_stations_vehicle'], $_REQUEST['auction_loading_stations_availability'], $_REQUEST['auction_loading_stations_availability_til'], $_REQUEST['auction_additional_informations']); getUserAuctions($gBase->User['id'], false); break;
-					
-
+		
 					case "get_invoice":  getInvoice($_REQUEST['auction_id']); break; 
 
 
@@ -222,11 +220,13 @@ require_once("SRBill.class.php");
 
 					case "send_activationmail_again": sendActivationMailAgain($_REQUEST['email'], $lang); break;
 
+					case "edit_auction":  editAuction($_REQUEST['category_id'], $_REQUEST['auction_id'], $_REQUEST['is_preview'], $_REQUEST['is_auction'], $_REQUEST['is_main_auction'], $_REQUEST['auction_date'], $_REQUEST['endtime'], $_REQUEST['auction_amount'], $_REQUEST['auction_min_entitity_price'], $_REQUEST['auction_origin'], $_REQUEST['form'], $_REQUEST['auction_pigs_form_value'], $_REQUEST['autoform'], $_REQUEST['auction_pigs_autoform_value'], $_REQUEST['auction_pigs_qs'], $_REQUEST['auction_pigs_samonelle_state'], $_REQUEST['address'], $_REQUEST['auction_loading_stations_amount'], $_REQUEST['auction_loading_stations_distance'], $_REQUEST['auction_loading_stations_vehicle'], $_REQUEST['auction_loading_stations_availability'], $_REQUEST['auction_loading_stations_availability_til'], $_REQUEST['auction_additional_informations']); getUserAuctions($gBase->User['id'], false); break;
+					case "save_auction":	saveAuction($_REQUEST['auction_id'], $_REQUEST['is_auction'], $_REQUEST['is_main_auction']); break;
 
 					case "get_pending_auction_states":	getPendingStates($_REQUEST['start_time']); break;
 					case "get_pending_auction_counties":	getPendingCounties($_REQUEST['state_id'], $_REQUEST['is_auction']); break;
 					case "get_next_auction":		getNextAuction($_REQUEST['county_id'],$_REQUEST['state_id'], $_REQUEST['is_auction']); break;
-					case "get_running_auction":		getRunningAuction($_REQUEST['county_id'], $_REQUEST['auction_id']); break;
+					case "get_running_auction":		getRunningAuction($_REQUEST['county_id'],$_REQUEST['state_id'], $_REQUEST['auction_id']); break;
 
 					case "confirm_auction":			confirmAuction($_REQUEST['auction_id']); break;
 					case "get_auction_details":		getAuctionDetails($_REQUEST['auction_id'], $_REQUEST['county_id'], $_REQUEST['state_id']); break;
