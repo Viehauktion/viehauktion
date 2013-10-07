@@ -889,11 +889,12 @@ function getEndedAuction($status){
 	
 			
 				$lSQLQuery = "SELECT * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.id =  '".mysql_real_escape_string($auction_id)."'LIMIT 1;";
-	
+
 					$lResult = $this->mysql_query_ex($lSQLQuery);
 					if ($lResult) {
 					
 							$lArray = mysql_fetch_assoc($lResult);
+							return $lArray;
 						}
 		}
    

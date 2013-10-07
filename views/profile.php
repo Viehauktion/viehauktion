@@ -161,16 +161,43 @@ $counter++;
 
 <tr>
  
- <td><? echo(date("d.m.Y", strtotime($auctions[$i]["end_time"]))); ?></td>
+
+  <?
+   if( $auctions[$i]["is_main"]=="yes"){
+
+      ?>
+ <td><? echo(date("d.m.Y", strtotime($auctions[$i]["start_time"]))); ?></td>
+ 
+<? 
+}else{
+?>
+
+<td><? echo(date("d.m.Y", strtotime($auctions[$i]["end_time"]))); ?></td>
+<? 
+}
+?>
+
   <td><? echo($auctions[$i]["amount_of_animals"]); ?></td>
   <td><? echo($auctions[$i]["min_entity_price"]); ?></td>
   <td><? echo($auctions[$i]["current_entity_price"]); ?></td>
    <?
-   if( $auctions[$i]["status"]=="pending"){
+   if( $auctions[$i]["status"]=="pending" ||  $auctions[$i]["status"]=="preview" ){
 
       ?>
   <td> <a href="?view=edit_auction&is_auction=yes&auction_id=<? echo($auctions[$i]["id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_edit_auction']); ?></a></td>
   <td> <a href="?view=profile&action=remove_auction&auction_id=<? echo($auctions[$i]["id"]); ?>" onclick = "if (! confirm('<? echo($texts['profile_delete_auction_question']); ?>')) { return false; }" class="btn" type="button"  ><?  echo($texts['profile_delete_auction']); ?></a></td>
+
+
+
+<?
+      }else if( $auctions[$i]["status"]=="going"){
+
+      ?>
+
+
+  <td colspan="2"> <a href="?view=profile&action=remove_auction&auction_id=<? echo($auctions[$i]["id"]); ?>" onclick = "if (! confirm('<? echo($texts['profile_delete_auction_question']); ?>')) { return false; }" class="btn" type="button"  ><?  echo($texts['profile_delete_auction']); ?></a></td>
+
+
 
 
  <?
@@ -348,10 +375,10 @@ $counter++;
 
 
  <?
-   if( $auctions[$i]["status"]=="pending"){
+   if( $auctions[$i]["status"]=="offering" || $auctions[$i]["status"]=="preview"){
 
       ?>
-  <td> <a href="?view=edit_auction&is_auction=yes&auction_id=<? echo($auctions[$i]["id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_edit_auction']); ?></a></td>
+  <td> <a href="?view=edit_auction&is_auction=no&auction_id=<? echo($auctions[$i]["id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_edit_auction']); ?></a></td>
   <td> <a href="?view=profile&action=remove_auction&auction_id=<? echo($auctions[$i]["id"]); ?>" onclick = "if (! confirm('<? echo($texts['profile_delete_auction_question']); ?>')) { return false; }" class="btn" type="button"  ><?  echo($texts['profile_delete_auction']); ?></a></td>
 
 

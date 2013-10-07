@@ -14,12 +14,9 @@
 	</table>
 </p>
 
-	<?
-		if($gBase->CurrentAuction["is_seller"]=="yes"){		
-echo("<p >".$texts['auction_is_seller']."</p>");
-		}
+<p id="is_buyer"></p>
+<p id="is_seller"></p>
 
-		?>
 <p>
 	<table>
 		<tr><td ><strong><? echo($texts['auction_current_price']) ;?>:</strong></td><td  id="curent_price"><? echo($gBase->CurrentAuction["current_entity_price"]);?></td></tr>
@@ -175,11 +172,25 @@ switch ($gBase->CurrentAuction["metadata"]["auction_loading_stations_vehicle"]) 
 
 
 
+<? 
+if($_REQUEST["is_preview"]=="yes"){
 
+?>
+
+       <a href="?view=edit_auction&is_auction=<? echo($_REQUEST['is_auction']);?>&auction_id=<? echo($gBase->CurrentAuction["auction_id"]);?>&is_auction=<? echo($_REQUEST['is_auction']); ?>" class="btn btn-primary" id="auction_preview"><? echo($texts['back']); ?></a><a href="?view=profile&action=save_auction&auction_id=<? echo($gBase->CurrentAuction["auction_id"]);?>&is_main_auction=<? echo($_REQUEST['is_main_auction']);?>&is_auction=<? echo($_REQUEST['is_auction']);?>"  class="btn btn-primary" id="auction_submit"><? echo($texts['auction_submit']); ?></a>
+<?	
+}
+?>
   
 
 </div>
 
+
+
+<? 
+if($_REQUEST["is_preview"]!="yes"){
+
+?>
 <div id="schedule">
 
 
@@ -201,7 +212,9 @@ switch ($gBase->CurrentAuction["metadata"]["auction_loading_stations_vehicle"]) 
 
 </div>
 
-
+<?	
+}
+?>
 
 <script type="text/javascript">
 
@@ -265,6 +278,24 @@ function displayResponse(data){
 									$("#waiting_box").hide();
 									$("#bid_box").show();
 								}
+
+
+								if(data.current_auction.is_buyer=="yes"){
+									$("#is_buyer").html("<? echo($texts["auction_is_buyer"]); ?>");
+								}else{
+									$("#is_buyer").html("");
+								}
+
+								if(data.current_auction.is_seller=="yes"){
+									$("#is_seller").html("<? echo($texts["auction_is_seller"]); ?>");
+								}else{
+									$("#is_seller").html("");
+								}
+
+								
+
+								
+
 								$("#auction_id").html(data.current_auction.auction_id);
 								$("#amount_of_animals").html(data.current_auction.amount_of_animals);
 								$("#city").html(data.current_auction.city);
