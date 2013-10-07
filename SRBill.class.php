@@ -135,7 +135,7 @@
 			$this->Cell(100, 4, $pDate, 0, 1, 'L');
 			$this->SetX(75);
 			
-		    $nettoprice=round(($pBruttoPrice/(100+$pVAT))*100,2);
+		    $nettoprice=($pBruttoPrice/(100+$pVAT))*100;
 			
 			$this->SetY(110);
 			$this->SetFont('Arial', '', '10');
@@ -143,24 +143,109 @@
 			
 			$this->Cell(80, 4, "Es wurden erfolgreich $pAmountOfAnimals Tiere auf viehauktion.com versteigert.", 0, 1, 'L');
 			$this->SetX(24);
-			$this->Cell(80, 4, "Wir berechnen pro Tier eine Provision von $nettoprice € ( ".round($pBruttoPrice,2)."0 € inkl. Mehrwertsteuer ).", 0, 1, 'L');
+			$this->Cell(80, 4, "Wir berechnen pro Tier eine Provision von $nettoprice € ( ".number_format($pBruttoPrice, 2, '.', '')."0 € inkl. Mehrwertsteuer ).", 0, 1, 'L');
 			$this->SetY(130);
 			$this->SetX(24);
 			$this->Cell(80, 4, "Daraus ergibt sich ein Rechnungbetrag von: ", 0, 1, 'L');
-			$totalNettoPrice=round($pAmountOfAnimals*$nettoprice,2);
+			$totalNettoPrice=$pAmountOfAnimals*$nettoprice;
 			$this->SetY(140);
 			$this->SetX(24);
 
-			$this->Cell(80, 4, "Leistung:                                   ".$pAmountOfAnimals." Tiere á ".$nettoprice." €  =     ".$totalNettoPrice." €", 0, 1, 'L');
-			$vatPrice=round(($totalNettoPrice/100)*19,2);
+			$this->Cell(80, 4, "Leistung:                                   ".$pAmountOfAnimals." Tiere á ".number_format($nettoprice, 2, '.', '')." €  =     ".number_format($totalNettoPrice, 2, '.', '')." €", 0, 1, 'L');
+			$vatPrice=($totalNettoPrice/100)*19;
 			$this->SetX(24);
-			$this->Cell(80, 4, "Mehrwertsteuer ($pVAT %):                                                +".$vatPrice." €", 0, 1, 'L');
+			$this->Cell(80, 4, "Mehrwertsteuer ($pVAT %):                                                +".number_format($vatPrice, 2, '.', '')." €", 0, 1, 'L');
 				$this->SetX(24);
 			$this->Cell(80, 4, "________________________________________________________", 0, 1, 'L');
-			$totalBruttoPrice=round($vatPrice+$totalNettoPrice,2);
-$this->SetX(24);
-$this->SetFont('Arial', 'B', '10');
-			$this->Cell(80, 4, "Gesamtbetrag:                                                               ".$totalBruttoPrice." €", 0, 0, 'L');
+			$totalBruttoPrice=$vatPrice+$totalNettoPrice;
+			$this->SetX(24);
+			$this->SetFont('Arial', 'B', '10');
+			$this->Cell(80, 4, "Gesamtbetrag:                                                               ".number_format($totalBruttoPrice, 2, '.', '')." €", 0, 0, 'L');
+
+
+
+					$this->SetY(170);
+
+					$this->SetX(24);
+					$this->Cell(175, 4, "Bitte überweisen Sie den Gesamtbetrag unter Nennung der Rechnungs-Nr.", 0, 1, 'L');
+					$this->SetX(24);
+					$this->Cell(175, 4, "binnen 14 Tagen auf das untengenannte Konto.", 0, 1, 'L');
+
+
+
+
+
+		}
+
+
+
+
+		function printStornoData($isAuction, $pBillNo, $pAuctionID, $pUserID, $pDate,  $pnettoPrice, $pVAT, $pFontSize) {
+			
+			$this->SetY(75);
+			$this->SetFont('Arial', 'B', $pFontSize);
+			$this->SetX(24);
+			$this->Cell(100, 4, "Rechnung-Nr.:", 0, 1, 'L');
+			$this->SetX(24);
+			$this->Cell(100, 4, "Auktions-Nr.:", 0, 1, 'L');
+			$this->Ln(3);
+			$this->SetX(24);
+			$this->Cell(100, 4, "Kunden-Nr.:", 0, 1, 'L');
+			$this->SetX(24);
+			$this->Cell(100, 4, "Datum:", 0, 1, 'L');
+			$this->SetX(24);
+			$this->Cell(100, 4, "Leistungszeitraum:", 0, 1, 'L');
+			
+			
+			
+			
+			$this->SetY(75);
+			$this->SetX(75);
+			$this->SetFont('Arial', '', $pFontSize);
+			$this->Cell(100, 4, $pBillNo, 0, 1, 'L');
+			$this->SetX(75);
+			$this->Cell(100, 4, $pAuctionID, 0, 1, 'L');
+			$this->Ln(3);
+			$this->SetX(75);
+			$this->Cell(100, 4, $pUserID, 0, 1, 'L');
+			$this->SetX(75);
+			$this->Cell(100, 4, $pDate, 0, 1, 'L');
+			$this->SetX(75);
+			$this->Cell(100, 4, $pDate, 0, 1, 'L');
+			$this->SetX(75);
+			
+		    $bruttoprice=$pnettoPrice/(100)*119;
+			
+			$this->SetY(110);
+			$this->SetFont('Arial', '', '10');
+			$this->SetX(24);
+			$leistung="";
+			if($isAuction){
+				$this->Cell(80, 4, "Sie stornierten die erfolgreiche Auktion mit Nr. '".$pAuctionID."'. ", 0, 1, 'L');
+				$leistung="Stornierung der erfolgreichen Auktion mit Nr. '".$pAuctionID."'. ";
+			}else{
+				$this->Cell(80, 4, "Sie stornierten den erfolgreichen Kauf/Verkauf mit Nr. '".$pAuctionID."'. ", 0, 1, 'L');
+				$leistung="Stornierung des erfolgreichen Kaufs/Verkaufs mit Nr. '".$pAuctionID."'. ";
+			}
+				$this->SetX(24);
+			$this->Cell(80, 4, "Hierfür berechnen wir Ihnen einen Verwaltungsgebühr von ".number_format($pnettoPrice, 2, '.', '')." € (exkl. Mehrwertsteuer ).", 0, 1, 'L');
+			$this->SetY(130);
+			$this->SetX(24);
+			$this->Cell(80, 4, "Daraus ergibt sich ein Rechnungbetrag von: ", 0, 1, 'L');
+			
+			$this->SetY(140);
+			$this->SetX(24);
+
+			$this->Cell(80, 4, "Leistung:                       ".$leistung.": ".number_format($pnettoPrice, 2, '.', '')." €  =     ".number_format($pnettoPrice, 2, '.', '')." €", 0, 1, 'L');
+			$vatPrice=($pnettoPrice/100)*$pVAT;
+			$this->SetX(24);
+			$this->Cell(80, 4, "Mehrwertsteuer ($pVAT %):                                                +".number_format($vatPrice, 2, '.', '')." €", 0, 1, 'L');
+			$this->SetX(24);
+			$this->Cell(80, 4, "________________________________________________________", 0, 1, 'L');
+			
+			$this->SetX(24);
+			$this->SetFont('Arial', 'B', '10');
+			$this->Cell(80, 4, "Gesamtbetrag:                                                               ".number_format($bruttoprice, 2, '.', '')." €", 0, 0, 'L');
 
 
 

@@ -24,7 +24,7 @@ include("Auction.inc.php");
 require_once("SRBill.class.php");
 
 
-//require_once("amazonS3/S3.php");
+require_once("amazonS3/S3.php");
 
 
 	
@@ -214,7 +214,8 @@ require_once("SRBill.class.php");
 					case "get_invoice":  getInvoice($_REQUEST['auction_id']); break; 
 
 
-					case "remove_auction": removeAuction($_REQUEST['auction_id']); break;	
+					case "remove_auction": removeAuction($_REQUEST['auction_id']); break;
+					case "cancel_auction": cancelAuction($_REQUEST['auction_id']); break;	
 
 
 

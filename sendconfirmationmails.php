@@ -163,12 +163,14 @@ if($endedAuctions=$lDB->getEndedAuction("confirmed")){
 																$invoice=array();
 																$invoice["auction_id"]=$endedAuctions[$i]["id"];
 																$invoice["user_id"]=$endedAuctions[$i]["user_id"];
+																$invoice["recipient_id"]=$endedAuctions[$i]["user_id"];
+																$invoice["type"]="provision";
 																$invoice["buyer_id"]=$endedAuctions[$i]["buyer_id"];
 																$invoice["price"]=$endedAuctions[$i]["current_entity_price"];
-																$invoice["vat"]=19;
-																$invoice["provision"]=0.4;
+																$invoice["vat"]=$GLOBALS["VIEHAUKTION"]["VAT"];
+																$invoice["provision"]=$GLOBALS["VIEHAUKTION"]["PROVISION"];
 																$invoice["amount_of_animals"]=$metadata["amount_of_animals"];
-																$invoice["filename"]=$endedAuctions[$i]["id"]."_".$endedAuctions[$i]["user_id"].".pdf";
+																$invoice["filename"]="provision_".$endedAuctions[$i]["id"]."_".$endedAuctions[$i]["user_id"].".pdf";
 																$invoice["downloaded"]=0;
 
 																$lDB->addInvoice($invoice);

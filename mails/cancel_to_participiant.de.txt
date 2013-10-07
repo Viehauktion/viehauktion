@@ -1,0 +1,23 @@
+Sehr geehrte(r) ___PARTICIPANTFIRSTNAME___ ___PARTICIPANTLASTNAME___,
+ 
+
+Die Gegenseite hat den ___TYPE___ Nr. ___NUMBER___, an dem Sie beteiligt waren, leider abgelehnt.
+
+Der Kaufvertrag kommt somit nicht zu Stande.
+
+Wir hoffen, dass Sie sich nicht davon abhalten lassen, auch in Zukunft ___SITENAME___ zu nutzen.
+
+
+Ihr ___SITENAME___ Team
+
+
+Diese E-Mail wurde automatisch erstellt. Bitte antworten Sie Ihr nicht.
+
+
+___SITENAME___
+
+
+
+
+
+

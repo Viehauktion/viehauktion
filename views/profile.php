@@ -63,7 +63,7 @@ if($auctionToApprove){
       <td><? echo($texts['auction_min_entitity_price']); ?></td>
       <td><? echo($texts['auction_last_bid']); ?></td>
      <td></td>
-      <td></td>
+      <!--<td></td>-->
       <td></td>
     </tr>
     <?
@@ -80,7 +80,7 @@ $counter++;
   <td><? echo($auctions[$i]["min_entity_price"]); ?></td>
   <td><? echo($auctions[$i]["current_entity_price"]); ?></td>
   <td> <a href="?from=profile&view=show_full_auction&action=get_auction_details&is_auction=yes&auction_id=<? echo($auctions[$i]["id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_buyer_details']); ?></a></td>
-  <td> <a href="?view=profile&action=confirm_auction&is_auction=yes&auction_id=<? echo($auctions[$i]["id"]); ?>" onclick = "if (! confirm('<? echo($texts['profile_confirm_question']); ?>')) { return false; }" class="btn" type="button" ><?  echo($texts['profile_confirm_sell']); ?></a></td>
+  <!--<td> <a href="?view=profile&action=confirm_auction&is_auction=yes&auction_id=<? echo($auctions[$i]["id"]); ?>" onclick = "if (! confirm('<? echo($texts['profile_confirm_question']); ?>')) { return false; }" class="btn" type="button" ><?  echo($texts['profile_confirm_sell']); ?></a></td>-->
   <td> <a href="?view=profile&action=cancel_auction&auction_id=<? echo($auctions[$i]["id"]); ?>" onclick = "if (! confirm('<? echo($texts['profile_delete_auction_question']); ?>')) { return false; }" class="btn" type="button"  ><?  echo($texts['profile_deny_sell']); ?></a></td>
 </tr>
 

@@ -253,15 +253,38 @@ function getRunningAuction(){
 function submitBid(){
 
 
+	<?
+	if($gBase->User!=null){
 
-  $.getJSON("index.php", { "action": "bid_on_running_auction", "view": "show_running_auction", "mode":"ajax","county_id":"<? echo($_REQUEST["county_id"]); ?>","auction_id":currentAuctionID,"bid":$("#your_bid").val(), "sid":"<? echo($_COOKIE["PHPSESSID"]); ?>"},
+		if($gBase->User["is_buyer"]=="no"){
+
+				echo("alert('".$texts['auction_not_buyer_error']."')");
+
+		}else{ 
+			?>
+
+		
+
+  		$.getJSON("index.php", { "action": "bid_on_running_auction", "view": "show_running_auction", "mode":"ajax","county_id":"<? echo($_REQUEST["county_id"]); ?>","auction_id":currentAuctionID,"bid":$("#your_bid").val(), "sid":"<? echo($_COOKIE["PHPSESSID"]); ?>"},
 			
 			  				 function(data){
 			 				 session_id=data.conf.session_id;
 							 	displayResponse(data);
 						 });
+
+<?  		
+		}
+
+  	}else{
+
+		echo("alert('".$texts['auction_not_loggedin_error']."')");
+
+  	} 
+
+
+  	?>
 	
-	}
+}
 
 
 

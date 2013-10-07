@@ -192,6 +192,10 @@ $texts['auction_main_auction']="Die Auktion soll im Rahmen der Hauptauktion stat
 $texts['auction_side_auction']="Die ist eine Nebenauktion. Ich bestimme selbst, wann die Auktion enden soll.";
 
 $texts['auction_category']="Tierart";
+
+$texts['auction_not_loggedin_error']="Sie können nur als angemeldeter Händler bieten. Bitte loggen Sie sich ein oder registrieren sich als Händler";
+$texts['auction_not_buyer_error']="Sie können nur als angemeldeter Händler bieten. Sie sind nur als Verkäufer registriert.";
+
 $texts['auction_amount']="Anzahl der Tiere";
 $texts['auction_amount_placeholder']="z.B. 178";
 

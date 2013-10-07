@@ -41,6 +41,23 @@
 	$GLOBALS["VIEHAUKTION"]["EMAIL"]["SERVER"]="localhost";
 	
 
+
+
+
+		/*
+    |-----------------------------------------------------------------------------------------------------------------------------------
+    | globale Variablen    VIEHAUKTION - Invoice and stuff
+    |
+    |---------------------------------------------------------------------------------------------------------------------------------*/
+
+	$GLOBALS["VIEHAUKTION"]["STORNO"]["TIME"]=60;
+	$GLOBALS["VIEHAUKTION"]["STORNO"]["MONEY"]=40;
+	$GLOBALS["VIEHAUKTION"]["VAT"]=19;
+	$GLOBALS["VIEHAUKTION"]["PROVISION"]=0.4;
+
+
+	
+
 		
 	/*
     |-----------------------------------------------------------------------------------------------------------------------------------
@@ -49,9 +66,9 @@
     |---------------------------------------------------------------------------------------------------------------------------------*/
 
 		$GLOBALS["VIEHAUKTION"]["AMAZON"]["ID"]="AKIAIVIIEFOEB7DQN6GA";
-		$GLOBALS["VIEHAUKTION"]["AMAZON"]["KEY"]="IRELEZ5ZbBV1xLsHOJDbQhgMw515JtsCT77XNJz3";
-			
+		$GLOBALS["VIEHAUKTION"]["AMAZON"]["KEY"]="IRELEZ5ZbBV1xLsHOJDbQhgMw515JtsCT77XNJz3";	
 		$GLOBALS["VIEHAUKTION"]["AMAZON"]["BUCKET"]="viehauktion";
+		$GLOBALS["VIEHAUKTION"]["AMAZON"]["BUCKET"]["URL"]="https://s3-eu-west-1.amazonaws.com/viehauktion/invoices/";
 	
 	
 	?>

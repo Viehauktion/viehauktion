@@ -302,6 +302,8 @@
 			
 				$auctionArray=array();
 				if($auctionArray=$lDB->getAuctionById($auction_id)){
+
+
 								$auctionArray['status']="deleted";
 								$lDB->updateAuction($auctionArray);
 							}
@@ -310,7 +312,131 @@
 				}
 			
 
+function cancelAuction($auction_id){
 
+global $gBase;
+		
+			$lDB=connectDB();
+			if (!$lDB->failed){
+			
+				if($auction_id!=""){
+				//Update Auction	
+			
+				$auctionArray=array();
+				if($auctionArray=$lDB->getAuctionById($auction_id)){
+
+						$type="";
+						if($gBase->User['id']==$auctionArray['user_id']){
+							$auctionArray['status']="seller_canceled";
+							$participiant=$lDB->getUserWithAddressByID($auctionArray['buyer_id']);
+							$type="Verkauf";
+
+						}else{
+							$auctionArray['status']="buyer_canceled";
+							$participiant=$lDB->getUserWithAddressByID($auctionArray['user_id']);
+								$type="Kauf";
+						}
+								
+								$invoice=array();
+								$invoice["auction_id"]=$auctionArray["id"];
+								$invoice["recipient_id"]=$gBase->User['id'];
+								$invoice["type"]="storno";
+								$invoice["total"]=$GLOBALS["VIEHAUKTION"]["STORNO"]["MONEY"];
+								$invoice["user_id"]=$auctionArray["user_id"];
+								$invoice["buyer_id"]=$auctionArray["buyer_id"];
+								$invoice["provision"]=0;
+								$invoice["vat"]=$GLOBALS["VIEHAUKTION"]["VAT"];
+								$invoice["filename"]=time()."_storno_".$auctionArray["id"]."_".$invoice["recipient_id"].".pdf";
+								$invoice["downloaded"]=0;
+
+								$lDB->addInvoice($invoice);
+
+								$currentInvoice=$lDB->getInvoiceByAuctionId($auctionArray["id"]);
+								$recipient=$lDB->getUserWithAddressByID($gBase->User['id']);
+								
+
+									$pdf = new SRBill('P', 'mm', 'A4');
+									$pdf->AliasNbPages();
+									$pdf->AddPage();
+									$pdf->printRecipient($recipient["company"], $recipient["firstname"]." ".$recipient["lastname"], $recipient["street"].' '.$recipient["number"], $recipient["postcode"].' '.$recipient["city"],  $recipient["country"]);
+								
+									$pdf->SetLeftMargin(20);
+									$pdf->SetRightMargin(20);
+
+									$date=date("d.m.Y");
+									$is_auction=false;
+									if($auctionArray["is_auction"]=="yes"){
+										$is_auction=true;
+									}
+									$pdf->printStornoData($is_auction,$currentInvoice["invoice_number"], $invoice["auction_id"], $invoice["recipient_id"], $date, $GLOBALS["VIEHAUKTION"]["STORNO"]["MONEY"], $currentInvoice["vat"], 10); 
+
+									
+									$pdfStream=$pdf->Output("./invoices/".$invoice["filename"],"F");
+
+
+
+									$s3 = new S3($GLOBALS["VIEHAUKTION"]["AMAZON"]["ID"], $GLOBALS["VIEHAUKTION"]["AMAZON"]["KEY"]);
+
+
+									$result=$s3->putObjectFile("./invoices/".$invoice["filename"], $GLOBALS["VIEHAUKTION"]["AMAZON"]["BUCKET"], "invoices/".$invoice["filename"], S3::ACL_PUBLIC_READ);
+
+									$lDB->updateAuction($auctionArray);
+
+
+
+									$lSearch = array();
+															
+									$lSearch[0] = "___TOTAL___";
+									$lSearch[1] = "___SITENAME___";
+
+									$lSearch[2] = "___RECIPIENTFIRSTNAME___";
+									$lSearch[3] = "___RECIPIENTLASTNAME___";
+									$lSearch[4] = "___TYPE___";
+									$lSearch[5] = "___NUMBER___";
+									$lSearch[6] = "___INVOICE___";
+									$lSearch[7] = "___PARTICIPANTFIRSTNAME___";
+									$lSearch[8] = "___PARTICIPANTLASTNAME___";
+								
+
+
+
+									$lReplacement = array();
+									$lReplacement[0] =$GLOBALS["VIEHAUKTION"]["STORNO"]["MONEY"];
+									$lReplacement[1] =$GLOBALS["VIEHAUKTION"]["BASE"]["APPNAME"];
+						
+									$lReplacement[2] = $recipient["firstname"];
+									$lReplacement[3] = $recipient["lastname"];
+									
+									$lReplacement[4] = $type;
+									
+									$lReplacement[5] = $invoice["auction_id"];
+									$lReplacement[6] = $GLOBALS["VIEHAUKTION"]["AMAZON"]["BUCKET"]["URL"].$invoice["filename"];
+									$lReplacement[7] = $participiant["firstname"];
+									$lReplacement[8] = $participiant["lastname"];
+									
+
+
+
+									$recipientsubject='Sie haben einen '.$type.' abgelehnt.';
+									$participiantsubject='Die Gegenseite hat den '.$type.' abgelehnt.';
+									
+										
+									sendEmail('./mails/cancel_to_recipient.de.txt', $lSearch, $lReplacement,$recipientsubject, $recipient['email']);
+									sendEmail('./mails/cancel_to_participiant.de.txt', $lSearch, $lReplacement, $participiantsubject, $participiant['email']);
+										
+
+
+
+
+
+
+
+							}
+						}
+					}
+
+
+}
 
 
 
