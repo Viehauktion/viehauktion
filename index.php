@@ -20,6 +20,9 @@ include("./phpmailer/class.phpmailer.php");
 include("User.inc.php");
 
 include("Auction.inc.php");
+include("Invoices.inc.php");
+include("Ratings.inc.php");
+
 
 require_once("SRBill.class.php");
 
@@ -211,8 +214,8 @@ require_once("amazonS3/S3.php");
 					
 				
 		
-					case "get_invoice":  getInvoice($_REQUEST['auction_id']); break; 
-
+					//case "get_invoice":  getInvoice($_REQUEST['auction_id']); break; 
+					case "get_invoice":  getInvoice($_REQUEST['invoice_id']); break; 
 
 					case "remove_auction": removeAuction($_REQUEST['auction_id']); break;
 					case "cancel_auction": cancelAuction($_REQUEST['auction_id']); break;	
@@ -236,12 +239,14 @@ require_once("amazonS3/S3.php");
 					case "bid_on_running_auction":  bidOnRunningAution($_REQUEST['county_id'], $_REQUEST['auction_id'], $_REQUEST['bid']); break;
 
 					case "check_code":		$hasInvite=checkCode($_REQUEST['invite_code']); break;
-					
+				
+
+					case "rate_user": rateUser($_REQUEST['auction_id'], $_REQUEST['comment'], $_REQUEST['rating']); break;	
 		}
 		switch ($View) {
 		
 		
-			case 'profile': getUserAuctions($gBase->User['id'], true); getUserAuctions($gBase->User['id'], false); break;
+			case 'profile': getUserAuctions($gBase->User['id'], true); getUserAuctions($gBase->User['id'], false); getUserInvoices($gBase->User['id']); break;
 			case 'auctions': checkTodaysAuctions(); break;
 			case 'market':	checkTodaysOffers(); break;
 

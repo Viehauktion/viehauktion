@@ -2,7 +2,7 @@
   <? if($gBase->User['id'] != "") { ?>
     <span class="muted"><?= $texts['signin_signedin_as'] ?></span>
     <a href="?&view=profile" <? if ($View=="profile") echo('class="active"'); ?>>
-      <?= $gBase->User['username'] ?>
+      <?= $gBase->User['email'] ?>
     </a>
     <span class="muted">&bull;</span>
     <a href="?action=logout_user&view=home" >

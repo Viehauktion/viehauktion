@@ -1146,7 +1146,193 @@ function updateInviteCode($codeArray) {
 	
 	}
 
+
+
+
+		 function getInvoiceById($invoice_id){
+	
+			
+			$lSQLQuery = "SELECT * FROM `invoices` WHERE `invoice_number` =  '".mysql_real_escape_string($invoice_id)."';";
+	
+	
+	
+				$lResult = $this->mysql_query_ex($lSQLQuery);
+					if ($lResult) {
+					
+							$lArray = mysql_fetch_assoc($lResult);
+							return $lArray;
+							
+							
+					}
+			
+					return false;	
+			
+				
+	
+	}
+
+
+	function getInvoicesByRecipientId($recipient_id){
+
+				$lSQLQuery = "SELECT * FROM `invoices` WHERE `recipient_id` = '".mysql_real_escape_string($recipient_id)."'";
+				
+				
+				$list= array();
+						$j=0;
+						$lResult = $this->mysql_query_ex($lSQLQuery);
+						
+						if ($lResult) {
+							while($lRow = mysql_fetch_assoc($lResult)){
+							$list[$j]=$lRow;
+							
+							$j++;
+							}
+						}
+				
+				return $list;
+
+	}
+
+
+
+
+
+
+
+function updateInvoice($invoiceArray) {
 		
+			$lSQLQuery = "UPDATE `invoices` SET ";
+			
+			
+			for($i=0; $i<count($invoiceArray); $i++){
+				
+									if($value = current($invoiceArray)){
+					
+									if(key($invoiceArray)!='invoice_number'){
+									$lSQLQuery .="`".key($invoiceArray)."`='".$value."', ";
+									}
+									
+					} 
+					next($invoiceArray);
+			}
+					
+					
+			$lSQLQuery=substr($lSQLQuery, 0, (strlen($lSQLQuery)-2));
+			
+			
+			$lSQLQuery .=" WHERE `invoice_number` = '".$invoiceArray['invoice_number']."'";
+			
+		
+		
+			
+				$lResult = $this->mysql_query_ex($lSQLQuery);
+				if ($lResult) {
+			
+					return true ;
+				}
+			
+			return false;	
+		
+		}
+
+
+		
+
+
+
+/*
+//
+//RATING
+//
+//*/
+
+
+
+       function addRating($ratingArray) {
+		
+		
+				$lSQLQuery = "INSERT INTO `ratings` ( `" . implode('`, `', array_keys($ratingArray)) . "`, `date`) VALUES ('" . implode("' ,'", $ratingArray) . "', NOW());";
+				$lResult = $this->mysql_query_ex($lSQLQuery);
+				if ($lResult) {
+					
+						
+							return true;
+							
+					
+					}
+			
+			return false;
+		}
+
+
+
+
+		function getRatingByAuctionIdandWriterId($auction_id, $writer_id){
+	
+			
+			$lSQLQuery = "SELECT * FROM `ratings` WHERE `auction_id` =  '".mysql_real_escape_string($auction_id)."' AND `writer_id` =  '".mysql_real_escape_string($writer_id)."';";
+	
+	
+	
+				$lResult = $this->mysql_query_ex($lSQLQuery);
+					if ($lResult) {
+					
+							$lArray = mysql_fetch_assoc($lResult);
+							return $lArray;
+							
+							
+					}
+			
+					return false;	
+			
+				
+	
+	}
+
+
+
+function updateRating($ratingArray) {
+		
+			$lSQLQuery = "UPDATE `ratings` SET ";
+			
+			
+			for($i=0; $i<count($ratingArray); $i++){
+				
+									if($value = current($ratingArray)){
+					
+									if(key($ratingArray)!='id'){
+									$lSQLQuery .="`".key($ratingArray)."`='".$value."', ";
+									}
+									
+					} 
+					next($ratingArray);
+			}
+					
+					
+			$lSQLQuery=substr($lSQLQuery, 0, (strlen($lSQLQuery)-2));
+			
+			
+			$lSQLQuery .=" WHERE `id` = '".$ratingArray['id']."'";
+			
+		
+		
+			
+				$lResult = $this->mysql_query_ex($lSQLQuery);
+				if ($lResult) {
+			
+					return true ;
+				}
+			
+			return false;	
+		
+		}
+
+
+
+
+
+
+
 			
 }
 

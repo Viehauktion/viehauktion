@@ -438,7 +438,7 @@ global $gBase;
 
 }
 
-
+/*
 
 function getInvoice($auction_id){
 
@@ -539,7 +539,7 @@ function getInvoice($auction_id){
 }
 
 
-
+*/
 
 
 

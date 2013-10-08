@@ -1,5 +1,19 @@
 <div id="profile">
-  <div id="userdata">
+
+
+
+<ul id="subnavigation" class="nav nav-tabs">
+  <li class="active"><a href="#" onclick="showSubnavigation('userdata')"><? echo($texts['profile_my_data']); ?></a></li>
+  <li><a href="#" onclick="showSubnavigation('auctions')"><? echo($texts['profile_my_auctions']); ?></a></li>
+  <li><a href="#" onclick="showSubnavigation('offers')"><? echo($texts['profile_my_offers']); ?></a></li>
+  <li><a href="#" onclick="showSubnavigation('won_auctions')"><? echo($texts['profile_auctions_won']); ?></a></li>
+  <li><a href="#" onclick="showSubnavigation('won_offers')"><? echo($texts['profile_offers_won']); ?></a></li>
+  <li><a href="#" onclick="showSubnavigation('invoices')"><? echo($texts['profile_my_invoices']); ?></a></li>
+
+</ul>
+
+
+  <div id="userdata" class="sublayer">
     <h2><? echo($texts['profile_my_data']); ?></h2>
     <p> <? echo($texts['registration_username']); ?>:&nbsp;<? echo($gBase->User['username']); ?><br/>
       <? echo($texts['registration_email']); ?>:&nbsp;<? echo($gBase->User['email']); ?><br/>
@@ -25,7 +39,7 @@ if($gBase->User['is_seller']=="yes"){
 
 
 
-
+<div id="auctions" class="sublayer hide">
 <!--AUCTIONS-BEGIN-->
 
       <?
@@ -50,7 +64,8 @@ if($auctionToApprove){
 
    ?>
 
-  <div id="userauctionstoapprove">
+ 
+  <div id="userauctionstoapprove" >
     <h2><? echo($texts['profile_my_auctions_to_approve']); ?></h2>
     <p>
 
@@ -205,8 +220,7 @@ $counter++;
 
       ?>
 
-  <td colspan="2"> <a href="?action=get_invoice&is_auction=yes&auction_id=<? echo($auctions[$i]["id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_get_invoice']); ?></a></td>
-  
+ <td colspan="2"> <a href="?view=add_rating&action=get_auction_details&auction_id=<? echo($auctions[$i]["id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_rate_partner']); ?></a></td>
 
  <?
 
@@ -246,11 +260,12 @@ if($counter==0){
     </p>
   </div>
 
+</div>
 <!--AUCTIONS-END-->
 
 
 <!--OFFERS-BEGIN-->
-
+<div id="offers" class="sublayer hide">
       <?
 
  $auctions=$gBase->UserAuctions;
@@ -273,6 +288,9 @@ for($j=0;$j<count($auctions);$j++){
 if($auctionToApprove){
 
    ?>
+
+
+
 
 <div id="userofferstoconfirm">
 
@@ -387,7 +405,7 @@ $counter++;
 
       ?>
 
-  <td colspan="2"> <a href="?action=get_invoice&is_auction=yes&auction_id=<? echo($auctions[$i]["id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_get_invoice']); ?></a></td>
+  <td colspan="2"> <a href="?view=add_rating&action=get_auction_details&auction_id=<? echo($auctions[$i]["id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_rate_partner']); ?></a></td>
 
 
  <?
@@ -443,7 +461,7 @@ if($counter==0){
 
 
 
-
+<div id="won_auctions" class="sublayer hide" >
 
      <?
 if($gBase->User['is_buyer']=="yes"){
@@ -514,9 +532,12 @@ if($counter==0){
 
 
 
+</div>
 
 
-<div id="won_offers">
+<div id="won_offers" class="sublayer hide" >
+
+<div id="won_offers" >
     <h2><? echo($texts['profile_offers_won']); ?></h2>
     <p>
       <?
@@ -584,5 +605,102 @@ if($counter==0){
 }
 ?>
 
+</div>
+
+
+
+
+
 
 </div>
+
+
+
+
+<div id="invoices"  class="sublayer hide"> 
+      <h2><? echo($texts['profile_my_invoices']); ?></h2>
+      
+       <p>
+      <?
+
+$invoices=$gBase->UserInvoices;
+$counter=0;
+if(count($invoices)>0){
+
+?>
+
+   <table class="table table-striped span8">
+    <tr>
+      <td><? echo($texts['invoice_date']); ?></td>
+      <td><? echo($texts['invoice_number']); ?></td>
+      <td><? echo($texts['invoice_type']); ?></td>
+      <td><? echo($texts['invoice_total']); ?></td>
+      <td></td>
+   
+    </tr>
+
+<?
+  for($i=0; $i<count($invoices); $i++){
+ 
+?>
+
+<tr>
+  <td><? echo(date("d.m.Y", strtotime($invoices[$i]["date"]))); ?></td>
+  <td><? echo($invoices[$i]["invoice_number"]); ?></td>
+  <td><? 
+  if($invoices[$i]['type']=='provision'){
+  echo($texts["invoice_provision"]); 
+}else{
+ echo($texts["invoice_storno"]); 
+}
+?>
+</td>
+  <td><? echo($invoices[$i]["total"]); ?></td>
+  <td> <a href="?action=get_invoice&invoice_id=<? echo($invoices[$i]["invoice_number"]); ?>" class="btn" type="button" target="_blank"  ><?  echo($texts['profile_get_invoice']); ?></a></td>
+ 
+</tr>
+
+  <?
+
+  }
+
+?>
+
+</table>
+
+
+<?
+
+
+}else{
+   echo($texts['profile_no_invoice']);
+  
+  }
+
+
+?>
+    </p>
+
+
+
+</div>
+
+
+
+<script type="text/javascript">
+
+$('#subnavigation a').click(function (e) {
+  e.preventDefault();
+  $(this).tab('show');
+})
+
+function showSubnavigation(layer){
+
+     
+
+      $("#profile .sublayer").hide();
+
+      $("#profile #"+layer).show();
+  
+}
+</script>

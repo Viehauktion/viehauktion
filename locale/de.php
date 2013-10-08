@@ -106,12 +106,17 @@ $texts['recover_success']="Wir haben Ihnen eine E-Mail mit Ihrem neuen Passwort 
 
 
 $texts['profile_my_data']="Ihre Daten";
+$texts['profile_my_invoices']="Rechnungen";
 $texts['profile_my_auctions']="Ihre Auktionen";
+$texts['profile_no_invoice']="Sie haben bisher keine Rechnungen.";
+
 $texts['profile_my_offers']="Ihre Festpreisangebote";
 $texts['profile_my_offers_to_confirm']="Ihre zu bestätigende Verkäufe";
 $texts['profile_no_auction']="Sie haben bisher keine Festpreisangebote eingestellt.";
 $texts['profile_no_offers']="Sie haben bisher keine Auktion durchgeführt.";
+
 $texts['profile_auctions_won']="Gewonnene Auktionen";
+$texts['profile_offers_won']="Gewonnene Marktplatzangebote";
 
 $texts['profile_buyer_details']="Käufer Details";
 $texts['profile_confirm_sell']="Kauf bestätigen";
@@ -124,7 +129,17 @@ $texts['profile_no_auction_won']="Sie haben bisher bei keiner Auktion den Zuschl
 $texts['profile_add_auction']="Neue Auktion erstellen";
 $texts['profile_add_offer']="Neues Angebot einstellen";
 $texts['profile_get_invoice']="Rechnung herunterladen";
+$texts['profile_rate_partner']="Handelspartner bewerten";
 $texts['profile_my_auctions_to_approve']="Abgeschlossene Auktionen zur Bestätigung";
+
+
+
+$texts['invoice_date']="Rechnungsdatum";
+$texts['invoice_number']="Nummer";
+$texts['invoice_type']="Art";
+$texts['invoice_total']="Gesamtbetrag";
+$texts["invoice_provision"]="Provisionsabrechnung";
+$texts["invoice_storno"]="Stornierungsgebühr";
 
 $texts['auction_buying_price']="Kaufpreis";
 $texts['auction_buying_location']="Ort";
@@ -317,6 +332,21 @@ $texts['footer_agb']="Allg. Geschäftsbedingungen";
 $texts['footer_contact']="Kontakt";
 $texts['footer_imprint']="Impressum";
 $texts['footer_team']="Unser Team";
+
+
+
+
+
+$texts['add_rating_headline']="Bewertung abgeben";
+$texts['add_rating_seller_description']="Damit sich zukünftige, mögliche Verkäufer auf viehauktion.com sich einen Überblick über Seriösität des Handelspartners machen können, bitten wir sie hier eine kleine Bewertung vorzunehmen.";
+$texts['add_rating_buyer_description']="Damit sich zukünftige, mögliche Käufer auf viehauktion.com sich einen Überblick über Seriösität des Handelspartners machen können, bitten wir sie hier eine kleine Bewertung vorzunehmen.";
+$texts['add_rating_about']="Zu Bewerten:";
+$texts['add_rating_success']="Vielen Dank für Ihre Bewertung!";
+
+$texts['add_rating']="Bewertung (5 Scheine gut, 1 Schwein schlecht)";
+$texts['add_coment']="Kommentar (optional)";
+$texts['add_rate_now']="Bewertung abgeben";
+$texts['add_no_rating_error']="Bitte klicken Sie auf die Schweine, um eine Bewertung abzugeben.";
 
 $texts["faq_headline"]="Häufige Fragen";
 

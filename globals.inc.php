@@ -10,8 +10,7 @@
 
 	$GLOBALS["VIEHAUKTION"]["BASE"]["APPNAME"]			= "viehauktion.com";
 	$GLOBALS["VIEHAUKTION"]["BASE"]["HTTPROOT"] 		= "http://www.viehauktion.com/"; 
-	//$GLOBALS["VIEHAUKTION"]["BASE"]["IMAGESROOT"] 	= 'http://quartett.s3-external-3.amazonaws.com/';
-		
+
 		$GLOBALS["VIEHAUKTION"]["BASE"]["PASSWORDGENERATORSECRET"] ="geheimzusatz";
 	
 
@@ -68,7 +67,9 @@
 		$GLOBALS["VIEHAUKTION"]["AMAZON"]["ID"]="AKIAIVIIEFOEB7DQN6GA";
 		$GLOBALS["VIEHAUKTION"]["AMAZON"]["KEY"]="IRELEZ5ZbBV1xLsHOJDbQhgMw515JtsCT77XNJz3";	
 		$GLOBALS["VIEHAUKTION"]["AMAZON"]["BUCKET"]="viehauktion";
-		$GLOBALS["VIEHAUKTION"]["AMAZON"]["BUCKET"]["URL"]="https://s3-eu-west-1.amazonaws.com/viehauktion/invoices/";
+
+		$GLOBALS["VIEHAUKTION"]["AMAZON"]["INVOICEURL"]="http://invoices.viehauktion.com/";
+		
 	
 	
 	?>
