@@ -530,7 +530,7 @@ if($counter==0){
   </div>
 
 
-
+</div>
 
 <!--OFFERS-End-->
 
@@ -539,7 +539,6 @@ if($counter==0){
   <?
 }
 ?>
-
 
 
 
@@ -740,7 +739,7 @@ if($counter==0){
 
 
 
-</div>
+
 
 
 

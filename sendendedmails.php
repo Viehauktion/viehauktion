@@ -142,7 +142,7 @@ if($endedAuctions=$lDB->getEndedAuction("ended","","")){
 															$lReplacement[17] = $buyer["email"];
 															$lReplacement[16] = $buyer["phone"];
 															$lReplacement[17] = $buyer["email"];
-															$lReplacement[18] = date("d.m.Y - H:i", strtotime($endedAuctions[$i]["end_time"]))." Uhr";
+															$lReplacement[18] = date("d.m.Y - H:i", strtotime($endedAuctions[$i]["end_time"])+60*$GLOBALS["VIEHAUKTION"]["STORNO"]["TIME"])." Uhr";
 
 
 
