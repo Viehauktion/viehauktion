@@ -15,9 +15,9 @@ Telefon: ___SELLERPHONE___
 E-Mailaddresse: ___SELLEREMAIL___
 
 
-ACHTUNG: Der Verkäufer hat noch bis ___TILLTIME___ Zeit, den Verkauf abzubrechen.
-Er kann den Aaktion aber auch vorher schon bestätigen. Läßt er die Zeit verstreichen,
-so ist der Kaufvertrag rechtsgültig. 
+ACHTUNG: Beide Parteien haben noch bis ___TILLTIME___ Zeit, den Verkauf zu stronieren. Erst danach kommt der rechtsverbindliche Kaufvertrag zu Stande.
+Diese Funktion finden Sie in Ihrem Profil.
+
 
 Sie erhalten eine weitere E-Mail, sobald sich der Status zu Ihren Gunsten bzw. entgegen geändert hat.
 
@@ -25,7 +25,6 @@ Sie erhalten eine weitere E-Mail, sobald sich der Status zu Ihren Gunsten bzw. e
 Sie finden alle Daten zur Auktion nochmal in Ihrem Profil zum Abruf.
 
 Wir hoffen, dass der Kauf nun erfolgreich von statten geht und hoffen, Sie demnächst wieder  auf ___SITENAME___ begrüßen zu dürfen.
-
 
 
 

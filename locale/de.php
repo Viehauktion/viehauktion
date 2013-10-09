@@ -444,4 +444,18 @@ $texts['google_disclaimer']='<p>This website uses Google Analytics, a web analyt
     <p>The IP-address, that your Browser conveys within the scope of Google Analytics, will not be associated with any other data held by Google. You may refuse the use of cookies by selecting the appropriate settings on your browser, however please note that if you do this you may not be able to use the full functionality of this website. You can also opt-out from being tracked by Google Analytics with effect for the future by downloading and installing Google Analytics Opt-out Browser Addon for your current web browser:<a href="http://tools.google.com/dlpage/gaoptout?hl=en" >http://tools.google.com/dlpage/gaoptout?hl=en</a>.</p>
     <p>Google will use this information on behalf of the operator of this website for the purpose of evaluating your use of the website, compiling reports on website activity for website operators and providing them other services relating to website activity and internet usage.</p>';
 
+
+$texts['success_auction_buyer_subject']='Ihre Auktion war erfolgreich!';
+$texts['success_auction_seller_subject']='Sie haben eine Auktion gewonnen!';
+$texts['failure_auction_seller_subject']='Leider war Ihre Auktion nicht erfolgreich.';
+
+$texts['success_offer_buyer_subject']='Ihre Marktplatzangebot wurde erfolgreich !';
+$texts['success_offer_seller_subject']='Sie haben erfolgreich ein Marktplatzkauf';
+
+
+
+$texts['confirmed_auction_buyer_subject']='Sie haben rechtsverbindlich gekauft.';
+$texts['confirmed_auction_seller_subject']='Sie haben rechtsverbindlich verkauft.';
+
+
 ?>

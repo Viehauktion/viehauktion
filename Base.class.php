@@ -30,6 +30,8 @@
 						$this->UserAuctions=$_SESSION["UserAuctions"];
 						$this->UserWonAuctions=$_SESSION["UserWonAuctions"];
 						$this->UserOffers=$_SESSION["UserOffers"];
+						$this->UserWonOffers=$_SESSION["UserWonOffers"];
+						$this->UserOffers=$_SESSION["UserOffers"];
 						$this->UserSearchs=$_SESSION["UserSearchs"];
 						$this->UserAddresses=$_SESSION["UserAddresses"];
 						$this->UserInvoices=$_SESSION["UserInvoices"];
@@ -47,6 +49,8 @@
 			$_SESSION["User"] 	= $this->User;
 			$_SESSION["UserAuctions"] 	= $this->UserAuctions;
 			$_SESSION["UserWonAuctions"] 	= $this->UserWonAuctions;
+			$_SESSION["UserOffers"] 	= $this->UserOffers;
+			$_SESSION["UserWonOffers"] 	= $this->UserWonOffers;
 			$_SESSION["UserOffers"] 	= $this->UserOffers;
 			$_SESSION["UserSearchs"] 	= $this->UserSearchs;
 			$_SESSION["UserInvoices"]= $this->UserInvoices;
@@ -73,6 +77,8 @@
 				$output['user']=$this->User;
 				$output["user_auctions"] = $this->UserAuctions;
 				$output["user_won_auctions"] 	= $this->UserWonAuctions;
+				$output["user_offers"] = $this->UserOffers;
+				$output["user_won_offers"] 	= $this->UserWonOffers;
 				$output["user_searchs"] 	= $this->UserSearchs;
 				$output["user_offers"] 	= $this->UserOffers;
 				$output["user_addresses"] 	= $this->UserAddresses;

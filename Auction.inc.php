@@ -3,18 +3,54 @@
 	
 
 	
-	function getUserAuctions($user_id, $asWinner=false){
+	function getUserAuctions($user_id, $asWinner=false, $page=1){
 	global $gBase;
+
+		
+			$start=$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"]*$page-$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"];
+		
 	
 		$lDB=connectDB();
 		if (!$lDB->failed){
 	
 					
-									$userAuctions=$lDB->getUserAuctions($user_id, $asWinner);
+									$userAuctions=$lDB->getUserAuctions($user_id, $asWinner,$start,$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"],"yes");
+									
+
 												if($asWinner){
 													$gBase->UserWonAuctions=$userAuctions;
 													}else{
 													$gBase->UserAuctions=$userAuctions;
+
+													}
+											
+									
+						
+						
+						
+								
+								
+		}
+	
+	}
+	
+
+	function getUserOffers($user_id, $asWinner=false, $page=1){
+	global $gBase;
+	
+		$start=$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"]*$page-$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"];
+
+		$lDB=connectDB();
+		if (!$lDB->failed){
+	
+					
+									$userOffers=$lDB->getUserAuctions($user_id, $asWinner,$start,$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"],"no");
+									
+
+												if($asWinner){
+													$gBase->UserWonOffers=$userOffers;
+													}else{
+													$gBase->UserOffers=$userOffers;
 
 													}
 											
@@ -910,8 +946,9 @@ global $gBase;
 					$metadataArray=$lDB->getAuctionMetadataByAuctionId($auction_id);
 					$fullAuction["metadata"]=$metadataArray;
 					$fullAuction["metadata"]["metadata"]=json_decode($metadataArray["metadata"], true);
+
 					$address=$lDB->getUserAddressesById($metadataArray["user_address_id"]);
-					if((($auctionArray["buyer_id"]==$gBase->User['id'])||($auctionArray["user_id"]==$gBase->User['id'])) && ($auctionArray["status"]=="ended" || $auctionArray["status"]=="sold")){
+					if((($auctionArray["buyer_id"]==$gBase->User['id'])||($auctionArray["user_id"]==$gBase->User['id'])) && ($auctionArray["status"]=="ended" || $auctionArray["status"]=="confirmed" )){
 						$sellerArray=array();
 						$sellerArray=$lDB->getUserByID($auctionArray["user_id"]);
 						$fullAuction["seller"]=$sellerArray;
@@ -923,7 +960,7 @@ global $gBase;
 
 					$buyer_address=$lDB->getInvoiceAddressByUserId($auctionArray["buyer_id"]);
 				
-					if($auctionArray["buyer_id"]!="" && ($auctionArray["status"]=="ended" || $auctionArray["status"]=="sold")){
+					if($auctionArray["buyer_id"]!="" && ($auctionArray["status"]=="ended" || $auctionArray["status"]=="confirmed")){
 							$buyerArray=array();
 							$buyerArray=$lDB->getUserByID($auctionArray["buyer_id"]);
 							$fullAuction["buyer"]=$buyerArray;
@@ -934,6 +971,12 @@ global $gBase;
 						$gBase->CurrentAuction=$fullAuction;
 
 
+					if($county_id==''){
+						$county_id=$auctionArray['county_id'];
+					}
+					if($state_id==''){
+						$state_id=$address['state_id'];
+					}
 					$county=$lDB->getCountyById($county_id);
 					$state=$lDB->getStateById($state_id);
 					$gBase->RawData["county_name"]=$county["name"];

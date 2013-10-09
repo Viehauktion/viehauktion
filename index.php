@@ -242,11 +242,23 @@ require_once("amazonS3/S3.php");
 				
 
 					case "rate_user": rateUser($_REQUEST['auction_id'], $_REQUEST['comment'], $_REQUEST['rating']); break;	
+		
+					case 'get_user_actions': getUserAuctions($gBase->User['id'], false, $_REQUEST['page']); break;
+					case 'get_user_won_actions': getUserAuctions($gBase->User['id'], true, $_REQUEST['page']); break;
+					case 'get_user_offers': getUserOffers($gBase->User['id'], false, $_REQUEST['page']); break;
+					case 'get_user_won_offers': getUserOffers($gBase->User['id'], true, $_REQUEST['page']); break;
+					case 'get_user_invoices': getUserInvoices($gBase->User['id'], $_REQUEST['page']); break;
+
+
 		}
 		switch ($View) {
 		
 		
-			case 'profile': getUserAuctions($gBase->User['id'], true); getUserAuctions($gBase->User['id'], false); getUserInvoices($gBase->User['id']); break;
+			case 'profile': if($Action==''){getUserAuctions($gBase->User['id'], true); 
+							getUserAuctions($gBase->User['id'], false); 
+							getUserOffers($gBase->User['id'], true); 
+							getUserOffers($gBase->User['id'], false);
+							getUserInvoices($gBase->User['id']);} break;
 			case 'auctions': checkTodaysAuctions(); break;
 			case 'market':	checkTodaysOffers(); break;
 

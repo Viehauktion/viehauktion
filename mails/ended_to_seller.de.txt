@@ -15,15 +15,10 @@ Telefon: ___BUYERPHONE___
 E-Mailaddresse: ___BUYEREMAIL___
 
 
-ACHTUNG: Falls Sie die Auktion annullieren möchten, weil sie mit dem Käufer nicht zusammen arbeiten möchten, können Sie dies noch bis
+ACHTUNG: Beide Parteien haben noch bis ___TILLTIME___ Zeit, den Verkauf zu stronieren. Erst danach kommt der rechtsverbindliche Kaufvertrag zu Stande.
+Diese Funktion finden Sie in Ihrem Profil.
 
-___TILLTIME___
-
-Sie finden dazu einen Button im Profil. 
-
-Genauso können Sie die Auktion im Profil bestätigen, um den weiteren Prozess zu beschleunigen.
-
-
+Sie erhalten eine weitere E-Mail, sobald sich der Status zu Ihren Gunsten bzw. entgegen geändert hat.
 
 Sie finden alle Daten zur Auktion nochmal in Ihrem Profil zum Abruf.
 

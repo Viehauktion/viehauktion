@@ -2,16 +2,20 @@
 
 
 
-function getUserInvoices($recipient_id){
+function getUserInvoices($recipient_id, $page=1){
 
 	global $gBase;
 	
+
+			$start=$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"]*$page-$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"];
+		
+
 		$lDB=connectDB();
 	
 		if (!$lDB->failed){
 			$userInvoices=array();
 
-			if($userInvoices=$lDB->getInvoicesByRecipientId($recipient_id)){
+			if($userInvoices=$lDB->getInvoicesByRecipientId($recipient_id,$start,$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"])){
 	
 							$gBase->UserInvoices=$userInvoices;
 						}

@@ -3,17 +3,17 @@
 
 
 <ul id="subnavigation" class="nav nav-tabs">
-  <li class="active"><a href="#" onclick="showSubnavigation('userdata')"><? echo($texts['profile_my_data']); ?></a></li>
-  <li><a href="#" onclick="showSubnavigation('auctions')"><? echo($texts['profile_my_auctions']); ?></a></li>
-  <li><a href="#" onclick="showSubnavigation('offers')"><? echo($texts['profile_my_offers']); ?></a></li>
-  <li><a href="#" onclick="showSubnavigation('won_auctions')"><? echo($texts['profile_auctions_won']); ?></a></li>
-  <li><a href="#" onclick="showSubnavigation('won_offers')"><? echo($texts['profile_offers_won']); ?></a></li>
-  <li><a href="#" onclick="showSubnavigation('invoices')"><? echo($texts['profile_my_invoices']); ?></a></li>
+  <li class="active"><a href="#userdata" id="userdata_link" onclick="showSubnavigation('userdata')"><? echo($texts['profile_my_data']); ?></a></li>
+  <li><a href="#auctions" id="auctions_link" onclick="showSubnavigation('auctions')"><? echo($texts['profile_my_auctions']); ?></a></li>
+  <li><a href="#offers" id="offer_link" onclick="showSubnavigation('offers')"><? echo($texts['profile_my_offers']); ?></a></li>
+  <li><a href="#won_auctions" id="won_auctions_link" onclick="showSubnavigation('won_auctions')"><? echo($texts['profile_auctions_won']); ?></a></li>
+  <li><a href="#won_offers" id="won_offers_link" onclick="showSubnavigation('won_offers')"><? echo($texts['profile_offers_won']); ?></a></li>
+  <li><a href="#invoices" id="invoices_link" onclick="showSubnavigation('invoices')"><? echo($texts['profile_my_invoices']); ?></a></li>
 
 </ul>
 
 
-  <div id="userdata" class="sublayer">
+  <div id="userdata_layer" class="sublayer">
     <h2><? echo($texts['profile_my_data']); ?></h2>
     <p> <? echo($texts['registration_username']); ?>:&nbsp;<? echo($gBase->User['username']); ?><br/>
       <? echo($texts['registration_email']); ?>:&nbsp;<? echo($gBase->User['email']); ?><br/>
@@ -39,7 +39,7 @@ if($gBase->User['is_seller']=="yes"){
 
 
 
-<div id="auctions" class="sublayer hide">
+<div id="auctions_layer" class="sublayer hide">
 <!--AUCTIONS-BEGIN-->
 
       <?
@@ -104,7 +104,27 @@ $counter++;
   }
   ?>
 </table>
+<div class="pagination">
+  <ul>
+<?
+  $pages=(int)$auctions["number_of_rows"]/$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"]+1;
+  $active=1;
+if ($_REQUEST['page']!='') {
+  $active=$_REQUEST['page'];
+}
+ for ($i=1; $i <= $pages; $i++) { 
+  if($i==$active){
+    echo('<li class="active"><a href="?view=profile&action=get_user_actions&page='.$i.'#auctions"  >'.$i.'</a></li>');
+  }else{
+   echo('<li ><a href="?view=profile&action=get_user_actions&page='.$i.'#auctions" >'.$i.'</a></li>');
+   }
+ }
 
+?>
+ 
+   
+  </ul>
+</div>
     </p>
   </div>
 
@@ -135,7 +155,7 @@ $counter++;
 
 <!--AUCTIONS-BEGIN-->
 
-  <div id="userauctions">
+  <div id="userauctions_layer">
     <div class="pull-right"> <a href="?view=edit_auction&is_auction=yes" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_add_auction']); ?></a>
 </div>
     <h2><? echo($texts['profile_my_auctions']); ?></h2>
@@ -219,8 +239,9 @@ $counter++;
       }else if( $auctions[$i]["status"]=="confirmed"){
 
       ?>
+<td> <a href="?from=profile&view=show_full_auction&action=get_auction_details&is_auction=yes&auction_id=<? echo($auctions[$i]["id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_buyer_details']); ?></a></td>
 
- <td colspan="2"> <a href="?view=add_rating&action=get_auction_details&auction_id=<? echo($auctions[$i]["id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_rate_partner']); ?></a></td>
+ <td> <a href="?view=add_rating&action=get_auction_details&auction_id=<? echo($auctions[$i]["id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_rate_partner']); ?></a></td>
 
  <?
 
@@ -242,7 +263,27 @@ $counter++;
   ?>
 </table>
 
+<div class="pagination">
+  <ul>
+<?
+  $pages=(int)$auctions["number_of_rows"]/$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"]+1;
+  $active=1;
+if ($_REQUEST['page']!='') {
+  $active=$_REQUEST['page'];
+}
+ for ($i=1; $i <= $pages; $i++) { 
+  if($i==$active){
+    echo('<li class="active"><a href="?view=profile&action=get_user_actions&page='.$i.'#auctions"  >'.$i.'</a></li>');
+  }else{
+   echo('<li ><a href="?view=profile&action=get_user_actions&page='.$i.'#auctions" >'.$i.'</a></li>');
+   }
+ }
 
+?>
+ 
+   
+  </ul>
+</div>
 
 
   <?
@@ -265,10 +306,10 @@ if($counter==0){
 
 
 <!--OFFERS-BEGIN-->
-<div id="offers" class="sublayer hide">
+<div id="offers_layer" class="sublayer hide">
       <?
 
- $auctions=$gBase->UserAuctions;
+ $auctions=$gBase->UserOffers;
 
 $counter=0;
 
@@ -331,7 +372,27 @@ $counter++;
 </table>
 
 
+<div class="pagination">
+  <ul>
+<?
+  $pages=(int)$auctions["number_of_rows"]/$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"]+1;
+  $active=1;
+if ($_REQUEST['page']!='') {
+  $active=$_REQUEST['page'];
+}
+ for ($i=1; $i <= $pages; $i++) { 
+  if($i==$active){
+    echo('<li class="active"><a href="?view=profile&action=get_user_offers&page='.$i.'#offers"  >'.$i.'</a></li>');
+  }else{
+   echo('<li ><a href="?view=profile&action=get_user_offers&page='.$i.'#offers" >'.$i.'</a></li>');
+   }
+ }
 
+?>
+ 
+   
+  </ul>
+</div>
 
 <br/>
  
@@ -351,14 +412,14 @@ $counter++;
 <!--OFFERS-End-->
 
 
-<div id="useroffers">
+<div id="useroffers_layer">
   <div class="pull-right"><a href="?view=edit_auction&is_auction=no" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_add_offer']); ?></a>
 </div>
     <h2><? echo($texts['profile_my_offers']); ?></h2>
     <p>
       <?
 
- $auctions=$gBase->UserAuctions;
+ $auctions=$gBase->UserOffers;
 
 $counter=0;
 if(count($auctions)>0){
@@ -430,6 +491,27 @@ $counter++;
 </table>
 
 
+<div class="pagination">
+  <ul>
+<?
+  $pages=(int)$auctions["number_of_rows"]/$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"]+1;
+  $active=1;
+if ($_REQUEST['page']!='') {
+  $active=$_REQUEST['page'];
+}
+ for ($i=1; $i <= $pages; $i++) { 
+  if($i==$active){
+    echo('<li class="active"><a href="?view=profile&action=get_user_offers&page='.$i.'#offers"  >'.$i.'</a></li>');
+  }else{
+   echo('<li ><a href="?view=profile&action=get_user_offers&page='.$i.'#offers" >'.$i.'</a></li>');
+   }
+ }
+
+?>
+ 
+   
+  </ul>
+</div>
 
 
   <?
@@ -461,7 +543,7 @@ if($counter==0){
 
 
 
-<div id="won_auctions" class="sublayer hide" >
+<div id="won_auctions_layer" class="sublayer hide" >
 
      <?
 if($gBase->User['is_buyer']=="yes"){
@@ -514,6 +596,28 @@ if(count($won_auctions)>0){
 </table>
 
 
+<div class="pagination">
+  <ul>
+<?
+  $pages=(int)$won_auctions["number_of_rows"]/$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"]+1;
+  $active=1;
+if ($_REQUEST['page']!='') {
+  $active=$_REQUEST['page'];
+}
+ for ($i=1; $i <= $pages; $i++) { 
+  if($i==$active){
+    echo('<li class="active"><a href="?view=profile&action=get_user_won_auctions&page='.$i.'#won_auctions"  >'.$i.'</a></li>');
+  }else{
+   echo('<li ><a href="?view=profile&action=get_user_won_auctions&page='.$i.'#won_auctions" >'.$i.'</a></li>');
+   }
+ }
+
+?>
+ 
+   
+  </ul>
+</div>
+
 <?
 
 
@@ -535,7 +639,7 @@ if($counter==0){
 </div>
 
 
-<div id="won_offers" class="sublayer hide" >
+<div id="won_offers_layer" class="sublayer hide" >
 
 <div id="won_offers" >
     <h2><? echo($texts['profile_offers_won']); ?></h2>
@@ -581,6 +685,30 @@ $counter++;
 </table>
 
 
+
+<div class="pagination">
+  <ul>
+<?
+  $pages=(int)$won_auctions["number_of_rows"]/$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"]+1;
+  $active=1;
+if ($_REQUEST['page']!='') {
+  $active=$_REQUEST['page'];
+}
+ for ($i=1; $i <= $pages; $i++) { 
+  if($i==$active){
+    echo('<li class="active"><a href="?view=profile&action=get_user_won_offers&page='.$i.'#won_offers"  >'.$i.'</a></li>');
+  }else{
+   echo('<li ><a href="?view=profile&action=get_user_won_offers&page='.$i.'#won_offers" >'.$i.'</a></li>');
+   }
+ }
+
+?>
+ 
+   
+  </ul>
+</div>
+
+
 <?
 
 
@@ -617,7 +745,7 @@ if($counter==0){
 
 
 
-<div id="invoices"  class="sublayer hide"> 
+<div id="invoices_layer"  class="sublayer hide"> 
       <h2><? echo($texts['profile_my_invoices']); ?></h2>
       
        <p>
@@ -668,6 +796,28 @@ if(count($invoices)>0){
 
 </table>
 
+<div class="pagination">
+  <ul>
+<?
+  $pages=(int)$invoices["number_of_rows"]/$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"]+1;
+  $active=1;
+if ($_REQUEST['page']!='') {
+  $active=$_REQUEST['page'];
+}
+ for ($i=1; $i <= $pages; $i++) { 
+  if($i==$active){
+    echo('<li class="active"><a href="?view=profile&action=get_user_invoices&page='.$i.'#invoices"  >'.$i.'</a></li>');
+  }else{
+   echo('<li ><a href="?view=profile&action=get_user_invoices&page='.$i.'#invoices" >'.$i.'</a></li>');
+   }
+ }
+
+?>
+ 
+   
+  </ul>
+</div>
+
 
 <?
 
@@ -689,9 +839,21 @@ if(count($invoices)>0){
 
 <script type="text/javascript">
 
+
+$( document ).ready(function() {
+if(window.location.hash.length>2){
+  $("#profile .sublayer").hide();
+
+      $("#profile "+window.location.hash+"_layer").show();
+      $(window.location.hash+"_link").tab('show');
+    }
+});
+
+
 $('#subnavigation a').click(function (e) {
-  e.preventDefault();
+  
   $(this).tab('show');
+
 })
 
 function showSubnavigation(layer){
@@ -700,7 +862,11 @@ function showSubnavigation(layer){
 
       $("#profile .sublayer").hide();
 
-      $("#profile #"+layer).show();
+      $("#profile #"+layer+"_layer").show();
   
 }
+
+
+
+
 </script>

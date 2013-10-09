@@ -17,6 +17,16 @@ require_once("amazonS3/S3.php");
 include("./phpmailer/class.phpmailer.php");
 
 
+$lang='de';
+
+include('locale/'.$lang.'.php');
+
+
+/*
+//Cronjob - Versendet Mails nach einer bestätigten Auktion, generiert Rechnung und lädt sie auf den S3 Bucket
+//
+*/
+
 
 
 function connectDB() {
@@ -71,7 +81,7 @@ $lDB=connectDB();
 			if (!$lDB->failed){
 			
 $endedAuctions=array();
-if($endedAuctions=$lDB->getEndedAuction("confirmed")){
+if($endedAuctions=$lDB->getEndedAuction("confirmed","confirmed","")){
 
 
 
@@ -154,8 +164,8 @@ if($endedAuctions=$lDB->getEndedAuction("confirmed")){
 
 
 															}else{
-																$sellersubject='Ihre Auktion war erfolgreich!';
-																$buyersubject='Sie haben eine Auktion gewonnen!';
+																$sellersubject=$texts['confirmed_auction_seller_subject'];
+																$buyersubject=$texts['confirmed_auction_buyer_subject'];
 
 																$metadata=$lDB->getAuctionMetadataByAuctionId($endedAuctions[$i]["id"]);
 
@@ -207,12 +217,12 @@ if($endedAuctions=$lDB->getEndedAuction("confirmed")){
 			
 															
 
-																if(sendEmail('./mails/success_to_seller.de.txt', $lSearch, $lReplacement, $sellersubject, $seller['email'])){
+																if(sendEmail('./mails/success_to_seller.'.$lang.'.txt', $lSearch, $lReplacement, $sellersubject, $seller['email'])){
 
 																	$flag=1;
 																}
 
-																if(sendEmail('./mails/success_to_buyer.de.txt', $lSearch, $lReplacement, $buyersubject, $buyer['email'])){
+																if(sendEmail('./mails/success_to_buyer.'.$lang.'.txt', $lSearch, $lReplacement, $buyersubject, $buyer['email'])){
 																	if($flag==1){
 																			$flag=3;
 																		}else{

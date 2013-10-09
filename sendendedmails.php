@@ -16,8 +16,16 @@ require_once("amazonS3/S3.php");
 
 include("./phpmailer/class.phpmailer.php");
 
+$lang='de';
+
+include('locale/'.$lang.'.php');
 
 
+
+/*
+//Cronjob - Versendet Mails nach dem Ende der Auktion und setzt Auktionen,
+//die nach einer in globals definierten Zeit nicht gecancelt wurden auf confirmed.
+*/
 
 function connectDB() {
 		// erstelle die Verbindung zur Datenbank um den clip dem Watschdog zu uebergeben
@@ -71,7 +79,7 @@ $lDB=connectDB();
 			if (!$lDB->failed){
 			
 $endedAuctions=array();
-if($endedAuctions=$lDB->getEndedAuction("ended")){
+if($endedAuctions=$lDB->getEndedAuction("ended","","")){
 
 
 
@@ -107,9 +115,7 @@ if($endedAuctions=$lDB->getEndedAuction("ended")){
 															$lSearch[15] = "___BUYERCITY___";
 															$lSearch[16] = "___BUYERPHONE___";
 															$lSearch[17] = "___BUYEREMAIL___";
-
-															$lSearch[18] = "___PROVISION___";
-															$lSearch[19] = "___INVOICELINK___";
+															$lSearch[18] = "___TILLTIME___";
 
 
 															$lReplacement = array();
@@ -134,10 +140,10 @@ if($endedAuctions=$lDB->getEndedAuction("ended")){
 															$lReplacement[15] = $buyer["city"];
 															$lReplacement[16] = $buyer["phone"];
 															$lReplacement[17] = $buyer["email"];
-
-
 															$lReplacement[16] = $buyer["phone"];
 															$lReplacement[17] = $buyer["email"];
+															$lReplacement[18] = date("d.m.Y - H:i", strtotime($endedAuctions[$i]["end_time"]))." Uhr";
+
 
 
 															$sellersubject='';
@@ -146,16 +152,26 @@ if($endedAuctions=$lDB->getEndedAuction("ended")){
 
 															if($endedAuctions[$i]["bids"]==0){
 
-																$sellersubject='Leider war Ihre Auktion nicht erfolgreich.';
+																$sellersubject=$texts['failure_auction_seller_subject'];
 																
-																if(sendEmail('./mails/failure_to_seller.de.txt', $lSearch, $lReplacement, $sellersubject, $seller['email'])){
+																if(sendEmail('./mails/failure_to_seller.'.$lang.'.txt', $lSearch, $lReplacement, $sellersubject, $seller['email'])){
 																	$flag=3;
 																}
 
 
 															}else{
-																$sellersubject='Ihre Auktion war erfolgreich!';
+
+
+																$sellersubject=$texts['success_auction_seller_subject'];
 															
+																$buyersubject=$texts['success_auction_buyer_subject'];
+
+																if($endedAuctions[$i]['is_auction']=='no'){
+
+																	$sellersubject=$texts['success_offer_buyer_subject'];
+															
+																	$buyersubject=$texts['success_offer_seller_subject'];
+																}
 
 																$metadata=$lDB->getAuctionMetadataByAuctionId($endedAuctions[$i]["id"]);
 
@@ -176,12 +192,12 @@ if($endedAuctions=$lDB->getEndedAuction("ended")){
 																
 															
 
-																if(sendEmail('./mails/ended_to_seller.de.txt', $lSearch, $lReplacement, $sellersubject, $seller['email'])){
+																if(sendEmail('./mails/ended_to_seller.'.$lang.'.txt', $lSearch, $lReplacement, $sellersubject, $seller['email'])){
 
 																	$flag=1;
 																}
 
-																if(sendEmail('./mails/ended_to_buyer.de.txt', $lSearch, $lReplacement, $buyersubject, $buyer['email'])){
+																if(sendEmail('./mails/ended_to_buyer.'.$lang.'.txt', $lSearch, $lReplacement, $buyersubject, $buyer['email'])){
 																	if($flag==1){
 																			$flag=3;
 																		}else{
@@ -214,6 +230,27 @@ if($endedAuctions=$lDB->getEndedAuction("ended")){
 
 
 						}
+
+
+
+						$auctionsToConfirm=array();
+$passedStornoTime=date("y-m-d H:i:s", strtotime("-".$GLOBALS["VIEHAUKTION"]["STORNO"]["TIME"]."Minute"));
+
+if($auctionsToConfirm=$lDB->getEndedAuction("ended","ended_mail_complete", $passedStornoTime)){
+
+
+
+	for($i=0; $i<count($auctionsToConfirm); $i++){
+
+	
+		$auctionsToConfirm[$i]["mail_status"]="confirmed";
+		$auctionsToConfirm[$i]["status"]="confirmed";
+	
+		$lDB->updateAuction($auctionsToConfirm[$i]);
+		
+
+	}
+}
 
 					}
 

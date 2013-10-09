@@ -419,19 +419,60 @@ function getUserWithAddressByID($user_id){
 
 
 
-  		function getUserAuctions($userid, $asWinner=false){
+  		function getUserAuctions($userid, $asWinner=false, $page, $number_of_elements, $is_auction){
 			$lSQLQuery ="";
 			
 		if($asWinner){
 			
-			$lSQLQuery = "SELECT * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.buyer_id =  '".mysql_real_escape_string($userid)."' AND auctions.status!='deleted' ;";
+			$lSQLQuery = "SELECT SQL_CALC_FOUND_ROWS * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.buyer_id =  '".mysql_real_escape_string($userid)."' AND auctions.status!='deleted' AND auctions.is_auction='".mysql_real_escape_string($is_auction)."' ORDER BY auctions.id DESC LIMIT ".mysql_real_escape_string($page).", ".mysql_real_escape_string($number_of_elements).";";
 			}else{
 		
-		$lSQLQuery = "SELECT * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.user_id =  '".mysql_real_escape_string($userid)."' AND auctions.status!='deleted';";
+		$lSQLQuery = "SELECT SQL_CALC_FOUND_ROWS * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.user_id =  '".mysql_real_escape_string($userid)."' AND auctions.status!='deleted' AND auctions.is_auction='".mysql_real_escape_string($is_auction)."' ORDER BY auctions.id DESC LIMIT ".mysql_real_escape_string($page).", ".mysql_real_escape_string($number_of_elements).";";
 		}
 
 
+				$list= array();
+						$j=0;
+						$lResult = $this->mysql_query_ex($lSQLQuery);
+					
+						if ($lResult) {
+							while($lRow = mysql_fetch_assoc($lResult)){
+							$list[$j]=$lRow;
+							
+							$j++;
+							}
+						}
+				
+
+
+					$lSQLQuery = "SELECT FOUND_ROWS();";
+					$lResult = $this->mysql_query_ex($lSQLQuery);
+					
+						if ($lResult) {
+						$FOUND_ROWS=mysql_fetch_assoc($lResult);
+						$list['number_of_rows']=$FOUND_ROWS["FOUND_ROWS()"];
+						}
+					
+
+				return $list;
+				
+				
+	
+		}
+
+
+	function countUserAuctions($userid, $asWinner=false, $page, $number_of_elements, $is_auction){
+			$lSQLQuery ="";
+			
+		if($asWinner){
+			
+			$lSQLQuery = "SELECT * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.buyer_id =  '".mysql_real_escape_string($userid)."' AND auctions.status!='deleted' AND auctions.is_auction='".mysql_real_escape_string($is_auction)."' ORDER BY auctions.id DESC LIMIT ".mysql_real_escape_string($page).", ".mysql_real_escape_string($number_of_elements).";";
+			}else{
 		
+		$lSQLQuery = "SELECT * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.user_id =  '".mysql_real_escape_string($userid)."' AND auctions.status!='deleted' AND auctions.is_auction='".mysql_real_escape_string($is_auction)."' ORDER BY auctions.id DESC LIMIT ".mysql_real_escape_string($page).", ".mysql_real_escape_string($number_of_elements).";";
+		}
+
+
 				$list= array();
 						$j=0;
 						$lResult = $this->mysql_query_ex($lSQLQuery);
@@ -449,8 +490,6 @@ function getUserWithAddressByID($user_id){
 				
 	
 		}
-
-
 
 
 
@@ -606,35 +645,38 @@ function getUserWithAddressByID($user_id){
 		}
 		
 
-function getEndedAuction($status){
+		function getEndedAuction($status, $mail_status, $storno_time){
 
+		
 
-
-			$lSQLQuery = "SELECT * FROM `auctions` WHERE `status`=  '".$status."' AND `mail_status`='';";
-	
-			
-				
-				$list= array();
-						$j=0;
-						$lResult = $this->mysql_query_ex($lSQLQuery);
+					$lSQLQuery = "SELECT * FROM `auctions` WHERE `status`=  '".$status."' AND `mail_status`='".$mail_status."';";
+					if($storno_time!=''){
+					$lSQLQuery = "SELECT * FROM `auctions` WHERE `status`=  '".$status."' AND `mail_status`='".$mail_status."' AND `end_time`<'".$storno_time."';";
+					
+					}
+					
 						
-						if ($lResult) {
-							while($lRow = mysql_fetch_assoc($lResult)){
-							$list[$j]=$lRow;
-							
-							$j++;
-							}
-						}
-				if(count($list)){
-				return $list;
-			}else{
+						$list= array();
+								$j=0;
+								$lResult = $this->mysql_query_ex($lSQLQuery);
+								
+								if ($lResult) {
+									while($lRow = mysql_fetch_assoc($lResult)){
+									$list[$j]=$lRow;
+									
+									$j++;
+									}
+								}
+						if(count($list)){
+						return $list;
+					}else{
 
-				return false;
-			}
+						return false;
+					}
 
 
 
-}
+		}
 
 	function updateAuctionMetadata($auctionArray) {
 		
@@ -1172,9 +1214,9 @@ function updateInviteCode($codeArray) {
 	}
 
 
-	function getInvoicesByRecipientId($recipient_id){
+	function getInvoicesByRecipientId($recipient_id, $page, $number_of_elements){
 
-				$lSQLQuery = "SELECT * FROM `invoices` WHERE `recipient_id` = '".mysql_real_escape_string($recipient_id)."'";
+				$lSQLQuery = "SELECT SQL_CALC_FOUND_ROWS * FROM `invoices` WHERE `recipient_id` = '".mysql_real_escape_string($recipient_id)."' ORDER BY `invoice_number` DESC LIMIT ".mysql_real_escape_string($page).", ".mysql_real_escape_string($number_of_elements).";";
 				
 				
 				$list= array();
@@ -1188,8 +1230,19 @@ function updateInviteCode($codeArray) {
 							$j++;
 							}
 						}
+
+
+						$lSQLQuery = "SELECT FOUND_ROWS();";
+					$lResult = $this->mysql_query_ex($lSQLQuery);
+					
+						if ($lResult) {
+						$FOUND_ROWS=mysql_fetch_assoc($lResult);
+						$list['number_of_rows']=$FOUND_ROWS["FOUND_ROWS()"];
+						}
 				
 				return $list;
+
+	
 
 	}
 
