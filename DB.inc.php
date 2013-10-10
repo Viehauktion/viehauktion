@@ -1295,7 +1295,7 @@ function updateInvoice($invoiceArray) {
 
 /*
 //
-//RATING
+//userFileData
 //
 //*/
 
@@ -1382,6 +1382,93 @@ function updateRating($ratingArray) {
 
 
 
+
+/*
+//
+//RATING
+//
+//*/
+
+
+
+       function addUserFileData($userFileDataArray) {
+		
+		
+				$lSQLQuery = "INSERT INTO `user_files` ( `" . implode('`, `', array_keys($userFileDataArray)) . "`, `uploaded`) VALUES ('" . implode("' ,'", $userFileDataArray) . "', NOW());";
+				$lResult = $this->mysql_query_ex($lSQLQuery);
+				if ($lResult) {
+					
+						
+							return true;
+							
+					
+					}
+			
+			return false;
+		}
+
+
+
+
+		function getUserFileDataByOwnerAndType($owner_id, $type){
+	
+			
+			$lSQLQuery = "SELECT * FROM `user_files` WHERE `user_id` =  '".mysql_real_escape_string($owner_id)."' AND `type` =  '".mysql_real_escape_string($type)."';";
+	
+	
+	
+				$lResult = $this->mysql_query_ex($lSQLQuery);
+					if ($lResult) {
+					
+							$lArray = mysql_fetch_assoc($lResult);
+							return $lArray;
+							
+							
+					}
+			
+					return false;	
+			
+				
+	
+	}
+
+
+
+	function updateUserFileData($userFileDataArray) {
+		
+			$lSQLQuery = "UPDATE `user_files` SET ";
+			
+			
+			for($i=0; $i<count($userFileDataArray); $i++){
+				
+									if($value = current($userFileDataArray)){
+					
+									if(key($userFileDataArray)!='id'){
+									$lSQLQuery .="`".key($userFileDataArray)."`='".$value."', ";
+									}
+									
+					} 
+					next($userFileDataArray);
+			}
+					
+					
+			$lSQLQuery=substr($lSQLQuery, 0, (strlen($lSQLQuery)-2));
+			
+			
+			$lSQLQuery .=" WHERE `id` = '".$userFileDataArray['id']."'";
+			
+		
+		
+			
+				$lResult = $this->mysql_query_ex($lSQLQuery);
+				if ($lResult) {
+			
+					return true ;
+				}
+			
+			return false;	
+		
+		}
 
 
 

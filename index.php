@@ -196,8 +196,8 @@ require_once("amazonS3/S3.php");
 		   
 		   			
 					
-					case 'register_user': registerUser(true, $_REQUEST['username'],  $_REQUEST['password'], $_REQUEST['email'], $_REQUEST['company'], $_REQUEST['firstname'], $_REQUEST['lastname'],$_REQUEST['street'],$_REQUEST['number'],$_REQUEST['postcode'],$_REQUEST['city'], $_REQUEST['phone'], $_REQUEST['is_buyer'], $_REQUEST['is_seller'], $_REQUEST['newsletter'], $lang); break;
-					case 'edit_user': registerUser(false, $_REQUEST['username'],  $_REQUEST['password'], $_REQUEST['email'], $_REQUEST['company'], $_REQUEST['firstname'], $_REQUEST['lastname'],$_REQUEST['street'],$_REQUEST['number'],$_REQUEST['postcode'],$_REQUEST['city'], $_REQUEST['phone'], $_REQUEST['is_buyer'], $_REQUEST['is_seller'], $_REQUEST['newsletter'], $lang); break;
+					case 'register_user': registerUser(true,  $_REQUEST['password'], $_REQUEST['email'], $_REQUEST['company'], $_REQUEST['firstname'], $_REQUEST['lastname'],$_REQUEST['street'],$_REQUEST['number'],$_REQUEST['postcode'],$_REQUEST['city'], $_REQUEST['phone'], $_REQUEST['is_buyer'], $_REQUEST['is_seller'], $_REQUEST['newsletter'], $_REQUEST['hrb_nr'], $_REQUEST['retail_nr'], $_REQUEST['stall_nr'], $_REQUEST['vat_nr'], $lang); break;
+					case 'edit_user': registerUser(false, $_REQUEST['password'], $_REQUEST['email'], $_REQUEST['company'], $_REQUEST['firstname'], $_REQUEST['lastname'],$_REQUEST['street'],$_REQUEST['number'],$_REQUEST['postcode'],$_REQUEST['city'], $_REQUEST['phone'], $_REQUEST['is_buyer'], $_REQUEST['is_seller'], $_REQUEST['newsletter'], $_REQUEST['hrb_nr'], $_REQUEST['retail_nr'], $_REQUEST['stall_nr'], $_REQUEST['vat_nr'],  $lang); break;
 					
 
 					case 'login_user': loginUser($_REQUEST['identifier'], $_REQUEST['password']);  break;

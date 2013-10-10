@@ -7,10 +7,12 @@
     <link rel="stylesheet" href="css/font-awesome.min.css" media="screen" type="text/css" />
     <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
     <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" media="screen" type="text/css" />
+    <link rel="stylesheet" href="css/jasny-bootstrap.min.css" media="screen" type="text/css" />
   </head>
   <body>
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+     <script src="js/jasny-bootstrap.min.js"></script>
     <script src="js/bootstrap-datetimepicker.min.js"></script>
     <script src="js/main.js"></script>
 

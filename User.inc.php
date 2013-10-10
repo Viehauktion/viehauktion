@@ -5,29 +5,37 @@
 	
 
 	
-	function registerUser($is_new, $username,  $password,  $email, $company, $firstname, $lastname,$street,$number,$postcode,$city, $phone, $is_buyer, $is_seller, $is_newsletter, $lang){
+	function registerUser($is_new, $password,  $email, $company, $firstname, $lastname,$street,$number,$postcode,$city, $phone, $is_buyer, $is_seller, $is_newsletter,$hrb_nr, $retail_nr, $stall_nr, $vat_nr, $lang){
 	global $gBase;
 		
 		$lDB=connectDB();
+
+
+
+
+
 		if (!$lDB->failed){
 	
 			
-									if(($userArray=$lDB->getUser($username)) && ($gBase->User["username"]!=$username)){
+					
+						
+						
+									if(($userArray=$lDB->getUserByEmail(strtolower($email))) && ($email!=$gBase->User['email'])){
 									
-											$gBase->Error="USERNAME_ALREADY_REGISTERED";
-								
+									
+												
 
-											return false;
-									}
-						
-						
-						
-									if(($userArray=$lDB->getUserByEmail(strtolower($user_email)))&&($gBase->User["email"]!=strtolower($user_email))){
-									
-									
-												$gBase->Error="EMAIL_ALREADY_REGISTERED";
+												if($is_new){
 
-											return false;
+													header("Location: ".$GLOBALS["VIEHAUKTION"]["BASE"]["HTTPROOT"]."?view=registration&error=user_already_registered");
+													exit;  
+												}else{
+
+													header("Location: ".$GLOBALS["VIEHAUKTION"]["BASE"]["HTTPROOT"]."?view=edit_profile&error=user_already_registered");
+													exit;  
+												}
+
+												return false;
 									}
 						
 
@@ -41,6 +49,10 @@
 										$userArray=$lDB->getUserByID($gBase->User["id"]);
 										if(md5($password)!=$userArray['password']){
 												$gBase->Error="WRONG_PASSWORD";
+
+
+													//header("Location: ".$GLOBALS["VIEHAUKTION"]["BASE"]["HTTPROOT"]."?view=edit_profile&error=wrong_password");
+													//exit;  
 											return false;
 										}
 
@@ -49,19 +61,29 @@
 
 											$userArray['password']=md5($password);
 
+
 									}
 									$userArray['company']=mysql_escape_string($company);
-
-									$userArray['username']=mysql_escape_string($username);
+				
+							
+									
 									$userArray['email']=mysql_escape_string(strtolower($email));
 								
 									$userArray['firstname']=mysql_escape_string($firstname);
 									$userArray['lastname']=mysql_escape_string($lastname);
 									$userArray['email']=mysql_escape_string($email);
 									$userArray['phone']=mysql_escape_string($phone);
+
+									$userArray['hrb_nr']=mysql_escape_string($hrb_nr);
+									$userArray['retail_nr']=mysql_escape_string($retail_nr);
+									$userArray['stall_nr']=mysql_escape_string($stall_nr);
+									$userArray['vat_nr']=mysql_escape_string($vat_nr);
+
 									$userArray['agb']="1";
 									if($is_buyer=='on'){
 									$userArray['is_buyer']="yes";
+
+
 								}else{
 										$userArray['is_buyer']="no";
 								}
@@ -73,6 +95,8 @@
 								}
 								
 
+													
+					
 
 									if($is_newsletter=="on"){
 									$userArray['is_newsletter']="yes";
@@ -83,13 +107,50 @@
 
 									if($is_new){
 									 $lDB->addUser($userArray);
-									 $userArray=$lDB->getUser($userArray['username']);
+									 $userArray=$lDB->getUserByEmail(strtolower($email));
 									}else{
 								
 										$lDB->updateUser($userArray);
 
 									}
 
+
+
+									if($is_buyer=='on'){
+
+									$lTmpFile = $_FILES['insurance']['tmp_name'];
+									$lTmpFileRealName = $_FILES['insurance']['name'];
+									$newFileName=$userArray['id']."_".time()."_".$lTmpFileRealName;
+									
+									if (is_uploaded_file($lTmpFile)) {
+
+										$s3 = new S3($GLOBALS["VIEHAUKTION"]["AMAZON"]["ID"], $GLOBALS["VIEHAUKTION"]["AMAZON"]["KEY"]);
+
+
+										$result=$s3->putObjectFile($lTmpFile, $GLOBALS["VIEHAUKTION"]["AMAZON"]["BUCKET"], "documents/".$newFileName, S3::ACL_PUBLIC_READ);
+										
+										$userfiledata=array();
+										if((!$is_new) && $userfiledata=$lDB->getUserFileDataByOwnerAndType($userArray['id'], "insurance")){
+
+											$userfiledata['filename']=$newFileName;
+											$userfiledata['uploaded']=date("Y-m-d H:i:s");
+											$lDB->updateUserFileData($userfiledata);
+										}else{
+
+											$userfiledata=array();
+											$userfiledata['user_id']=$userArray['id'];
+											$userfiledata['type']="insurance";
+											$userfiledata['filename']=$newFileName;
+										
+										}
+
+
+
+										}
+									}
+
+
+									
 
 									
 									
@@ -125,12 +186,12 @@
 
 									if($is_new){
 									$lSearch = array();
-									$lSearch[] = "___USERNAME___";
+								
 									$lSearch[] = "___APPNAME___";
 									$lSearch[] = "___LINK___";
 									
 									$code=substr(md5($userArray['id'].$userArray['email']), 0, 8);
-									$activationLink=$GLOBALS["VIEHAUKTION"]["BASE"]["HTTPROOT"]."activateuser.php?user_id=".$userArray['id']."&user_email=".$userArray['email']."&activationcode=".$code."&lang=".$lang;
+									$activationLink=$GLOBALS["VIEHAUKTION"]["BASE"]["HTTPROOT"]."activateuser.php?user_id=".$userArray['id']."&user_email=".$email."&activationcode=".$code."&lang=".$lang;
 									
 									$subject='';
 									
@@ -144,13 +205,13 @@
 									
 									
 									$lReplacement = array();
-									$lReplacement[] =$userArray['username'];
+								
 									$lReplacement[] =$GLOBALS["VIEHAUKTION"]["BASE"]["APPNAME"];
 									$lReplacement[] =$activationLink;
 									
 									$lRecipient=$userArray['email'];
 				
-									if(sendEmail('./mails/activationmail.'.$lang.'.txt', $lSearch, $lReplacement, $subject, $lRecipient)){
+									if(sendEmail('./mails/activationmail.'.$lang.'.txt', $lSearch, $lReplacement, $subject, $email)){
 										
 										
 											
@@ -489,6 +550,7 @@ function sendActivationMailAgain($user_email, $lang){
 							
 			
 				}
+				
 				
 				
 				

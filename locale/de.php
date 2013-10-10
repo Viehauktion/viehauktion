@@ -51,13 +51,14 @@ $texts['navi_login']="Anmelden";
 
 
 $texts['registration_headline']="Registrierung";
-$texts['registration_description']="Sie können sich kostenlos bei Viehauktion.de registrieren. ";
-$texts['registration_company']="Firma";
+$texts['registration_description']="Sie können sich kostenlos bei Viehauktion.de registrieren. Dabei können Sie sich als Erzeuger/Mäster oder als Händler oder sogar beides registrieren.";
+$texts['registration_account']="Kontodaten";
+$texts['registration_address']="Adressdaten";
+$texts['registration_company']="Firma (optional)";
 $texts['registration_firstname']="Vorname";
 $texts['registration_lastname']="Nachname";
 $texts['registration_password']="Passwort";
 $texts['registration_username']="Benutzername";
-$texts['registration_username_hint']="Auf viehauktion.de wird stets nur Ihr Benutzername angezeigt. Sie können Ihre Tiere in den Auktionen aber auch völlig anonym anbieten.";
 $texts['registration_password_again']="Passwort wiederholen";
 $texts['registration_email']="E-Mailadresse";
 $texts['registration_street']="Strasse";
@@ -65,21 +66,45 @@ $texts['registration_number']="Hausnummer";
 $texts['registration_postcode']="Postleitzahl";
 $texts['registration_city']="Ort";
 $texts['registration_phone']="Telefonnummer";
-$texts['registration_is_buyer']="Ich plane, Tiere zu verkaufen.";
-$texts['registration_is_seller']="Ich plane, Tiere zu kaufen.";
+$texts['registration_is_buyer']="Ich plane, Tiere zu kaufen. (Anmeldung als Viehhändlers)";
+$texts['registration_is_seller']="Ich plane, Tiere zu verkaufen. (Anmeldung als Erzeuger/Mäster) ";
 
-$texts['registration_agb']="Ich akzeptiere die Allgemeinen Geschäftsbedingungen";
+$texts['registration_business']="Handelsdaten";
+$texts['registration_insurance']="Wenn Sie sich als Händler registrieren möchten, brauchen wir einen Nachweis über eine Warenkreditversicherung. Bitte laden Sie einen Beleg in digitaler Form (PDF, JPG) hoch.";
+$texts['registration_browse']="Datei auswählen";
+$texts['registration_hrb']="Handelsregister Nr.";
+$texts['registration_retail']="Händler Nr.";
+$texts['registration_seller_mandatory']="Da Sie sich als Erzeuger anmelden möchten, benötigen wir Ihre Betriebsnummer.";
+$texts['registration_stall']="Betriebsnummer";
+$texts['registration_vat']="Steuernummer";
+
+
+$texts['registration_agb']='Ich akzeptiere die <a href="?view=agb" target="_blank" >Allgemeinen Geschäftsbedingungen</a> - Zum Herunterladen <a href="assets/agb.pdf" target="_blank" >PDF-Version</a>';
 $texts['registration_newsletter']="Bitte informieren Sie mich über Neuigkeiten per E-Mail";
 $texts['registration_submit']="Absenden";
 
-$texts['registration_error_username']="Bitte geben Sie einen Benutzernamen ein.";
 $texts['registration_error_email']="Bitte geben Sie eine korrekte E-Mailadresse an.";
 $texts['registration_error_password']="Bitte geben Sie ein Passwort ein.";
 $texts['registration_error_password_again']="Ihre Passwörter stimmern leider nicht überein.";
-$texts['registration_error_agb']="Bitte akzeptieren Sie die Allgemeinen Geschäftsbedingungen";
+$texts['registration_error_agb']='Bitte akzeptieren Sie die Allgemeinen Geschäftsbedingungen.';
+$texts['registration_newsletter_hint']='Um das Dokument zu betrachten benötigen Sie den Acrobat Reader, den sie <a href="http://get.adobe.com/de/reader/" target="_blank">hier</a> gratis herunterladen können.';
 $texts['registration_error_username_already_registered']="Ein Benutzer mit dem Benutzernamen existiert bereits.";
 $texts['registration_error_email_already_registered']="Ein Benutzer mit der E-Mailadresse existiert bereits.";
 $texts['registration_error_role']="Bitte wählen Sie ob, sie als Käufer und/oder Verkäufer auftreten möchten";
+
+
+$texts['registration_error_firstname']="Bitte geben Sie einen Vornamen an.";
+$texts['registration_error_lastname']="Bitte geben Sie einen Nachnamen an.";
+$texts['registration_error_street']="Bitte geben Sie eine Strasse ein.";
+$texts['registration_error_number']="Bitte geben Sie eine Hausnummer an.";
+$texts['registration_error_postcode']="Bitte geben Sie eine Postleitzahl an.";
+$texts['registration_error_city']="Bitte geben Sie einen Ort an.";
+$texts['registration_error_vat']="Bitte geben Sie eine Steuernummer an.";
+
+$texts['registration_error_retail_nr']="Bitte geben Sie ihre Händlernummer an.";
+$texts['registration_error_hrb_nr']="Bitte geben Sie ihre Handelsregisternummer an.";
+$texts['registration_error_stall_nr']="Bitte geben sie ihre Betriebsnummer an.";
+$texts['registration_error_insurance']="Bitte fügen Sie einen Beleg für Ihre Warenkreditversicherung an.";
 
 $texts['edit_profile_headline']="Profildaten ändern";
 $texts['edit_profile_submit']="Profildaten speichern";

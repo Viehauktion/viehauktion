@@ -41,9 +41,9 @@ echo("<p >".$texts['auction_is_seller']."</p>");
 <div id="bid_box"> 
 
      <p><? echo($texts['buy_offer_description']); ?></p>
-     <? if($gBase->User['isBuyer']=="yes"){ ?>
+     <? if($gBase->User['is_buyer']=="yes"){ ?>
         <button onclick = "if (! confirm('<? echo($texts['buy_offer_question']); ?>')){ return false; }else{ buyOffer(); }" class="btn btn-primary" id="auction_bid_submit"><? echo($texts['offer_buy_submit']); ?></button>
- <? }else if($gBase->User['isBuyer']=="no"){ ?>
+ <? }else if($gBase->User['is_buyer']=="no"){ ?>
  <button onclick = "alert('<? echo($texts['buy_offer_no_buyer_error']); ?>'); return false;" class="btn btn-primary" id="auction_bid_submit"><? echo($texts['offer_buy_submit']); ?></button>
 
   <? }else{ ?>

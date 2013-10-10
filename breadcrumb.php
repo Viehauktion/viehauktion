@@ -112,7 +112,8 @@
 				case "market": array_push($breadcrumb, $texts['navi_market']);
 											break;
 
-
+				case "registration": array_push($breadcrumb,$texts['registration_headline']);
+									break;
 				case "auctions": array_push($breadcrumb, $texts['navi_auction']); 
 											break;	
 
