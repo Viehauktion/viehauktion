@@ -15,7 +15,7 @@
 
   <div id="userdata_layer" class="sublayer">
     <h2><? echo($texts['profile_my_data']); ?></h2>
-    <p> <? echo($texts['registration_username']); ?>:&nbsp;<? echo($gBase->User['username']); ?><br/>
+    <p>
       <? echo($texts['registration_email']); ?>:&nbsp;<? echo($gBase->User['email']); ?><br/>
       <? echo($texts['registration_firstname']); ?>:&nbsp;<? echo($gBase->User['firstname']); ?><br/>
       <? echo($texts['registration_lastname']); ?>:&nbsp;<? echo($gBase->User['lastname']); ?><br/>

@@ -58,7 +58,7 @@ $texts['registration_company']="Firma (optional)";
 $texts['registration_firstname']="Vorname";
 $texts['registration_lastname']="Nachname";
 $texts['registration_password']="Passwort";
-$texts['registration_username']="Benutzername";
+
 $texts['registration_password_again']="Passwort wiederholen";
 $texts['registration_email']="E-Mailadresse";
 $texts['registration_street']="Strasse";
@@ -88,7 +88,7 @@ $texts['registration_error_password']="Bitte geben Sie ein Passwort ein.";
 $texts['registration_error_password_again']="Ihre Passwörter stimmern leider nicht überein.";
 $texts['registration_error_agb']='Bitte akzeptieren Sie die Allgemeinen Geschäftsbedingungen.';
 $texts['registration_newsletter_hint']='Um das Dokument zu betrachten benötigen Sie den Acrobat Reader, den sie <a href="http://get.adobe.com/de/reader/" target="_blank">hier</a> gratis herunterladen können.';
-$texts['registration_error_username_already_registered']="Ein Benutzer mit dem Benutzernamen existiert bereits.";
+
 $texts['registration_error_email_already_registered']="Ein Benutzer mit der E-Mailadresse existiert bereits.";
 $texts['registration_error_role']="Bitte wählen Sie ob, sie als Käufer und/oder Verkäufer auftreten möchten";
 
@@ -111,15 +111,15 @@ $texts['edit_profile_submit']="Profildaten speichern";
 $texts['edit_profile_error_wrong_password']="Sie haben ein falschen Passwort eingegeben. Es wurden keine Änderungen gespeichert.";
 
 $texts['login_headline']="Anmelden";
-$texts['login_description']="Melden Sie sich mit Ihrem Benutzernamen oder E-Mailadresse und Ihrem Passwort an.";
-$texts['login_username']="Benutzername oder E-Mailadresse";
+$texts['login_description']="Melden Sie sich mit Ihrer E-Mailadresse und Ihrem Passwort an.";
+$texts['login_username']="E-Mailadresse";
 $texts['login_submit']="Anmelden";
 $texts['login_password_lost']="Passwort vergessen?";
 $texts['login_register']="Noch kein Mitglied?";
 
-$texts['login_error_identifier']="Bitte geben Sie Ihren Benutzernamen oder Ihre registrierte E-Mailadresse an.";
+$texts['login_error_identifier']="Bitte geben Sie Ihre registrierte E-Mailadresse an.";
 $texts['login_error_password']="Bitte geben Sie ein Passwort ein.";
-$texts['login_credentials_invalid']="Leider führen wir keinen Nutzer mit unter dieser Benutzer/Password-Kombination.<br/>Vielleicht haben SIe sich vertippt.<br />Falls Sie Ihr Passwort vergessen haben, können Sie sich unter \'Passwort vergessen?\' ein neues erstellen";
+$texts['login_credentials_invalid']="Leider führen wir keinen Nutzer mit unter dieser Email/Password-Kombination.<br/>Vielleicht haben SIe sich vertippt.<br />Falls Sie Ihr Passwort vergessen haben, können Sie sich unter \'Passwort vergessen?\' ein neues erstellen";
 
 
 $texts['recover_description']="Wir erstellen Ihnen ein neues Passwort und senden es Ihnen zu.";

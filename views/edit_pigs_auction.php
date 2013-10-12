@@ -436,7 +436,7 @@ echo ' selected="selected" ';
         </div>
       </div>
       
-    
+    <!--
         <div class="control-group">
         <label class="control-label" for="auction_loading_stations_availability"><? echo($texts['auction_loading_stations_availability']); ?></label>
         <div class="controls">
@@ -444,13 +444,43 @@ echo ' selected="selected" ';
         </div>
       </div>
         <div class="control-group">
-        <label class="control-label" for="auction_loading_stations_availability_til"><? echo($texts['auction_loading_stations_availability_til']); ?></label>
+        <label class="control-label" for="auction_loading_stations_availability_til"></label>
         <div class="controls">
           <input type="text" name="auction_loading_stations_availability_til" id="auction_loading_stations_availability_til" placeholder="<? echo($texts['auction_loading_stations_availability_til_placeholder']); ?>" value="<? if($oldValues!=nil) echo($oldValues['auction_loading_stations_availability_til']); ?>">
         </div>
       </div>
       
+-->
 
+        <div class="control-group">
+        <label class="control-label" for="auction_loading_stations_availability"><? echo($texts['auction_loading_stations_availability']); ?></label>
+      <div class="controls">
+
+  <div id="from_time" class="input-append date">
+    <input data-format="dd-MM-yyyy hh:mm" name="auction_loading_stations_availability" id="auction_loading_stations_availability" value="<? if($oldValues!=nil) echo($oldValues['auction_loading_stations_availability']); ?>"  type="text"></input>
+    <span class="add-on">
+      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+      </i>
+    </span>
+  </div>
+</div>
+ </div>
+
+
+   <div class="control-group">
+        <label class="control-label" for="auction_loading_stations_availability_til"><? echo($texts['auction_loading_stations_availability_til']); ?></label>
+      <div class="controls">
+
+  <div id="till_time" class="input-append date">
+    <input data-format="dd-MM-yyyy hh:mm" name="auction_loading_stations_availability_til" id="auction_loading_stations_availability_til" value="<? if($oldValues!=nil) echo($oldValues['auction_loading_stations_availability_til']); ?>" type="text"></input>
+    <span class="add-on">
+      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+      </i>
+    </span>
+  </div>
+</div>
+ </div>
+   
       
       <div class="control-group">
         <label class="control-label" for="auction_additional_informations"><? echo($texts['auction_additional_informations']); ?></label>
@@ -472,6 +502,15 @@ echo ' selected="selected" ';
       language: 'de-DE'
     });
 
+
+    
+    $('#from_time').datetimepicker({
+      language: 'de-DE'
+    });
+
+$('#till_time').datetimepicker({
+      language: 'de-DE'
+    });
 
  picker=$('#endtime').data('datetimepicker');
 picker.setLocalDate(new Date());
