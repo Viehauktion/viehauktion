@@ -5,3 +5,6 @@ viehauktion.sublime-workspace
 
 *.sh
 invoices
+*.sublime-workspace
+
+*.sublime-project
