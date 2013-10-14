@@ -18,7 +18,7 @@
             <span id="success_message"></span> </div>
           <input type="text" id="login_identifier" placeholder="<? echo($texts['login_username']); ?>">
           <br/>
-          <input type="password" id="login_password"  placeholder="<? echo($texts['login_password']); ?>">
+          <input type="password" id="login_password"  placeholder="<? echo($texts['registration_password']); ?>">
           <br/>
           <br/>
           <br/>

@@ -42,7 +42,7 @@
             </select>
           </div>
         </div>
-        <button onclick="submitSelectAuctionForm();" class="btn btn-primary" ><? echo($texts['select_running_auction_submit']); ?></button>
+        <button onclick="submitSelectAuctionForm();" class="btn btn-primary" ><? if($is_auction=="yes"){echo($texts['select_running_auction_submit']);}else{ echo($texts['select_filter_offers']);} ?></button>
       </fieldset>
     </form>
 

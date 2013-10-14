@@ -64,7 +64,37 @@
 	
 	}
 	
+	function getLatestAuctions($is_auction, $page=1){
+		global $gBase;
 	
+		$start=$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"]*$page-$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"];
+
+		$lDB=connectDB();
+		if (!$lDB->failed){
+					$latestAuctions=array();
+
+					if($is_auction){
+								if($latestAuctions=$lDB->getLatestAuctions($start,$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"],"pending", "yes")){
+
+											$gBase->RawData['latest_auctions']=$latestAuctions;
+									}
+					}else{
+
+								if($latestAuctions=$lDB->getLatestAuctions($start,$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"],"offering", "no")){
+
+											$gBase->RawData['latest_offers']=$latestAuctions;
+									}
+
+
+					}
+								
+
+
+									
+		}
+
+
+	}
 	
 	function  getCurrentAuction($auction_id=""){
 		
@@ -186,6 +216,7 @@
 						$auctionAddressArray=array();
 						$auctionAddressArray=$lDB->getUserAddressesById($address);
 						$auctionArray['county_id']=$auctionAddressArray['county_id'];
+						$auctionArray['state_id']=$auctionAddressArray['state_id'];
 						$auctionArray['city']=$auctionAddressArray['city'];
 						$lDB->updateAuction($auctionArray);
 
@@ -283,6 +314,7 @@
 						$auctionAddressArray=$lDB->getUserAddressesById($address);
 						$auctionArray['county_id']=$auctionAddressArray['county_id'];
 						$auctionArray['city']=$auctionAddressArray['city'];
+						$auctionArray['state_id']=$auctionAddressArray['state_id'];
 
 						$auctionArray['is_main']=$is_main_auction;
 
@@ -905,7 +937,7 @@ function checkTodaysAuctions(){
 		
 			$lDB=connectDB();
 			if (!$lDB->failed){
-				$gBase->RawData=$lDB->getPendingAuctions();
+				$gBase->RawData["todays_auctions"]=$lDB->getPendingAuctions();
 			}
 
 }
@@ -918,7 +950,7 @@ function checkTodaysOffers(){
 		
 			$lDB=connectDB();
 			if (!$lDB->failed){
-				$gBase->RawData=$lDB->getPendingOffers();
+				$gBase->RawData["todays_offers"]=$lDB->getPendingOffers();
 			}
 
 }

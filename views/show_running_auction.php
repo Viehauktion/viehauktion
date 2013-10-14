@@ -27,12 +27,23 @@
 
 <div id="bid_box"> 
 
-      <div class="control-group">
+      <!--<div class="control-group">
         <label class="control-label" for="your_bid"><? echo($texts['auction_your_bid']); ?></label>
         <div class="controls">
           <input type="text" id="your_bid" name="your_bid" placeholder="<? echo($texts['auction_your_bid_placeholder_1']." ".($gBase->CurrentAuction["current_entity_price"]+0.005)." ".$texts['auction_your_bid_placeholder_2']);  ?>"  >
         </div>
-      </div>
+      </div>-->
+
+
+	  <div class="control-group">
+          <label class="control-label" for="your_bid"><? echo($texts['auction_your_bid']); ?></label>
+          <div class="controls">
+            <select name="your_bid"  id="your_bid" >
+              
+            </select>
+          </div>
+        </div>
+
         <button onclick="submitBid()" class="btn btn-primary" id="auction_bid_submit"><? echo($texts['auction_bid_submit']); ?></button>
 
 </div>
@@ -172,16 +183,7 @@ switch ($gBase->CurrentAuction["metadata"]["auction_loading_stations_vehicle"]) 
 
 
 
-<? 
-if($_REQUEST["is_preview"]=="yes"){
 
-?>
-
-       <a href="?view=edit_auction&is_auction=<? echo($_REQUEST['is_auction']);?>&auction_id=<? echo($gBase->CurrentAuction["auction_id"]);?>&is_auction=<? echo($_REQUEST['is_auction']); ?>" class="btn btn-primary" id="auction_preview"><? echo($texts['back']); ?></a><a href="?view=profile&action=save_auction&auction_id=<? echo($gBase->CurrentAuction["auction_id"]);?>&is_main_auction=<? echo($_REQUEST['is_main_auction']);?>&is_auction=<? echo($_REQUEST['is_auction']);?>"  class="btn btn-primary" id="auction_submit"><? echo($texts['auction_submit']); ?></a>
-<?	
-}
-?>
-  
 
 </div>
 
@@ -287,6 +289,8 @@ function submitBid(){
 }
 
 
+var currentbid=0;
+function Runden2Dezimal(x) { Ergebnis = Math.round(x * 100) / 100 ; return Ergebnis; }
 
 function displayResponse(data){
 
@@ -322,7 +326,65 @@ function displayResponse(data){
 								$("#auction_id").html(data.current_auction.auction_id);
 								$("#amount_of_animals").html(data.current_auction.amount_of_animals);
 								$("#city").html(data.current_auction.city);
-								$("#curent_price").html(data.current_auction.current_entity_price);
+								//if($("#curent_price").html()!=data.current_auction.current_entity_price){
+
+									
+
+									html="";
+									if(currentbid!=parseFloat(data.current_auction.current_entity_price)){
+
+									
+									
+
+									currentbid=parseFloat(data.current_auction.current_entity_price);
+									splitted=currentbid.toString().split(".");
+											
+											currentbidstring=""+currentbid;
+
+											if(splitted.length>1){
+											if(splitted[1].length<2){
+
+												currentbidstring+="0";
+											}
+											if(splitted[1].length<1){
+												currentbidstring+="0";
+											}
+										}else{
+
+											currentbidstring+=".00"
+										}
+
+									$("#curent_price").html(currentbidstring);
+
+
+									$("#your_bid").empty();
+										for(i=1;i<11;i++){
+											nextBid=Runden2Dezimal(currentbid+0.01*i);
+											splitted=nextBid.toString().split(".");
+											
+											nextbidstring=""+nextBid;
+
+										if(splitted.length>1){
+											if(splitted[1].length<2){
+
+												nextbidstring+="0";
+											}
+											if(splitted[1].length<1){
+												nextbidstring+="0";
+											}
+										}else{
+
+											nextbidstring+=".00";
+										}
+											html+='<option value="'+nextbidstring+'" >'+nextbidstring+' €/kg</option>';
+										}	
+						
+			 						$("#your_bid").append(html);
+			 					}
+
+								//}
+
+
 								$("#end_time").html(data.current_auction.end_time);
 								$("#bids").html(data.current_auction.bids);
 								$("#start_time").html(data.current_auction.start_time);

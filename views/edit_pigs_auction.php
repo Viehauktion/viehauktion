@@ -99,6 +99,7 @@ $oldValues=nil;
       <input type="hidden" id="category_id" name="category_id" value="<? echo($category_id); ?>" />
       <input type="hidden" id="auction_id" name="auction_id" value="<? echo($_REQUEST['auction_id']); ?>" />
       <input type="hidden" id="is_auction" name="is_auction" value="<? echo($_REQUEST['is_auction']); ?>" />
+       <input type="hidden" id="is_main_auction" name="is_main_auction" value="yes" />
       <input type="hidden" id="is_preview" name="is_preview" value="" />
       <?
       if($_REQUEST['is_auction']=="yes"){
@@ -106,7 +107,7 @@ $oldValues=nil;
 
 
 
-<label class="radio">
+<!--<label class="radio">
   <input type="radio" name="is_main_auction" id="main_auction" value="yes" onclick="changeTime('main');" checked>
   <? echo($texts['auction_main_auction']); ?>
 </label>
@@ -114,7 +115,7 @@ $oldValues=nil;
   <input type="radio" name="is_main_auction" id="side_auction" value="no" onclick="changeTime('side');">
   <? echo($texts['auction_side_auction']); ?>
 </label>
-
+-->
 <br/>
 <br/>
 
@@ -155,7 +156,7 @@ $oldValues=nil;
       <div class="controls">
 
   <div id="endtime" class="input-append date">
-    <input data-format="dd-MM-yyyy hh:mm" name="endtime" type="text"></input>
+    <input data-format="dd-MM-yyyy hh:mm" name="endtime" id="endtime" type="text"></input>
     <span class="add-on">
       <i data-time-icon="icon-time" data-date-icon="icon-calendar">
       </i>
@@ -516,10 +517,15 @@ $('#till_time').datetimepicker({
 picker.setLocalDate(new Date());
 
 $("#pigs_auction #auction_preview").click(function(){
-      $("#pigs_auction #view").val("show_running_auction");
+      $("#pigs_auction #view").val("show_full_auction");
       $("#pigs_auction #is_preview").val("yes");
       //$("#pigs_auction #auction_form").attr("target", "_blank");
-      sendForm();
+
+  if($("#is_auction").val()=="yes"){
+      sendForm('view=show_full_auction&action=get_auction_details', true);
+    }else{
+
+    }
 
 
    });
@@ -528,8 +534,12 @@ $("#pigs_auction #auction_submit").click(function(){
 
       $("#pigs_auction #view").val("profile");
       $("#pigs_auction #is_preview").val("no");
-      sendForm();
 
+      if($("#is_auction").val()=="yes"){
+      sendForm('view=profile#auctions', false);
+}else{
+   sendForm('view=profile#offers', false);
+}
 
    });
 
@@ -546,7 +556,7 @@ if(toTime=='side'){
 
 }
 
-function sendForm(){
+function sendForm(nextview, is_preview){
 
   
 
@@ -639,7 +649,38 @@ function sendForm(){
 				 return false;
 		}else{
 			
-			 $("#pigs_auction form").submit();
+
+ $.getJSON("index.php", { "action": $("#action").val(), "view": "profile", "mode":"ajax", "category_id":$("#category_id").val(), "auction_id":$("#auction_id").val(), "is_auction":$("#is_auction").val(), "is_main_auction":$("#is_main_auction").val(), "is_preview":$("#is_preview").val(),"auction_date":$("#auction_date").val(),"endtime":$("#endtime").val(),"auction_amount":$("#auction_amount").val(),"auction_min_entitity_price":$("#auction_min_entitity_price").val(),"auction_origin":$("#auction_origin").val(),"form":$("#form").val(),"auction_pigs_form_value":$("#auction_pigs_form_value").val(),"autoform":$("#autoform").val(),"auction_pigs_autoform_value":$("#auction_pigs_autoform_value").val(),"auction_pigs_qs":$("#auction_pigs_qs").val(),"auction_pigs_samonelle_state":$("#auction_pigs_samonelle_state").val(),"address":$("#address").val(),"auction_loading_stations_amount":$("#auction_loading_stations_amount").val(),"auction_loading_stations_distance":$("#auction_loading_stations_distance").val(),"auction_loading_stations_vehicle":$("#auction_loading_stations_vehicle").val(),"auction_loading_stations_availability":$("#auction_loading_stations_availability").val(), "auction_loading_stations_availability_til":$("#auction_loading_stations_availability_til").val(),"auction_additional_informations":$("#auction_additional_informations").val(), "sid":"<? echo($_COOKIE["PHPSESSID"]); ?>"},
+      
+        function(data){
+               session_id=data.conf.session_id;
+                errorflag=false;
+                
+                currentID="";
+
+                if(is_preview){
+
+                  is_preview="&is_preview=yes&auction_id="+data.current_auction.id+"&is_auction="+data.current_auction.is_auction+"&state_id="+data.current_auction.state_id+"&county_id="+data.current_auction.county_id;
+
+              
+                }
+ 
+               window.open("?"+nextview+is_preview, "_self");
+      
+
+    
+              
+             });
+
+  
+
+      
+
+
+
+
+
+
 		 
     
 		}

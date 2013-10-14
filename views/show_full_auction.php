@@ -238,6 +238,29 @@ switch ($gBase->CurrentAuction["metadata"]["metadata"]["auction_loading_stations
 
   </div>
 
+
+  <? 
+if($_REQUEST["is_preview"]=="yes"){
+
+if($_REQUEST['is_auction']=="yes"){
+?>
+       <a href="?view=edit_auction&is_auction=<? echo($_REQUEST['is_auction']);?>&auction_id=<? echo($gBase->CurrentAuction["auction"]["id"]);?>&is_auction=<? echo($_REQUEST['is_auction']); ?>" class="btn btn-primary" id="auction_preview"><? echo($texts['back']); ?></a><a href="?view=profile&action=save_auction&auction_id=<? echo($gBase->CurrentAuction["auction"]["id"]);?>&is_auction=<? echo($_REQUEST['is_auction']);?>#auctions"  class="btn btn-primary" id="auction_submit"><? echo($texts['auction_submit']); ?></a>
+<?	
+
+}else{
+
+?>
+<a href="?view=edit_auction&is_auction=<? echo($_REQUEST['is_auction']);?>&auction_id=<? echo($gBase->CurrentAuction["auction"]["id"]);?>&is_auction=<? echo($_REQUEST['is_auction']); ?>" class="btn btn-primary" id="auction_preview"><? echo($texts['back']); ?></a><a href="?view=profile&action=save_auction&auction_id=<? echo($gBase->CurrentAuction["auction"]["id"]);?>&is_auction=<? echo($_REQUEST['is_auction']);?>#offers"  class="btn btn-primary" id="auction_submit"><? echo($texts['auction_submit']); ?></a>
+
+<?
+
+}
+
+}
+?>
+  
+
+
 </div>
 
 

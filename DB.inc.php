@@ -419,15 +419,15 @@ function getUserWithAddressByID($user_id){
 
 
 
-  		function getUserAuctions($userid, $asWinner=false, $page, $number_of_elements, $is_auction){
+  		function getUserAuctions($userid, $asWinner=false, $start, $number_of_elements, $is_auction){
 			$lSQLQuery ="";
 			
 		if($asWinner){
 			
-			$lSQLQuery = "SELECT SQL_CALC_FOUND_ROWS * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.buyer_id =  '".mysql_real_escape_string($userid)."' AND auctions.status!='deleted' AND auctions.is_auction='".mysql_real_escape_string($is_auction)."' ORDER BY auctions.id DESC LIMIT ".mysql_real_escape_string($page).", ".mysql_real_escape_string($number_of_elements).";";
+			$lSQLQuery = "SELECT SQL_CALC_FOUND_ROWS * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.buyer_id =  '".mysql_real_escape_string($userid)."' AND auctions.status!='deleted' AND auctions.is_auction='".mysql_real_escape_string($is_auction)."' ORDER BY auctions.id DESC LIMIT ".mysql_real_escape_string($start).", ".mysql_real_escape_string($number_of_elements).";";
 			}else{
 		
-		$lSQLQuery = "SELECT SQL_CALC_FOUND_ROWS * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.user_id =  '".mysql_real_escape_string($userid)."' AND auctions.status!='deleted' AND auctions.is_auction='".mysql_real_escape_string($is_auction)."' ORDER BY auctions.id DESC LIMIT ".mysql_real_escape_string($page).", ".mysql_real_escape_string($number_of_elements).";";
+		$lSQLQuery = "SELECT SQL_CALC_FOUND_ROWS * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.user_id =  '".mysql_real_escape_string($userid)."' AND auctions.status!='deleted' AND auctions.is_auction='".mysql_real_escape_string($is_auction)."' ORDER BY auctions.id DESC LIMIT ".mysql_real_escape_string($start).", ".mysql_real_escape_string($number_of_elements).";";
 		}
 
 
@@ -461,15 +461,51 @@ function getUserWithAddressByID($user_id){
 		}
 
 
-	function countUserAuctions($userid, $asWinner=false, $page, $number_of_elements, $is_auction){
+function getLatestAuctions($start,$number_of_elements,$status, $is_auction){
+
+		
+			
+			$lSQLQuery = "SELECT SQL_CALC_FOUND_ROWS * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.is_auction =  '".mysql_real_escape_string($is_auction)."' AND auctions.status='".$status."' ORDER BY auctions.id DESC LIMIT ".mysql_real_escape_string($start).", ".mysql_real_escape_string($number_of_elements).";";
+
+
+
+				$list= array();
+						$j=0;
+						$lResult = $this->mysql_query_ex($lSQLQuery);
+					
+						if ($lResult) {
+							while($lRow = mysql_fetch_assoc($lResult)){
+							$list[$j]=$lRow;
+							
+							$j++;
+							}
+						}
+				
+
+
+					$lSQLQuery = "SELECT FOUND_ROWS();";
+					$lResult = $this->mysql_query_ex($lSQLQuery);
+					
+						if ($lResult) {
+						$FOUND_ROWS=mysql_fetch_assoc($lResult);
+						$list['number_of_rows']=$FOUND_ROWS["FOUND_ROWS()"];
+						}
+					
+
+				return $list;
+
+}
+
+
+	function countUserAuctions($userid, $asWinner=false, $start, $number_of_elements, $is_auction){
 			$lSQLQuery ="";
 			
 		if($asWinner){
 			
-			$lSQLQuery = "SELECT * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.buyer_id =  '".mysql_real_escape_string($userid)."' AND auctions.status!='deleted' AND auctions.is_auction='".mysql_real_escape_string($is_auction)."' ORDER BY auctions.id DESC LIMIT ".mysql_real_escape_string($page).", ".mysql_real_escape_string($number_of_elements).";";
+			$lSQLQuery = "SELECT * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.buyer_id =  '".mysql_real_escape_string($userid)."' AND auctions.status!='deleted' AND auctions.is_auction='".mysql_real_escape_string($is_auction)."' ORDER BY auctions.id DESC LIMIT ".mysql_real_escape_string($start).", ".mysql_real_escape_string($number_of_elements).";";
 			}else{
 		
-		$lSQLQuery = "SELECT * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.user_id =  '".mysql_real_escape_string($userid)."' AND auctions.status!='deleted' AND auctions.is_auction='".mysql_real_escape_string($is_auction)."' ORDER BY auctions.id DESC LIMIT ".mysql_real_escape_string($page).", ".mysql_real_escape_string($number_of_elements).";";
+		$lSQLQuery = "SELECT * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.user_id =  '".mysql_real_escape_string($userid)."' AND auctions.status!='deleted' AND auctions.is_auction='".mysql_real_escape_string($is_auction)."' ORDER BY auctions.id DESC LIMIT ".mysql_real_escape_string($start).", ".mysql_real_escape_string($number_of_elements).";";
 		}
 
 
@@ -788,10 +824,10 @@ function getUserWithAddressByID($user_id){
 			$lSQLQuery = "";
 			if($is_auction=="no"){
 
-				$lSQLQuery ="SELECT DISTINCT  county_id, state_id, name FROM auctions INNER JOIN county ON auctions.county_id=county.id WHERE auctions.status =  'offering' AND county.state_id='".$state_id."'";
+				$lSQLQuery ="SELECT DISTINCT  auctions.county_id, auctions.state_id, county.name FROM auctions INNER JOIN county ON auctions.county_id=county.id WHERE auctions.status =  'offering' AND county.state_id='".$state_id."'";
 
 			}else{
-				$lSQLQuery ="SELECT DISTINCT  county_id, state_id, name FROM auctions INNER JOIN county ON auctions.county_id=county.id WHERE auctions.status =  'pending' AND county.state_id='".$state_id."'";
+				$lSQLQuery ="SELECT DISTINCT  auctions.county_id, auctions.state_id, county.name FROM auctions INNER JOIN county ON auctions.county_id=county.id WHERE auctions.status =  'pending' AND county.state_id='".$state_id."'";
 			}
 	
 	
@@ -816,9 +852,9 @@ function getUserWithAddressByID($user_id){
 		function getPendingAuctions(){
 
 
-			$lSQLQuery = "SELECT DISTINCT start_time, state_id FROM auctions INNER JOIN county ON auctions.county_id=county.id WHERE auctions.status =  'pending';";
+			$lSQLQuery = "SELECT DISTINCT start_time, state_id FROM auctions  WHERE status =  'pending' AND start_time LIKE  '".date('Y-m-d')."%';";
 
-	
+
 	
 				$list= array();
 						$j=0;
@@ -842,7 +878,7 @@ function getUserWithAddressByID($user_id){
 		function getPendingOffers(){
 
 
-			$lSQLQuery = "SELECT DISTINCT state_id FROM auctions INNER JOIN county ON auctions.county_id=county.id WHERE auctions.status =  'offering';";
+			$lSQLQuery = "SELECT DISTINCT state_id FROM auctions WHERE start_time LIKE  '".date('Y-m-d')."%';";
 
 	
 	
@@ -1214,9 +1250,9 @@ function updateInviteCode($codeArray) {
 	}
 
 
-	function getInvoicesByRecipientId($recipient_id, $page, $number_of_elements){
+	function getInvoicesByRecipientId($recipient_id, $start, $number_of_elements){
 
-				$lSQLQuery = "SELECT SQL_CALC_FOUND_ROWS * FROM `invoices` WHERE `recipient_id` = '".mysql_real_escape_string($recipient_id)."' ORDER BY `invoice_number` DESC LIMIT ".mysql_real_escape_string($page).", ".mysql_real_escape_string($number_of_elements).";";
+				$lSQLQuery = "SELECT SQL_CALC_FOUND_ROWS * FROM `invoices` WHERE `recipient_id` = '".mysql_real_escape_string($recipient_id)."' ORDER BY `invoice_number` DESC LIMIT ".mysql_real_escape_string($start).", ".mysql_real_escape_string($number_of_elements).";";
 				
 				
 				$list= array();

@@ -37,11 +37,11 @@ $texts['chicken']="Geflügel";
 
 
 $texts['navi_news']="Startseite";
-$texts['navi_auction']="Auktionen ansehen";
+$texts['navi_auction']="Auktionskatalog";
 $texts['navi_auction_add']="Auktion einstellen";
 
-$texts['navi_market']="Marktplatz";
-$texts['navi_market_add']="Vieh anbieten";
+$texts['navi_market']="Festpreiskatalog";
+$texts['navi_market_add']="Festpreisangebote einstellen";
 $texts['navi_contact']="Kontakt";
 $texts['navi_faq']="Häufige Fragen";
 
@@ -147,6 +147,9 @@ $texts['profile_buyer_details']="Käufer Details";
 $texts['profile_confirm_sell']="Kauf bestätigen";
 $texts['profile_confirm_question']="Sind sie sicher? Sie verpflichten sich hierdurch zum Verkauf der Tiere.";
 $texts['profile_deny_sell']="Kauf ablehnen";
+
+$texts['profile_not_logged_in_headline']='Bitte melden Sie sich an.';
+$texts['profile_not_logged_in']='Damit Sie auf Ihr Profil zugreifen können, müssen Sie sich zunächst <a href="#loginModal" role="button"  data-toggle="modal">einloggen</a>';
 
 
 
@@ -337,7 +340,7 @@ $text['edit_auction_not_allowed']="Ups hier ist etwas schief gelaufen. Ist nicht
 $texts['select_running_headline']="Suchen Sie Ihre Region";
 $texts['select_running_description']="Auktionen finden deutschlandweit statt, wählen Sie zunächst einen Bundesland, danach ein Landkreis.<br/><i>Es werden Ihnen nur Landkreise angezeigt, in denen Auktionen stattfinden.</i>";
 $texts['select_running_auction_submit']="Auktion aufrufen";
-
+$texts['select_filter_offers']="Angebote filtern";
 $texts['running_auctions_comming_up']="Nächste Auktionen - Warteschlange";
 $texts['running_auctions_finished']="Beendete Auktionen";
 
@@ -351,7 +354,7 @@ $texts['offers_no_offer_today']="Leider gibt es momentan keine Festpreisangebote
 $texts['buy_offer_no_buyer_error']="Sie sind nicht als Käufer registriert und können daher keine Angebote annehmen.";
 $texts['buy_offer_not_logged_in_error']="Um kaufen zu können, müssen sie sich einloggen oder zunächst als Käufer registrieren.";
 
-$texts['next_auctions']="Nächste Auktion";
+$texts['next_auctions']="Neuste Auktionen im Auktionskatalog";
 
 $texts['footer_agb']="Allg. Geschäftsbedingungen";
 $texts['footer_contact']="Kontakt";
