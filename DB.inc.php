@@ -112,6 +112,7 @@ class DB {
 			return false;
 		}
 		
+
 		
 		function getUserByID($userid) {
 			
@@ -270,6 +271,48 @@ class DB {
 
 
 
+		function getUsers($start, $number_of_elements, $activeState, $is_buyer){
+
+
+
+		$lSQLQuery ="";
+			
+		if($is_buyer!=''){
+			
+			$lSQLQuery = "SELECT SQL_CALC_FOUND_ROWS * FROM users  WHERE active =  '".$activeState."' AND is_buyer='".$is_buyer."' ORDER BY id DESC LIMIT ".mysql_real_escape_string($start).", ".mysql_real_escape_string($number_of_elements).";";
+			}else{
+		
+			$lSQLQuery = "SELECT SQL_CALC_FOUND_ROWS * FROM users ORDER BY id DESC LIMIT ".mysql_real_escape_string($start).", ".mysql_real_escape_string($number_of_elements).";";
+		}
+
+
+				$list= array();
+						$j=0;
+						$lResult = $this->mysql_query_ex($lSQLQuery);
+					
+						if ($lResult) {
+							while($lRow = mysql_fetch_assoc($lResult)){
+							$list[$j]=$lRow;
+							
+							$j++;
+							}
+						}
+				
+
+
+					$lSQLQuery = "SELECT FOUND_ROWS();";
+					$lResult = $this->mysql_query_ex($lSQLQuery);
+					
+						if ($lResult) {
+						$FOUND_ROWS=mysql_fetch_assoc($lResult);
+						$list['number_of_rows']=$FOUND_ROWS["FOUND_ROWS()"];
+						}
+					
+
+				return $list;
+
+
+		}
 
 
 
@@ -417,7 +460,24 @@ function getUserWithAddressByID($user_id){
 		
 		}
 
+		function getNumberOfUserAuctions($userid, $status){
 
+
+				$lSQLQuery = "SELECT COUNT(*) FROM auctions WHERE user_id =  '".mysql_real_escape_string($userid)."' AND status='".$status."';";
+	
+
+					$lResult = $this->mysql_query_ex($lSQLQuery);
+					if ($lResult) {
+					
+							$lArray = mysql_fetch_assoc($lResult);
+							return $lArray["COUNT(*)"];
+							
+							
+					}
+			
+					return false;	
+
+		}
 
   		function getUserAuctions($userid, $asWinner=false, $start, $number_of_elements, $is_auction){
 			$lSQLQuery ="";
@@ -713,6 +773,44 @@ function getLatestAuctions($start,$number_of_elements,$status, $is_auction){
 
 
 		}
+
+
+	function getAuctionsByNotStatusAndIsAuction($status, $is_auction, $start, $number_of_elements){
+
+		
+
+					$lSQLQuery = "SELECT SQL_CALC_FOUND_ROWS * FROM `auctions` WHERE `status`!=  '".$status."' AND `is_auction`='".$is_auction."' ORDER BY `id` DESC  LIMIT ".mysql_real_escape_string($start).", ".mysql_real_escape_string($number_of_elements).";";
+					
+			
+
+				$list= array();
+						$j=0;
+						$lResult = $this->mysql_query_ex($lSQLQuery);
+					
+						if ($lResult) {
+							while($lRow = mysql_fetch_assoc($lResult)){
+							$list[$j]=$lRow;
+							
+							$j++;
+							}
+						}
+				
+
+
+					$lSQLQuery = "SELECT FOUND_ROWS();";
+					$lResult = $this->mysql_query_ex($lSQLQuery);
+					
+						if ($lResult) {
+						$FOUND_ROWS=mysql_fetch_assoc($lResult);
+						$list['number_of_rows']=$FOUND_ROWS["FOUND_ROWS()"];
+						}
+					
+
+				return $list;
+
+
+		}
+
 
 	function updateAuctionMetadata($auctionArray) {
 		
@@ -1355,6 +1453,59 @@ function updateInvoice($invoiceArray) {
 
 
 
+		function getRatingForUserId($recipient_id){
+	
+			
+			$lSQLQuery = "SELECT * FROM `ratings` WHERE `about_id` =  '".mysql_real_escape_string($recipient_id)."';";
+	
+	
+	
+					$list= array();
+						$j=0;
+						$lResult = $this->mysql_query_ex($lSQLQuery);
+						
+						if ($lResult) {
+							while($lRow = mysql_fetch_assoc($lResult)){
+							$list[$j]=$lRow;
+							
+							$j++;
+							}
+						}
+				
+				return $list;
+			
+				
+	
+		}
+
+
+		function getRatingFromUserId($writer_id){
+	
+			
+			$lSQLQuery = "SELECT * FROM `ratings` WHERE `writer_id` =  '".mysql_real_escape_string($writer_id)."';";
+	
+	
+	
+					$list= array();
+						$j=0;
+						$lResult = $this->mysql_query_ex($lSQLQuery);
+						
+						if ($lResult) {
+							while($lRow = mysql_fetch_assoc($lResult)){
+							$list[$j]=$lRow;
+							
+							$j++;
+							}
+						}
+				
+				return $list;
+			
+				
+	
+		}
+
+
+
 
 		function getRatingByAuctionIdandWriterId($auction_id, $writer_id){
 	
@@ -1468,6 +1619,31 @@ function updateRating($ratingArray) {
 	
 	}
 
+
+	function getUserFiles($owner_id){
+	
+			
+			$lSQLQuery = "SELECT * FROM `user_files` WHERE `user_id` =  '".mysql_real_escape_string($owner_id)."';";
+	
+	
+	
+					$list= array();
+						$j=0;
+						$lResult = $this->mysql_query_ex($lSQLQuery);
+						
+						if ($lResult) {
+							while($lRow = mysql_fetch_assoc($lResult)){
+							$list[$j]=$lRow;
+							
+							$j++;
+							}
+						}
+				
+				return $list;
+			
+				
+	
+	}
 
 
 	function updateUserFileData($userFileDataArray) {

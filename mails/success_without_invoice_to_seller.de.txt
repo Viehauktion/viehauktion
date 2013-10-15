@@ -17,12 +17,14 @@ E-Mailaddresse: ___BUYEREMAIL___
 
 Bitte nehmen Sie mit dem Käufer zügig Kontakt auf, um die Details zur Lieferung zu besprechen.
 
-Wir dürfen Ihnen durch den erfolgreichen Abschluss ___PROVISION___ in Rechnung stellen.
-Sie finden die Rechnung im Anhang dieser E-Mail sowie in Ihrem Profil zum Herunterladen.
+Diese Auktion ist im Rahmen unserer TEstphase als erste erfolgreiche Auktion provisionsfrei.
+
 
 Alle Daten zur Auktion können Sie weiterhin in Ihrem Profil zum abrufen.
 
+
 Wir hoffen, dass der Kauf nun erfolgreich von statten geht und wir Sie demnächst mit einer neuen Auktion auf ___SITENAME___ begrüßen zu dürfen.
+
 
 
 

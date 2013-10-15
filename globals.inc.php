@@ -69,7 +69,7 @@
 		$GLOBALS["VIEHAUKTION"]["AMAZON"]["BUCKET"]="viehauktion";
 
 		$GLOBALS["VIEHAUKTION"]["AMAZON"]["INVOICEURL"]="http://invoices.viehauktion.com/";
-		
+		$GLOBALS["VIEHAUKTION"]["AMAZON"]["DOCUMENTSURL"]="http://documents.viehauktion.com/";
 	
 	
 	?>

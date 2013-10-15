@@ -790,7 +790,53 @@ function getRunningAuction($county_id, $state_id, $auction_id){
 					
 		
 }
+
+
+
 	
+function getFinishedAuctions($page){
+
+
+global $gBase;
+		if($gBase->User['role'] == "admin") {
+		$lDB=connectDB();
+		$start=$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"]*$page-$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"];
+		if (!$lDB->failed){
+
+
+			$gBase->RawData["auctions"]=$lDB->getAuctionsByNotStatusAndIsAuction("pending", "yes", $start, $GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"]);
+		
+			
+
+		}
+	}
+
+}
+
+
+function getFinishedOffers($page){
+
+
+global $gBase;
+		if($gBase->User['role'] == "admin") {
+		$lDB=connectDB();
+
+		$start=$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"]*$page-$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"];
+
+		if (!$lDB->failed){
+
+
+			$gBase->RawData["offers"]=$lDB->getAuctionsByNotStatusAndIsAuction("offering", "no", $start, $GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"]);
+			
+			
+
+		}
+	}
+
+}
+
+
+
 
 function getCurrentAuctionFromDB($county_id, $state_id){
 global $gBase;

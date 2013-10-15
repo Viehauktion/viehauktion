@@ -141,6 +141,7 @@
 											$userfiledata['user_id']=$userArray['id'];
 											$userfiledata['type']="insurance";
 											$userfiledata['filename']=$newFileName;
+											$lDB->addUserFileData($userfiledata);
 										
 										}
 
@@ -596,6 +597,115 @@ function sendActivationMailAgain($user_email, $lang){
 		}
 					
 		}
+
+
+
+		function getBuyerToConfirm($page){
+
+								
+						global $gBase;
+		if($gBase->User['role'] == "admin") {
+		$lDB=connectDB();
+		if (!$lDB->failed){
+
+				$start=$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"]*$page-$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"];
+
+				 $gBase->RawData["buyer_to_confirm"]=$lDB->getUsers($start, $GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"], 1, "yes");
+ 				
+		}
+	}
+		}
 	
+
+		function getUsers($page){
+
+								
+						global $gBase;
+			if($gBase->User['role'] == "admin") {
+					$lDB=connectDB();
+					if (!$lDB->failed){
+
+							$start=$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"]*$page-$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"];
+
+									 $gBase->RawData["users"]=$lDB->getUsers($start, $GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"], 0, "");
+
+					}
+				}
+		}
 			
+		function changeUserStatus($user_id, $activate_status){
+
+		global $gBase;
+		if($gBase->User['role'] == "admin") {
+		$lDB=connectDB();
+		if (!$lDB->failed){
+
+			$userArray=array();
+
+				if($userArray=$lDB->getUserByID($user_id)){
+
+
+					$userArray["active"]=$activate_status;
+					$lDB->updateUser($userArray);
+
+				}
+
+
+		}
+	}
+
+
+		}
+
+
+	function getUserDetails($user_id){
+
+
+		global $gBase;
+		if($gBase->User['role'] == "admin") {
+		$lDB=connectDB();
+		if (!$lDB->failed){
+			$userArray=array();
+				if($userArray=$lDB->getUserByID($user_id)){
+					$gBase->RawData=array();
+					$gBase->RawData["user_data"]=$userArray;
+					$gBase->RawData["user_addresses"]=$lDB->getUserAddresses($user_id);
+					$gBase->RawData["user_files"]=$lDB->getUserFiles($user_id);
+					$gBase->RawData["ratings_about_user"]=$lDB->getRatingForUserId($user_id);
+					$gBase->RawData["ratings_from_user"]=$lDB->getRatingFromUserId($user_id);
+
+
+
+				}
+
+		}
+	}
+
+		
+	}
+
+
+	function imitateUser($user_id){
+
+
+		global $gBase;
+		if($gBase->User['role'] == "admin") {
+		$lDB=connectDB();
+		if (!$lDB->failed){
+	
+			$userArray=array();
+			if($userArray=$lDB->getUserByID($user_id)){
+
+ 							$gBase->User=$userArray;
+							$gBase->UserAddresses=$lDB->getUserAddresses($userArray['id']);
+					}
+
+		}
+	}
+
+
+
+	}
+
+
 ?>

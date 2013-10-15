@@ -486,4 +486,48 @@ $texts['confirmed_auction_buyer_subject']='Sie haben rechtsverbindlich gekauft.'
 $texts['confirmed_auction_seller_subject']='Sie haben rechtsverbindlich verkauft.';
 
 
+
+$texts['backend_buyer_to_confirm']="Zu bestätigende Händler";
+
+$texts['backend_status']="Status";
+$texts['backend_registered_at']="Angemeldet am";
+$texts['backend_last_log_in']="Letzter Login";
+$texts['show_user']="Details";
+$texts['activate_user']="Händler aktivieren";
+$texts['deactivate_user']="Händler deaktivieren";
+$texts['delete_user']="löschen";
+$texts['backend_notpending_auctions']="Abgeschlossene Auktionen";
+$texts['backend_seller_buyer']="Erzeuger/Händler";
+$texts['backend_latest_user']="Neueste Nutzer";
+$texts['backend_not_activated']="nicht aktiviert";
+$texts['backend_activated']="aktiviert";
+$texts['backend_confirmed']="bestätigt von uns";
+$texts['backend_deleted']="deaktiviert/gelöscht";
+$texts['backend_user_detail']="Kerndaten";
+$texts['imitate_user']="Imitieren";
+$texts['backend_headline']="Backend";
+$texts['backend_user_management']="Benutzer";
+$texts['backend_offers_management']="Festpreisangebote";
+$texts['backend_user_addresses']="Adressen";
+
+$texts['backend_user_ratings_from']="Bewertungen des Nutzers";
+$texts['backend_user_ratings_about']="Bewertungen über den Nutzers";
+$texts['backend_auctions_management']="Auktionen";
+$texts['backend_address_type']="Adresstype";
+$texts['backend_address_show_on_map']="Auf Karte anzeigen";
+
+$texts['backend_user_files']="Belege";
+$texts['backend_user_files_type']="Typ";
+$texts['backend_user_files_date']="Vom";
+$texts['backend_user_files_download']="Herunterladen";
+$texts['backend_rating_points']="Punkte";
+$texts['backend_rating_comment']="Kommentar";
+$texts['backend_rating_date']="Datum";
+$texts['backend_rating_to_about']="Zum Beschriebenen";
+$texts['backend_rating_to_writer']="Zum Schreiber";
+$texts['backend_is_seller']="Ist Erzeuger?";
+$texts['backend_is_buyer']="Ist Händler?";
+$texts['backend_has_newsletter']="Newsletter?";
+
+
 ?>

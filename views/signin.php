@@ -1,5 +1,15 @@
 <div id="signin" class="pull-right">
-  <? if($gBase->User['id'] != "") { ?>
+  <? if($gBase->User['id'] != "") {
+
+  if($gBase->User['role'] != "user") { ?>
+
+   <a href="?&view=backend#users" >
+      Backend
+    </a>
+
+    <?
+}
+    ?>
     <span class="muted"><?= $texts['signin_signedin_as'] ?></span>
     <a href="?&view=profile" <? if ($View=="profile") echo('class="active"'); ?>>
       <?= $gBase->User['email'] ?>

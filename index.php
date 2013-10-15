@@ -251,6 +251,17 @@ require_once("amazonS3/S3.php");
 
 					case 'get_latest_offers': getLatestAuctions(false, $_REQUEST['page']); break;
 
+					case 'get_user':	getUsers($_REQUEST['page']); break;
+					case 'get_buyer_to_confirm': getBuyerToConfirm($_REQUEST['page']); break;
+
+					case 'delete_user':	 changeUserStatus($_REQUEST['user_id'], 3); getBuyerToConfirm(1); getUsers(1);break;
+					case 'confirm_user':	 changeUserStatus($_REQUEST['user_id'], 2); getBuyerToConfirm(1); break;
+					case 'imitate_user':	 imitateUser($_REQUEST['user_id']); break;
+					case 'show_full_user':	getUserDetails($_REQUEST['user_id']); break;
+					case 'get_finished_offers': getFinishedOffers($_REQUEST['page']); break;
+					case 'get_finished_auctions': getFinishedAuctions($_REQUEST['page']); break;
+
+
 		}
 		switch ($View) {
 		
@@ -264,6 +275,9 @@ require_once("amazonS3/S3.php");
 			case 'market':	if($Action==''){ getLatestAuctions(false);} checkTodaysOffers(); break;
 
 			case 'edit_auction':  getCurrentAuction($_REQUEST['auction_id']); break;
+			case 'backend':		if($Action==''){ getBuyerToConfirm(1); getUsers(1);  getFinishedOffers(1); getFinishedAuctions(1);} break;
+
+
 			
 		}
 		

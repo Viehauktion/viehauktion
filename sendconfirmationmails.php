@@ -39,7 +39,7 @@ function connectDB() {
 		return new DB($lHost, $lUser, $lPassword, $lDBName);
 	}
 	
-		function sendEmail($emailTemplate, $lSearch, $lReplacement, $subject, $lRecipient) {
+		function sendEmail($emailTemplate, $lSearch, $lReplacement, $subject, $lRecipient, $attachmentPath) {
 					
 					$eMail = file_get_contents($emailTemplate);
 					$finalEmail = str_replace($lSearch, $lReplacement, $eMail);
@@ -55,7 +55,9 @@ function connectDB() {
 							$mail->From = $GLOBALS["VIEHAUKTION"]["EMAIL"]["SENDERADDRESS"];
 							$mail->FromName = $GLOBALS["VIEHAUKTION"]["EMAIL"]["SENDERNAME"];
 							$mail->AddAddress($lRecipient, $lRecipient);
-							
+							if($attachmentPath!=''){
+							$mail->AddAttachment($attachmentPath);
+							}
 							$mail->IsHTML(false); // send as HTML
 							
 							$mail->Subject = $subject;
@@ -119,7 +121,7 @@ if($endedAuctions=$lDB->getEndedAuction("confirmed","confirmed","")){
 															$lSearch[17] = "___BUYEREMAIL___";
 
 															$lSearch[18] = "___PROVISION___";
-															$lSearch[19] = "___INVOICELINK___";
+															
 
 
 															$lReplacement = array();
@@ -150,6 +152,10 @@ if($endedAuctions=$lDB->getEndedAuction("confirmed","confirmed","")){
 															$lReplacement[17] = $buyer["email"];
 
 
+															$lReplacement[18] = $GLOBALS["VIEHAUKTION"]["PROVISION"];
+															
+
+
 															$sellersubject='';
 															$buyersubject='';
 															$flag=0;
@@ -170,6 +176,9 @@ if($endedAuctions=$lDB->getEndedAuction("confirmed","confirmed","")){
 																$metadata=$lDB->getAuctionMetadataByAuctionId($endedAuctions[$i]["id"]);
 
 
+																$attachmentPath="";
+																if($lDB->getNumberOfUserAuctions($endedAuctions[$i]["user_id"], "confirmed")>0){
+
 																$invoice=array();
 																$invoice["auction_id"]=$endedAuctions[$i]["id"];
 																$invoice["user_id"]=$endedAuctions[$i]["user_id"];
@@ -187,7 +196,7 @@ if($endedAuctions=$lDB->getEndedAuction("confirmed","confirmed","")){
 
 																$currentInvoice=$lDB->getInvoiceByAuctionId($endedAuctions[$i]["id"]);
 
-																
+																$attachmentPath="./invoices/".$invoice["filename"];
 
 																$pdf = new SRBill('P', 'mm', 'A4');
 																$pdf->AliasNbPages();
@@ -205,7 +214,7 @@ if($endedAuctions=$lDB->getEndedAuction("confirmed","confirmed","")){
 
 																$pdf->printBuyer("", $buyer["firstname"]." ".$buyer["lastname"], $buyer["street"].' '.$buyer["number"], $buyer["postcode"].' '.$buyer["city"],  $buyer["country"]);
 																
-																$pdfStream=$pdf->Output("./invoices/".$invoice["filename"],"F");
+																$pdfStream=$pdf->Output($attachmentPath,"F");
 
 
 
@@ -215,14 +224,23 @@ if($endedAuctions=$lDB->getEndedAuction("confirmed","confirmed","")){
 																$result=$s3->putObjectFile("./invoices/".$invoice["filename"], $GLOBALS["VIEHAUKTION"]["AMAZON"]["BUCKET"], "invoices/".$invoice["filename"], S3::ACL_PUBLIC_READ);
 			
 			
-															
+																}
+																if($attachmentPath==""){
 
-																if(sendEmail('./mails/success_to_seller.'.$lang.'.txt', $lSearch, $lReplacement, $sellersubject, $seller['email'])){
+																	if(sendEmail('./mails/success_without_invoice_to_seller.'.$lang.'.txt', $lSearch, $lReplacement, $sellersubject, $seller['email'], $attachmentPath)){
 
 																	$flag=1;
+																	}
+																}else{
+
+																	if(sendEmail('./mails/success_to_seller.'.$lang.'.txt', $lSearch, $lReplacement, $sellersubject, $seller['email'], $attachmentPath)){
+
+																		$flag=1;
+																	}
+
 																}
 
-																if(sendEmail('./mails/success_to_buyer.'.$lang.'.txt', $lSearch, $lReplacement, $buyersubject, $buyer['email'])){
+																if(sendEmail('./mails/success_to_buyer.'.$lang.'.txt', $lSearch, $lReplacement, $buyersubject, $buyer['email'],"")){
 																	if($flag==1){
 																			$flag=3;
 																		}else{

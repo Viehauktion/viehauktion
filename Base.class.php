@@ -36,7 +36,7 @@
 						$this->UserAddresses=$_SESSION["UserAddresses"];
 						$this->UserInvoices=$_SESSION["UserInvoices"];
 						$this->CurrentAuction=$_SESSION["CurrentAuction"];
-						
+						$this->RawData=$_SESSION["RawData"];
 			
 	
 
@@ -57,7 +57,7 @@
 			$_SESSION["UserAddresses"]= $this->UserAddresses;
 			$_SESSION["CurrentAuction"]=$this->CurrentAuction;
 		
-			
+			$_SESSION["RawData"]=$this->RawData;
 		}
 
 	
