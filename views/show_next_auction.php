@@ -40,8 +40,8 @@ if(count($auctions)>0){
 <tr>
   <td><? echo($auctions[$i]["start_time"]); ?></td>
   <td><? echo($auctions[$i]["amount_of_animals"]); ?></td>
-  <td><? echo($auctions[$i]["min_entity_price"]); ?></td>
-  <td><? echo($auctions[$i]["current_entity_price"]); ?></td>
+  <td><? echo(formatPrice($auctions[$i]["min_entity_price"])); ?></td>
+  <td><? echo(formatPrice($auctions[$i]["current_entity_price"])); ?></td>
   <td><? echo($metadata["auction_origin"]); ?></td>
    <td> <a href="?view=show_full_auction&action=get_auction_details&is_auction=yes&auction_id=<? echo($auctions[$i]["id"]); ?>&state_id=<? echo($auctions[$i]["state_id"]); ?>&county_id=<? echo($auctions[$i]["county_id"]); ?>" class="btn" type="button" id="showAuction" ><?  echo($texts['auction_details']); ?></a></td>
  
@@ -107,8 +107,8 @@ if(count($auctions)>0){
 
 <tr>
   <td><? echo($auctions[$i]["created"]); ?></td>
-  <td><? echo($auctions[$i]["amount_of_animals"]); ?></td>
-  <td><? echo($auctions[$i]["min_entity_price"]); ?></td>
+  <td><? echo(formatPrice($auctions[$i]["amount_of_animals"])); ?></td>
+  <td><? echo(formatPrice($auctions[$i]["min_entity_price"])); ?></td>
   <td><? echo($auctions[$i]["city"]); ?></td>
   <td> <a href="?view=show_full_auction&action=get_auction_details&is_auction=no&auction_id=<? echo($auctions[$i]["id"]); ?>&state_id=<? echo($_REQUEST['state_id']); ?>&county_id=<? echo($_REQUEST["county_id"]); ?>" class="btn" type="button" id="showAuction" ><?  echo($texts['auction_details']); ?></a></td>
  

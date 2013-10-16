@@ -333,6 +333,22 @@ errorflag=false;
 
 
 
+<div id="formsModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="formsModal" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="formsModalLabel"><? echo($texts['modal_forms_headline']); ?></h3>
+  </div>
+  <div class="modal-body">
+<?
+
+echo($texts['forms']);
+
+?>
+
+  </div>
+</div>
+
+
 
 <div id="imprintModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="imprintModal" aria-hidden="true">
   <div class="modal-header">

@@ -1,62 +1,6 @@
 <?php
-$category_id=1;
-$nextDates=array();
 
-$lDB=connectDB();
-      if (!$lDB->failed){
-
-            $auctionCategory=array();
-            $auctionCategory=$lDB->getAuctionCategoryById($category_id);
-      
-
-
-            $auctionDays=explode("_",$auctionCategory['days']);
-            $additionalDays=0;
-            for($i=0;$i<count($auctionDays)-1;$i++){
-      
-
-              if($auctionDays[$i]>date("N")){
-
-                $additionalDays=$auctionDays[$i]-date("N");
-
-              }elseif ($auctionDays[$i]==date("N")&&$auctionCategory['start_time']>date("H:i:s",  strtotime("+10 minute"))){
-
-                $additionalDays=0;
-                
-
-              }else{
-
-                $additionalDays=$auctionDays[$i]+7-date("N");
-
-              }
-
-
-                $date=array();
-                $date['readable_date']=date("d.m.y", strtotime("+".$additionalDays." day"))." ".$auctionCategory['start_time']." ".$texts['add_auction_time_entity'];
-                $date['submitable_date']=date("Y-m-d", strtotime("+".$additionalDays." day"))." ".$auctionCategory['start_time'];
-                $date['additional_days']=$additionalDays;
-
-                array_push($nextDates,$date);
-
-              }
-
-                for($i=0;$i<count($nextDates);$i++){
-
-                  for($j=0;$j<count($nextDates);$j++){
-
-                    if($nextDates[$i]['additional_days']<$nextDates[$j]['additional_days']){
-                      $tmpDate=$nextDates[$i];
-                      $nextDates[$i]=$nextDates[$j];
-                      $nextDates[$j]=$tmpDate;
-
-
-                    }
-
-                  }
-
-                }
-              
-     }
+$nextDates=getNextAuctions(1);
 
 
 $oldValues=nil;
@@ -186,6 +130,10 @@ $oldValues=nil;
           <input type="text" id="auction_origin" name="auction_origin" placeholder="<? echo($texts['auction_origin_placeholder']); ?>" value="<? if($oldValues!=nil) echo($oldValues['auction_origin']); ?>">
         </div>
       </div>
+
+
+            <span class="help-block"><? echo($texts['auction_pigs_calssification_hint']); ?></span><br/>
+
       <div class="control-group">
         <label class="control-label" for="form"><? echo($texts['auction_pigs_form']); ?></label>
         <div class="controls">
@@ -209,7 +157,15 @@ echo ' checked="checked" ';
       <div class="control-group">
         <label class="control-label" for="autoform"><? echo($texts['auction_pigs_autoform']); ?></label>
         <div class="controls">
-          <input type="checkbox" id="autoform" name="autoform" />
+          <input type="checkbox" id="autoform" name="autoform"
+<? if($oldValues['autoform']=="on"){
+
+echo ' checked="checked" ';
+
+}
+?>
+
+           />
         </div>
       </div>
       <div class="control-group">
@@ -218,7 +174,7 @@ echo ' checked="checked" ';
           <input type="text" id="auction_pigs_autoform_value" name="auction_pigs_autoform_value" placeholder="<? echo($texts['auction_pigs_autoform_entity_placeholder']); ?>" value="<? if($oldValues!=nil) echo($oldValues['auction_pigs_autoform_value']); ?>">
         </div>
       </div>
-      <span class="help-block"><? echo($texts['auction_pigs_calssification_hint']); ?></span><br/>
+
     
 
 
@@ -489,7 +445,14 @@ echo ' selected="selected" ';
           <textarea id="auction_additional_informations" name="auction_additional_informations" rows="3"><? if($oldValues!=nil) echo($oldValues['auction_additional_informations']); ?></textarea>
         </div>
       </div>
+      <?
+  if($gBase->User["is_seller"]=="yes"){
+?>
        <button onclick="return false" class="btn btn-primary" id="auction_preview"><? echo($texts['auction_preview']); ?></button><button onclick="return false" class="btn btn-primary" id="auction_submit"><? echo($texts['auction_submit']); ?></button>
+ <?
+ }
+?>
+
     </fieldset>
   </form>
   
@@ -555,6 +518,11 @@ if(toTime=='side'){
 }
 
 }
+
+
+      <?
+  if($gBase->User["is_seller"]=="yes"){
+?>
 
 function sendForm(nextview, is_preview){
 
@@ -688,5 +656,9 @@ function sendForm(nextview, is_preview){
      
   }
 	
+
+  <?
+}
+?>
 
 </script>

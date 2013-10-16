@@ -2,9 +2,14 @@
 
 
 $areAuctionsToday=false; 
+$areAlreadyRunning=false;
 
  for($i=0; $i<count($gBase->RawData["todays_auctions"]); $i++){
 	
+    if(strtotime($gBase->RawData["todays_auctions"][$i]["start_time"])<time()){
+
+      $areAlreadyRunning=true;
+    }
 
  	if(substr($gBase->RawData["todays_auctions"][$i]["start_time"], 0, 10)==date("Y-m-d")){
 
@@ -26,8 +31,25 @@ $areAuctionsToday=false;
     <div class="well">
     <? if($areAuctionsToday){
       echo($texts['auctions_auction_today']);
+
+      if($areAlreadyRunning){
+         echo($texts['auctions_already_running']);
+      }else{
+      $nextDates=getNextAuctions(1);
+      
+
+      echo($texts['auctions_start_auction'].": ".$nextDates[0]['readable_date']);
+    }
+
+
     }else{
-      echo($texts['auctions_no_auction_today']);
+      echo($texts['auctions_no_auction_today']."<br/><br/>");
+
+    
+      $nextDates=getNextAuctions(1);
+      
+
+      echo($texts['auctions_next_auction'].": ".$nextDates[0]['readable_date']);
     }
     ?>
     </div>
@@ -82,7 +104,7 @@ if(count($auctions)>0){
     </tr>
     <?
 
-    for($i=0; $i<count($auctions); $i++){
+    for($i=0; $i<count($auctions)-1; $i++){
 
       $metadata=json_decode($auctions[$i]["metadata"], true);
       ?>
@@ -90,8 +112,8 @@ if(count($auctions)>0){
 <tr>
   <td><? echo(date('d.m.y H:i', strtotime($auctions[$i]["start_time"]))); ?></td>
   <td><? echo($auctions[$i]["amount_of_animals"]); ?></td>
-  <td><? echo($auctions[$i]["min_entity_price"]); ?></td>
-  <td><? echo($auctions[$i]["current_entity_price"]); ?></td>
+  <td><? echo(formatPrice($auctions[$i]["min_entity_price"])); ?></td>
+  <td><? echo(formatPrice($auctions[$i]["current_entity_price"])); ?></td>
   <td><? echo($metadata["auction_origin"]); ?></td>
    <td> <a href="?view=show_full_auction&action=get_auction_details&is_auction=yes&auction_id=<? echo($auctions[$i]["id"]); ?>&state_id=<? echo($auctions[$i]["state_id"]); ?>&county_id=<? echo($auctions[$i]["county_id"]); ?>" class="btn" type="button" id="showAuction" ><?  echo($texts['auction_details']); ?></a></td>
  

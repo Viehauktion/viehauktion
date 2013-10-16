@@ -1,52 +1,14 @@
-<?PHP
+<div id="market">
+<h2><? echo($texts['navi_market']); ?></h2>
 
-
-$areOffersToday=false; 
-
- if(count($gBase->RawData["todays_offers"])>0){
-	
-
-
-			$areOffersToday=true;
-
- 	
-
- }
-
-
-
-?>
-
-
-   <h2><? echo($texts['navi_market']); ?></h2>
-
-
-
-      <p><? if($areOffersToday){
- echo($texts['offers_today']);
-      }else{
- echo($texts['offers_no_offer_today']);
-
-      }
-      ?>
-
-</p>
-
-
-<? if($areOffersToday){
-
+<p><? echo($texts['market_description']); ?></p
+<?
 
 $_form_action="get_next_auction";
 $_form_view="show_next_auction";
 $is_auction="no";
 include("select_auction.php");
-} 
-
-
-
 ?>
-
-
 
 
 <div id="next_offers">
@@ -79,7 +41,7 @@ if(count($auctions)>0){
     </tr>
     <?
 
-    for($i=0; $i<count($auctions); $i++){
+    for($i=0; $i<count($auctions)-1; $i++){
 
             $metadata=json_decode($auctions[$i]["metadata"], true);
       ?>
@@ -134,6 +96,8 @@ if ($_REQUEST['page']!='') {
 </div>
   
 </p>
+
+</div>
 
 </div>
 

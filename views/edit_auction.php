@@ -1,7 +1,27 @@
 <?
 
  
-if($gBase->User['is_seller']=="yes"){
+if($gBase->User['is_seller']!="no"){
+
+  if($gBase->User==null){
+?>
+ <div class="well">
+<h2><? echo($texts['edit_auction_not_logged_in_headline']); ?></h2>
+<?
+if($_REQUEST['is_auction']=="yes"){ 
+?>
+<p><? echo($texts['edit_auction_not_logged_in_description']); ?></p>
+<?
+}else{
+?>
+<p><? echo($texts['edit_auction_not_logged_in_description']); ?></p>
+<?
+}
+?>
+</div>
+
+<?
+  }
 
 ?>
 

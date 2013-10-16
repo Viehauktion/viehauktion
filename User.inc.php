@@ -188,12 +188,14 @@
 									if($is_new){
 									$lSearch = array();
 								
-									$lSearch[] = "___APPNAME___";
+									$lSearch = array();
+									$lSearch[] = "___FIRSTNAME___";
+									$lSearch[] = "___LASTNAME___";
+									$lSearch[] = "___SITENAME___";
 									$lSearch[] = "___LINK___";
 									
 									$code=substr(md5($userArray['id'].$userArray['email']), 0, 8);
-									$activationLink=$GLOBALS["VIEHAUKTION"]["BASE"]["HTTPROOT"]."activateuser.php?user_id=".$userArray['id']."&user_email=".$email."&activationcode=".$code."&lang=".$lang;
-									
+									$activationLink=$GLOBALS["VIEHAUKTION"]["BASE"]["HTTPROOT"]."?view=profile&action=activate_user&user_id=".$gBase->User['id']."&user_email=".$gBase->User['email']."&activationcode=".$code."&lang=".$lang."#userdata";
 									$subject='';
 									
 									switch($lang){
@@ -205,8 +207,10 @@
 										}
 									
 									
-									$lReplacement = array();
 								
+									$lReplacement = array();
+									$lReplacement[] =$userArray['firstname'];
+									$lReplacement[] =$userArray['laststname'];
 									$lReplacement[] =$GLOBALS["VIEHAUKTION"]["BASE"]["APPNAME"];
 									$lReplacement[] =$activationLink;
 									
@@ -238,25 +242,27 @@
 	
 	
 
-function sendActivationMailAgain($user_email, $lang){
+function sendActivationMailAgain($lang){
 	
 
-	
+		
+			global $gBase;
 									
 
 									$lSearch = array();
-									$lSearch[] = "___USERNAME___";
-									$lSearch[] = "___APPNAME___";
+									$lSearch[] = "___FIRSTNAME___";
+									$lSearch[] = "___LASTNAME___";
+									$lSearch[] = "___SITENAME___";
 									$lSearch[] = "___LINK___";
 									
-									$code=substr(md5($userArray['id'].$userArray['email']), 0, 8);
-									$activationLink=$GLOBALS["VIEHAUKTION"]["BASE"]["HTTPROOT"]."activateuser.php?user_id=".$userArray['id']."&user_email=".$userArray['email']."&activationcode=".$code."&lang=".$lang;
+									$code=substr(md5($gBase->User['id'].$gBase->User['email']), 0, 8);
+									$activationLink=$GLOBALS["VIEHAUKTION"]["BASE"]["HTTPROOT"]."?view=profile&action=activate_user&user_id=".$gBase->User['id']."&user_email=".$gBase->User['email']."&activationcode=".$code."&lang=".$lang."#userdata";
 									
 									$subject='';
 									
 									switch($lang){
 										
-										case "de": $subject="Aktiviere Deinen Ihren Account."; break;
+										case "de": $subject="BestätigenSie Ihre E-Mailadresse"; break;
 										case "en": $subject="Activate your account."; break;
 										default: $subject="Activate your account.";
 										
@@ -264,25 +270,57 @@ function sendActivationMailAgain($user_email, $lang){
 									
 									
 									$lReplacement = array();
-									$lReplacement[] =$userArray['username'];
+									$lReplacement[] =$gBase->User['firstname'];
+									$lReplacement[] =$gBase->User['laststname'];
 									$lReplacement[] =$GLOBALS["VIEHAUKTION"]["BASE"]["APPNAME"];
 									$lReplacement[] =$activationLink;
 									
-									$lRecipient=$userArray['email'];
+									$lRecipient=$gBase->User['email'];
 				
-									if(sendEmail('./mails/activationmail.'.$lang.'.txt', $lSearch, $lReplacement, $subject, $userArray['email'])){
+									if(sendEmail('./mails/activationmail.'.$lang.'.txt', $lSearch, $lReplacement, $subject, $lRecipient)){
 										
 										
-											
 											return true;
 										
 										
 										
+									}else{
+
+										$gBase->Error="EMAIL_NOT_SEND";
 									}
 								
 
 	
 	
+	}
+
+	function activateUser($user_id, $email, $code){
+	global $gBase;
+
+			if($code==substr(md5($user_id.$email), 0, 8)){
+
+			
+		
+							$lDB=connectDB();
+						if (!$lDB->failed){
+							$userArray=array();
+							if($userArray=$lDB->getUserByEmail(strtolower($email))){
+									if($userArray["active"]==0){
+									$userArray["active"]=1;
+								}
+									$lDB->updateUser($userArray);
+									$gBase->User=$userArray;
+									$gBase->UserAddresses=$lDB->getUserAddresses($userArray['id']);
+
+							}
+
+						}
+			}else{
+
+				$gBase->Error="INVALID_CODE";
+			}
+
+
 	}
 
 			
@@ -370,7 +408,7 @@ function sendActivationMailAgain($user_email, $lang){
 									$lSearch[] = "___FIRSTNAME___";
 									$lSearch[] = "___LASTNAME___";
 									$lSearch[] = "___SITENAME___";
-									$lSearch[] = "___USERNAME___";
+									$lSearch[] = "___EMAIL___";
 									$lSearch[] = "___PASSWORD___";
 									
 
@@ -378,7 +416,7 @@ function sendActivationMailAgain($user_email, $lang){
 									$lReplacement[] =$userArray['firstname'];
 									$lReplacement[] =$userArray['lastname'];
 									$lReplacement[] =$GLOBALS["VIEHAUKTION"]["BASE"]["APPNAME"];
-									$lReplacement[] =$userArray['username'];
+									$lReplacement[] =$userArray['email'];
 									$lReplacement[] =$newpassword;
 									
 									$lRecipient=$userArray['email'];
@@ -516,13 +554,12 @@ function sendActivationMailAgain($user_email, $lang){
 			
 			}
 		
-				
 				function sendEmail($emailTemplate, $lSearch, $lReplacement, $subject, $lRecipient) {
 					
 					$eMail = file_get_contents($emailTemplate);
 					$finalEmail = str_replace($lSearch, $lReplacement, $eMail);
 				
-			
+		
 							$mail = new PHPMailer();
 							
 							$mail->IsSMTP(); // send via SMTP
@@ -576,7 +613,7 @@ function sendActivationMailAgain($user_email, $lang){
 		if (!$lDB->failed){
 	
 			
-								
+								if($gBase->User!=null){
 						
 								
 								
@@ -593,7 +630,7 @@ function sendActivationMailAgain($user_email, $lang){
 									$lDB->addUserAddress($userAddress);
 									
 									$gBase->UserAddresses=$lDB->getUserAddresses($gBase->User['id']);
-									
+									}
 		}
 					
 		}

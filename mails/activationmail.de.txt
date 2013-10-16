@@ -1,14 +1,14 @@
-Sehr geehrte(r) ___USERNAME___,
+Sehr geehrte(r) ___FIRSTNAME___ ___LASTNAME___,
  
-willkomen bei ___APPNAME___ . Wir freuen uns, dass Sie sich bei uns registriert haben.
+willkomen bei ___SITENAME___. Wir freuen uns, dass Sie sich bei uns registriert haben.
  
-Um Ihren Account zu aktivieren, klicke bitte noch folgenden Link:
+Um Ihre E-Mailadresse zu bestätigen, klicke bitte noch folgenden Link:
 
 ___LINK___
 
 
 
-Ihr ___APPNAME___ Team
+Ihr ___SITENAME___ Team
 
 
 Diese E-Mail wurde automatisch erstellt. Bitte antworten Sie Ihr nicht.

@@ -8,18 +8,22 @@ $texts['edit']="Bearbeiten";
 $texts['yes']="Ja";
 $texts['no']="Nein";
 $texts['back']="Zurück";
+$texts['attention']="Achtung";
+$texts['success']="Erfolg!";
+$texts['error']="Fehler";
 
-$texts['page_title']="Viehauktion.de";
+$texts['page_title']="viehauktion.com";
 $texts["stage_banner"]="Willkommen auf viehauktion.com";
 $texts["page_keywords"]="";
-$texts['page_organisation']="Hans E. Meyborg GmbH";
-$texts['page_address']="Am Sandtorkai 71-72<br/>20457 Hamburg";
-$texts['page_phone']="+49 (0) 40 35 66 25 95";
-
+$texts['page_organisation']="MEYBORG UG (haftungsbeschränkt)";
+$texts['page_ceo']="Geschäftsführer: Simon Meyborg, Felix Meyborg";
+$texts['page_address']="Bahnhofstrasse 6<br/>49699 Lindern (Oldb.)";
+$texts['page_phone']="Tel: +49 (0) 5957 486";
+$texts['link_disclaimer']="Für verlinkte Inhalte auf anderen Seiten als viehauktion.com übernehmen wir keine Haftung.";
 
 $texts['email_label']="E-Mailadresse";
-$texts['email_link']='<a href="mailto:simon.meyborg@hanseventures.com" >info@viehauktion.de</a>';
-$texts['page_vat']="VAT DE 12322233";
+$texts['email_link']='<a href="mailto:info@viehauktion.com" >info@viehauktion.com</a>';
+$texts['page_vat']="Steuernummer: beantragt";
 
 $texts['signin_login']="Einloggen";
 $texts['signin_register']="Neu anmelden";
@@ -41,6 +45,7 @@ $texts['navi_auction']="Auktionskatalog";
 $texts['navi_auction_add']="Auktion einstellen";
 
 $texts['navi_market']="Festpreiskatalog";
+$texts['market_description']="Hier finden Sie aktuelle Festpreisangebote. Nutzen Sie die Filtermöglichkeit, um gezielt in Ihrem Landkreis zu suchen.";
 $texts['navi_market_add']="Festpreisangebote einstellen";
 $texts['navi_contact']="Kontakt";
 $texts['navi_faq']="Häufige Fragen";
@@ -51,10 +56,11 @@ $texts['navi_login']="Anmelden";
 
 
 $texts['registration_headline']="Registrierung";
-$texts['registration_description']="Sie können sich kostenlos bei Viehauktion.de registrieren. Dabei können Sie sich als Erzeuger/Mäster oder als Händler oder sogar beides registrieren.";
+$texts['registration_description']="Sie können sich kostenlos bei viehauktion.com registrieren. Dabei können Sie sich als Erzeuger/Mäster oder als Händler oder sogar beides registrieren.";
 $texts['registration_account']="Kontodaten";
 $texts['registration_address']="Adressdaten";
-$texts['registration_company']="Firma (optional)";
+$texts['registration_company_optional']="Firma (optional)";
+$texts['registration_company']="Firma";
 $texts['registration_firstname']="Vorname";
 $texts['registration_lastname']="Nachname";
 $texts['registration_password']="Passwort";
@@ -79,7 +85,8 @@ $texts['registration_stall']="Betriebsnummer";
 $texts['registration_vat']="Steuernummer";
 
 
-$texts['registration_agb']='Ich akzeptiere die <a href="?view=agb" target="_blank" >Allgemeinen Geschäftsbedingungen</a> - Zum Herunterladen <a href="assets/agb.pdf" target="_blank" >PDF-Version</a>';
+$texts['registration_agb']='Ich akzeptiere die <a href="?view=agb" target="_blank" >Allgemeinen Geschäftsbedingungen</a> - Zum Herunterladen als <a href="assets/agb.pdf" target="_blank" >PDF-Version</a>';
+$texts['agb_download']='Die Allgemeinen Geschäftsbedingungen zum Herunterladen als <a href="assets/agb.pdf" target="_blank" >PDF-Version</a>';
 $texts['registration_newsletter']="Bitte informieren Sie mich über Neuigkeiten per E-Mail";
 $texts['registration_submit']="Absenden";
 
@@ -105,6 +112,14 @@ $texts['registration_error_retail_nr']="Bitte geben Sie ihre Händlernummer an."
 $texts['registration_error_hrb_nr']="Bitte geben Sie ihre Handelsregisternummer an.";
 $texts['registration_error_stall_nr']="Bitte geben sie ihre Betriebsnummer an.";
 $texts['registration_error_insurance']="Bitte fügen Sie einen Beleg für Ihre Warenkreditversicherung an.";
+
+$texts['registration_not_yet_activated']="Wir haben Ihnen eine E-Mail zur Bestätigung Ihrer E-Mailadresse zugestellt.<br/>Sie haben Ihre E-Mailadresse bisher noch nicht bestätigt. Diese ist für die Kaufs- und Verkaufskommunikation essentiell.<br/>Bitte holen Sie das alsbald nach.<br />Falls Die aktuelle Adresse nicht stimmen sollte, ändern Sie diese bitte zunächst unter 'Profildaten ändern'.";
+$texts["registration_send_again"]="Aktivierungsmail erneut senden";
+$texts['edit_profile_data']="Profildaten ändern";
+$texts['profile_send_again_success']="Wir haben Ihnen eine neue Aktivierungsmails gesendet.";
+$texts['profile_send_again_error']="Wir konnten Ihnen leider keine E-Mail zustellen. Überprüfen Sie das Format der E-Mailadresse (z.B. max.mustermann@gamil.com";
+$texts['profile_activated_success']="Ihre E-Mailadresse wurde bestätigt.";
+$texts['activation_failed']="Die E-Mailadresse konnte nicht bestätigt werden.";
 
 $texts['edit_profile_headline']="Profildaten ändern";
 $texts['edit_profile_submit']="Profildaten speichern";
@@ -137,8 +152,8 @@ $texts['profile_no_invoice']="Sie haben bisher keine Rechnungen.";
 
 $texts['profile_my_offers']="Ihre Festpreisangebote";
 $texts['profile_my_offers_to_confirm']="Ihre zu bestätigende Verkäufe";
-$texts['profile_no_auction']="Sie haben bisher keine Festpreisangebote eingestellt.";
-$texts['profile_no_offers']="Sie haben bisher keine Auktion durchgeführt.";
+$texts['profile_no_offers']="Sie haben bisher keine Festpreisangebote eingestellt.";
+$texts['profile_no_auction']="Sie haben bisher keine Auktion durchgeführt.";
 
 $texts['profile_auctions_won']="Gewonnene Auktionen";
 $texts['profile_offers_won']="Gewonnene Marktplatzangebote";
@@ -183,6 +198,10 @@ $texts['bought_offer_date']="Kaufdatum";
 
 $texts['auction_last_bid']="Letztes Gebot";
 $texts['auction_status']="Status";
+
+$texts['edit_auction_not_logged_in_headline']="Sie sind nicht angemeldet.";
+$texts['edit_auction_not_logged_in_description']="Sie können hier sehen, welche Informationen zu einstellen einer Auktion benötigt werden.<br/><strong>Damit Sie eine Auktion einzustellen können, müssen Sie sich zunächst registrieren.</strong>";
+$texts['edit_offer_not_logged_in_description']="Sie können hier sehen, welche Informationen zu einstellen eines Festpreisangebotes benötigt werden.<br/><strong>Damit Sie eine Angeot einzustellen können, müssen Sie sich zunächst registrieren.</strong>";
 
 $texts['profile_delete_auction']="Löschen";
 $texts['profile_delete_auction_question']="Sind Sie sicher das Sie die Auktion löschen möchten?";
@@ -286,7 +305,7 @@ $texts['auction_pigs_samonelle_state_1']="Status I";
 $texts['auction_pigs_samonelle_state_2']="Status II";
 $texts['auction_pigs_samonelle_state_3']="Status III";
 
-$texts['auction_pigs_calssification_hint']="Wählen Sie die Art der klassifizierung. Genaue Angaben zu den Masken finden Sie in dieser <a href='forms.php' target='_blank'>Übersicht</a>.";
+$texts['auction_pigs_calssification_hint']='Wählen Sie die Art der klassifizierung. Genaue Angaben zu den Masken finden Sie in dieser <a href="#formsModal" class="footerBtn"  role="button"  data-toggle="modal">Übersicht</a>.';
 
 $texts['auction_address']="Adresse des Stalls";
 $texts['auction_address_hint']="Ihre genaue Stallanschrift bleibt bis zum erfolgreichen Abschluss der Auktion geheim. Wir geben nur Ihre Postleitzahl und den Ort an.";
@@ -346,7 +365,10 @@ $texts['running_auctions_finished']="Beendete Auktionen";
 
 
 $texts['auctions_auction_today']="Heute findet die nächsten Aukionen statt. Wählen Sie Ihren Landkreis, um den aktuellen Katalog aufzurufen oder direkt zur laufenden Auktion zu gelangen.";
-$texts['auctions_no_auction_today']="Heute finden keine Auktionen mehr statt. <br/>Wählen Sie einen der nächsten Auktionstermine, um den aktuellen Katalog aufzurufen.";
+$texts['auctions_no_auction_today']="Heute finden keine Auktionen mehr statt. <br/>Wählen Sie ihren Landkreis, um sich die anstehenden Auktionsangebote in ihrer Umgebung anzusehen..";
+$texts['auctions_start_auction']="Auktionstart";
+$texts['auctions_next_auction']="Nächster Auktionstermin";
+$texts['auctions_already_running']="Die heutigen Auktionen laufen bereits.";
 
 $texts['offers_offer_today']="Wählen Sie den Landkreis, in dem Sie Festpreisangebote suchen.";
 $texts['offers_no_offer_today']="Leider gibt es momentan keine Festpreisangebote.";
@@ -441,12 +463,12 @@ Viehauktion.com nimmt in beiden Fällen eine Provision vom Anbieter von 0,40 €
 <strong>Die erste Auktion bzw. das erste Festpreisangebot ist provisionsfrei.</strong>";
 
 $texts['modal_imprint_headline']="Impressum";
-$texts['modal_imprint_description']="Viehauktion.de ";
+$texts['modal_imprint_description']="viehauktion.com ";
 
-
+$texts['modal_forms_headline']="Maskenübersicht";
 
 $texts['modal_contact_headline']="Kontakt";
-$texts['modal_contact_description']="Wir freuen uns immer über Fragen und Anregungen zu Viehauktion.de.";
+$texts['modal_contact_description']="Wir freuen uns immer über Fragen und Anregungen zu viehauktion.com.";
 $texts['modal_contact_name']="Ihr Name";
 $texts['modal_contact_name_placeholder']="Max Musterbauer";
 $texts['modal_contact_email']="Ihre E-Mailadresse";
@@ -467,11 +489,11 @@ $texts['modal_add_address_headline']="Neue Adresse anlegen";
 $texts['modal_add_address_description']="Geben Sie hier die Stalladdresse ein. Sie wird erst bei einem erfolgreichen Auktionsabschluss dem Käufer genannt. <br />Bis dahin zeigen wir lediglich Ihren Ort und Landkreis an.";
 
 
-$texts['google_disclaimer']='<p>This website uses Google Analytics, a web analytics service provided by Google, Inc. ("Google"). Google Analytics uses "cookies", which are text files placed on your computer, to help the website analyze how users use the site. The information generated by the cookie about your use of the website will be transmitted to and stored by Google on servers in the United States .</p>
-    <p>In case IP-anonymisation is activated on this website, your IP address will be truncated within the area of Member States of the European Union or other parties to the Agreement on the European Economic Area. Only in exceptional cases the whole IP address will be first transfered to a Google server in the USA and truncated there. The IP-anonymisation is active on this website.</p>
-    <p>The IP-address, that your Browser conveys within the scope of Google Analytics, will not be associated with any other data held by Google. You may refuse the use of cookies by selecting the appropriate settings on your browser, however please note that if you do this you may not be able to use the full functionality of this website. You can also opt-out from being tracked by Google Analytics with effect for the future by downloading and installing Google Analytics Opt-out Browser Addon for your current web browser:<a href="http://tools.google.com/dlpage/gaoptout?hl=en" >http://tools.google.com/dlpage/gaoptout?hl=en</a>.</p>
-    <p>Google will use this information on behalf of the operator of this website for the purpose of evaluating your use of the website, compiling reports on website activity for website operators and providing them other services relating to website activity and internet usage.</p>';
-
+$texts['google_disclaimer']='<p>Diese Website benutzt Google Analytics, einen Webanalysedienst der Google Inc. („Google“). Google Analytics verwendet sog. „Cookies“, Textdateien, die auf Ihrem Computer gespeichert werden und die eine Analyse der Benutzung der Website durch Sie ermöglichen. Die durch den Cookie erzeugten Informationen über Ihre Benutzung dieser Website werden in der Regel an einen Server von Google in den USA übertragen und dort gespeichert.<br/>
+Im Falle der Aktivierung der IP-Anonymisierung auf dieser Webseite, wird Ihre IP-Adresse von Google jedoch innerhalb von Mitgliedstaaten der Europäischen Union oder in anderen Vertragsstaaten des Abkommens über den Europäischen Wirtschaftsraum zuvor gekürzt. Nur in Ausnahmefällen wird die volle IP-Adresse an einen Server von Google in den USA übertragen und dort gekürzt. Die IP-Anonymisierung ist auf dieser Website aktiv. Im Auftrag des Betreibers dieser Website wird Google diese Informationen benutzen, um Ihre Nutzung der Website auszuwerten, um Reports über die Websiteaktivitäten zusammenzustellen und um weitere mit der Websitenutzung und der Internetnutzung verbundene Dienstleistungen gegenüber dem Websitebetreiber zu erbringen.
+<br/>
+Die im Rahmen von Google Analytics von Ihrem Browser übermittelte IP-Adresse wird nicht mit anderen Daten von Google zusammengeführt. Sie können die Speicherung der Cookies durch eine entsprechende Einstellung Ihrer Browser-Software verhindern; wir weisen Sie jedoch darauf hin, dass Sie in diesem Fall gegebenenfalls nicht sämtliche Funktionen dieser Website vollumfänglich werden nutzen können. Sie können darüber hinaus die Erfassung der durch das Cookie erzeugten und auf Ihre Nutzung der Website bezogenen Daten (inkl. Ihrer IP-Adresse) an Google sowie die Verarbeitung dieser Daten durch Google verhindern, indem sie das unter dem folgenden Link verfügbare Browser-Plugin herunterladen und installieren: <a href="http://tools.google.com/dlpage/gaoptout?hl=de" target="_blank" >http://tools.google.com/dlpage/gaoptout?hl=de</a>.
+</p>';
 
 $texts['success_auction_buyer_subject']='Ihre Auktion war erfolgreich!';
 $texts['success_auction_seller_subject']='Sie haben eine Auktion gewonnen!';
@@ -528,6 +550,256 @@ $texts['backend_rating_to_writer']="Zum Schreiber";
 $texts['backend_is_seller']="Ist Erzeuger?";
 $texts['backend_is_buyer']="Ist Händler?";
 $texts['backend_has_newsletter']="Newsletter?";
+
+
+
+
+
+$texts['forms']='<div class="clearfix">
+<p><strong>Die vorgeschlagene <u>FOM- Maske</u> sieht folgendermaßen aus:</strong></p>
+
+<p>
+<table border="1" cellspacing="0" cellpadding="0" align="left" >
+  <tr>
+    <td width="154" valign="top"><p align="center"><strong>&nbsp;</strong></p></td>
+    <td width="154" valign="top"><p align="center"><strong>&nbsp;</strong></p>
+      <p align="center"><strong>Muskelfleischanteil</strong></p></td>
+    <td width="154" valign="top"><p align="center"><strong>&nbsp;</strong></p>
+      <p align="center"><strong>€/kg   Schlachtgewicht</strong></p></td>
+  </tr>
+  <tr>
+    <td width="154" valign="top"><p align="center">&nbsp;</p>
+      <p align="center">Optimaler MFL-Anteil</p></td>
+    <td width="154" valign="top"><p align="center">&nbsp;</p>
+      <p align="center">57,0%</p></td>
+    <td width="154" valign="top"><p align="center">&nbsp;</p>
+      <p align="center">Basispreis</p></td>
+  </tr>
+  <tr>
+    <td width="154" valign="top"><p align="center">&nbsp;</p>
+      <p align="center">Zuschläge</p></td>
+    <td width="154" valign="top"><p align="center">&nbsp;</p>
+      <p align="center">57,0%-58% bei<br />
+        Schinken schier &gt; 18 kg<br />
+        58,1%-59,0%</p></td>
+    <td width="154" valign="top"><p align="center">&nbsp;</p>
+      <p align="center">Basispreis +0,02 (sonst+0,01)<br />
+          Basispreis +0,02</p></td>
+  </tr>
+  <tr>
+    <td width="154" valign="top"><p align="center">&nbsp;</p>
+      <p align="center">Abschläge</p></td>
+    <td width="154" valign="top"><p align="center">&nbsp;</p>
+      <p align="center">45%-53,9%<br />
+        54%-55,9%<br />
+        56%-57%</p></td>
+    <td width="154" valign="top"><p align="center">&nbsp;</p>
+      <p align="center">Basispreis -0,05<br />
+        Basispreis -0,04<br />
+        Basispreis -0,02</p></td>
+  </tr>
+  <tr>
+    <td width="154" valign="top"><p align="center">&nbsp;</p></td>
+    <td width="154" valign="top"><p align="center"><strong>&nbsp;</strong></p>
+      <p align="center"><strong>Schlachtgewicht</strong></p></td>
+    <td width="154" valign="top"><p align="center"><strong>&nbsp;</strong></p>
+      <p align="center"><strong>€/kg Schlachtgewicht</strong></p></td>
+  </tr>
+  <tr>
+    <td width="154" valign="top"><p align="center">&nbsp;</p>
+      <p align="center">Optimaler Gewichtsbereich<br />
+        ( Basispreis)</p></td>
+    <td width="154" valign="top"><p align="center">&nbsp;</p>
+      <p align="center">84,0kg-106,0kg</p>
+      <p>&nbsp;</p></td>
+    <td width="154" valign="top"><p align="center">&nbsp;</p>
+      <p align="center">Basispreis</p>
+      <p align="center">&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td width="154" valign="top"><p align="center">&nbsp;</p>
+      <p align="center">Abzüge für Untergewicht </p></td>
+    <td width="154" valign="top"><p align="center">&nbsp;</p>
+      <p align="center">50,0kg-69,9kg<br />
+        70,0 kg-83,9kg</p></td>
+    <td width="154" valign="top"><p align="center">&nbsp;</p>
+      <p align="center">Basispreis -0,03<br />
+        Basispreis -0,02</p></td>
+  </tr>
+  <tr>
+    <td width="154" valign="top"><p align="center">&nbsp;</p>
+      <p align="center">Abzüge für Übergewicht</p></td>
+    <td width="154" valign="top"><p align="center">&nbsp;</p>
+      <p align="center">106,1kg-120,0kg</p></td>
+    <td width="154" valign="top"><p align="center">&nbsp;</p>
+      <p align="center">Basispreis -0,03</p></td>
+  </tr>
+  <tr>
+    <td width="154" valign="top"><p align="center">&nbsp;</p>
+      <p align="center">Systemobergrenze</p></td>
+    <td width="154" valign="top"><p align="center">&nbsp;</p>
+      <p align="center">50,0kg-83,9kg</p></td>
+    <td width="154" valign="top"><p align="center">&nbsp;</p>
+      <p align="center">Basispreis</p></td>
+  </tr>
+  <tr>
+    <td width="461" colspan="3" valign="top"><p>&nbsp;</p>
+      <p align="center">Die Vorkosten pro Schlachttier betragen 4 € zuzügl. Der gesetzlichen   Umsatzsteuer!</p></td>
+  </tr>
+</table>
+
+</p>
+</div>
+
+<p><strong><u>Wichtig:</u></strong><strong> </strong><br />
+  <strong>Für Zehntelprozentwerte beim Schlachtgewicht und Muskelfleischanteil erfolgt eine anteilige Berechnung!</strong><br />
+  <strong>Tiere mit einem Schlachtgewicht &gt; 120 kg werden als Sauen abgerechnet!</strong><br />
+</p>
+
+
+<div class="clearfix">
+<p>  
+  <strong>Die vorgeschlagene <u>AutoFOM- Maske</u> ist nachstehende:</strong></p>
+  <p>
+<table border="1" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="461" colspan="2" valign="top"><p align="center"><strong>&nbsp;</strong></p>
+      <p align="center"><strong>Abrechnung auf Basis von AutoFOM,   Summen der Punkte ergibt Indexpunkte/ Schwein</strong><br />
+        <strong>( Vorkosten: 4€ zuzügl USt.)</strong></p></td>
+  </tr>
+  <tr>
+    <td width="461" colspan="2" valign="top"><p align="center">&nbsp;</p>
+      <p align="center">Schinken   schier</p></td>
+  </tr>
+  <tr>
+    <td width="230" valign="top"><p align="center">&lt;   16,00 kg</p></td>
+    <td width="230" valign="top"><p align="center">kg*1,90   Punkte</p></td>
+  </tr>
+  <tr>
+    <td width="230" valign="top"><p align="center">16,00-16,49   kg</p></td>
+    <td width="230" valign="top"><p align="center">kg*2,35   Punkte</p></td>
+  </tr>
+  <tr>
+    <td width="230" valign="top"><p align="center">16,50-16,99   kg</p></td>
+    <td width="230" valign="top"><p align="center">kg*2,55   Punkte</p></td>
+  </tr>
+  <tr>
+    <td width="230" valign="top"><p align="center">17,00-20,00   kg</p></td>
+    <td width="230" valign="top"><p align="center">kg*2,70   Punkte</p></td>
+  </tr>
+  <tr>
+    <td width="230" valign="top"><p align="center">20,01-20,50   kg</p></td>
+    <td width="230" valign="top"><p align="center">kg*2,55   Punkte</p></td>
+  </tr>
+  <tr>
+    <td width="230" valign="top"><p align="center">&gt;20,50   kg</p></td>
+    <td width="230" valign="top"><p align="center">kg*2,40   Punkte</p></td>
+  </tr>
+  <tr>
+    <td width="461" colspan="2" valign="top"><p align="center">&nbsp;</p>
+      <p align="center">Kotelett   ohne Fett und Knochen</p></td>
+  </tr>
+  <tr>
+    <td width="230" valign="top"><p align="center">&lt; 6,00   kg</p></td>
+    <td width="230" valign="top"><p align="center">kg*3,00   Punkte</p></td>
+  </tr>
+  <tr>
+    <td width="230" valign="top"><p align="center">6,00-7,80   kg</p></td>
+    <td width="230" valign="top"><p align="center">kg* 3,60   Punkte</p></td>
+  </tr>
+  <tr>
+    <td width="230" valign="top"><p align="center">&gt; 7,80   kg</p></td>
+    <td width="230" valign="top"><p align="center">kg*3,50   Punkte</p></td>
+  </tr>
+  <tr>
+    <td width="461" colspan="2" valign="top"><p align="center">&nbsp;</p>
+      <p align="center">Bauch</p></td>
+  </tr>
+  <tr>
+    <td width="230" valign="top"><p align="center">&lt;   48,00% MFL</p></td>
+    <td width="230" valign="top"><p align="center">kg*1,15   Punkte</p></td>
+  </tr>
+  <tr>
+    <td width="230" valign="top"><p align="center">48,00-52,99   % MFL</p></td>
+    <td width="230" valign="top"><p align="center">kg*1,35   Punkte</p></td>
+  </tr>
+  <tr>
+    <td width="230" valign="top"><p align="center">53,00-61,99   % MFL</p></td>
+    <td width="230" valign="top"><p align="center">kg*1,55   Punkte</p></td>
+  </tr>
+  <tr>
+    <td width="230" valign="top"><p align="center">&gt;   62,00 % MFL</p></td>
+    <td width="230" valign="top"><p align="center">kg*1,50   Punkte</p></td>
+  </tr>
+  <tr>
+    <td width="461" colspan="2" valign="top"><p align="center">&nbsp;</p>
+      <p align="center">Schlachtgewicht</p></td>
+  </tr>
+  <tr>
+    <td width="230" valign="top"><p align="center">&lt;   85,00 kg</p></td>
+    <td width="230" valign="top"><p align="center">-1,00   Punkte je kg Abweichung</p></td>
+  </tr>
+  <tr>
+    <td width="230" valign="top"><p align="center">85,00-87,99   kg</p></td>
+    <td width="230" valign="top"><p align="center">-0,50   Punkte je kg Abweichung</p></td>
+  </tr>
+  <tr>
+    <td width="230" valign="top"><p align="center">102,01-105,00   kg</p></td>
+    <td width="230" valign="top"><p align="center">-0,50   Punkte je kg Abweichung</p></td>
+  </tr>
+  <tr>
+    <td width="230" valign="top"><p align="center">&gt; 105,00   kg</p></td>
+    <td width="230" valign="top"><p align="center">-1,00   Punkte je kg Abweichung</p></td>
+  </tr>
+  <tr>
+    <td width="461" colspan="2" valign="top"><p align="center">&nbsp;</p>
+      <p align="center">Systemgrenzen</p></td>
+  </tr>
+  <tr>
+    <td width="230" valign="top"><p align="center">Minimum</p></td>
+    <td width="230" valign="top"><p align="center">Min.   0,70Punkte/ kg</p></td>
+  </tr>
+  <tr>
+    <td width="230" valign="top"><p align="center">Maximum</p></td>
+    <td width="230" valign="top"><p align="center">Max. 1,05   Punkte/ kg</p></td>
+  </tr>
+</table>
+</p>
+</div>
+
+<p><strong><u>Hinweis: </u></strong><br />
+  <strong>Die Summen der Punkte pro Schwein multipliziert mit dem gültigen Basispreis ergibt den Netto-Auszahlungspreis pro geschlachtetem Schwein!</strong></p>
+
+<div class="clearfix">
+<p><strong>Die angebotene <u>&bdquo;Schnitt-Verkaufsmaske&ldquo;</u> stellt sich folgendermaßen dar.</strong></p>
+<table border="1" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="154" valign="top"><p><strong>&nbsp;</strong></p></td>
+    <td width="154" valign="top"><p align="center"><strong>&nbsp;</strong></p>
+      <p align="center"><strong>Schlachtgewicht</strong></p></td>
+    <td width="154" valign="top"><p align="center"><strong>&nbsp;</strong></p>
+      <p align="center"><strong>Auszahlungspreis je kg   Schlachtgewicht</strong></p></td>
+  </tr>
+  <tr>
+    <td width="154" valign="top"><p align="center">&nbsp;</p>
+      <p align="center">Optimaler   Bereich</p></td>
+    <td width="154" valign="top"><p align="center">&nbsp;</p>
+      <p align="center">84-106 kg</p></td>
+    <td width="154" valign="top"><p align="center">&nbsp;</p>
+      <p align="center">Basispreis</p></td>
+  </tr>
+  <tr>
+    <td width="461" colspan="3" valign="top"><p align="center">&nbsp;</p>
+      <p align="center">Ausserhalb   des optimalen Gewichtsbereichs wird nach obiger FOM- Maske klassifiziert<br />
+        Die Vorkosten betragen 4€ pro Schlachttier zuzüglich der gesetzlichen   Umsatzsteuer!</p></td>
+  </tr>
+</table>
+</div>
+<p>&nbsp;</p>
+<p><strong><u>Kurze Erläuterung:</u></strong><br />
+  Bei der &bdquo;Schnitt-Verkaufsmaske&ldquo; ist für das Erreichen des vollen Basispreises ausschließlich die Einhaltung eines Schlachtgewichtskorridors zwischen 84 und 106 kg notwendig. In diesem Bereich sind keine weiteren Parameter für die Bezahlung ausschlaggebend. Außerhalb dieses Korridors wird nach obiger FOM- Maske klassiffiziert, will heißen, dass das Schlachtgewicht, das Gewicht des Schinkens, sowie der Muskelfleischanteil maßgebend für die Auszahlung je kg Schlachtgewicht sind.</p>
+<p>&nbsp;</p>';
+
 
 
 ?>

@@ -113,74 +113,95 @@ require_once("amazonS3/S3.php");
 
 	}
 	
-	
-	function setSetToPlay($setId){
-		global $gBase;
-				$lDB=connectDB();
-				
-				if (!$lDB->failed){
-					
-					if($lDB->addGame($setId,$gBase->User['user_id'])){
-					
-					$gamesessionarray=$lDB->getUsersInitialLastGame($gBase->User['user_id']);
-					
-				
-					$game=array();
-					$game['player_array']=array();
-					
-					$player=array();
-					$player['user_id']=$gBase->User['user_id'];
-					$player['facebook_id']=$gBase->User['facebook_id'];
-					$player['username']=$gBase->User['firstname'];
-					$player['card_indexes_array']=array();
-					$player['last_checked_move']=1;
-					$player2['plays_next_move']=1;
-					
-					$game['player_array'][0]['player']=$player;
-					
-				
-					
-					$game['move']=1;
-	
-					$game['calling_user_index']=$gBase->User['user_id'];
-					$game['game_holder']=$gBase->User['user_id'];
-		
-					$game['number_of_cards_per_player']=0;
-	
-					$game['number_of_cards_in_game']=$game['set']['number_of_cards'];
-				
-					
-				
-					$game['set']=getLocaleSet($setId, $gBase->User['lang']);
-					$game['set']['titles']=$lDB->getSetTitles($setId, $gBase->User['lang']);
-					$game['set']['colors']=$lDB->getSetColors($setId);
-					
-			
-					
-					session_unset();
-					session_destroy();
-					
-					/*session_id($gamesessionarray[0]['game_session_id']);
-					session_start();
-					*/
-					
-					
-					$_REQUEST['game_session_id']=$gamesessionarray[0]['game_session_id'];
-					
-					$gBase = new Base('game');
-					$gBase->Game=$game;
-					
-					
-					
-					
-					
-					}
-					
-					
-				}
-		
+
+	function formatPrice($price){
+
+		$priceString="".$price;
+
+		$splittedPrice=explode(".", $priceString);
+		if(count($splittedPrice)==1){
+
+			$priceString.=".00";
+		}else{
+		if(strlen($splittedPrice[1])=="1"){
+			$priceString.="0";
 		}
-		
+
+}
+
+
+
+return $priceString;
+
+	}
+	
+
+	
+function getNextAuctions($auction_category){
+
+
+
+$nextDates=array();
+
+$lDB=connectDB();
+      if (!$lDB->failed){
+
+            $auctionCategory=array();
+            $auctionCategory=$lDB->getAuctionCategoryById($auction_category);
+      
+
+
+            $auctionDays=explode("_",$auctionCategory['days']);
+            $additionalDays=0;
+            for($i=0;$i<count($auctionDays)-1;$i++){
+      
+
+              if($auctionDays[$i]>date("N")){
+
+                $additionalDays=$auctionDays[$i]-date("N");
+
+              }elseif ($auctionDays[$i]==date("N")&&$auctionCategory['start_time']>date("H:i:s",  strtotime("+10 minute"))){
+
+                $additionalDays=0;
+                
+
+              }else{
+
+                $additionalDays=$auctionDays[$i]+7-date("N");
+
+              }
+
+
+                $date=array();
+                $date['readable_date']=date("d.m.y", strtotime("+".$additionalDays." day"))." ".$auctionCategory['start_time']." ".$texts['add_auction_time_entity'];
+                $date['submitable_date']=date("Y-m-d", strtotime("+".$additionalDays." day"))." ".$auctionCategory['start_time'];
+                $date['additional_days']=$additionalDays;
+
+                array_push($nextDates,$date);
+
+              }
+
+                for($i=0;$i<count($nextDates);$i++){
+
+                  for($j=0;$j<count($nextDates);$j++){
+
+                    if($nextDates[$i]['additional_days']<$nextDates[$j]['additional_days']){
+                      $tmpDate=$nextDates[$i];
+                      $nextDates[$i]=$nextDates[$j];
+                      $nextDates[$j]=$tmpDate;
+
+
+                    }
+
+                  }
+
+                }
+              
+     }
+
+return $nextDates;
+
+}
 		
 	$hasInvite=false;
 
@@ -222,7 +243,8 @@ require_once("amazonS3/S3.php");
 
 
 
-					case "send_activationmail_again": sendActivationMailAgain($_REQUEST['email'], $lang); break;
+					case "send_activationmail_again": sendActivationMailAgain($lang); break;
+					case "activate_user":	activateUser($_REQUEST['user_id'], $_REQUEST['user_email'], $_REQUEST['activationcode']); break;
 
 					case "edit_auction":  editAuction($_REQUEST['category_id'], $_REQUEST['auction_id'], $_REQUEST['is_preview'], $_REQUEST['is_auction'], $_REQUEST['is_main_auction'], $_REQUEST['auction_date'], $_REQUEST['endtime'], $_REQUEST['auction_amount'], $_REQUEST['auction_min_entitity_price'], $_REQUEST['auction_origin'], $_REQUEST['form'], $_REQUEST['auction_pigs_form_value'], $_REQUEST['autoform'], $_REQUEST['auction_pigs_autoform_value'], $_REQUEST['auction_pigs_qs'], $_REQUEST['auction_pigs_samonelle_state'], $_REQUEST['address'], $_REQUEST['auction_loading_stations_amount'], $_REQUEST['auction_loading_stations_distance'], $_REQUEST['auction_loading_stations_vehicle'], $_REQUEST['auction_loading_stations_availability'], $_REQUEST['auction_loading_stations_availability_til'], $_REQUEST['auction_additional_informations']); getUserAuctions($gBase->User['id'], false); break;
 					case "save_auction":	saveAuction($_REQUEST['auction_id'], $_REQUEST['is_auction'], "yes"); break;

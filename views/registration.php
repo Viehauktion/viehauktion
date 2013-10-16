@@ -25,7 +25,7 @@
 <h4><? echo($texts['registration_address']); ?></h4>
 
 
-	<input type="text" id="registration_company" name="company" placeholder="<? echo($texts['registration_company']); ?>"><br/>
+	<input type="text" id="registration_company" name="company" placeholder="<? echo($texts['registration_company_optional']); ?>"><br/>
     <input type="text" id="registration_firstname" name="firstname" placeholder="<? echo($texts['registration_firstname']); ?>"><br/>
         <input type="text" id="registration_lastname" name="lastname" placeholder="<? echo($texts['registration_lastname']); ?>"><br/>
          <input type="text" id="registration_street" name="street" placeholder="<? echo($texts['registration_street']); ?>">&nbsp;
