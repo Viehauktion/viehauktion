@@ -212,16 +212,16 @@ switch ($gBase->CurrentAuction["metadata"]["metadata"]["auction_pigs_samonelle_s
 <?
 $vehicle="";
 switch ($gBase->CurrentAuction["metadata"]["metadata"]["auction_loading_stations_vehicle"]) {
-	case '1':
+	case '0':
 		$vehicle=$texts['vehicle_1'];
 		break;
-	case '2':
+	case '1':
 		$vehicle=$texts['vehicle_2'];
 		break;
-	case '3':
+	case '2':
 		$vehicle=$texts['vehicle_3'];
 		break;		
-	case '4':
+	case '3':
 		$vehicle=$texts['vehicle_4'];
 		break;	
 
@@ -231,7 +231,7 @@ switch ($gBase->CurrentAuction["metadata"]["metadata"]["auction_loading_stations
 ?>
 	<tr><td><strong><? echo($texts['auction_loading_stations_vehicle']); ?>:</strong></td><td id="stations_vehicle"><? echo($vehicle);?></td></tr>
 
-<tr><td><strong><? echo($texts['auction_loading_stations_availability']); ?>:</strong></td><td id="stations_availability"><? echo($gBase->CurrentAuction["metadata"]["metadata"]["auction_loading_stations_availability"]." ".$texts['auction_loading_stations_availability_til']." ".$gBase->CurrentAuction["metadata"]["auction_loading_stations_availability_til"]);?></td></tr>
+<tr><td><strong><? echo($texts['auction_loading_stations_availability']); ?>:</strong></td><td id="stations_availability"><? echo($gBase->CurrentAuction["metadata"]["metadata"]["auction_loading_stations_availability"]." ".$texts['auction_loading_stations_availability_til']." ".$gBase->CurrentAuction["metadata"]["metadata"]["auction_loading_stations_availability_til"]);?></td></tr>
 <tr><td><strong><? echo($texts['auction_additional_informations']); ?>:</strong></td><td id="additional_informations"><? echo($gBase->CurrentAuction["metadata"]["metadata"]["auction_additional_informations"]);?></td></tr>
 	</table>
 </p>

@@ -31,6 +31,8 @@ if(count($auctions)>0){
 
  <table class="table table-striped span8">
     <tr>
+
+
       <td><? echo($texts['offer_creation_date']); ?></td>
       <td><? echo($texts['auction_amount']); ?></td>
       <td><? echo($texts['auction_min_entitity_price']); ?></td>

@@ -142,7 +142,8 @@ if($endedAuctions=$lDB->getEndedAuction("ended","","")){
 															$lReplacement[17] = $buyer["email"];
 															$lReplacement[16] = $buyer["phone"];
 															$lReplacement[17] = $buyer["email"];
-															$lReplacement[18] = date("d.m.Y - H:i", strtotime($endedAuctions[$i]["end_time"])+60*$GLOBALS["VIEHAUKTION"]["STORNO"]["TIME"])." Uhr";
+															$lReplacement[18] = date("d.m.Y - H:i", 
+															strtotime($endedAuctions[$i]["end_time"])+60*$GLOBALS["VIEHAUKTION"]["STORNO"]["TIME"])." Uhr";
 
 
 
@@ -150,7 +151,7 @@ if($endedAuctions=$lDB->getEndedAuction("ended","","")){
 															$buyersubject='';
 															$flag=0;
 
-															if($endedAuctions[$i]["bids"]==0){
+															if(($endedAuctions[$i]["bids"]==0) && ($endedAuctions[$i]["is_auction"]=="yes")){
 
 																$sellersubject=$texts['failure_auction_seller_subject'];
 																
@@ -190,14 +191,17 @@ if($endedAuctions=$lDB->getEndedAuction("ended","","")){
 																$lDB->addInvoice($invoice);
 
 																
-															
+																$offer_inset="";
+																if($endedAuctions[$i]["is_auction"]=="no"){
+																	$offer_inset="offer_";
+																}
 
-																if(sendEmail('./mails/ended_to_seller.'.$lang.'.txt', $lSearch, $lReplacement, $sellersubject, $seller['email'])){
+																if(sendEmail('./mails/ended_'.$offer_inset.'to_seller.'.$lang.'.txt', $lSearch, $lReplacement, $sellersubject, $seller['email'])){
 
 																	$flag=1;
 																}
 
-																if(sendEmail('./mails/ended_to_buyer.'.$lang.'.txt', $lSearch, $lReplacement, $buyersubject, $buyer['email'])){
+																if(sendEmail('./mails/ended_'.$offer_inset.'to_buyer.'.$lang.'.txt', $lSearch, $lReplacement, $buyersubject, $buyer['email'])){
 																	if($flag==1){
 																			$flag=3;
 																		}else{

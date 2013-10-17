@@ -89,7 +89,7 @@ if($gBase->User['is_seller']=="yes"){
 
 ?>
   <li><a href="#auctions" id="auctions_link" onclick="showSubnavigation('auctions')"><? echo($texts['profile_my_auctions']); ?></a></li>
-  <li><a href="#offers" id="offer_link" onclick="showSubnavigation('offers')"><? echo($texts['profile_my_offers']); ?></a></li>
+  <li><a href="#offers" id="offers_link" onclick="showSubnavigation('offers')"><? echo($texts['profile_my_offers']); ?></a></li>
  <?
 }
 
@@ -466,9 +466,11 @@ if($auctionToApprove){
 
  <table class="table table-striped span8">
     <tr>
-      <td><? echo($texts['add_auction_date']); ?></td>
+        <td><? echo($texts['offer_creation_date']); ?></td>
       <td><? echo($texts['auction_amount']); ?></td>
-      <td><? echo($texts['offer_entitity_price']); ?></td>
+      <td><? echo($texts['auction_min_entitity_price']); ?></td>
+      <td><? echo($texts['auction_buying_location']); ?></td>
+      <td><? echo($texts['auction_origin']); ?></td>
       <td></td>
       <td></td>
        <td></td>
@@ -478,13 +480,16 @@ if($auctionToApprove){
 
       if( $auctions[$i]["is_auction"]=="no"){
 $counter++;
+
+            $metadata=json_decode($auctions[$i]["metadata"], true);
       ?>
 
 <tr>
-  <td><? echo(date("d.m.Y", strtotime($auctions[$i]["start_time"]))); ?></td>
+  <td><? echo(date("d.m.Y", strtotime($auctions[$i]["created"]))); ?></td>
   <td><? echo($auctions[$i]["amount_of_animals"]); ?></td>
   <td><? echo(formatPrice($auctions[$i]["min_entity_price"])); ?></td>
-
+ <td><? echo($auctions[$i]["city"]); ?></td>
+    <td><? echo($metadata["auction_origin"]); ?></td>
   <td> <a href="?from=profile&view=show_full_auction&action=get_auction_details&is_auction=yes&auction_id=<? echo($auctions[$i]["id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_buyer_details']); ?></a></td>
   <td> <a href="?view=profile&action=confirm_auction&is_auction=yes&auction_id=<? echo($auctions[$i]["id"]); ?>" onclick = "if (! confirm('<? echo($texts['profile_confirm_question']); ?>')) { return false; }" class="btn" type="button" ><?  echo($texts['profile_confirm_sell']); ?></a></td>
   <td> <a href="?view=profile&action=cancel_auction&auction_id=<? echo($auctions[$i]["id"]); ?>" onclick = "if (! confirm('<? echo($texts['profile_delete_auction_question']); ?>')) { return false; }" class="btn" type="button"  ><?  echo($texts['profile_deny_sell']); ?></a></td>
@@ -557,11 +562,12 @@ if(count($auctions)>1){
 
  <table class="table table-striped span8">
     <tr>
-      <td><? echo($texts['add_auction_date']); ?></td>
+      <td><? echo($texts['offer_creation_date']); ?></td>
       <td><? echo($texts['auction_amount']); ?></td>
-      <td><? echo($texts['offer_entitity_price']); ?></td>
+      <td><? echo($texts['auction_min_entitity_price']); ?></td>
+      <td><? echo($texts['auction_buying_location']); ?></td>
+      <td><? echo($texts['auction_origin']); ?></td>
 
-      <td></td>
       <td></td>
     </tr>
     <?
@@ -569,21 +575,22 @@ if(count($auctions)>1){
 
       if( $auctions[$i]["is_auction"]=="no" && $auctions[$i]["status"]!="ended"){
 $counter++;
+
+            $metadata=json_decode($auctions[$i]["metadata"], true);
       ?>
 
 <tr>
-  <td><? echo($auctions[$i]["start_time"]); ?></td>
+  <td><? echo(date("d.m.Y", strtotime($auctions[$i]["created"]))); ?></td>
   <td><? echo($auctions[$i]["amount_of_animals"]); ?></td>
   <td><? echo(formatPrice($auctions[$i]["min_entity_price"])); ?></td>
-
-
+ <td><? echo($auctions[$i]["city"]); ?></td>
+    <td><? echo($metadata["auction_origin"]); ?></td>
 
  <?
    if( $auctions[$i]["status"]=="offering" || $auctions[$i]["status"]=="preview"){
 
       ?>
-  <td> <a href="?view=edit_auction&is_auction=no&auction_id=<? echo($auctions[$i]["id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_edit_auction']); ?></a></td>
-  <td> <a href="?view=profile&action=remove_auction&auction_id=<? echo($auctions[$i]["id"]); ?>#offers" onclick = "if (! confirm('<? echo($texts['profile_delete_auction_question']); ?>')) { return false; }" class="btn" type="button"  ><?  echo($texts['profile_delete_auction']); ?></a></td>
+    <td> <a href="?view=profile&action=remove_auction&auction_id=<? echo($auctions[$i]["id"]); ?>#offers" onclick = "if (! confirm('<? echo($texts['profile_delete_auction_question']); ?>')) { return false; }" class="btn" type="button"  ><?  echo($texts['profile_delete_auction']); ?></a></td>
 
 
  <?

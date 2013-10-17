@@ -1,0 +1,44 @@
+Sehr geehrte(r) ___SELLERFIRSTNAME___ ___SELLERLASTNAME___,
+ 
+
+herzlichen Glückwunsch! Ihr Festpreisangebot wurde rechtsverbindlich gekauft.
+
+Ihr Angebotspreis beträgt ___PRICE___ €/Kg.
+
+
+Ersteigert wurde Ihr Kontingent von:
+
+___BUYERFIRSTNAME___ ___BUYERLASTNAME___
+___BUYERSTREET___ ___BUYERNUMBER___
+___BUYERPOSTCODE___ ___BUYERCITY___
+
+Telefon: ___BUYERPHONE___
+E-Mailaddresse: ___BUYEREMAIL___
+
+
+Bitte nehmen Sie mit dem Käufer zügig Kontakt auf, um die Details zur Lieferung zu besprechen.
+
+Diese Festpreisangebot ist im Rahmen unserer Testphase als erste erfolgreiche Auktion provisionsfrei.
+
+
+Alle Daten zur Auktion können Sie weiterhin in Ihrem Profil zum abrufen.
+
+
+Wir hoffen, dass der Kauf nun erfolgreich von statten geht und wir Sie demnächst mit einer neuen Auktion auf ___SITENAME___ begrüßen zu dürfen.
+
+
+
+
+Ihr ___SITENAME___ Team
+
+
+Diese E-Mail wurde automatisch erstellt. Bitte antworten Sie Ihr nicht.
+
+
+___SITENAME___
+
+
+
+
+
+

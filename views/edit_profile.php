@@ -7,7 +7,7 @@
     <legend><? echo($texts['edit_profile_headline']); ?></legend>
     <p><? echo($texts['edit_profile_description']); ?></p>
     
-    <div class="alert-error hide"  >
+    <div class="alert alert-error hide"  >
   <button type="button" class="close" data-dismiss="alert">&times;</button>
   <h4><? echo($texts['error']); ?></h4>
  <span id="error_message"></span>

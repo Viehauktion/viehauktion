@@ -160,16 +160,6 @@ if($endedAuctions=$lDB->getEndedAuction("confirmed","confirmed","")){
 															$buyersubject='';
 															$flag=0;
 
-															if($endedAuctions[$i]["bids"]==0){
-
-																$sellersubject='Leider war Ihre Auktion nicht erfolgreich.';
-																
-																if(sendEmail('./mails/failure_to_seller.de.txt', $lSearch, $lReplacement, $sellersubject, $seller['email'])){
-																	$flag=3;
-																}
-
-
-															}else{
 																$sellersubject=$texts['confirmed_auction_seller_subject'];
 																$buyersubject=$texts['confirmed_auction_buyer_subject'];
 
@@ -225,22 +215,29 @@ if($endedAuctions=$lDB->getEndedAuction("confirmed","confirmed","")){
 			
 			
 																}
+
+
+
+																$offer_inset="";
+																if($endedAuctions[$i]["is_auction"]=="no"){
+																	$offer_inset="offer_";
+																}
 																if($attachmentPath==""){
 
-																	if(sendEmail('./mails/success_without_invoice_to_seller.'.$lang.'.txt', $lSearch, $lReplacement, $sellersubject, $seller['email'], $attachmentPath)){
+																	if(sendEmail('./mails/success_'.$offer_inset.'without_invoice_to_seller.'.$lang.'.txt', $lSearch, $lReplacement, $sellersubject, $seller['email'], $attachmentPath)){
 
 																	$flag=1;
 																	}
 																}else{
 
-																	if(sendEmail('./mails/success_to_seller.'.$lang.'.txt', $lSearch, $lReplacement, $sellersubject, $seller['email'], $attachmentPath)){
+																	if(sendEmail('./mails/success_'.$offer_inset.'to_seller.'.$lang.'.txt', $lSearch, $lReplacement, $sellersubject, $seller['email'], $attachmentPath)){
 
 																		$flag=1;
 																	}
 
 																}
 
-																if(sendEmail('./mails/success_to_buyer.'.$lang.'.txt', $lSearch, $lReplacement, $buyersubject, $buyer['email'],"")){
+																if(sendEmail('./mails/success_'.$offer_inset.'to_buyer.'.$lang.'.txt', $lSearch, $lReplacement, $buyersubject, $buyer['email'],"")){
 																	if($flag==1){
 																			$flag=3;
 																		}else{
@@ -251,9 +248,6 @@ if($endedAuctions=$lDB->getEndedAuction("confirmed","confirmed","")){
 																}
 
 																
-
-
-															}
 
 
 

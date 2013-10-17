@@ -160,7 +160,7 @@ $texts['profile_offers_won']="Gewonnene Marktplatzangebote";
 
 $texts['profile_buyer_details']="Käufer Details";
 $texts['profile_confirm_sell']="Kauf bestätigen";
-$texts['profile_confirm_question']="Sind sie sicher? Sie verpflichten sich hierdurch zum Verkauf der Tiere.";
+$texts['profile_confirm_question']="Sind sie sicher?";
 $texts['profile_deny_sell']="Kauf ablehnen";
 
 $texts['profile_not_logged_in_headline']='Bitte melden Sie sich an.';
@@ -192,6 +192,11 @@ $texts['auction_details']="Details aufrufen";
 
 $texts['auction']="Auktion";
 $texts['offer']="Festpreisangebot";
+
+$texts['is_own_price']="Eingenen Preis festlegen";
+$texts['is_vezg_price']="Abhängig vom ZEVG-Preis anbieten.";
+$texts['zevg_date']="ZEVG Preis vom";
+$texts['zevg_price_placeholer']="z.B. +0.04";
 
 $texts['profile_offers_won']="Angenommen Angebote";
 $texts['bought_offer_date']="Kaufdatum";
@@ -238,7 +243,7 @@ $texts['edit_offer_headline']="Kaufangebot bearbeiten";
 $texts['next_offers']="Aktuelle Angebote";
 $texts['offer_creation_date']="Einstellungsdatum";
 $texts["offer_id"]="Angebotsnummer";
-$texts['offer_entitity_price']="Angebotspreis";
+$texts['offer_entitity_price']="Angebotspreis (in €)";
 $texts['offer_buy_submit']="Tiere jetzt verbindlich kaufen.";
 $texts['buy_offer_description']="Sie können diese Anbot direkt kaufen.";
 $texts['buy_offer_question']="Sie verplichten sich zu Kauf der angebotenen Tiere.";
@@ -261,7 +266,7 @@ $texts['auction_not_buyer_error']="Sie können nur als angemeldeter Händler bie
 $texts['auction_amount']="Anzahl der Tiere";
 $texts['auction_amount_placeholder']="z.B. 178";
 
-$texts['auction_min_entitity_price']="Mindestgebot";
+$texts['auction_min_entitity_price']="Mindestgebot (in €)";
 $texts['auction_min_entitity_price_placeholer']="z.B. 1.85";
 
 
@@ -382,7 +387,9 @@ $texts['footer_agb']="Allg. Geschäftsbedingungen";
 $texts['footer_contact']="Kontakt";
 $texts['footer_imprint']="Impressum";
 $texts['footer_team']="Unser Team";
-
+$texts['footer_buyer']="Für Händler";
+$texts['footer_seller']="Für Erzeuger";
+$texts['footer_us']="About us";
 
 
 
@@ -429,17 +436,12 @@ $texts["faq_answer_6"]='Scheuen Sie sich nicht, uns zu kontaktieren. Nutzen Sie 
 
 
 $texts["team_headline"]="Team";
-$texts["team_subheadline"]="Die Menschen hinter viehauktion.com";
-$texts["team_text"]="Viehauktion.com ist ein Projekt der Brüder Felix und Simon Meyborg aus Lindern bei Oldenburg.<br/>
-Felix studierte Agrarwissentschaften ander Universität Göttingen und an der Fachhochschule Osnabrück. 
-Im Jahre 2010 übernahm er den elterlichen Hof und führt ihn seit dem erfolgreich.<br/>
-Als Betreiber eines Schweinemastbetriebes hat er selbst schwierige Marktphasen erlebt und stets nach Wegen gesucht, sowohl die Verhandlungsposition der Bauern zu stärken 
-, als auch mehr Markttransparenz zu schaffen. <br/>
-Zusammen mit seinem Bruder Simon, der sich als Diplom Informatiker für die Programmierung verantwortlich zeichnet, ist aus diesen Bemühen viehauktion.com entstanden.<br/>
-<br/>
-Viehauktion.com schafft einen frei zugänglichen Überblick über Marktpreise und im besten Fall auch über das bestehende Angebot.
-Es bietet Betreibern von Mastbetrieben die Möglichkeit ihre Tiere mehreren Viehhändlern gleichzeitig anzubieten und zu einem optimalen Preis zu verkaufen.
-Viehhändlern bietet es die Möglichkeit weitere Viehanbieter zu erschliessen, Ihre Transportwege und Ihre Transportauslastung besser zu planen und etwaige Prozess-Vorteile am Markt auszuspielen. 
+$texts["team_subheadline"]="Team/Philosophie";
+$texts["team_text"]="Viehauktion.com ist ein Projekt der Brüder Felix und Simon Meyborg aus Lindern bei Oldenburg. Felix studierte Landwirtschaft an der Fachhochschule Osnabrück. Im Jahre 2010 übernahm er den elterlichen Hof und führt ihn seither erfolgreich. Als Betreiber eines Schweinemastbetriebes hat er selbst schwierige Marktphasen erlebt und stets nach Wegen gesucht, sowohl die Verhandlungsposition der Bauern zu stärken , als auch mehr Markttransparenz zu schaffen. Zusammen mit seinem Bruder Simon, der sich als Diplom- Informatiker für die Programmierung verantwortlich zeichnet, ist aus diesen Bemühen viehauktion.com entstanden.
+<br/><br/>
+Viehauktion.com schafft einen frei zugänglichen Überblick über Marktlage und Marktpreis. Es bietet Betreibern von Mastbetrieben die Möglichkeit, ihre Tiere mehreren Viehhändlern gleichzeitig anzubieten und zu einem optimalen Preis zu verkaufen. Viehhändler können weitere Anbieter von Nutztieren als Marktpartner hinzugewinnen, Transportwege und Transportauslastung besser planen, sowie etwaige Prozess-Vorteile am Markt auszuspielen.
+<br/><br/>
+Viehauktion.com tritt dabei lediglich als Vermittler zwischen den Geschäftsparteien auf. Die Plattform selbst kann keine Tiere erwerben oder anbieten. Stattdesssen erhebt sie für die Nutzung der ersteren eine Provisionsgebühr pro rechtswirksam verkauftem Tier. Diese zahlt der Einsteller der Annonce.
 ";
 
 
@@ -499,8 +501,8 @@ $texts['success_auction_buyer_subject']='Ihre Auktion war erfolgreich!';
 $texts['success_auction_seller_subject']='Sie haben eine Auktion gewonnen!';
 $texts['failure_auction_seller_subject']='Leider war Ihre Auktion nicht erfolgreich.';
 
-$texts['success_offer_buyer_subject']='Ihre Marktplatzangebot wurde erfolgreich !';
-$texts['success_offer_seller_subject']='Sie haben erfolgreich ein Marktplatzkauf';
+$texts['success_offer_buyer_subject']='Ihr Festpreisangebot wurde erfolgreich gekauft!';
+$texts['success_offer_seller_subject']='Sie haben erfolgreich ein Festpreisangebot gekauft.';
 
 
 

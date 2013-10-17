@@ -8,7 +8,7 @@
       <form>
         <fieldset>
           <p><? echo($texts['login_description']); ?></p>
-          <div class="alert-error hide"  >
+          <div class="alert alert-error hide"  >
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <h4><? echo($texts['error']); ?></h4>
             <span id="error_message"></span> </div>
@@ -34,7 +34,7 @@
       <form>
         <fieldset>
           <p><? echo($texts['recover_description']); ?></p>
-          <div class="alert-error hide"  >
+          <div class="alert alert-error hide"  >
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <h4><? echo($texts['error']); ?></h4>
             <span id="error_message"></span> </div>
@@ -216,7 +216,7 @@ $("#login_submit").click(function(){
       <form>
         <fieldset>
           <p><? echo($texts['change_password_description']); ?></p>
-          <div class="alert-error hide"  >
+          <div class="alert alert-error hide"  >
             <button type="button"  class="close" data-dismiss="alert">&times;</button>
             <h4><? echo($texts['error']); ?></h4>
             <span id="error_message"></span> </div>
@@ -465,7 +465,7 @@ function submitFeedback(){
     <p class="modalDescription"><? echo($texts['modal_add_address_description']); ?></p>
     <form  class="form-horizontal" method="get" action="?action=edit_auction">
       <fieldset>
-        <div class="alert-error hide"  >
+        <div class="alert alert-error hide"  >
           <button type="button" class="close" data-dismiss="alert">&times;</button>
           <h4><? echo($texts['error']); ?></h4>
           <span id="error_message"></span> </div>

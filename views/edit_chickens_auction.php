@@ -2,7 +2,7 @@
   <form  class="form-horizontal" method="get" action="?action=edit_action">
     <fieldset>
 
-      <div class="alert-error hide"  >
+      <div class="alert  alert-error hide"  >
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <h4><? echo($texts['error']); ?></h4>
         <span id="error_message"></span> </div>

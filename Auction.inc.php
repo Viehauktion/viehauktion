@@ -160,7 +160,7 @@
 	}
 	
 	
-	function editAuction($category_id, $auction_id, $is_preview, $is_auction, $is_main_auction, $auction_date, $auction_endtime, $auction_amount, $auction_min_entitity_price, $auction_origin, $form, $auction_pigs_form_value, $autoform, $auction_pigs_autoform_value, $auction_pigs_qs, $auction_pigs_samonelle_state, $address, $auction_loading_stations_amount, $auction_loading_stations_distance, $auction_loading_stations_vehicle, $auction_loading_stations_availability, $auction_loading_stations_availability_til, $auction_additional_informations){
+	function editAuction($category_id, $auction_id, $is_preview, $is_auction, $is_main_auction,$is_vezg, $auction_date, $auction_endtime, $auction_amount, $auction_min_entitity_price, $auction_origin, $form, $auction_pigs_form_value, $autoform, $auction_pigs_autoform_value, $auction_pigs_qs, $auction_pigs_samonelle_state, $address, $auction_loading_stations_amount, $auction_loading_stations_distance, $auction_loading_stations_vehicle, $auction_loading_stations_availability, $auction_loading_stations_availability_til, $auction_additional_informations){
 	
 		global $gBase;
 		
@@ -192,6 +192,8 @@
 							}
 						}else{
 								$auctionArray['status']="offering"; 
+								$auctionArray['is_vezg']=$is_vezg;
+								$auctionArray['start_time']=$auction_date;
 						}
 					}
 						
@@ -290,6 +292,8 @@
 								
 						}else{
 								$auctionArray['status']="offering"; 
+								$auctionArray['is_vezg']=$is_vezg;
+								$auctionArray['start_time']=$auction_date;
 						}
 						}
 
@@ -954,6 +958,9 @@ if($currentAuction=$lDB->getAuctionLikeRunningAction($auction_id)){
 
 										}
 
+
+										$gBase->CurrentAuction["county_id"] =$currentAuction["county_id"];
+										$gBase->CurrentAuction["state_id"] =$currentAuction["state_id"];
 										$gBase->CurrentAuction["is_auction"] ="yes";
 										
 										$gBase->CurrentAuction['current_time']=date("H:i:s");
@@ -1105,6 +1112,7 @@ global $gBase;
 					$auctionArray=$lDB->getAuctionById($auction_id);
 					if($auctionArray["is_auction"]=="no" && $auctionArray["status"]=="offering"){
 					$auctionArray["status"]="ended";
+					$auctionArray["end_time"]=date("Y-m-d H:i:s");
 					$auctionArray["buyer_id"]=$gBase->User['id'];
 					if($lDB->updateAuction($auctionArray)){
 

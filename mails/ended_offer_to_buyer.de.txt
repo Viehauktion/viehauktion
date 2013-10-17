@@ -1,0 +1,44 @@
+Sehr geehrte(r) ___BUYERFIRSTNAME___ ___BUYERLASTNAME___,
+ 
+
+herzlichen Glückwunsch! Sie haben eine Festpreisangebot angenommen.
+
+Der Angebotspreis beträgt ___PRICE___ €/Kg.
+
+Anbieter der Auktion ist:
+
+___SELLERFIRSTNAME___ ___SELLERLASTNAME___
+___SELLERSTREET___ ___SELLERNUMBER___
+___SELLERPOSTCODE___ ___SELLERCITY___
+
+Telefon: ___SELLERPHONE___
+E-Mailaddresse: ___SELLEREMAIL___
+
+
+ACHTUNG: Beide Parteien haben noch bis ___TILLTIME___ Zeit, den Verkauf zu stronieren. 
+Erst danach kommt der rechtsverbindliche Kaufvertrag zu Stande.
+Diese Funktion finden Sie in Ihrem Profil.
+
+
+Sie erhalten eine weitere E-Mail, sobald sich der Status zu Ihren Gunsten bzw. entgegen geändert hat.
+
+
+Sie finden alle Daten zum Festpreisangebot nochmal in Ihrem Profil zum Abruf.
+
+Wir hoffen, dass der Kauf nun erfolgreich von statten geht und hoffen, Sie demnächst wieder  auf ___SITENAME___ begrüßen zu dürfen.
+
+
+
+Ihr ___SITENAME___ Team
+
+
+Diese E-Mail wurde automatisch erstellt. Bitte antworten Sie Ihr nicht.
+
+
+___SITENAME___
+
+
+
+
+
+
