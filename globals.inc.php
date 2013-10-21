@@ -20,10 +20,10 @@
     |
     |---------------------------------------------------------------------------------------------------------------------------------*/
 
-	#$GLOBALS["VIEHAUKTION"]["DATABASE"]["HOST"]="robstardb.cm4zsefieiuw.eu-west-1.rds.amazonaws.com";
-	$GLOBALS["VIEHAUKTION"]["DATABASE"]["HOST"]="localhost";
-	$GLOBALS["VIEHAUKTION"]["DATABASE"]["USER"]="viehauktionuser";
-	$GLOBALS["VIEHAUKTION"]["DATABASE"]["USERPASSWORD"]="I?fw%MK";
+	$GLOBALS["VIEHAUKTION"]["DATABASE"]["HOST"]="viehauctiondb.cwpbmck0bxwf.eu-west-1.rds.amazonaws.com";
+	//$GLOBALS["VIEHAUKTION"]["DATABASE"]["HOST"]="localhost";
+	$GLOBALS["VIEHAUKTION"]["DATABASE"]["USER"]="viehuser";
+	$GLOBALS["VIEHAUKTION"]["DATABASE"]["USERPASSWORD"]="v1eh4uction";
 	$GLOBALS["VIEHAUKTION"]["DATABASE"]["NAME"]="viehauktion";
 	
 	
@@ -39,7 +39,7 @@
 	$GLOBALS["VIEHAUKTION"]["EMAIL"]["SENDERADDRESS"]="service@viehauktion.com";
 	$GLOBALS["VIEHAUKTION"]["EMAIL"]["SERVER"]="localhost";
 	
-
+		$GLOBALS["VIEHAUKTION"]["EMAIL"]["ACTIVATOR"]="meyborg@syborgstudios.com";
 
 
 

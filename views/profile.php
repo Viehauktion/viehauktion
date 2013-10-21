@@ -350,6 +350,14 @@ $counter++;
 
 
 <?
+      }else if( $auctions[$i]["status"]=="scheduled"){
+
+      ?>
+
+
+  <td colspan="2"><? echo($texts['profile_auction_locked']); ?></td>
+
+<?
       }else if( $auctions[$i]["status"]=="going"){
 
       ?>

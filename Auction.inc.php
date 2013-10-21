@@ -207,6 +207,7 @@
 						$auctionArray['buyer_id']=0;
 						$auctionArray['category_id']=$category_id;
 						$auctionArray['is_main']=$is_main_auction;
+
 						
 						if($is_main_auction=="yes"){
 							$auctionArray['start_time']=$auction_date;
@@ -860,6 +861,7 @@ global $gBase;
 										$gBase->CurrentAuction["end_time"] =$currentAuction["end_time"];
 										$gBase->CurrentAuction["bids"] =$currentAuction["bids"];
 										$gBase->CurrentAuction["user_id"] =$currentAuction["user_id"];
+										$gBase->CurrentAuction["user_rating"]=$lDB->getUserRating($currentAuction["user_id"]);
 										$gBase->CurrentAuction["buyer_id"] =$currentAuction["buyer_id"];
 										if($currentAuction["buyer_id"]==$gBase->User['id']){
 											$gBase->CurrentAuction["is_buyer"] ="yes";
@@ -885,6 +887,7 @@ global $gBase;
 										$address=array();
 										$address=$lDB->getAddressById($metadata['address']);
 										$gBase->CurrentAuction['city']=$address['city'];
+										$gBase->CurrentAuction['postcode']=$address['postcode'];
 
 										$gBase->CurrentAuction['metadata']=$metadata;
 
@@ -958,7 +961,7 @@ if($currentAuction=$lDB->getAuctionLikeRunningAction($auction_id)){
 
 										}
 
-
+										$gBase->CurrentAuction["user_rating"]=$lDB->getUserRating($currentAuction["user_id"]);
 										$gBase->CurrentAuction["county_id"] =$currentAuction["county_id"];
 										$gBase->CurrentAuction["state_id"] =$currentAuction["state_id"];
 										$gBase->CurrentAuction["is_auction"] ="yes";
@@ -1037,7 +1040,7 @@ global $gBase;
 						$sellerArray=array();
 						$sellerArray=$lDB->getUserByID($auctionArray["user_id"]);
 						$fullAuction["seller"]=$sellerArray;
-				
+						$fullAuction["seller_rating"]=$lDB->getUserRating($currentAuction["user_id"]);
 						$fullAuction["address"]=$address;
 					}
 
@@ -1049,6 +1052,7 @@ global $gBase;
 							$buyerArray=array();
 							$buyerArray=$lDB->getUserByID($auctionArray["buyer_id"]);
 							$fullAuction["buyer"]=$buyerArray;
+							$fullAuction["buyer_rating"]=$lDB->getUserRating($auctionArray["buyer_id"]);
 							$fullAuction["buyer"]["address"]=$buyer_address;
 					}
 

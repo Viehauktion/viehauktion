@@ -100,6 +100,30 @@ body {
 .page {
   min-height: 400px;
 }
+td.leftSide {
+  width: 80px;
+}
+td.rightSide {
+  padding-left: 50px;
+}
+#highestBid {
+  background-color: #3e937e;
+  color: #ffffff;
+  font-size: 18px;
+}
 .mainbody {
+  margin-top: 20px;
+}
+#schedule {
+  margin-top: 50px;
+  font-size: 12px;
+}
+#main_data {
+  margin-top: 20px;
+}
+#time_box {
+  font-size: 16px;
+}
+#bid_box {
   margin-top: 50px;
 }

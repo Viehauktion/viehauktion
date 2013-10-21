@@ -1,0 +1,34 @@
+Hi,
+
+es hat sich ein neuer Händler registriert.
+
+
+
+___BUYERFIRSTNAME___ ___BUYERLASTNAME___
+___BUYERSTREET___ ___BUYERNUMBER___
+___BUYERPOSTCODE___ ___BUYERCITY___
+
+Telefon: ___BUYERPHONE___
+E-Mailaddresse: ___BUYEREMAIL___
+
+Firma: ___BUYERCOMPANY___
+HRB NR: ___HRBNUMBER___
+Händlernr: ___RETAILNR___
+Steuer: ___VATNR___
+Stallnr.: ___STALLNR___
+
+Du kannst den Händler durch bestätigen diese Links freischalten.
+
+___LINK___
+
+Warenkreditversicerhungsnachweis:
+
+___INSUREANCE___
+
+Euer Server!!
+
+
+
+
+
+

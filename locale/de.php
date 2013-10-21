@@ -174,7 +174,7 @@ $texts['profile_add_offer']="Neues Angebot einstellen";
 $texts['profile_get_invoice']="Rechnung herunterladen";
 $texts['profile_rate_partner']="Handelspartner bewerten";
 $texts['profile_my_auctions_to_approve']="Abgeschlossene Auktionen zur Bestätigung";
-
+$texts['profile_auction_locked']="Nimmt an baldiger Hauptauktion teil.";
 
 
 $texts['invoice_date']="Rechnungsdatum";
@@ -251,7 +251,8 @@ $texts['buy_offer_question']="Sie verplichten sich zu Kauf der angebotenen Tiere
 $texts['seller']="Verkäufer";
 
 $texts['buyer']="Käufer";
-
+$texts['show_auction_headline']="Aktuelle Auktion - live";
+$texts['show_auction_empty_rating']="Bisher nicht bewertet.";
 $texts['show_auction_detail']="Autionsdetails";
 $texts['show_offer_detail']="Angebotsdetails";
 
@@ -259,13 +260,14 @@ $texts['auction_main_auction']="Die Auktion soll im Rahmen der Hauptauktion stat
 $texts['auction_side_auction']="Die ist eine Nebenauktion. Ich bestimme selbst, wann die Auktion enden soll.";
 
 $texts['auction_category']="Tierart";
-
+$texts['auction_user_rating']="Verkäuferbewertung";
 $texts['auction_not_loggedin_error']="Sie können nur als angemeldeter Händler bieten. Bitte loggen Sie sich ein oder registrieren sich als Händler";
 $texts['auction_not_buyer_error']="Sie können nur als angemeldeter Händler bieten. Sie sind nur als Verkäufer registriert.";
 
 $texts['auction_amount']="Anzahl der Tiere";
 $texts['auction_amount_placeholder']="z.B. 178";
 
+$texts['auction_min_entitity_price_without_euro']="Mindestgebot";
 $texts['auction_min_entitity_price']="Mindestgebot (in €)";
 $texts['auction_min_entitity_price_placeholer']="z.B. 1.85";
 

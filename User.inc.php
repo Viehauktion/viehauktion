@@ -80,6 +80,8 @@
 									$userArray['vat_nr']=mysql_escape_string($vat_nr);
 
 									$userArray['agb']="1";
+									
+
 									if($is_buyer=='on'){
 									$userArray['is_buyer']="yes";
 
@@ -108,6 +110,10 @@
 									if($is_new){
 									 $lDB->addUser($userArray);
 									 $userArray=$lDB->getUserByEmail(strtolower($email));
+
+
+									
+
 									}else{
 								
 										$lDB->updateUser($userArray);
@@ -151,7 +157,63 @@
 									}
 
 
+									if($is_buyer=='on' && $is_new){
+										$code=substr(md5($userArray['id'].$userArray['email']), 0, 8);
+									 $link=$GLOBALS["VIEHAUKTION"]["BASE"]["HTTPROOT"]."?view=backend&action=confirm_user&user_id=".$userArray['id']."&activationcode=".$code."&lang=de#users";
+								
+									 $search = array();
+
+										$search[0]="___BUYERFIRSTNAME___";
+										$search[1]="___BUYERLASTNAME___";
+										$search[2]="___BUYERSTREET___";
+										$search[3]=" ___BUYERNUMBER___";
+										$search[4]="___BUYERPOSTCODE___"; 
+										$search[5]="___BUYERCITY___";
+
+										 $search[6]="___BUYERPHONE___";
+										 $search[7]="___BUYEREMAIL___";
+ 										$search[8]="___BUYERCOMPANY___";
+
+ 										$search[9]="___HRBNUMBER___";
+ 										$search[10]="___RETAILNR___";
+ 										$search[11]="___VATNR___";
+ 										$search[12]="___STALLNR___";
+ 										$search[13]="___LINK___";
+ 										$search[14]="___INSUREANCE___";
+
+									$replace = array();
+									$replace[0]=$userArray['firstname'];
+									$replace[1]=$userArray['lastname'];
+									$replace[2]=$street;
+									$replace[3]=$number;
+									$replace[4]=$postcode;
+									$replace[5]=$city; 
+									$replace[6]=$phone; 
+									$replace[7]=$email; 
+									$replace[8]=$company;
+
+									$replace[9]=$hrb_nr;
+									$replace[10]=$retail_nr; 
+									$replace[11]=$vat_nr;
+									$replace[12]=$stall_nr; 
+									$replace[13]=$link;
+									$replace[14]=$GLOBALS["VIEHAUKTION"]["AMAZON"]["DOCUMENTSURL"]."documents/".$newFileName;
+
+
 									
+									
+									
+									$subject="Ein neuer Händler auf viehauktion.com"; 
+										
+									
+								
+									$lRecipient=$GLOBALS["VIEHAUKTION"]["EMAIL"]["ACTIVATOR"];
+				
+									sendEmail('./mails/new_buyer.de.txt', $search, $replace, $subject, $lRecipient);
+										
+										
+
+										}
 
 									
 									
@@ -341,6 +403,7 @@ function sendActivationMailAgain($lang){
 									}else if($userArray=$lDB->getUserByEmailWithPassword($identifier, md5($user_password))){
 									
 									 $gBase->User=$userArray;
+									 $gBase->User['rating']=$lDB->getUserRating($userArray['id']);
 											$gBase->UserAddresses=$lDB->getUserAddresses($userArray['id']);
 
 									   return true;
@@ -681,7 +744,34 @@ function sendActivationMailAgain($lang){
 
 				if($userArray=$lDB->getUserByID($user_id)){
 
+				if($activate_status==2){
 
+					//var_dump($userArray);
+									$lSearch = array();
+									$lSearch[] = "___BUYERFIRSTNAME___";
+									$lSearch[] = "___BUYERLASTNAME___";
+									$lSearch[] = "___SITENAME___";
+								
+									
+
+									$lReplacement = array();
+									$lReplacement[] =$userArray['firstname'];
+									$lReplacement[] =$userArray['lastname'];
+									$lReplacement[] =$GLOBALS["VIEHAUKTION"]["BASE"]["APPNAME"];
+									
+									$lRecipient=$userArray['email'];
+									$subject='';
+									
+									 $subject="Sie würden als Händler akzeptiert."; 
+										
+										
+										
+				
+									sendEmail('./mails/buyer_activated.de.txt', $lSearch, $lReplacement,	$subject, $userArray['email']);
+										
+										
+										
+				}
 					$userArray["active"]=$activate_status;
 					$lDB->updateUser($userArray);
 

@@ -2,102 +2,35 @@
 
 
 ?>
+<div  class="span12">
+<h1><? echo($texts['show_auction_headline']); ?></h1>
+</div>	
+<div id="running_auction" class="span6">
+	<div id="googlemap">
+<img  id="map" src="http://maps.googleapis.com/maps/api/staticmap?center=<? echo($gBase->CurrentAuction["postcode"]."+".$gBase->CurrentAuction["city"]); ?>&zoom=10&size=500x300&maptype=roadmap&sensor=false" />
+</div>
 
-
-<div id="running_auction">
-<p>
+<div id="main_data" class="well"> 	
+<p >
 	<table>
-		<tr><td><strong><? echo($texts["auction_id"]) ;?>:</strong></td><td id="auction_id"><? echo($gBase->CurrentAuction["auction_id"]);?></td></tr>
-		<tr><td><strong><? echo($texts['auction_amount']); ?>:</strong></td><td id="amount_of_animals"><? echo($gBase->CurrentAuction["amount_of_annimals"]);?></td></tr>
-		<tr><td><strong><? echo($texts['auction_city']); ?>:</strong></td><td  id="city"><? echo($gBase->CurrentAuction["city"]);?></td></tr>
+		<tr><td  class="leftSide"><strong><? echo($texts["auction_id"]) ;?>:</strong></td><td id="auction_id" class="rightSide"><? echo($gBase->CurrentAuction["auction_id"]);?></td></tr>
+		<tr><td  class="leftSide"><strong><? echo($texts['auction_amount']); ?>:</strong></td><td id="amount_of_animals" class="rightSide"><? echo($gBase->CurrentAuction["amount_of_annimals"]);?></td></tr>
+		<tr><td class="leftSide"><strong><? echo($texts['auction_city']); ?>:</strong></td><td  id="city" class="rightSide"><? echo($gBase->CurrentAuction["city"]);?></td></tr>
+		<tr><td class="leftSide"><strong><? echo($texts['auction_user_rating']); ?>:</strong></td><td  id="user_rating" class="rightSide"><? echo($gBase->CurrentAuction["user_rating"]["rating"]." (".$gBase->CurrentAuction["user_rating"]["amount"].")");?></td></tr>
 	
-	</table>
-</p>
+	
 
-<p id="is_buyer"></p>
-<p id="is_seller"></p>
-
-<p>
-	<table>
-		<tr><td ><strong><? echo($texts['auction_current_price']) ;?>:</strong></td><td  id="curent_price"><? echo($gBase->CurrentAuction["current_entity_price"]);?></td></tr>
-
-	</table>
-</p>
-
-
-<div id="bid_box"> 
-
-      <!--<div class="control-group">
-        <label class="control-label" for="your_bid"><? echo($texts['auction_your_bid']); ?></label>
-        <div class="controls">
-          <input type="text" id="your_bid" name="your_bid" placeholder="<? echo($texts['auction_your_bid_placeholder_1']." ".($gBase->CurrentAuction["current_entity_price"]+0.005)." ".$texts['auction_your_bid_placeholder_2']);  ?>"  >
-        </div>
-      </div>-->
-
-
-	  <div class="control-group">
-          <label class="control-label" for="your_bid"><? echo($texts['auction_your_bid']); ?></label>
-          <div class="controls">
-            <select name="your_bid"  id="your_bid" >
-              
-            </select>
-          </div>
-        </div>
-
-        <button onclick="submitBid()" class="btn btn-primary" id="auction_bid_submit"><? echo($texts['auction_bid_submit']); ?></button>
-
-</div>
-
-
-
-<div id="waiting_box"> 
-	<p> <? echo($texts['auction_is_waiting']) ;?></p>
-	<table>
-		<tr><td><strong><? echo($texts['auction_start_time']) ;?>:</strong></td><td id="start_time" ><? echo($gBase->CurrentAuction["start_time"]);?></td></tr>
-	</table>	
-     
-
-</div>
-
-
-
-
-
-<?
-		if($gBase->CurrentAuction["is_buyer"]=="yes"){		
-echo("<p>".$texts['auction_is_buyer']."</p>");
-		}
-
-		?>
-
-<p>
-	<table>
-		<tr><td><strong><? echo($texts['auction_end_time']) ;?>:</strong></td><td id="end_time" ><? echo(substr($gBase->CurrentAuction["end_time"], 10));?></td></tr>
-		<tr><td><strong><? echo($texts['auction_bids']); ?>:</strong></td><td id="bids" ><? echo($gBase->CurrentAuction["bids"]);?></td></tr>
-
-		<tr><td><strong><? echo($texts['auction_current_time']) ;?>:</strong></td><td id="current_time"><? echo($gBase->CurrentAuction["current_time"]);?></td></tr>
-	</table>
-</p>
-
-
-<!--
-METADATA
--->
-
-
-<p>
-	<table>
-		<tr><td><strong><? echo($texts['auction_origin']) ;?>:</strong></td><td id="origin"><? echo($gBase->CurrentAuction["metadata"]["auction_origin"]);?></td></tr>
+		<tr><td class="leftSide"><strong><? echo($texts['auction_origin']) ;?>:</strong></td><td id="origin" class="rightSide"><? echo($gBase->CurrentAuction["metadata"]["auction_origin"]);?></td></tr>
 		<?
 		if($gBase->CurrentAuction["metadata"]["form"]=="on"){
 			?>
-		<tr><td><strong><? echo($texts['auction_pigs_form']); ?>:</strong></td><td id="form"><? echo($texts["yes"]);?></td></tr>
-		<tr><td><strong><? echo($texts['auction_pigs_form_entity']); ?>:</strong></td><td id="form_value" ><? echo($gBase->CurrentAuction["metadata"]["auction_pigs_form_value"]);?></td></tr>
+		<tr><td class="leftSide"><strong><? echo($texts['auction_pigs_form']); ?>:</strong></td><td id="form" class="rightSide"><? echo($texts["yes"]);?></td></tr>
+		<tr><td class="leftSide"><strong><? echo($texts['auction_pigs_form_entity']); ?>:</strong></td><td id="form_value" class="rightSide" ><? echo($gBase->CurrentAuction["metadata"]["auction_pigs_form_value"]);?></td></tr>
 <?}else{
 	?>
 
-	<tr><td><strong><? echo($texts['auction_pigs_form']); ?>:</strong></td><td id="form"><? echo($texts["no"]);?></td></tr>
-	<tr><td><strong><? echo($texts['auction_pigs_form_entity']); ?>:</strong></td><td id="form_value" >-</td></tr>
+	<tr><td class="leftSide"><strong><? echo($texts['auction_pigs_form']); ?>:</strong></td><td id="form" class="rightSide"><? echo($texts["no"]);?></td></tr>
+	<tr><td class="leftSide"><strong><? echo($texts['auction_pigs_form_entity']); ?>:</strong></td><td id="form_value" class="rightSide" >-</td></tr>
 
 	
 	<?
@@ -107,20 +40,20 @@ METADATA
 <?
 		if($gBase->CurrentAuction["metadata"]["autoform"]=="on"){
 			?>
-		<tr><td><strong><? echo($texts['auction_pigs_autoform']); ?>:</strong></td><td id="autoform"><? echo($texts["yes"]);?></td></tr>
-		<tr><td><strong><? echo($texts['auction_pigs_autoform_entity']); ?>:</strong></td><td id="autoform_value"><? echo($gBase->CurrentAuction["metadata"]["auction_pigs_autoform_value"]);?></td></tr>
+		<tr><td class="leftSide"><strong><? echo($texts['auction_pigs_autoform']); ?>:</strong></td><td id="autoform" class="rightSide"><? echo($texts["yes"]);?></td></tr>
+		<tr><td class="leftSide"><strong><? echo($texts['auction_pigs_autoform_entity']); ?>:</strong></td><td id="autoform_value" class="rightSide"><? echo($gBase->CurrentAuction["metadata"]["auction_pigs_autoform_value"]);?></td></tr>
 <?}else{
 	?>
 
-	<tr><td><strong><? echo($texts['auction_pigs_autoform']); ?>:</strong></td><td id="autoform"><? echo($texts["no"]);?></td></tr>
-		<tr><td><strong><? echo($texts['auction_pigs_autoform_entity']); ?>:</strong></td><td id="autoform_value">-</td></tr>
+	<tr><td class="leftSide"><strong><? echo($texts['auction_pigs_autoform']); ?>:</strong></td><td id="autoform" class="rightSide"><? echo($texts["no"]);?></td></tr>
+		<tr><td class="leftSide"><strong><? echo($texts['auction_pigs_autoform_entity']); ?>:</strong></td><td id="autoform_value" class="rightSide">-</td></tr>
 
 	
 	<?
 }
 ?>
 
-<tr><td><strong><? echo($texts['auction_pigs_qs']); ?>:</strong></td><td id="qs"><? echo($texts[$gBase->CurrentAuction["metadata"]["auction_pigs_qs"]]);?></td></tr>
+<tr><td><strong><? echo($texts['auction_pigs_qs']); ?>:</strong></td><td id="qs" class="rightSide"><? echo($texts[$gBase->CurrentAuction["metadata"]["auction_pigs_qs"]]);?></td></tr>
 
 <?
 $samonelle_status="";
@@ -142,17 +75,12 @@ switch ($gBase->CurrentAuction["metadata"]["auction_pigs_samonelle_state"]) {
 }
 
 ?>
-<tr><td><strong><? echo($texts['auction_pigs_samonelle_state']); ?>:</strong></td><td id="samonelle_state"><? echo($samonelle_status);?></td></tr>
+<tr><td class="leftSide"><strong><? echo($texts['auction_pigs_samonelle_state']); ?>:</strong></td><td id="samonelle_state" class="rightSide"><? echo($samonelle_status);?></td></tr>
 
 
-	</table>
-</p>
 
-
-<p>
-	<table>
-		<tr><td><strong><? echo($texts['auction_loading_stations_amount']) ;?>:</strong></td><td id="stations_amount"><? echo($gBase->CurrentAuction["metadata"]["auction_loading_stations_amount"]);?></td></tr>
-		<tr><td><strong><? echo($texts['auction_loading_stations_distance']); ?>:</strong></td><td id="stations_distance" ><? echo($gBase->CurrentAuction["metadata"]["auction_loading_stations_distance"]);?></td></tr>
+		<tr><td class="leftSide"><strong><? echo($texts['auction_loading_stations_amount']) ;?>:</strong></td><td id="stations_amount" class="rightSide"><? echo($gBase->CurrentAuction["metadata"]["auction_loading_stations_amount"]);?></td></tr>
+		<tr><td class="leftSide"><strong><? echo($texts['auction_loading_stations_distance']); ?>:</strong></td><td id="stations_distance" class="rightSide" ><? echo($gBase->CurrentAuction["metadata"]["auction_loading_stations_distance"]);?></td></tr>
 	
 <?
 $vehicle="";
@@ -174,18 +102,96 @@ switch ($gBase->CurrentAuction["metadata"]["auction_loading_stations_vehicle"]) 
 }
 
 ?>
-	<tr><td><strong><? echo($texts['auction_loading_stations_vehicle']); ?>:</strong></td><td id="stations_vehicle"><? echo($vehicle);?></td></tr>
+	<tr><td class="leftSide"><strong><? echo($texts['auction_loading_stations_vehicle']); ?>:</strong></td><td id="stations_vehicle" class="rightSide"><? echo($vehicle);?></td></tr>
 
-<tr><td><strong><? echo($texts['auction_loading_stations_availability']); ?>:</strong></td><td id="stations_availability"><? echo($gBase->CurrentAuction["metadata"]["auction_loading_stations_availability"]." ".$texts['auction_loading_stations_availability_til']." ".$gBase->CurrentAuction["metadata"]["auction_loading_stations_availability_til"]);?></td></tr>
-<tr><td><strong><? echo($texts['auction_additional_informations']); ?>:</strong></td><td id="additional_informations"><? echo($gBase->CurrentAuction["metadata"]["auction_additional_informations"]);?></td></tr>
+<tr><td class="leftSide"><strong><? echo($texts['auction_loading_stations_availability']); ?>:</strong></td><td id="stations_availability" class="rightSide"><? echo($gBase->CurrentAuction["metadata"]["auction_loading_stations_availability"]." ".$texts['auction_loading_stations_availability_til']." ".$gBase->CurrentAuction["metadata"]["auction_loading_stations_availability_til"]);?></td></tr>
+<tr><td class="leftSide"><strong><? echo($texts['auction_additional_informations']); ?>:</strong></td><td id="additional_informations" class="rightSide"><? echo($gBase->CurrentAuction["metadata"]["auction_additional_informations"]);?></td></tr>
 	</table>
 </p>
 
 
-
+</div>
 
 
 </div>
+
+
+
+
+<div class="rightView span5 pull-right">
+
+
+
+<div id="time_box" > 
+	<div id="highestBid" class="well">
+<table >
+		<tr ><td ><strong><? echo($texts['auction_current_price']) ;?>:</strong></td><td  id="curent_price"  class="rightSide"><strong><? echo($gBase->CurrentAuction["current_entity_price"]);?></strong></td></tr>
+</table>
+</div>
+
+<p id="is_buyer">
+<?
+		if($gBase->CurrentAuction["is_buyer"]=="yes"){		
+echo("<p>".$texts['auction_is_buyer']."</p>");
+		}
+
+		?>
+</p>
+<p id="is_seller"></p>
+<p>
+	<table>
+		<tr><td><strong><? echo($texts['auction_end_time']) ;?>:</strong></td><td id="end_time" class="rightSide" ><? echo(substr($gBase->CurrentAuction["end_time"], 10));?></td></tr>
+		<tr><td><strong><? echo($texts['auction_current_time']) ;?>:</strong></td><td id="current_time"  class="rightSide"><? echo($gBase->CurrentAuction["current_time"]);?></td></tr>
+	
+		<tr><td><strong><? echo($texts['auction_bids']); ?>:</strong></td><td id="bids" class="rightSide" ><? echo($gBase->CurrentAuction["bids"]);?></td></tr>
+
+		
+		
+	</table>
+</p>
+</div>
+
+<div id="bid_box" class="well"> 
+
+      <!--<div class="control-group">
+        <label class="control-label" for="your_bid"><? echo($texts['auction_your_bid']); ?></label>
+        <div class="controls">
+          <input type="text" id="your_bid" name="your_bid" placeholder="<? echo($texts['auction_your_bid_placeholder_1']." ".($gBase->CurrentAuction["current_entity_price"]+0.005)." ".$texts['auction_your_bid_placeholder_2']);  ?>"  >
+        </div>
+      </div>-->
+
+
+	  <div class="control-group">
+          <label class="control-label" for="your_bid"><strong><? echo($texts['auction_your_bid']); ?>:</strong></label>
+          <div class="controls">
+            <select name="your_bid"  id="your_bid" >
+              
+            </select>
+          </div>
+        </div>
+
+        <button onclick="submitBid()" class="btn btn-primary" id="auction_bid_submit"><? echo($texts['auction_bid_submit']); ?></button>
+
+</div>
+
+
+
+<div id="waiting_box" class="well"> 
+	<p> <? echo($texts['auction_is_waiting']) ;?></p>
+	<table>
+		<tr><td><strong><? echo($texts['auction_start_time']) ;?>:</strong></td><td id="start_time" ><? echo($gBase->CurrentAuction["start_time"]);?></td></tr>
+	</table>	
+     
+
+</div>
+
+
+
+
+
+
+
+
 
 
 
@@ -198,7 +204,7 @@ if($_REQUEST["is_preview"]!="yes"){
 
 <div id="comming_up"> 
 <h3><? echo($texts['running_auctions_comming_up']); ?></h3>
-     <table id="coming_up_table" class="table table-striped">
+     <table id="coming_up_table" class="table table-hover">
 
 
 	</table>
@@ -206,12 +212,13 @@ if($_REQUEST["is_preview"]!="yes"){
 
 <div id="finished" > 
 <h3><? echo($texts['running_auctions_finished']); ?></h3>
-     <table id="finished_table" class="table table-striped">
+     <table id="finished_table" class="table table-hover">
 			
 
 	 </table>
 </div>
 
+</div>
 </div>
 
 <?	
@@ -319,13 +326,19 @@ function displayResponse(data){
 									$("#is_seller").html("");
 								}
 
-								
-
-								
+								if(data.current_auction.user_rating.amount==0){
+									$("#user_rating").html('<? echo($texts['show_auction_empty_rating']) ?>');
+								}else{
+								$("#user_rating").html(""+data.current_auction.user_rating.rating+" ("+data.current_auction.user_rating.amount+")");
+								}
 
 								$("#auction_id").html(data.current_auction.auction_id);
 								$("#amount_of_animals").html(data.current_auction.amount_of_animals);
 								$("#city").html(data.current_auction.city);
+
+								$("#map").attr('src', 'http://maps.googleapis.com/maps/api/staticmap?center='+data.current_auction.postcode+"+"+data.current_auction.city+'&zoom=10&size=500x370&maptype=roadmap&sensor=false');
+
+
 								//if($("#curent_price").html()!=data.current_auction.current_entity_price){
 
 									
@@ -410,7 +423,7 @@ function displayResponse(data){
 								for(i=0; i<data.raw_data.length; i++){
 
 
-										if(data.raw_data[i].status=="pending"){
+										if(data.raw_data[i].status=="scheduled"){
 
 											pendingHTML+='<tr>';
 								     	pendingHTML+='<td>';     	
@@ -444,7 +457,7 @@ function displayResponse(data){
 										finishedHTML+='</td>';
 										finishedHTML+='<td>';     	
 								     	finishedHTML+='<table class="table">';
-										finishedHTML+='<tr><td><strong><? echo($texts['auction_min_entitity_price']) ;?>:</strong></td><td >'+data.raw_data[i].min_entity_price+'</td></tr>';
+										finishedHTML+='<tr><td><strong><? echo($texts['auction_min_entitity_price_without_euro']) ;?>:</strong></td><td >'+data.raw_data[i].min_entity_price+' €</td></tr>';
 										finishedHTML+='<tr><td><strong><? echo($texts['auction_highest_price']); ?>:</strong></td><td >'+data.raw_data[i].current_entity_price+'</td></tr>';
 										finishedHTML+='<tr><td><strong><? echo($texts['auction_bids_done']); ?>:</strong></td><td >'+data.raw_data[i].bids+'</td></tr>';
 										finishedHTML+='</table>';

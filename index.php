@@ -277,7 +277,7 @@ return $nextDates;
 					case 'get_buyer_to_confirm': getBuyerToConfirm($_REQUEST['page']); break;
 
 					case 'delete_user':	 changeUserStatus($_REQUEST['user_id'], 3); getBuyerToConfirm(1); getUsers(1);break;
-					case 'confirm_user':	 changeUserStatus($_REQUEST['user_id'], 2); getBuyerToConfirm(1); break;
+					case 'confirm_user':	 changeUserStatus($_REQUEST['user_id'], 2); getBuyerToConfirm(1);  getUsers(1);  break;
 					case 'imitate_user':	 imitateUser($_REQUEST['user_id']); break;
 					case 'show_full_user':	getUserDetails($_REQUEST['user_id']); break;
 					case 'get_finished_offers': getFinishedOffers($_REQUEST['page']); break;

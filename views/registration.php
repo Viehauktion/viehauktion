@@ -68,7 +68,7 @@ $('#filePreview').val($(this).val());
 </div>
 
 
-  <input type="text"id="registration_vat_nr" placeholder="<? echo($texts['registration_vat']); ?>"><br/>
+  <input type="text" id="registration_vat_nr" name="vat_nr" placeholder="<? echo($texts['registration_vat']); ?>"><br/>
 <br/>
       <input type="checkbox" id="registration_agb">   <span class="help"><? echo($texts['registration_agb']); ?><span><br/>
    <br/>

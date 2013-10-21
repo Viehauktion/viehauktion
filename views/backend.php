@@ -51,9 +51,9 @@ if(count($users)>0){
       <td><? echo($users[$i]["firstname"]); ?></td>
       <td><? echo($users[$i]["lastname"]); ?></td>
       <td><? echo($users[$i]["date"]); ?></td>
-      <td><a href="?view=show_full_user&action=show_full_user&user_id=<? echo($users[$i]["id"]);?>" class="btn" type="button" ><?  echo($texts['show_user']); ?></a></td>
-     <td><a href="?view=backend&action=confirm_user&user_id=<? echo($users[$i]["id"]);?>" class="btn" type="button" ><?  echo($texts['activate_user']); ?></a></td>
-     <td><a href="?view=backend&action=remove_user&user_id=<? echo($users[$i]["id"]);?>" class="btn" type="button" ><?  echo($texts['delete_user']); ?></a></td>
+      <td><a href="?view=show_full_user&action=show_full_user&user_id=<? echo($users[$i]["id"]);?>#users" class="btn" type="button" ><?  echo($texts['show_user']); ?></a></td>
+     <td><a href="?view=backend&action=confirm_user&user_id=<? echo($users[$i]["id"]);?>#users" class="btn" type="button" ><?  echo($texts['activate_user']); ?></a></td>
+     <td><a href="?view=backend&action=remove_user&user_id=<? echo($users[$i]["id"]);?>#users" class="btn" type="button" ><?  echo($texts['delete_user']); ?></a></td>
     </tr>
 
       <?

@@ -78,7 +78,7 @@ class DB {
        function addUser($userArray) {
 		
 		
-				$lSQLQuery = "INSERT INTO `users` ( `" . implode('`, `', array_keys($userArray)) . "`, `date`) VALUES ('" . implode("' ,'", $userArray) . "', NOW());";
+				$lSQLQuery = "INSERT INTO `users` ( `" . implode('`, `', array_keys($userArray)) . "`, `date`) VALUES ('" . implode("' ,'", $userArray) . "', '".date('Y-m-d H:i:s')."');";
 				$lResult = $this->mysql_query_ex($lSQLQuery);
 				if ($lResult) {
 					
@@ -525,7 +525,12 @@ function getLatestAuctions($start,$number_of_elements,$status, $is_auction){
 
 		
 			
-			$lSQLQuery = "SELECT SQL_CALC_FOUND_ROWS * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.is_auction =  '".mysql_real_escape_string($is_auction)."' AND auctions.status='".$status."' ORDER BY auctions.id DESC LIMIT ".mysql_real_escape_string($start).", ".mysql_real_escape_string($number_of_elements).";";
+			$lSQLQuery = "SELECT SQL_CALC_FOUND_ROWS * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.is_auction =  '".$is_auction."' AND auctions.status='".$status."' ORDER BY auctions.id DESC LIMIT ".mysql_real_escape_string($start).", ".mysql_real_escape_string($number_of_elements).";";
+			if($is_auction=="yes" && $status=='pending'){
+
+				$lSQLQuery = "SELECT SQL_CALC_FOUND_ROWS * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.is_auction =  '".$is_auction."' AND (auctions.status='".$status."' OR auctions.status='scheduled') ORDER BY auctions.id DESC LIMIT ".mysql_real_escape_string($start).", ".mysql_real_escape_string($number_of_elements).";";
+			
+			}
 
 
 
@@ -690,7 +695,7 @@ function getLatestAuctions($start,$number_of_elements,$status, $is_auction){
      	 function addAuction($auctionArray) {
 		
 		
-				$lSQLQuery = "INSERT INTO `auctions` ( `" . implode('`, `', array_keys($auctionArray)) . "`, `created`) VALUES ('" . implode("' ,'", $auctionArray) . "', NOW());";
+				$lSQLQuery = "INSERT INTO `auctions` ( `" . implode('`, `', array_keys($auctionArray)) . "`, `created`) VALUES ('" . implode("' ,'", $auctionArray) . "', '".date('Y-m-d H:i:s')."');";
 				$lResult = $this->mysql_query_ex($lSQLQuery);
 				if ($lResult) {
 					
@@ -925,7 +930,7 @@ function getLatestAuctions($start,$number_of_elements,$status, $is_auction){
 				$lSQLQuery ="SELECT DISTINCT  auctions.county_id, auctions.state_id, county.name FROM auctions INNER JOIN county ON auctions.county_id=county.id WHERE auctions.status =  'offering' AND county.state_id='".$state_id."'";
 
 			}else{
-				$lSQLQuery ="SELECT DISTINCT  auctions.county_id, auctions.state_id, county.name FROM auctions INNER JOIN county ON auctions.county_id=county.id WHERE auctions.status =  'pending' AND county.state_id='".$state_id."'";
+				$lSQLQuery ="SELECT DISTINCT  auctions.county_id, auctions.state_id, county.name FROM auctions INNER JOIN county ON auctions.county_id=county.id WHERE (auctions.status =  'pending' OR auctions.status = 'scheduled') AND county.state_id='".$state_id."'";
 			}
 	
 	
@@ -947,10 +952,25 @@ function getLatestAuctions($start,$number_of_elements,$status, $is_auction){
 		}
 
 
+		function lockAuctionsForHour($futureHour){
+
+
+						$lSQLQuery = "UPDATE  `auctions` SET  `status` =  'scheduled' WHERE  `start_time` < '".$futureHour."' AND `is_auction`='yes' AND `status`='pending';";
+
+			echo($lSQLQuery);
+					$lResult = $this->mysql_query_ex($lSQLQuery);
+					if ($lResult) {
+					
+							return true;
+
+							}
+							return false;
+		}
+
 		function getPendingAuctions(){
 
 
-			$lSQLQuery = "SELECT DISTINCT start_time, state_id FROM auctions  WHERE status =  'pending' AND start_time LIKE  '".date('Y-m-d')."%';";
+			$lSQLQuery = "SELECT DISTINCT start_time, state_id FROM auctions  WHERE (`status` =  'pending'  OR `status` = 'scheduled') AND `start_time` LIKE  '".date('Y-m-d')."%';";
 
 
 	
@@ -1006,7 +1026,7 @@ function getLatestAuctions($start,$number_of_elements,$status, $is_auction){
 				$lSQLQuery = "";
 
 			 if($is_auction=="yes"){
-					$lSQLQuery = "SELECT * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.county_id =  '".mysql_real_escape_string($county_id)."' AND auctions.status='pending' ORDER BY auctions.id ASC;";
+					$lSQLQuery = "SELECT * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.county_id =  '".mysql_real_escape_string($county_id)."' AND (auctions.status='pending' OR auctions.status='scheduled') ORDER BY auctions.id ASC;";
 	
 
 			 }else{
@@ -1078,8 +1098,8 @@ function getLatestAuctions($start,$number_of_elements,$status, $is_auction){
 		function getRunningAuction($county_id){
 	
 			
-				$lSQLQuery = "SELECT * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.county_id =  '".mysql_real_escape_string($county_id)."' AND auctions.status='running' AND auctions.end_time>NOW() ORDER BY auctions.id ASC LIMIT 1;";
-	
+				$lSQLQuery = "SELECT * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.county_id =  '".mysql_real_escape_string($county_id)."' AND auctions.status='running' AND auctions.end_time>'".date('Y-m-d H:i:s')."' ORDER BY auctions.id ASC LIMIT 1;";
+
 					$lResult = $this->mysql_query_ex($lSQLQuery);
 					if ($lResult) {
 					
@@ -1094,9 +1114,9 @@ function getLatestAuctions($start,$number_of_elements,$status, $is_auction){
 					$nextEndTime=date("Y-m-d H:i:s", strtotime("+2 minutes 30 seconds"));
 
 
-					$lSQLQuery2 = "UPDATE  `auctions` SET  `status` =  'running',`end_time` = '".$nextEndTime."',`start_time` =  '".$nextStartTime."' WHERE  `start_time` < NOW() AND `county_id`='".$county_id."' AND `status`='pending' LIMIT 1;";
+					$lSQLQuery2 = "UPDATE  `auctions` SET  `status` =  'running',`end_time` = '".$nextEndTime."',`start_time` =  '".$nextStartTime."' WHERE  `start_time` < '".date('Y-m-d H:i:s')."' AND `county_id`='".$county_id."' AND `status`='scheduled' LIMIT 1;";
 
-			
+				
 
 					$lResult2 = $this->mysql_query_ex($lSQLQuery2);
 					if ($lResult2) {
@@ -1104,7 +1124,7 @@ function getLatestAuctions($start,$number_of_elements,$status, $is_auction){
 					
 
 
-												$lSQLQuery3 = "SELECT * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.county_id =  '".mysql_real_escape_string($county_id)."' AND auctions.status='running' AND auctions.end_time>NOW() ORDER BY auctions.id ASC LIMIT 1;";
+												$lSQLQuery3 = "SELECT * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.county_id =  '".mysql_real_escape_string($county_id)."' AND auctions.status='running' AND auctions.end_time>'".date('Y-m-d H:i:s')."' ORDER BY auctions.id ASC LIMIT 1;";
 								
 												$lResult3 = $this->mysql_query_ex($lSQLQuery3);
 												if ($lResult3) {
@@ -1284,7 +1304,7 @@ function updateInviteCode($codeArray) {
        function addInvoice($invoiceArray) {
 		
 		
-				$lSQLQuery = "INSERT INTO `invoices` ( `" . implode('`, `', array_keys($invoiceArray)) . "`, `date`) VALUES ('" . implode("' ,'", $invoiceArray) . "', NOW());";
+				$lSQLQuery = "INSERT INTO `invoices` ( `" . implode('`, `', array_keys($invoiceArray)) . "`, `date`) VALUES ('" . implode("' ,'", $invoiceArray) . "', '".date('Y-m-d H:i:s')."');";
 				$lResult = $this->mysql_query_ex($lSQLQuery);
 				if ($lResult) {
 					
@@ -1438,7 +1458,7 @@ function updateInvoice($invoiceArray) {
        function addRating($ratingArray) {
 		
 		
-				$lSQLQuery = "INSERT INTO `ratings` ( `" . implode('`, `', array_keys($ratingArray)) . "`, `date`) VALUES ('" . implode("' ,'", $ratingArray) . "', NOW());";
+				$lSQLQuery = "INSERT INTO `ratings` ( `" . implode('`, `', array_keys($ratingArray)) . "`, `date`) VALUES ('" . implode("' ,'", $ratingArray) . "', '".date('Y-m-d H:i:s')."');";
 				$lResult = $this->mysql_query_ex($lSQLQuery);
 				if ($lResult) {
 					
@@ -1569,7 +1589,48 @@ function updateRating($ratingArray) {
 
 
 
+		function getUserRating($user_id){
 
+
+
+		$lSQLQuery = "SELECT  SUM(rating)  FROM `ratings` WHERE `about_id` =  '".mysql_real_escape_string($user_id)."';";
+	
+	
+	
+				$lResult = $this->mysql_query_ex($lSQLQuery);
+				$outputArray=array();
+
+					if ($lResult) {
+					
+							$lArray = mysql_fetch_assoc($lResult);
+						
+							
+							
+					}
+			
+				
+		
+
+					$lSQLQuery = "SELECT  COUNT(*) FROM  `ratings` WHERE `about_id` =  '".mysql_real_escape_string($user_id)."';";
+					$lResult = $this->mysql_query_ex($lSQLQuery);
+					
+						if ($lResult) {
+						
+						$lArrayTwo= mysql_fetch_assoc($lResult);
+						}
+				
+				if($lArrayTwo['COUNT(*)']!=0){
+				$outputArray['rating']=$lArray['SUM(rating)']/$lArrayTwo['COUNT(*)'];
+				$outputArray['amount']=$lArrayTwo['COUNT(*)'];
+			}else{
+				$outputArray['rating']=0;
+				$outputArray['amount']=0;
+
+			}
+				return $outputArray;
+
+
+		}
 /*
 //
 //RATING
@@ -1581,7 +1642,7 @@ function updateRating($ratingArray) {
        function addUserFileData($userFileDataArray) {
 		
 		
-				$lSQLQuery = "INSERT INTO `user_files` ( `" . implode('`, `', array_keys($userFileDataArray)) . "`, `uploaded`) VALUES ('" . implode("' ,'", $userFileDataArray) . "', NOW());";
+				$lSQLQuery = "INSERT INTO `user_files` ( `" . implode('`, `', array_keys($userFileDataArray)) . "`, `uploaded`) VALUES ('" . implode("' ,'", $userFileDataArray) . "', '".date('Y-m-d H:i:s')."');";
 				$lResult = $this->mysql_query_ex($lSQLQuery);
 				if ($lResult) {
 					
