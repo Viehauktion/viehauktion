@@ -79,6 +79,8 @@ $lDB=connectDB();
 			if (!$lDB->failed){
 			
 $endedAuctions=array();
+
+$lDB->resetExampleAuctions();
 if($endedAuctions=$lDB->getEndedAuction("ended","","")){
 
 

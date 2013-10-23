@@ -50,7 +50,7 @@ color: #3e937e;
 </div>
 
   <div id="centerBox">
-  	<h2>Weser-Ems-Schwein.de</h2>
+  	<h2>Viehauktion.com</h2>
 	Bitte geben Sie Ihren Einladungscode ein:
 		<br/>
 

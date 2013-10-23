@@ -33,16 +33,10 @@
   <div class="span6">
   	<br/><br/>
   	<a href="?view=how_it_works" ><? echo($texts['how_it_works_headline']); ?></a>
-    <p>To Do:</p>
-    <p>- Erste Auktion ist provisionsfrei.</p>
-    <p>- Auswahl, ob anonym angeboten werden soll</p>
-    <p>- Käufer und Verkäufer Bewertung</p>
-    <p>- Aktivierungsmail Seller/Buyer </p>
-    <p>- Kauf Mail</p>
-    <p>- Gekauft Mail</p>
-    <p>- Pagination</p>
-    <p>- Darstellung nächster Auktionen</p>
-    <p>- <strong>Breadcrumb</strong></p>
+      <br/><br/>
+    <a href="?action=get_running_auction&view=show_running_auction&is_auction=yes&state_id=0&county_id=0" ><? echo($texts['example_auction']); ?></a>
+ 
+ 
   </div>
     <div div="socialMedia" class="class4 pull-right">
 <div class="fb-like-box" data-href="https://www.facebook.com/pages/Viehauktioncom/126104434226988" data-width="300" data-height="241" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="true"></div>

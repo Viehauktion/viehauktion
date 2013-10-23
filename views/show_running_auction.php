@@ -367,7 +367,7 @@ function displayResponse(data){
 											currentbidstring+=".00"
 										}
 
-									$("#curent_price").html(currentbidstring);
+									$("#curent_price").html(currentbidstring+ " €");
 
 
 									$("#your_bid").empty();
@@ -398,7 +398,7 @@ function displayResponse(data){
 								//}
 
 
-								$("#end_time").html(data.current_auction.end_time);
+								$("#end_time").html(data.current_auction.end_time.substr(10,10));
 								$("#bids").html(data.current_auction.bids);
 								$("#start_time").html(data.current_auction.start_time);
 								$("#current_time").html(data.current_auction.current_time);

@@ -1149,6 +1149,50 @@ function getLatestAuctions($start,$number_of_elements,$status, $is_auction){
 		}
 
 
+function resetExampleAuctions(){
+
+
+			
+
+			$lSQLQuery = "SELECT  COUNT(*) FROM  `auctions`  WHERE  `state_id` = '0' AND `county_id`='0' AND `status`='running';";
+			$flag=false;
+
+
+				$lResult = $this->mysql_query_ex($lSQLQuery);
+					
+						if ($lResult) {
+						
+							$lArrayTwo=mysql_fetch_assoc($lResult);
+							if($lArrayTwo['COUNT(*)']>1){
+									$flag=true;
+							}
+
+						}
+
+						if($flag){
+
+							$lSQLQuery = "UPDATE  `auctions` SET  `status` =  'scheduled',`end_time` = '0000-00-00 00:00:00',`start_time` =  '".date("Y-m-d H:i:s", strtotime("-1 Minute"))."', `buyer_id`='0', `mail_status`='', `bids`='0' WHERE  `state_id` = '0' AND `county_id`='0' AND `status`='running' ORDER BY 'end_time' ASC  LIMIT 1;";
+				
+						}else{
+
+							$lSQLQuery = "UPDATE  `auctions` SET  `status` =  'scheduled',`end_time` = '0000-00-00 00:00:00',`start_time` =  '".date("Y-m-d H:i:s", strtotime("-1 Minute"))."', `buyer_id`='0', `mail_status`='', `bids`='0' WHERE  `state_id` = '0' AND `county_id`='0' AND `status`='ended'  LIMIT 1;";
+						}
+
+					$lResult = $this->mysql_query_ex($lSQLQuery);
+					if ($lResult) {
+					
+								return true;
+							
+							
+							
+					}
+			
+					return false;	
+
+}
+
+
+
 function getAuctionLikeRunningAction($auction_id){
 
 			$lSQLQuery = "SELECT * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.id =  '".mysql_real_escape_string($auction_id)."' LIMIT 1;";

@@ -446,7 +446,7 @@ Viehauktion.com schafft einen frei zugänglichen Überblick über Marktlage und 
 Viehauktion.com tritt dabei lediglich als Vermittler zwischen den Geschäftsparteien auf. Die Plattform selbst kann keine Tiere erwerben oder anbieten. Stattdesssen erhebt sie für die Nutzung der ersteren eine Provisionsgebühr pro rechtswirksam verkauftem Tier. Diese zahlt der Einsteller der Annonce.
 ";
 
-
+$texts['example_auction']="Beispielauktion";
 $texts['how_it_works_headline']="Wie es funktioniert";
 $texts["how_it_works_description"]="Zweimal pro Woche finden auf viehauktion.com eine Mastschwein Auktion statt.<br/> 
 Als Anbieter können Sie sich registrieren und jeweils bis 10 Minuten vor der Auktion Ihr Kontingent anbieten.<br/> 
