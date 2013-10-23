@@ -1,7 +1,7 @@
 <div id="registration">
 
 
-<form method="post" action="?" enctype="multipart/form-data" >
+<form method="post" action="?"  enctype="multipart/form-data" >
   <fieldset>
     <legend><? echo($texts['registration_headline']); ?></legend>
     <p><? echo($texts['registration_description']); ?></p>
@@ -29,10 +29,46 @@
     <input type="text" id="registration_firstname" name="firstname" placeholder="<? echo($texts['registration_firstname']); ?>"><br/>
         <input type="text" id="registration_lastname" name="lastname" placeholder="<? echo($texts['registration_lastname']); ?>"><br/>
          <input type="text" id="registration_street" name="street" placeholder="<? echo($texts['registration_street']); ?>">&nbsp;
-           <input type="text" id="registration_number" name="number" placeholder="<? echo($texts['registration_number']); ?>"><br/>
+           <input type="text" id="registration_number" class="shortend" name="number" placeholder="<? echo($texts['registration_number']); ?>"><br/>
              <input type="text" id="registration_postcode" name="postcode" placeholder="<? echo($texts['registration_postcode']); ?>">&nbsp;
-            <input type="text"id="registration_city" name="city" placeholder="<? echo($texts['registration_city']); ?>"><br/><br/>
+            <input type="text"id="registration_city" name="city" placeholder="<? echo($texts['registration_city']); ?>"><br/>
 
+<table>
+      <tr><td>
+  
+          <label class="control-label" for="state"><? echo($texts['state']); ?>:</label>
+           </td><td class="rightSide">
+         
+            <select name="state"  id="state" onchange="getCounties()">
+              <option value="1">Bayern</option>
+              <option value="2">Baden-Württemberg</option>
+              <option value="3">Rheinland-Pfalz</option>
+              <option value="4">Mecklenburg-Vorpommern</option>
+              <option value="5">Sachsen-Anhalt</option>
+              <option value="6">Brandenburg</option>
+              <option value="7" selected="selected" >Niedersachsen</option>
+              <option value="8">Schleswig-Holstein</option>
+              <option value="9">Nordrhein-Westfalen</option>
+              <option value="10">Thüringen</option>
+              <option value="11">Hessen</option>
+              <option value="12">Sachsen</option>
+              <option value="13">Berlin</option>
+              <option value="14">Saarland</option>
+              <option value="15">Bremen</option>
+              <option value="16">Hamburg</option>
+            </select>
+         </td></tr>
+	<tr><td>
+          <label class="control-label" for="county"><? echo($texts['county']); ?>:</label>
+          </td><td class="rightSide">            
+          <select name="county" class="counties"  id="county" >
+            </select>
+        </td></tr>
+      
+     </table>
+
+
+<br/>
    <input type="text"id="registration_phone" name="phone" placeholder="<? echo($texts['registration_phone']); ?>"><br/>
 
 <h4><? echo($texts['registration_business']); ?></h4>

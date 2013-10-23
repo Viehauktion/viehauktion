@@ -217,8 +217,8 @@ return $nextDates;
 		   
 		   			
 					
-					case 'register_user': registerUser(true,  $_REQUEST['password'], $_REQUEST['email'], $_REQUEST['company'], $_REQUEST['firstname'], $_REQUEST['lastname'],$_REQUEST['street'],$_REQUEST['number'],$_REQUEST['postcode'],$_REQUEST['city'], $_REQUEST['phone'], $_REQUEST['is_buyer'], $_REQUEST['is_seller'], $_REQUEST['newsletter'], $_REQUEST['hrb_nr'], $_REQUEST['retail_nr'], $_REQUEST['stall_nr'], $_REQUEST['vat_nr'], $lang); break;
-					case 'edit_user': registerUser(false, $_REQUEST['password'], $_REQUEST['email'], $_REQUEST['company'], $_REQUEST['firstname'], $_REQUEST['lastname'],$_REQUEST['street'],$_REQUEST['number'],$_REQUEST['postcode'],$_REQUEST['city'], $_REQUEST['phone'], $_REQUEST['is_buyer'], $_REQUEST['is_seller'], $_REQUEST['newsletter'], $_REQUEST['hrb_nr'], $_REQUEST['retail_nr'], $_REQUEST['stall_nr'], $_REQUEST['vat_nr'],  $lang); break;
+					case 'register_user': registerUser(true,  $_REQUEST['password'], $_REQUEST['email'], $_REQUEST['company'], $_REQUEST['firstname'], $_REQUEST['lastname'],$_REQUEST['street'],$_REQUEST['number'],$_REQUEST['postcode'],$_REQUEST['city'], $_REQUEST['county'],$_REQUEST['state'], $_REQUEST['phone'], $_REQUEST['is_buyer'], $_REQUEST['is_seller'], $_REQUEST['newsletter'], $_REQUEST['hrb_nr'], $_REQUEST['retail_nr'], $_REQUEST['stall_nr'], $_REQUEST['vat_nr'], $lang); break;
+					case 'edit_user': registerUser(false, $_REQUEST['password'], $_REQUEST['email'], $_REQUEST['company'], $_REQUEST['firstname'], $_REQUEST['lastname'],$_REQUEST['street'],$_REQUEST['number'],$_REQUEST['postcode'],$_REQUEST['city'], $_REQUEST['county'],$_REQUEST['state'], $_REQUEST['phone'], $_REQUEST['is_buyer'], $_REQUEST['is_seller'], $_REQUEST['newsletter'], $_REQUEST['hrb_nr'], $_REQUEST['retail_nr'], $_REQUEST['stall_nr'], $_REQUEST['vat_nr'],  $lang); break;
 					
 
 					case 'login_user': loginUser($_REQUEST['identifier'], $_REQUEST['password']);  break;
@@ -279,7 +279,7 @@ return $nextDates;
 					case 'delete_user':	 changeUserStatus($_REQUEST['user_id'], 3); getBuyerToConfirm(1); getUsers(1);break;
 					case 'confirm_user':	 changeUserStatus($_REQUEST['user_id'], 2); getBuyerToConfirm(1);  getUsers(1);  break;
 					case 'imitate_user':	 imitateUser($_REQUEST['user_id']); break;
-					case 'show_full_user':	getUserDetails($_REQUEST['user_id']); break;
+					case 'show_full_user':	getUserDetails($_REQUEST['user_id'], $_REQUEST['auction_id']); break;
 					case 'get_finished_offers': getFinishedOffers($_REQUEST['page']); break;
 					case 'get_finished_auctions': getFinishedAuctions($_REQUEST['page']); break;
 

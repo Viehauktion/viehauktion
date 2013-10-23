@@ -5,7 +5,7 @@
 	
 
 	
-	function registerUser($is_new, $password,  $email, $company, $firstname, $lastname,$street,$number,$postcode,$city, $phone, $is_buyer, $is_seller, $is_newsletter,$hrb_nr, $retail_nr, $stall_nr, $vat_nr, $lang){
+	function registerUser($is_new, $password,  $email, $company, $firstname, $lastname,$street,$number,$postcode,$city, $county, $state, $phone, $is_buyer, $is_seller, $is_newsletter,$hrb_nr, $retail_nr, $stall_nr, $vat_nr, $lang){
 	global $gBase;
 		
 		$lDB=connectDB();
@@ -232,6 +232,8 @@
 									$userAddress['city']=$city;
 									$userAddress['user_id']=$userArray['id'];
 									$userAddress['type']="invoice";
+									$userAddress['state_id']=$state;
+									$userAddress['county_id']=$county;
 									
 										if($is_new){
 											$lDB->addUserAddress($userAddress);
@@ -785,14 +787,32 @@ function sendActivationMailAgain($lang){
 		}
 
 
-	function getUserDetails($user_id){
+	function getUserDetails($user_id, $auction_id=''){
 
 
 		global $gBase;
-		if($gBase->User['role'] == "admin") {
+	
 		$lDB=connectDB();
 		if (!$lDB->failed){
 			$userArray=array();
+			if($auction_id!=''){
+				$auctionArray=array();
+				$flag=false;
+				if($auctionArray=$lDB->getAuctionById($auction_id)){
+
+					if($auctionArray['user_id']==$gBase->User['id'] && $user_id==$auctionArray['buyer_id']){
+						$flag=true;
+					}
+
+					if($auctionArray['buyer_id']==$gBase->User['id'] && $user_id==$auctionArray['user_id']){
+
+						$flag=true;
+					}
+
+				}
+
+			}
+			if($gBase->User['role'] == "admin" || $flag) {
 				if($userArray=$lDB->getUserByID($user_id)){
 					$gBase->RawData=array();
 					$gBase->RawData["user_data"]=$userArray;
@@ -801,11 +821,10 @@ function sendActivationMailAgain($lang){
 					$gBase->RawData["ratings_about_user"]=$lDB->getRatingForUserId($user_id);
 					$gBase->RawData["ratings_from_user"]=$lDB->getRatingFromUserId($user_id);
 
-
-
 				}
 
-		}
+			}
+
 	}
 
 		

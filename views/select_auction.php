@@ -13,9 +13,9 @@
       <input type="hidden" name="view" value="<? echo($_form_view); ?>" />
       <input type="hidden" name="is_auction" value="<? echo($is_auction); ?>" />
         <div class="control-group">
-          <label class="control-label" for="state_id"><? echo($texts['state']); ?></label>
+          <label class="control-label" for="state_id_for_auction"><? echo($texts['state']); ?></label>
           <div class="controls">
-            <select name="state_id"  id="state_id" onchange="getPendingCounties()">
+            <select name="state_id"  id="state_id_for_auction" onchange="getPendingCountiesForAuction()">
               <option value="1">Bayern</option>
               <option value="2">Baden-Württemberg</option>
               <option value="3">Rheinland-Pfalz</option>
@@ -38,7 +38,7 @@
         <div class="control-group">
           <label class="control-label" for="county_id"><? echo($texts['county']); ?></label>
           <div class="controls">
-            <select name="county_id"  id="county_id" >
+            <select name="county_id"  id="county_id_for_auction" >
             </select>
           </div>
         </div>
@@ -51,21 +51,21 @@
 
 <script type="text/javascript">
 
-function getPendingCounties(){
+function getPendingCountiesForAuction(){
 
 
 
-  $.getJSON("index.php", { "action": "get_pending_auction_counties", "view": "add_address_modal", "mode":"ajax", "state_id":$("#state_id").val(), "is_auction":"<? echo($is_auction); ?>", "sid":"<? echo($_COOKIE["PHPSESSID"]); ?>"},
+  $.getJSON("index.php", { "action": "get_pending_auction_counties", "view": "add_address_modal", "mode":"ajax", "state_id":$("#state_id_for_auction").val(), "is_auction":"<? echo($is_auction); ?>", "sid":"<? echo($_COOKIE["PHPSESSID"]); ?>"},
 			
 			  				 function(data){
 			 				 session_id=data.conf.session_id;
 							 	html="";
-								$("#county_id").empty();
+							
 							for(i=0;i<data.raw_data.length;i++){
 								html+='<option value="'+data.raw_data[i].county_id+'" >'+data.raw_data[i].name+'</option>';
 								}	
 						
-			 				$("#county_id").append(html);
+			 				$("#county_id_for_auction").html(html);
 						 });
 	
 	}
@@ -94,6 +94,6 @@ function getPendingCounties(){
 	}
 
 
-getPendingCounties();
+getPendingCountiesForAuction();
 </script>
 

@@ -12,7 +12,7 @@
 
   <div id="stage" class="span12">
 
-
+<div id="inner_stage" class="well span7" >
     <h1><? echo($texts["stage_banner"]); ?></h1>
     <ul class="unstyled">
       <li>
@@ -26,7 +26,7 @@
     </ul>
     <button onclick="submitSelectAuctionForm();" class="btn btn-primary btn-large">Jetzt Ausprobieren</button>
     <a href="?view=how_it_works" class="btn"><? echo($texts['how_it_works_headline']); ?></a>
-
+</div>
   </div>
 
 

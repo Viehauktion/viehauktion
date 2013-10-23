@@ -1034,13 +1034,13 @@ global $gBase;
 					$metadataArray=$lDB->getAuctionMetadataByAuctionId($auction_id);
 					$fullAuction["metadata"]=$metadataArray;
 					$fullAuction["metadata"]["metadata"]=json_decode($metadataArray["metadata"], true);
-
+					$fullAuction["user_rating"]=$lDB->getUserRating($auctionArray["user_id"]);
 					$address=$lDB->getUserAddressesById($metadataArray["user_address_id"]);
 					if((($auctionArray["buyer_id"]==$gBase->User['id'])||($auctionArray["user_id"]==$gBase->User['id'])) && ($auctionArray["status"]=="ended" || $auctionArray["status"]=="confirmed" )){
 						$sellerArray=array();
 						$sellerArray=$lDB->getUserByID($auctionArray["user_id"]);
 						$fullAuction["seller"]=$sellerArray;
-						$fullAuction["seller_rating"]=$lDB->getUserRating($currentAuction["user_id"]);
+						$fullAuction["seller_rating"]=$lDB->getUserRating($auctionArray["user_id"]);
 						$fullAuction["address"]=$address;
 					}
 

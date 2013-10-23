@@ -195,7 +195,11 @@ if(count($users)>0){
 
      
 
+      <?
 
+if($gBase->User["role"]=='admin'){
+
+   ?>
 
 
 
@@ -267,6 +271,13 @@ if(count($users)>0){
     </p>
 
 </div>
+
+      <?
+
+}
+
+   ?>
+
 
 
 
@@ -342,8 +353,6 @@ if(count($users)>0){
     </p>
 
 </div>
-
-
 
 
 

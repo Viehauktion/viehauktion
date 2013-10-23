@@ -519,7 +519,7 @@ function submitFeedback(){
         <div class="control-group">
           <label class="control-label" for="county"><? echo($texts['county']); ?></label>
           <div class="controls">
-            <select name="county"  id="county" >
+            <select name="county" class="counties"  id="county" >
             </select>
           </div>
         </div>
@@ -538,12 +538,12 @@ function submitFeedback(){
 			  function(data){
 			 				 session_id=data.conf.session_id;
 							 	html="";
-								$("#county").empty();
+								$(".counties").empty();
 							for(i=0;i<data.raw_data.length;i++){
 								html+='<option value="'+data.raw_data[i].id+'" >'+data.raw_data[i].name+'</option>';
 								}	
 						
-			 				$("#county").append(html);
+			 				$(".counties").append(html);
 			 				
 						 });
 
@@ -558,12 +558,12 @@ function getCounties(){
 			  function(data){
 			 				 session_id=data.conf.session_id;
 							 	html="";
-								$("#county").empty();
+								$(".counties").empty();
 							for(i=0;i<data.raw_data.length;i++){
 								html+='<option value="'+data.raw_data[i].id+'" >'+data.raw_data[i].name+'</option>';
 								}	
 						
-			 				$("#county").append(html);
+			 				$(".counties").append(html);
 						 });
 	
 	}

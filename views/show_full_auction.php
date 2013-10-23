@@ -16,12 +16,19 @@
 <div  id="main_data" class="leftView well">
 
 <p>
-	<table>
+	<table class="table">
 		<tr><td><strong><? if($_REQUEST['is_auction']=='yes'){echo($texts["auction_id"]) ;}else{ echo($texts["offer_id"]) ;}?>:</strong></td><td id="auction_id"><? echo($gBase->CurrentAuction["auction"]["id"]);?></td></tr>
 		<tr><td><strong><? echo($texts['auction_amount']); ?>:</strong></td><td id="amount_of_animals"><? echo($gBase->CurrentAuction["metadata"]["amount_of_animals"]);?></td></tr>
 		<tr><td><strong><? echo($texts['auction_city']); ?>:</strong></td><td  id="city"><? echo($gBase->CurrentAuction["auction"]["city"]);?></td></tr>
 	
+<tr><td class="leftSide"><strong><? echo($texts['auction_user_rating']); ?>:</strong></td><td  id="user_rating" >
+		<div class="emptyPigsRating"  ></div>
+	<div class="fullPigsRating" style="width:<? echo(($gBase->CurrentAuction["user_rating"]["rating"]*33.33)); ?>px" ></div>
 
+
+	<div class="amountOfRatings"><? echo("(".$gBase->CurrentAuction["user_rating"]["amount"].")");?></div>
+</td></tr>
+	
 
 
 <!--
@@ -187,14 +194,15 @@ echo("<p >".$texts['auction_is_seller']."</p>");
 
 
 
-<? if( ($gBase->CurrentAuction["auction"]["status"]=="ended" || $gBase->CurrentAuction["auction"]["status"]=="confirmed") && $gBase->CurrentAuction["auction"]["buyer_id"]==$gBase->User["id"]){ ?>
+<? if( ($gBase->CurrentAuction["auction"]["status"]=="ended" || $gBase->CurrentAuction["auction"]["status"]=="confirmed") && ($gBase->CurrentAuction["auction"]["buyer_id"]==$gBase->User["id"] || $gBase->User['role']=='admin')){ ?>
 
 <div id="seller_box"> 
   <h2><? echo($texts['seller']); ?></h2>
      <p>
-     	<? echo($gBase->CurrentAuction["seller"]["firstname"]." ".$gBase->CurrentAuction["seller"]["lastname"]); ?><br />
+     	<a href="?view=show_full_user&action=show_full_user&user_id=<? echo($gBase->CurrentAuction["auction"]["user_id"]);?>&auction_id=<? echo($gBase->CurrentAuction["auction"]["id"]);?>" ><? echo($gBase->CurrentAuction["seller"]["firstname"]." ".$gBase->CurrentAuction["seller"]["lastname"]); ?></a><br />
 		<? echo($gBase->CurrentAuction["address"]["street"]." ".$gBase->CurrentAuction["address"]["number"]); ?><br />
 		<? echo($gBase->CurrentAuction["address"]["postcode"]." ".$gBase->CurrentAuction["address"]["city"]); ?><br />
+		
 		<? echo($texts['registration_phone'].": ".$gBase->CurrentAuction["seller"]["phone"]."<br />".$texts['registration_email'].": ".$gBase->CurrentAuction["seller"]["email"]); ?><br />
      </p>
        
@@ -205,12 +213,12 @@ echo("<p >".$texts['auction_is_seller']."</p>");
 ?>
 
 
-<? if(($gBase->CurrentAuction["auction"]["status"]=="ended" || $gBase->CurrentAuction["auction"]["status"]=="confirmed")  && $gBase->CurrentAuction["auction"]["user_id"]==$gBase->User["id"]){ ?>
+<? if(($gBase->CurrentAuction["auction"]["status"]=="ended" || $gBase->CurrentAuction["auction"]["status"]=="confirmed")  && ($gBase->CurrentAuction["auction"]["user_id"]==$gBase->User["id"] || $gBase->User['role']=='admin')){ ?>
 
 <div id="buyer_box"> 
   <h2><? echo($texts['buyer']); ?></h2>
      <p>
-     	<? echo($gBase->CurrentAuction["buyer"]["firstname"]." ".$gBase->CurrentAuction["buyer"]["lastname"]); ?><br />
+     	<a href="?view=show_full_user&action=show_full_user&user_id=<? echo($gBase->CurrentAuction["auction"]["buyer_id"]);?>&auction_id=<? echo($gBase->CurrentAuction["auction"]["id"]);?>" ><? echo($gBase->CurrentAuction["buyer"]["firstname"]." ".$gBase->CurrentAuction["buyer"]["lastname"]); ?></a><br />
 		<? echo($gBase->CurrentAuction["buyer"]["address"]["street"]." ".$gBase->CurrentAuction["buyer"]["address"]["number"]); ?><br />
 		<? echo($gBase->CurrentAuction["buyer"]["address"]["postcode"]." ".$gBase->CurrentAuction["buyer"]["address"]["city"]); ?><br />
 	
@@ -228,8 +236,8 @@ echo("<p >".$texts['auction_is_seller']."</p>");
 <? if($_REQUEST['is_auction']=='yes'){ ?>
 <p>
 	<table>
-		<tr><td><strong><? echo($texts['auction_end_time']) ;?>:</strong></td><td id="end_time" ><? echo(substr($gBase->CurrentAuction["auction"]["end_time"], 10));?></td></tr>
-		<tr><td><strong><? echo($texts['auction_bids']); ?>:</strong></td><td id="bids" ><? echo($gBase->CurrentAuction["auction"]["bids"]);?></td></tr>
+		<tr><td><strong><? echo($texts['auction_end_time']) ;?>:</strong></td><td id="end_time" ><? echo(" ".substr($gBase->CurrentAuction["auction"]["end_time"], 10));?></td></tr>
+		<tr><td><strong><? echo($texts['auction_bids']); ?>:</strong></td><td id="bids" ><? echo(" ".$gBase->CurrentAuction["auction"]["bids"]);?></td></tr>
 	</table>
 </p>
 <? 
@@ -240,7 +248,7 @@ echo("<p >".$texts['auction_is_seller']."</p>");
 <? if($_REQUEST['is_auction']=='no'){ ?>
 <p>
 	<table>
-		<tr><td><strong><? echo($texts['offer_creation_date']) ;?>:</strong></td><td id="end_time" ><? echo(substr($gBase->CurrentAuction["auction"]["created"], 0, 10));?></td></tr>
+		<tr><td><strong><? echo($texts['offer_creation_date']) ;?>:</strong></td><td id="end_time" ><? echo(" ".date("d.m.y", strtotime($gBase->CurrentAuction["auction"]["created"])));?></td></tr>
 	
 	</table>
 </p>

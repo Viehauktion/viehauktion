@@ -27,7 +27,7 @@
     </ul>
   </div>
   <div class="span12 copy">
-    &copy <? echo(date("Y")); ?> - Meyborg UG (haftungsbeschänkt)
+    &copy <? echo(date("Y")); ?> - 2M Viehauktionen UG (haftungsbeschänkt)
   </div>
 </div>
 

@@ -97,6 +97,12 @@ body {
   left: 230px;
   color: #FFFFFF;
 }
+#home #inner_stage {
+  margin: 100px 0 0 100px;
+  color: #ffff;
+  filter: alpha(opacity=90);
+  opacity: 0.9;
+}
 .page {
   min-height: 400px;
 }
@@ -117,6 +123,23 @@ td.rightSide {
 #schedule {
   margin-top: 50px;
   font-size: 12px;
+}
+#main_data .emptyPigsRating {
+  position: absolute;
+  width: 167px;
+  height: 20px;
+  background-image: url(../assets/5pigs_empty.png);
+  background-size: 100%;
+}
+#main_data .fullPigsRating {
+  position: absolute;
+  width: 167px;
+  height: 20px;
+  background-image: url(../assets/5pigs.png);
+  background-size: auto 100%;
+}
+#main_data .amountOfRatings {
+  margin-left: 180px;
 }
 #main_data {
   margin-top: 20px;

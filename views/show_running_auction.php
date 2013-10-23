@@ -12,11 +12,18 @@
 
 <div id="main_data" class="well"> 	
 <p >
-	<table>
+	<table class="table">
 		<tr><td  class="leftSide"><strong><? echo($texts["auction_id"]) ;?>:</strong></td><td id="auction_id" class="rightSide"><? echo($gBase->CurrentAuction["auction_id"]);?></td></tr>
 		<tr><td  class="leftSide"><strong><? echo($texts['auction_amount']); ?>:</strong></td><td id="amount_of_animals" class="rightSide"><? echo($gBase->CurrentAuction["amount_of_annimals"]);?></td></tr>
 		<tr><td class="leftSide"><strong><? echo($texts['auction_city']); ?>:</strong></td><td  id="city" class="rightSide"><? echo($gBase->CurrentAuction["city"]);?></td></tr>
-		<tr><td class="leftSide"><strong><? echo($texts['auction_user_rating']); ?>:</strong></td><td  id="user_rating" class="rightSide"><? echo($gBase->CurrentAuction["user_rating"]["rating"]." (".$gBase->CurrentAuction["user_rating"]["amount"].")");?></td></tr>
+		<tr><td class="leftSide"><strong><? echo($texts['auction_user_rating']); ?>:</strong></td><td  id="user_rating" class="rightSide">
+
+		<div class="emptyPigsRating"  ></div>
+	<div class="fullPigsRating" style="width:<? echo(($gBase->CurrentAuction["user_rating"]["rating"]*33.33)); ?>px" ></div>
+
+
+	<div class="amountOfRatings"><? echo("(".$gBase->CurrentAuction["user_rating"]["amount"].")");?></div>
+</td></tr>
 	
 	
 
@@ -151,7 +158,7 @@ echo("<p>".$texts['auction_is_buyer']."</p>");
 </p>
 </div>
 
-<div id="bid_box" class="well"> 
+<div id="bid_box" class="well hide"> 
 
       <!--<div class="control-group">
         <label class="control-label" for="your_bid"><? echo($texts['auction_your_bid']); ?></label>
@@ -298,6 +305,7 @@ function submitBid(){
 
 var currentbid=0;
 function Runden2Dezimal(x) { Ergebnis = Math.round(x * 100) / 100 ; return Ergebnis; }
+function Runden3Dezimal(x) { Ergebnis = Math.round(x * 1000) / 1000 ; return Ergebnis; }
 
 function displayResponse(data){
 
@@ -308,10 +316,12 @@ function displayResponse(data){
 									$("#bid_box").hide();
 									scheduleNeedsUpdate=true;
 
-								}else{
+
+}else{
 									$("#waiting_box").hide();
 									$("#bid_box").show();
 								}
+								
 
 
 								if(data.current_auction.is_buyer=="yes"){
@@ -329,7 +339,11 @@ function displayResponse(data){
 								if(data.current_auction.user_rating.amount==0){
 									$("#user_rating").html('<? echo($texts['show_auction_empty_rating']) ?>');
 								}else{
-								$("#user_rating").html(""+data.current_auction.user_rating.rating+" ("+data.current_auction.user_rating.amount+")");
+
+									width=(data.current_auction.user_rating.rating*33.3);
+								$("#user_rating").html('<div class="emptyPigsRating"  ></div><div class="fullPigsRating" style="width:'+width+'px" ></div><div class="amountOfRatings">('+data.current_auction.user_rating.amount+')</div>');
+
+
 								}
 
 								$("#auction_id").html(data.current_auction.auction_id);
@@ -337,6 +351,8 @@ function displayResponse(data){
 								$("#city").html(data.current_auction.city);
 
 								$("#map").attr('src', 'http://maps.googleapis.com/maps/api/staticmap?center='+data.current_auction.postcode+"+"+data.current_auction.city+'&zoom=10&size=500x370&maptype=roadmap&sensor=false');
+
+
 
 
 								//if($("#curent_price").html()!=data.current_auction.current_entity_price){
@@ -372,12 +388,16 @@ function displayResponse(data){
 
 									$("#your_bid").empty();
 										for(i=1;i<11;i++){
-											nextBid=Runden2Dezimal(currentbid+0.01*i);
+											nextBid=Runden3Dezimal(currentbid+0.005*i);
 											splitted=nextBid.toString().split(".");
 											
 											nextbidstring=""+nextBid;
 
 										if(splitted.length>1){
+											if(splitted[1].length<3){
+
+												nextbidstring+="0";
+											}
 											if(splitted[1].length<2){
 
 												nextbidstring+="0";
@@ -387,7 +407,7 @@ function displayResponse(data){
 											}
 										}else{
 
-											nextbidstring+=".00";
+											nextbidstring+=".000";
 										}
 											html+='<option value="'+nextbidstring+'" >'+nextbidstring+' €/kg</option>';
 										}	

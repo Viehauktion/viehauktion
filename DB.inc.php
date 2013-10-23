@@ -930,7 +930,7 @@ function getLatestAuctions($start,$number_of_elements,$status, $is_auction){
 				$lSQLQuery ="SELECT DISTINCT  auctions.county_id, auctions.state_id, county.name FROM auctions INNER JOIN county ON auctions.county_id=county.id WHERE auctions.status =  'offering' AND county.state_id='".$state_id."'";
 
 			}else{
-				$lSQLQuery ="SELECT DISTINCT  auctions.county_id, auctions.state_id, county.name FROM auctions INNER JOIN county ON auctions.county_id=county.id WHERE (auctions.status =  'pending' OR auctions.status = 'scheduled') AND county.state_id='".$state_id."'";
+				$lSQLQuery ="SELECT DISTINCT  auctions.county_id, auctions.state_id, county.name FROM auctions INNER JOIN county ON auctions.county_id=county.id WHERE (auctions.status =  'pending' OR auctions.status = 'scheduled' OR auctions.status = 'running' ) AND county.state_id='".$state_id."'";
 			}
 	
 	
@@ -1640,7 +1640,8 @@ function updateRating($ratingArray) {
 		$lSQLQuery = "SELECT  SUM(rating)  FROM `ratings` WHERE `about_id` =  '".mysql_real_escape_string($user_id)."';";
 	
 	
-	
+
+
 				$lResult = $this->mysql_query_ex($lSQLQuery);
 				$outputArray=array();
 
@@ -1656,14 +1657,15 @@ function updateRating($ratingArray) {
 		
 
 					$lSQLQuery = "SELECT  COUNT(*) FROM  `ratings` WHERE `about_id` =  '".mysql_real_escape_string($user_id)."';";
+			
 					$lResult = $this->mysql_query_ex($lSQLQuery);
 					
 						if ($lResult) {
 						
 						$lArrayTwo= mysql_fetch_assoc($lResult);
 						}
-				
-				if($lArrayTwo['COUNT(*)']!=0){
+			
+				if($lArrayTwo['COUNT(*)']!='0'){
 				$outputArray['rating']=$lArray['SUM(rating)']/$lArrayTwo['COUNT(*)'];
 				$outputArray['amount']=$lArrayTwo['COUNT(*)'];
 			}else{
