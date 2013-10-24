@@ -1,7 +1,7 @@
 <?PHP
 
 
-error_reporting(E_ERROR | E_WARNING | E_PARSE);
+error_reporting(0);
 
 ini_set('default_charset','utf-8');
 	
@@ -249,7 +249,7 @@ return $nextDates;
 					case "edit_auction":  editAuction($_REQUEST['category_id'], $_REQUEST['auction_id'], $_REQUEST['is_preview'], $_REQUEST['is_auction'], $_REQUEST['is_main_auction'],$_REQUEST['is_vezg'], $_REQUEST['auction_date'], $_REQUEST['endtime'], $_REQUEST['auction_amount'], $_REQUEST['auction_min_entitity_price'], $_REQUEST['auction_origin'], $_REQUEST['form'], $_REQUEST['auction_pigs_form_value'], $_REQUEST['autoform'], $_REQUEST['auction_pigs_autoform_value'], $_REQUEST['auction_pigs_qs'], $_REQUEST['auction_pigs_samonelle_state'], $_REQUEST['address'], $_REQUEST['auction_loading_stations_amount'], $_REQUEST['auction_loading_stations_distance'], $_REQUEST['auction_loading_stations_vehicle'], $_REQUEST['auction_loading_stations_availability'], $_REQUEST['auction_loading_stations_availability_til'], $_REQUEST['auction_additional_informations']); getUserAuctions($gBase->User['id'], false); break;
 					case "save_auction":	saveAuction($_REQUEST['auction_id'], $_REQUEST['is_auction'], "yes"); break;
 
-					case "get_pending_auction_states":	getPendingStates($_REQUEST['start_time']); break;
+					case "get_pending_auction_states":	getPendingStates($_REQUEST['is_auction']); break;
 					case "get_pending_auction_counties":	getPendingCounties($_REQUEST['state_id'], $_REQUEST['is_auction']); break;
 					case "get_next_auction":		getNextAuction($_REQUEST['county_id'],$_REQUEST['state_id'], $_REQUEST['is_auction']); break;
 					case "get_running_auction":		getRunningAuction($_REQUEST['county_id'],$_REQUEST['state_id'], $_REQUEST['auction_id']); break;

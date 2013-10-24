@@ -309,6 +309,11 @@ function Runden3Dezimal(x) { Ergebnis = Math.round(x * 1000) / 1000 ; return Erg
 
 function displayResponse(data){
 
+								if(data.current_auction.auction_id==null){
+
+										return;
+								}
+
 								currentAuctionID=data.current_auction.auction_id;
 
 								if(data.current_auction.running=="no"){
@@ -455,8 +460,8 @@ function displayResponse(data){
 										pendingHTML+='</td>';
 										pendingHTML+='<td>';     	
 								     	pendingHTML+='<table class="table">';
-										pendingHTML+='<tr><td><strong><? echo($texts['auction_min_entitity_price']) ;?>:</strong></td><td >'+data.raw_data[i].min_entity_price+'</td></tr>';
-										pendingHTML+='<tr><td><strong><? echo($texts['auction_highest_price']); ?>:</strong></td><td >'+data.raw_data[i].current_entity_price+'</td></tr>';
+										pendingHTML+='<tr><td><strong><? echo($texts['auction_min_entitity_price']) ;?>:</strong></td><td >'+data.raw_data[i].min_entity_price+' €</td></tr>';
+										pendingHTML+='<tr><td><strong><? echo($texts['auction_highest_price']); ?>:</strong></td><td >'+data.raw_data[i].current_entity_price+' €</td></tr>';
 										pendingHTML+='<tr><td><strong><? echo($texts['auction_bids_done']); ?>:</strong></td><td >'+data.raw_data[i].bids+'</td></tr>';
 										pendingHTML+='</table>';
 										pendingHTML+='</td>';
@@ -478,7 +483,7 @@ function displayResponse(data){
 										finishedHTML+='<td>';     	
 								     	finishedHTML+='<table class="table">';
 										finishedHTML+='<tr><td><strong><? echo($texts['auction_min_entitity_price_without_euro']) ;?>:</strong></td><td >'+data.raw_data[i].min_entity_price+' €</td></tr>';
-										finishedHTML+='<tr><td><strong><? echo($texts['auction_highest_price']); ?>:</strong></td><td >'+data.raw_data[i].current_entity_price+'</td></tr>';
+										finishedHTML+='<tr><td><strong><? echo($texts['auction_highest_price']); ?>:</strong></td><td >'+data.raw_data[i].current_entity_price+' €</td></tr>';
 										finishedHTML+='<tr><td><strong><? echo($texts['auction_bids_done']); ?>:</strong></td><td >'+data.raw_data[i].bids+'</td></tr>';
 										finishedHTML+='</table>';
 										finishedHTML+='</td>';

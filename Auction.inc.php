@@ -622,7 +622,29 @@ function getInvoice($auction_id){
 //
 ____________________________*/
 
+function getPendingStates($is_auction){
 
+	global $gBase;
+		
+			$lDB=connectDB();
+			if (!$lDB->failed){
+
+				$statesArray=array();
+				if($statesArray=$lDB->getStatesOfPendingAuctions($is_auction)){
+
+					
+
+					$gBase->RawData=$statesArray;
+
+
+
+
+				}else{
+				$gBase->RawData=null;
+					}
+			}
+
+}
 
 
 function getPendingCounties($state_id, $is_auction){
@@ -642,9 +664,9 @@ function getPendingCounties($state_id, $is_auction){
 
 
 
-				}
-
-
+				}else{
+				$gBase->RawData=null;
+}
 			}
 
 }
@@ -767,6 +789,16 @@ function getRunningAuction($county_id, $state_id, $auction_id){
 
 										if (strtotime($gBase->CurrentAuction["end_time"])>time()) {
 											return;
+										}else if($gBase->CurrentAuction["end_time"]=="0000-00-00 00:00:00"){
+
+										
+
+											if(strtotime($gBase->CurrentAuction["start_time"])<=strtotime("+30 seconds")){
+												getCurrentAuctionFromDB($county_id, "");
+											}
+											return;
+									
+
 										}else{
 
 											$lDB=connectDB();

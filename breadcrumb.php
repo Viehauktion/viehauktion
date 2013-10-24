@@ -108,6 +108,8 @@
 											}
 											break;
 
+				case "add_rating":		array_push($breadcrumb, $texts['add_rating_headline']);  break;					
+
 
 				case "market": array_push($breadcrumb, $texts['navi_market']);
 											break;

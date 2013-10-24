@@ -18,6 +18,27 @@
 			$this->Ln(20);
 		}
 	
+
+	function formatPrice($price){
+
+		$priceString="".$price;
+
+		$splittedPrice=explode(".", $priceString);
+		if(count($splittedPrice)==1){
+
+			$priceString.=".00";
+		}else{
+		if(strlen($splittedPrice[1])=="1"){
+			$priceString.="0";
+		}
+
+}
+
+
+
+return $priceString;
+
+	}
 	
 //Page footer
 		function Footer() {
@@ -135,7 +156,7 @@
 			$this->Cell(100, 4, $pDate, 0, 1, 'L');
 			$this->SetX(75);
 			
-		    $nettoprice=($pBruttoPrice/(100+$pVAT))*100;
+		    $nettoprice=formatPrice(($pBruttoPrice/(100+$pVAT))*100);
 			
 			$this->SetY(110);
 			$this->SetFont('Arial', '', '10');
@@ -147,7 +168,7 @@
 			$this->SetY(130);
 			$this->SetX(24);
 			$this->Cell(80, 4, "Daraus ergibt sich ein Rechnungbetrag von: ", 0, 1, 'L');
-			$totalNettoPrice=$pAmountOfAnimals*$nettoprice;
+			$totalNettoPrice=formatPrice($pAmountOfAnimals*$nettoprice);
 			$this->SetY(140);
 			$this->SetX(24);
 

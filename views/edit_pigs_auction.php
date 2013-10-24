@@ -661,7 +661,13 @@ if(toTime=='side'){
 
 function sendForm(nextview, is_preview){
 
-  
+  price=$("#auction_min_entitity_price").val();
+  price=price.replace("€","");
+  price=price.replace(" ","");
+$("#auction_min_entitity_price").val(price);
+
+$("#auction_min_entitity_price").val(price);
+
 
 
 	

@@ -77,7 +77,7 @@ function connectDB() {
 				}
 				
 
-
+	
 
 $lDB=connectDB();
 			if (!$lDB->failed){

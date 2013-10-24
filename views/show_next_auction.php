@@ -32,7 +32,7 @@ if(count($auctions)>0){
     </tr>
     <?
 
-    for($i=0; $i<count($auctions); $i++){
+    for($i=0; $i<count($auctions)-2; $i++){
 
       $metadata=json_decode($auctions[$i]["metadata"], true);
       ?>
@@ -100,7 +100,7 @@ if(count($auctions)>0){
     </tr>
     <?
 
-    for($i=0; $i<count($auctions); $i++){
+    for($i=0; $i<count($auctions)-2; $i++){
 
       
       ?>

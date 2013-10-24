@@ -1,9 +1,8 @@
 <div id="add_rating">
 
+ <h1><? echo($texts['add_rating_headline']); ?></h1>
 
-<form class="form-horizontal">
-  <fieldset>
-    <legend><? echo($texts['add_rating_headline']); ?></legend>
+   
     <p><? echo($texts['add_rating_description']); ?></p>
     
 		    <div class="alert alert-error hide"  >
@@ -13,16 +12,16 @@
 		</div>
 
 
-	<div class="control-group">
-        <label class="control-label" for="patient"><? echo($texts['add_rating_about']); ?></label>
-        <div class="controls">
-         
+<table><tr valign="top"><td>
+        <p><? echo($texts['add_rating_about']); ?></p>
+     
+         </td><td class="rightSide">
 
 
 <? if( ($gBase->CurrentAuction["auction"]["status"]=="ended" || $gBase->CurrentAuction["auction"]["status"]=="confirmed") && $gBase->CurrentAuction["auction"]["buyer_id"]==$gBase->User["id"]){ ?>
 
 <div id="seller_box"> 
-  <h2><? echo($texts['seller']); ?></h2>
+ 
      <p>
      	<? echo($gBase->CurrentAuction["seller"]["firstname"]." ".$gBase->CurrentAuction["seller"]["lastname"]); ?><br />
 		<? echo($gBase->CurrentAuction["address"]["street"]." ".$gBase->CurrentAuction["address"]["number"]); ?><br />
@@ -31,6 +30,7 @@
      </p>
        
 </div>
+</td></tr></table>
 
 <? 
 }
@@ -40,7 +40,7 @@
 <? if(($gBase->CurrentAuction["auction"]["status"]=="ended" || $gBase->CurrentAuction["auction"]["status"]=="confirmed")  && $gBase->CurrentAuction["auction"]["user_id"]==$gBase->User["id"]){ ?>
 
 <div id="buyer_box"> 
-  <h2><? echo($texts['buyer']); ?></h2>
+ 
      <p>
      	<? echo($gBase->CurrentAuction["buyer"]["firstname"]." ".$gBase->CurrentAuction["buyer"]["lastname"]); ?><br />
 		<? echo($gBase->CurrentAuction["buyer"]["address"]["street"]." ".$gBase->CurrentAuction["buyer"]["address"]["number"]); ?><br />
@@ -50,35 +50,27 @@
      </p>
        
 </div>
-
+</td></tr></table>
 <? 
 }
 ?>
 
 
-        </div>
-      </div>
-   
 
-   	<div class="control-group">
-        <label class="control-label" for="ratingIcons"><? echo($texts['add_rating']); ?></label>
-        <div class="controls">
-          <div id="ratingIcons"><img src="assets/pig_icon_empty.png" onclick="rate(1)" height="30" width="50" /><img src="assets/pig_icon_empty.png" onclick="rate(2)" height="30" width="50" /><img src="assets/pig_icon_empty.png" onclick="rate(3)" height="30" width="50" /><img src="assets/pig_icon_empty.png" onclick="rate(4)" height="30" width="50" /><img src="assets/pig_icon_empty.png" onclick="rate(5)" height="30" width="50" /> </div>
-        </div>
-      </div>
-    
-    
-       <div class="control-group">
-        <label class="control-label" for="comment"><? echo($texts['add_coment']); ?></label>
-        <div class="controls">
+
+
+<table><tr valign="top" ><td class="topSide"><? echo($texts['add_rating']); ?>
+</td><td class="rightSide topSide">
+ <div id="ratingIcons"><img src="assets/pig_icon_empty.png" onclick="rate(1)" height="30" width="50" /><img src="assets/pig_icon_empty.png" onclick="rate(2)" height="30" width="50" /><img src="assets/pig_icon_empty.png" onclick="rate(3)" height="30" width="50" /><img src="assets/pig_icon_empty.png" onclick="rate(4)" height="30" width="50" /><img src="assets/pig_icon_empty.png" onclick="rate(5)" height="30" width="50" /> </div>
+       </td></tr>
+    <tr valign="top" ><td class="topSide"> 
+    	<? echo($texts['add_coment']); ?></td><td class="rightSide topSide">
+       
           <textarea id="comment" name="comment" rows="3"></textarea>
-        </div>
-      </div>
+       </td></tr></table>
 
        <button onclick="return false" class="btn btn-primary" id="rating_submit"><? echo($texts['add_rate_now']); ?></button>
-    </fieldset>
-  </form>
-
+  
 </div>
 
 

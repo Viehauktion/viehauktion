@@ -364,18 +364,23 @@ $text['edit_auction_not_allowed']="Ups hier ist etwas schief gelaufen. Ist nicht
 
 
 $texts['select_running_headline']="Suchen Sie Ihre Region";
+$texts['select_running_no_auctions']="Leider haben wir momentan in diesem Bundesland keine Angebote.";
+$texts['select_running_no_auctions_at_all']="Momentan habe wir leider keine anstehenden Auktionen für Sie.";
+$texts['select_running_no_offers_at_all']="Momentan habe wir leider keine anstehenden Festpreisangebote für Sie.";
 $texts['select_running_description']="Auktionen finden deutschlandweit statt, wählen Sie zunächst einen Bundesland, danach ein Landkreis.<br/><i>Es werden Ihnen nur Landkreise angezeigt, in denen Auktionen stattfinden.</i>";
 $texts['select_running_auction_submit']="Auktion aufrufen";
+$texts['select_pending_auction_submit']="Auktionskatalog aufrufen";
 $texts['select_filter_offers']="Angebote filtern";
 $texts['running_auctions_comming_up']="Nächste Auktionen - Warteschlange";
 $texts['running_auctions_finished']="Beendete Auktionen";
 
 
-$texts['auctions_auction_today']="Heute findet die nächsten Aukionen statt. Wählen Sie Ihren Landkreis, um den aktuellen Katalog aufzurufen oder direkt zur laufenden Auktion zu gelangen.";
-$texts['auctions_no_auction_today']="Heute finden keine Auktionen mehr statt. <br/>Wählen Sie ihren Landkreis, um sich die anstehenden Auktionsangebote in ihrer Umgebung anzusehen..";
+$texts['auctions_auction_today']="Heute findet die nächsten Aukionen statt. Wählen Sie Ihren Landkreis, um den aktuellen Katalog aufzurufen.";
+$texts['auctions_no_auction_today']="Heute finden keine Auktionen mehr statt. <br/>Wählen Sie ihren Landkreis, um sich die anstehenden Auktionsangebote in ihrer Umgebung anzusehen.";
 $texts['auctions_start_auction']="Auktionstart";
 $texts['auctions_next_auction']="Nächster Auktionstermin";
-$texts['auctions_already_running']="Die heutigen Auktionen laufen bereits.";
+$texts['auctions_already_running']="Die heutigen Auktionen laufen bereits. <br/>Wählen Sie ihren Landkreis, um direkt zu der Hauptauktion in ihrer Umgebung zugelangen";
+$texts['auctions_soon_running']="Die heutigen Auktionen starten in weniger als Minuten.<br/>Wählen Sie ihren Landkreis, um die anstehende Auktion in ihrer Umgebung aufzurufen.";
 
 $texts['offers_offer_today']="Wählen Sie den Landkreis, in dem Sie Festpreisangebote suchen.";
 $texts['offers_no_offer_today']="Leider gibt es momentan keine Festpreisangebote.";
@@ -402,7 +407,7 @@ $texts['add_rating_buyer_description']="Damit sich zukünftige, mögliche Käufe
 $texts['add_rating_about']="Zu Bewerten:";
 $texts['add_rating_success']="Vielen Dank für Ihre Bewertung!";
 
-$texts['add_rating']="Bewertung (5 Scheine gut, 1 Schwein schlecht)";
+$texts['add_rating']="Bewertung <br/>(5 Scheine gut, 1 Schwein schlecht)";
 $texts['add_coment']="Kommentar (optional)";
 $texts['add_rate_now']="Bewertung abgeben";
 $texts['add_no_rating_error']="Bitte klicken Sie auf die Schweine, um eine Bewertung abzugeben.";

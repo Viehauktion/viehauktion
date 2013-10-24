@@ -12,9 +12,9 @@
       <input type="hidden" name="action" value="<? echo($_form_action); ?>" />
       <input type="hidden" name="view" value="<? echo($_form_view); ?>" />
       <input type="hidden" name="is_auction" value="<? echo($is_auction); ?>" />
-        <div class="control-group">
+        <div class="control-group" id="states">
           <label class="control-label" for="state_id_for_auction"><? echo($texts['state']); ?></label>
-          <div class="controls">
+          <div class="controls" >
             <select name="state_id"  id="state_id_for_auction" onchange="getPendingCountiesForAuction()">
               <option value="1">Bayern</option>
               <option value="2">Baden-Württemberg</option>
@@ -35,14 +35,21 @@
             </select>
           </div>
         </div>
-        <div class="control-group">
-          <label class="control-label" for="county_id"><? echo($texts['county']); ?></label>
-          <div class="controls">
-            <select name="county_id"  id="county_id_for_auction" >
-            </select>
-          </div>
+        <div class="control-group" id="counties">
+         
         </div>
-        <button onclick="submitSelectAuctionForm();" class="btn btn-primary" ><? if($is_auction=="yes"){echo($texts['select_running_auction_submit']);}else{ echo($texts['select_filter_offers']);} ?></button>
+
+
+        <button onclick="submitSelectAuctionForm();" class="btn btn-primary" id="select_auctions_button" ><? if($is_auction=="yes"){
+
+if($areAuctionsToday){
+          echo($texts['select_running_auction_submit']);
+}else{
+    echo($texts['select_pending_auction_submit']);
+}
+      }else{ echo($texts['select_filter_offers']);} ?></button>
+
+
       </fieldset>
     </form>
 
@@ -50,6 +57,70 @@
 
 
 <script type="text/javascript">
+
+
+
+
+function getPendingStatesForAuction(){
+
+
+
+  $.getJSON("index.php", { "action": "get_pending_auction_states", "view": "add_address_modal", "mode":"ajax", "is_auction":"<? echo($is_auction); ?>", "sid":"<? echo($_COOKIE["PHPSESSID"]); ?>"},
+      
+                 function(data){
+               session_id=data.conf.session_id;
+                html="";
+                selectedValue="";
+              if(data.raw_data!=null){
+
+                 html+='<label class="control-label" for="state_id_for_auction"><? echo($texts['state']); ?></label><div class="controls" ><select name="state_id"  id="state_id_for_auction" onchange="getPendingCountiesForAuction()">';
+                
+                 for(i=0;i<data.raw_data.length;i++){
+
+
+                        if(i==0){
+                          selectedValue=data.raw_data[i].state_id;
+
+                        }
+
+                        if(data.raw_data[i].state_id=='7'){
+                          selectedValue=data.raw_data[i].state_id;
+                        }
+                        html+='<option value="'+data.raw_data[i].state_id+'"  >'+data.raw_data[i].name+' ('+data.raw_data[i].number_of_auctions+')</option>';
+
+                 }
+                html+='</select></div>';
+
+              $("#states").html(html);
+          
+              $("#state_id_for_auction").val(selectedValue);
+              getPendingCountiesForAuction();
+
+                }else{
+
+<? if($is_auction=='yes'){
+?>
+$("#states").html('<? echo($texts['select_running_no_auctions_at_all']); ?>');
+<?
+}else{
+?>
+
+$("#states").html('<? echo($texts['select_running_no_offers_at_all']); ?>');
+<?
+}
+?>
+ $("#select_auctions_button").hide();
+                
+                  
+                }
+
+             });
+  
+  }
+
+
+
+
 
 function getPendingCountiesForAuction(){
 
@@ -60,12 +131,27 @@ function getPendingCountiesForAuction(){
 			  				 function(data){
 			 				 session_id=data.conf.session_id;
 							 	html="";
-							
+
+							if(data.raw_data[0].county_id!=null){
+
+           
+          
+                  html+='<label class="control-label" for="county_id"><? echo($texts['county']); ?></label><div class="controls" ><select name="county_id"  id="county_id_for_auction" >';
+            
 							for(i=0;i<data.raw_data.length;i++){
-								html+='<option value="'+data.raw_data[i].county_id+'" >'+data.raw_data[i].name+'</option>';
+								html+='<option value="'+data.raw_data[i].county_id+'" >'+data.raw_data[i].name+' ('+data.raw_data[i].number_of_auctions+')</option>';
 								}	
-						
-			 				$("#county_id_for_auction").html(html);
+						html+='</select></div>';
+
+			 				$("#counties").html(html);
+              $("#select_auctions_button").show();
+
+                }else{
+
+                $("#counties").html('<? echo($texts['select_running_no_auctions']); ?>');
+                  $("#select_auctions_button").hide();
+                }
+
 						 });
 	
 	}
@@ -94,6 +180,6 @@ function getPendingCountiesForAuction(){
 	}
 
 
-getPendingCountiesForAuction();
+getPendingStatesForAuction();
 </script>
 

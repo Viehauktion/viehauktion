@@ -5,7 +5,13 @@ $areAuctionsToday=false;
 $areAlreadyRunning=false;
 
  for($i=0; $i<count($gBase->RawData["todays_auctions"]); $i++){
-	
+
+
+   if(strtotime($gBase->RawData["todays_auctions"][$i]["start_time"])<strtotime("+10 Minutes")){
+
+      $areSoonRunning=true;
+    }
+
     if(strtotime($gBase->RawData["todays_auctions"][$i]["start_time"])<time()){
 
       $areAlreadyRunning=true;
@@ -29,17 +35,21 @@ $areAlreadyRunning=false;
 
 
     <div class="well">
-    <? if($areAuctionsToday){
-      echo($texts['auctions_auction_today']);
+    <?
 
       if($areAlreadyRunning){
-         echo($texts['auctions_already_running']);
-      }else{
-      $nextDates=getNextAuctions(1);
+          echo($texts['auctions_already_running']);
+      }else if($areSoonRunning){
+         echo($texts['auctions_soon_running']);
+       
+      }else if($areAuctionsToday){
+         echo($texts['auctions_auction_today']."<br/><br/>");
+
+         $nextDates=getNextAuctions(1);
       
 
-      echo($texts['auctions_start_auction'].": ".$nextDates[0]['readable_date']);
-    }
+          echo($texts['auctions_start_auction'].": ".$nextDates[0]['readable_date']);
+    
 
 
     }else{
@@ -56,7 +66,7 @@ $areAlreadyRunning=false;
   </div>
 </div>
 
-<? if($areAuctionsToday){
+<? if($areSoonRunning||$areAlreadyRunning){
 
 $_form_action="get_running_auction";
 $_form_view="show_running_auction";
