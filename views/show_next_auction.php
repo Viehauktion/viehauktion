@@ -108,7 +108,17 @@ if(count($auctions)>0){
 <tr>
   <td><? echo($auctions[$i]["created"]); ?></td>
   <td><? echo(formatPrice($auctions[$i]["amount_of_animals"])); ?></td>
-  <td><? echo(formatPrice($auctions[$i]["min_entity_price"])); ?></td>
+  <td><? echo(formatPrice($auctions[$i]["min_entity_price"])); ?>
+<?
+if($auctions[$i]["is_vezg"]=="yes"){
+
+    ?>
+<p><? echo($texts['to_date'].' '.$texts['vezg_date'].": ".date("d.m.Y", strtotime($auctions[$i]['start_time']))); ?></p>
+    <?
+  }
+
+  ?>
+  </td>
   <td><? echo($auctions[$i]["city"]); ?></td>
   <td> <a href="?view=show_full_auction&action=get_auction_details&is_auction=no&auction_id=<? echo($auctions[$i]["id"]); ?>&state_id=<? echo($_REQUEST['state_id']); ?>&county_id=<? echo($_REQUEST["county_id"]); ?>" class="btn" type="button" id="showAuction" ><?  echo($texts['auction_details']); ?></a></td>
  

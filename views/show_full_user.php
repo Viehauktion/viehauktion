@@ -13,11 +13,22 @@
 <? echo($texts['registration_phone'].": ".$gBase->RawData["user_data"]["phone"]); ?><br/>
 <? echo($texts['registration_email'].": ".$gBase->RawData["user_data"]["email"]); ?><br/>
 <br/>
+
+<?
+      
+ if($gBase->User['role']=="admin"){
+?>
 <? echo($texts['backend_registered_at'].": ".$gBase->RawData["user_data"]["date"]); ?><br/>
 <? echo($texts['backend_last_log_in'].": ".$gBase->RawData["user_data"]["last_login"]); ?><br/>
 <br/>
-<? echo($texts['backend_is_seller'].": ".$gBase->RawData["user_data"]["is_seller"]); ?><br/>
-<? echo($texts['backend_is_buyer'].": ".$gBase->RawData["user_data"]["is_buyer"]); ?><br/>
+
+<?
+}
+?>
+
+<? echo($texts['backend_is_seller'].": ".$texts[$gBase->RawData["user_data"]["is_seller"]]); ?><br/>
+
+<? echo($texts['backend_is_buyer'].": ".$texts[$gBase->RawData["user_data"]["is_buyer"]]); ?><br/>
 <br/>
 
 <? echo($texts['registration_hrb'].": ".$gBase->RawData["user_data"]["hrb_nr"]); ?><br/>
@@ -26,8 +37,16 @@
 
 <? echo($texts['registration_stall'].": ".$gBase->RawData["user_data"]["stall_nr"]); ?><br/>
 <? echo($texts['registration_vat'].": ".$gBase->RawData["user_data"]["vat_nr"]); ?><br/>
+            <?
+      if($gBase->User['role']=="admin"){
+?>
+<? echo($texts['backend_has_newsletter'].": ".$gBase->RawData["user_data"]["is_newsletter"]); ?><br/>
+<?
 
-<? echo($texts['backend_has_newsletter'].": ".$gBase->RawData["user_data"]["newsletter"]); ?><br/>
+}
+
+?>
+
 <? 
   $status="";
       if($gBase->RawData["user_data"]["active"]==0){
@@ -35,7 +54,7 @@
       }elseif ($gBase->RawData["user_data"]["active"]==1) {
         $status=$texts['backend_activated'];
       
-      }elseif ($$gBase->RawData["user_data"]["active"]==2) {
+      }elseif ($gBase->RawData["user_data"]["active"]==2) {
         $status=$texts['backend_confirmed'];
       }elseif ($gBase->RawData["user_data"]["active"]==3) {
 
@@ -95,7 +114,7 @@ if(count($users)>0){
       <td><? echo($users[$i]["number"]); ?></td>
       <td><? echo($users[$i]["postcode"]); ?></td>
       <td><? echo($users[$i]["city"]); ?></td>
-      <td><? echo($users[$i]["type"]); ?></td>
+      <td><? echo($texts["address_".$users[$i]["type"]]); ?></td>
       <td><a href="https://maps.google.de/maps?f=q&source=s_q&hl=de&geocode=&q=<? echo($users[$i]["street"].'+'.$users[$i]["number"].','.$users[$i]["postcode"].'+'.$users[$i]["city"]); ?>" class="btn" type="button" target="_blank" ><?  echo($texts['backend_address_show_on_map']); ?></a></td>
     </tr>
 
@@ -163,7 +182,7 @@ if(count($users)>0){
       ?>
 
     <tr>
-      <td><? echo($users[$i]["type"]); ?></td>
+      <td><? echo($texts["documents_".$users[$i]["type"]]); ?></td>
       <td><? echo($users[$i]["uploaded"]); ?></td>
       <td><a href="<? echo($GLOBALS["VIEHAUKTION"]["AMAZON"]["DOCUMENTSURL"].$users[$i]["filename"]); ?>" class="btn" type="button" target="_blank" ><?  echo($texts['backend_user_files_download']); ?></a></td>
     </tr>
@@ -235,7 +254,7 @@ if(count($users)>0){
     </tr>
     <?
 
-    for($i=0; $i<count($users); $i++){
+    for($i=0; $i<count($users)-1; $i++){
 
     
       ?>
@@ -244,8 +263,20 @@ if(count($users)>0){
       <td><? echo($users[$i]["rating"]); ?></td>
       <td><? echo($users[$i]["comment"]); ?></td>
       <td><? echo($users[$i]["date"]); ?></td>
-      <td><a href="?view=show_full_user&action=show_full_user&user_id=<? echo($users[$i]["about_id"]); ?>" class="btn" type="button" target="_blank" ><?  echo($texts['backend_rating_to_about']); ?></a></td>
-    </tr>
+
+            <?
+      if($gBase->User['role']=="admin"){
+?>
+
+
+       <td><a href="?view=show_full_user&action=show_full_user&user_id=<? echo($users[$i]["about_id"]); ?>" class="btn" type="button" target="_blank" ><?  echo($texts['backend_rating_to_about']); ?></a></td>
+<?
+}else{
+
+echo "<td></td>";
+}
+  ?>
+         </tr>
 
       <?
 
@@ -317,7 +348,7 @@ if(count($users)>0){
     </tr>
     <?
 
-    for($i=0; $i<count($users); $i++){
+    for($i=0; $i<count($users)-1; $i++){
 
     
       ?>
@@ -326,8 +357,21 @@ if(count($users)>0){
       <td><? echo($users[$i]["rating"]); ?></td>
       <td><? echo($users[$i]["comment"]); ?></td>
       <td><? echo($users[$i]["date"]); ?></td>
-      <td><a href="?view=show_full_user&action=show_full_user&user_id=<? echo($users[$i]["writer_id"]); ?>" class="btn" type="button" target="_blank" ><?  echo($texts['backend_rating_to_writer']); ?></a></td>
-    </tr>
+      <?
+      if($gBase->User['role']=="admin"){
+?>
+
+
+      <td><a href="?view=show_full_user&action=show_full_user&user_id=<? echo($users[$i]["writer_id"]); ?>" class="btn" type="button"  ><?  echo($texts['backend_rating_to_writer']); ?></a></td>
+<?
+}else{
+
+echo "<td></td>";
+}
+  ?>
+
+
+ </tr>
 
       <?
 

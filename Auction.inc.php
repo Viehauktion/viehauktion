@@ -376,9 +376,12 @@
 				$auctionArray=array();
 				if($auctionArray=$lDB->getAuctionById($auction_id)){
 
-
+								if($gBase->User['id']==$auctionArray['user_id']||$gBase->User['role']=='admin'){
 								$auctionArray['status']="deleted";
 								$lDB->updateAuction($auctionArray);
+								}
+
+
 							}
 						}
 					}
@@ -709,7 +712,7 @@ function bidOnRunningAution($county_id, $auction_id, $bid){
 
 global $gBase;
 		
-		
+		if($gBase->User['is_buyer']=="yes" && $gBase->User['active']=='2')
 	$bid=str_replace ( ',' , ".", $bid);
 if($gBase->CurrentAuction["current_entity_price"]<$bid){
 

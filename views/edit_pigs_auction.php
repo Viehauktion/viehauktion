@@ -29,13 +29,13 @@ $oldValues=nil;
 ?>
 
 
-<div id="pigs_auction">     
+<div id="pigs_auction" class="span9">     
   <form  class="form-horizontal" id="auction_form" method="get" action="?">
     <fieldset>
 
       <div class="alert alert-error hide"  >
         <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <h4><? echo($texts['error']); ?></h4>
+        <h3><? echo($texts['error']); ?></h3>
         <span id="error_message"></span> </div>
 
         <input type="hidden" id="action" name="action" value="edit_auction" />
@@ -63,6 +63,11 @@ $oldValues=nil;
 <br/>
 <br/>
 
+
+
+<div id="auction_main_data"> 
+
+  <h3><? echo($texts['edit_auction_main_data_headline']); ?></h3>
   <div class="control-group" id="main_time">
         <label class="control-label" for="auction_date"><? echo($texts['add_auction_date']); ?></label>
         <div class="controls">
@@ -196,9 +201,9 @@ $oldValues=nil;
 
 
 
-<div id="zevg" class="hide">
+<div id="vezg" class="hide">
      <div class="control-group" >
-        <label class="control-label" for="auction_date"><? echo($texts['zevg_date']); ?></label>
+        <label class="control-label" for="auction_date"><? echo($texts['vezg_date']); ?></label>
         <div class="controls">
           <select name="auction_date"  id="auction_date">
             <?
@@ -226,18 +231,20 @@ $oldValues=nil;
 
 
 <script type="text/javascript">
-
+var is_vezg="no";
 
 function changePrice(price_system){
 
   if(price_system=='own'){
 
-    $("#zevg").hide();
+    $("#vezg").hide();
+    is_vezg="no";
     $("#auction_min_entitity_price").attr("placeholder", "<? echo($texts['auction_min_entitity_price_placeholer']); ?>");
 
   }else{
-  $("#zevg").show();
-    $("#auction_min_entitity_price").attr("placeholder", "<? echo($texts['zevg_price_placeholer']); ?>");
+    is_vezg="yes";
+  $("#vezg").show();
+    $("#auction_min_entitity_price").attr("placeholder", "<? echo($texts['vezg_price_placeholer']); ?>");
 
 
 
@@ -267,6 +274,16 @@ function changePrice(price_system){
       </div>
 
 
+</div>
+
+
+
+<hr>
+
+
+
+<div id="auction_classification_data"> 
+  <h3><? echo($texts['edit_auction_classifiction_data_headline']); ?></h3>
             <span class="help-block"><? echo($texts['auction_pigs_calssification_hint']); ?></span><br/>
 
       <div class="control-group">
@@ -379,6 +396,15 @@ echo ' selected="selected" ';
 
 
 
+</div>
+
+
+
+<hr>
+
+<div id="auction_transportation_data"> 
+  <h3><? echo($texts['edit_auction_transportation_data_headline']); ?></h3>
+ <span class="help-block"><? echo($texts['auction_address_hint']); ?></span><br/>
       <div class="control-group">
         <label class="control-label" for="address"><? echo($texts['auction_address']); ?></label>
         <div class="controls">
@@ -409,7 +435,7 @@ if($oldValues['address']==$gBase->UserAddresses[$i]['id']){
 
 
 
-      <span class="help-block"><? echo($texts['auction_address_hint']); ?></span><br/>
+     
       
       
         <div class="control-group">
@@ -528,21 +554,7 @@ echo ' selected="selected" ';
         </div>
       </div>
       
-    <!--
-        <div class="control-group">
-        <label class="control-label" for="auction_loading_stations_availability"><? echo($texts['auction_loading_stations_availability']); ?></label>
-        <div class="controls">
-          <input type="text" name="auction_loading_stations_availability" id="auction_loading_stations_availability" placeholder="<? echo($texts['auction_loading_stations_availability_placeholder']); ?>" value="<? if($oldValues!=nil) echo($oldValues['auction_loading_stations_availability']); ?>">
-        </div>
-      </div>
-        <div class="control-group">
-        <label class="control-label" for="auction_loading_stations_availability_til"></label>
-        <div class="controls">
-          <input type="text" name="auction_loading_stations_availability_til" id="auction_loading_stations_availability_til" placeholder="<? echo($texts['auction_loading_stations_availability_til_placeholder']); ?>" value="<? if($oldValues!=nil) echo($oldValues['auction_loading_stations_availability_til']); ?>">
-        </div>
-      </div>
-      
--->
+
 
         <div class="control-group">
         <label class="control-label" for="auction_loading_stations_availability"><? echo($texts['auction_loading_stations_availability']); ?></label>
@@ -573,7 +585,12 @@ echo ' selected="selected" ';
 </div>
  </div>
    
-      
+ </div>
+
+
+<hr>
+
+<div id="auction_final">      
       <div class="control-group">
         <label class="control-label" for="auction_additional_informations"><? echo($texts['auction_additional_informations']); ?></label>
         <div class="controls">
@@ -587,6 +604,8 @@ echo ' selected="selected" ';
  <?
  }
 ?>
+
+</div>
 
     </fieldset>
   </form>
@@ -759,7 +778,7 @@ $("#auction_min_entitity_price").val(price);
 		}else{
 			
 
- $.getJSON("index.php", { "action": $("#action").val(), "view": "profile", "mode":"ajax", "category_id":$("#category_id").val(), "auction_id":$("#auction_id").val(), "is_auction":$("#is_auction").val(), "is_main_auction":$("#is_main_auction").val(), "is_vezg":$("#is_vezg").val(), "is_preview":$("#is_preview").val(),"auction_date":$("#auction_date").val(),"endtime":$("#endtime").val(),"auction_amount":$("#auction_amount").val(),"auction_min_entitity_price":$("#auction_min_entitity_price").val(),"auction_origin":$("#auction_origin").val(),"form":$("#form").val(),"auction_pigs_form_value":$("#auction_pigs_form_value").val(),"autoform":$("#autoform").val(),"auction_pigs_autoform_value":$("#auction_pigs_autoform_value").val(),"auction_pigs_qs":$("#auction_pigs_qs").val(),"auction_pigs_samonelle_state":$("#auction_pigs_samonelle_state").val(),"address":$("#address").val(),"auction_loading_stations_amount":$("#auction_loading_stations_amount").val(),"auction_loading_stations_distance":$("#auction_loading_stations_distance").val(),"auction_loading_stations_vehicle":$("#auction_loading_stations_vehicle").val(),"auction_loading_stations_availability":$("#auction_loading_stations_availability").val(), "auction_loading_stations_availability_til":$("#auction_loading_stations_availability_til").val(),"auction_additional_informations":$("#auction_additional_informations").val(), "sid":"<? echo($_COOKIE["PHPSESSID"]); ?>"},
+ $.getJSON("index.php", { "action": $("#action").val(), "view": "profile", "mode":"ajax", "category_id":$("#category_id").val(), "auction_id":$("#auction_id").val(), "is_auction":$("#is_auction").val(), "is_main_auction":$("#is_main_auction").val(), "is_vezg": is_vezg, "is_preview":$("#is_preview").val(),"auction_date":$("#auction_date").val(),"endtime":$("#endtime").val(),"auction_amount":$("#auction_amount").val(),"auction_min_entitity_price":$("#auction_min_entitity_price").val(),"auction_origin":$("#auction_origin").val(),"form":$("#form").val(),"auction_pigs_form_value":$("#auction_pigs_form_value").val(),"autoform":$("#autoform").val(),"auction_pigs_autoform_value":$("#auction_pigs_autoform_value").val(),"auction_pigs_qs":$("#auction_pigs_qs").val(),"auction_pigs_samonelle_state":$("#auction_pigs_samonelle_state").val(),"address":$("#address").val(),"auction_loading_stations_amount":$("#auction_loading_stations_amount").val(),"auction_loading_stations_distance":$("#auction_loading_stations_distance").val(),"auction_loading_stations_vehicle":$("#auction_loading_stations_vehicle").val(),"auction_loading_stations_availability":$("#auction_loading_stations_availability").val(), "auction_loading_stations_availability_til":$("#auction_loading_stations_availability_til").val(),"auction_additional_informations":$("#auction_additional_informations").val(), "sid":"<? echo($_COOKIE["PHPSESSID"]); ?>"},
       
         function(data){
            

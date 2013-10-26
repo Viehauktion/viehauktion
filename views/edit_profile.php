@@ -1,11 +1,13 @@
 <div id="edit_profile">
 
-
-
+<legend>
+    <h2><? echo($texts['edit_profile_headline']); ?></h2>
+</legend>
+ <p><? echo($texts['edit_profile_description']); ?></p>
 <form method="post" action="?" enctype="multipart/form-data" >
   <fieldset>
-    <legend><? echo($texts['edit_profile_headline']); ?></legend>
-    <p><? echo($texts['edit_profile_description']); ?></p>
+
+   
     
     <div class="alert alert-error hide"  >
   <button type="button" class="close" data-dismiss="alert">&times;</button>

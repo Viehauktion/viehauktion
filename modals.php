@@ -531,7 +531,9 @@ function submitFeedback(){
 <script type="text/javascript">
 
 
-
+<?
+if($View=='edit_auction'){
+  ?>
 
  $.getJSON("index.php", { "action": "get_counties", "view": "add_address_modal", "mode":"ajax", "state_id":"7", "sid":"<? echo($_COOKIE["PHPSESSID"]); ?>"},
 			
@@ -546,9 +548,9 @@ function submitFeedback(){
 			 				$(".counties").append(html);
 			 				
 						 });
-
-
-
+<?
+}
+?>
 function getCounties(){
 
 

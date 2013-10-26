@@ -484,7 +484,7 @@ function getUserWithAddressByID($user_id){
 			
 		if($asWinner){
 			
-			$lSQLQuery = "SELECT SQL_CALC_FOUND_ROWS * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.buyer_id =  '".mysql_real_escape_string($userid)."' AND auctions.status!='deleted' AND auctions.is_auction='".mysql_real_escape_string($is_auction)."' ORDER BY auctions.id DESC LIMIT ".mysql_real_escape_string($start).", ".mysql_real_escape_string($number_of_elements).";";
+			$lSQLQuery = "SELECT SQL_CALC_FOUND_ROWS * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.buyer_id =  '".mysql_real_escape_string($userid)."' AND (auctions.status='ended' OR auctions.status='confirmed') AND auctions.is_auction='".mysql_real_escape_string($is_auction)."' ORDER BY auctions.id DESC LIMIT ".mysql_real_escape_string($start).", ".mysql_real_escape_string($number_of_elements).";";
 			}else{
 		
 		$lSQLQuery = "SELECT SQL_CALC_FOUND_ROWS * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.user_id =  '".mysql_real_escape_string($userid)."' AND auctions.status!='deleted' AND auctions.is_auction='".mysql_real_escape_string($is_auction)."' ORDER BY auctions.id DESC LIMIT ".mysql_real_escape_string($start).", ".mysql_real_escape_string($number_of_elements).";";
@@ -755,7 +755,7 @@ function getLatestAuctions($start,$number_of_elements,$status, $is_auction){
 					$lSQLQuery = "SELECT * FROM `auctions` WHERE `status`=  '".$status."' AND `mail_status`='".$mail_status."' AND `end_time`<'".$storno_time."';";
 					
 					}
-					
+				
 						
 						$list= array();
 								$j=0;
@@ -1264,7 +1264,7 @@ function resetExampleAuctions(){
 				
 						}else{
 
-							$lSQLQuery = "UPDATE  `auctions` SET  `status` =  'scheduled',`end_time` = '0000-00-00 00:00:00',`start_time` =  '".date("Y-m-d H:i:s", strtotime("-1 Minute"))."', `buyer_id`='0', `mail_status`='', `bids`='0' WHERE  `state_id` = '0' AND `county_id`='0' AND `status`='ended'  LIMIT 1;";
+							$lSQLQuery = "UPDATE  `auctions` SET  `status` =  'scheduled',`end_time` = '0000-00-00 00:00:00',`start_time` =  '".date("Y-m-d H:i:s", strtotime("-1 Minute"))."', `buyer_id`='0', `mail_status`='', `bids`='0' WHERE  `state_id` = '0' AND `county_id`='0' AND (`status`='ended' OR `status`='confirmed')   LIMIT 1;";
 						}
 
 					$lResult = $this->mysql_query_ex($lSQLQuery);
@@ -1606,11 +1606,10 @@ function updateInvoice($invoiceArray) {
 
 
 
-		function getRatingForUserId($recipient_id){
+		function getRatingForUserId($recipient_id,$start,$number_of_elements){
 	
 			
-			$lSQLQuery = "SELECT * FROM `ratings` WHERE `about_id` =  '".mysql_real_escape_string($recipient_id)."';";
-	
+			$lSQLQuery = "SELECT  SQL_CALC_FOUND_ROWS  * FROM ratings  INNER JOIN users ON ratings.writer_id = users.id  WHERE ratings.about_id =  '".mysql_real_escape_string($recipient_id)."' ORDER BY ratings.id DESC LIMIT ".mysql_real_escape_string($start).", ".mysql_real_escape_string($number_of_elements).";";
 	
 	
 					$list= array();
@@ -1625,6 +1624,18 @@ function updateInvoice($invoiceArray) {
 							}
 						}
 				
+
+					$lSQLQuery = "SELECT FOUND_ROWS();";
+					$lResult = $this->mysql_query_ex($lSQLQuery);
+					
+						if ($lResult) {
+						$FOUND_ROWS=mysql_fetch_assoc($lResult);
+						$list['number_of_rows']=$FOUND_ROWS["FOUND_ROWS()"];
+						}
+					
+				
+
+
 				return $list;
 			
 				
@@ -1632,12 +1643,12 @@ function updateInvoice($invoiceArray) {
 		}
 
 
-		function getRatingFromUserId($writer_id){
+		function getRatingFromUserId($writer_id,$start,$number_of_elements){
 	
 			
-			$lSQLQuery = "SELECT * FROM `ratings` WHERE `writer_id` =  '".mysql_real_escape_string($writer_id)."';";
+			$lSQLQuery = "SELECT SQL_CALC_FOUND_ROWS * FROM ratings  INNER JOIN users ON ratings.about_id = users.id  WHERE ratings.writer_id =  '".mysql_real_escape_string($writer_id)."' ORDER BY ratings.id DESC LIMIT ".mysql_real_escape_string($start).", ".mysql_real_escape_string($number_of_elements).";";
 	
-	
+
 	
 					$list= array();
 						$j=0;
@@ -1651,6 +1662,18 @@ function updateInvoice($invoiceArray) {
 							}
 						}
 				
+
+
+					$lSQLQuery = "SELECT FOUND_ROWS();";
+					$lResult = $this->mysql_query_ex($lSQLQuery);
+					
+						if ($lResult) {
+						$FOUND_ROWS=mysql_fetch_assoc($lResult);
+						$list['number_of_rows']=$FOUND_ROWS["FOUND_ROWS()"];
+						}
+					
+
+
 				return $list;
 			
 				

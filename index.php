@@ -1,7 +1,7 @@
 <?PHP
 
 
-error_reporting(0);
+error_reporting(E_ERROR);
 
 ini_set('default_charset','utf-8');
 	
@@ -270,7 +270,8 @@ return $nextDates;
 					case 'get_user_offers': getUserOffers($gBase->User['id'], false, $_REQUEST['page']); break;
 					case 'get_user_won_offers': getUserOffers($gBase->User['id'], true, $_REQUEST['page']); break;
 					case 'get_user_invoices': getUserInvoices($gBase->User['id'], $_REQUEST['page']); break;
-
+					case 'get_ratings_about': getUserRatings($gBase->User['id'], true, $_REQUEST['page']); break;
+					case 'get_ratings_from': getUserRatings($gBase->User['id'], false, $_REQUEST['page']); break;
 					case 'get_latest_offers': getLatestAuctions(false, $_REQUEST['page']); break;
 
 					case 'get_user':	getUsers($_REQUEST['page']); break;
@@ -288,10 +289,12 @@ return $nextDates;
 		switch ($View) {
 		
 		
-			case 'profile': if($Action==''){getUserAuctions($gBase->User['id'], true); 
+			case 'profile': if($Action==''){$gBase->RawData=array();getUserAuctions($gBase->User['id'], true); 
 							getUserAuctions($gBase->User['id'], false); 
 							getUserOffers($gBase->User['id'], true); 
 							getUserOffers($gBase->User['id'], false);
+							getUserRatings($gBase->User['id'], true);
+							getUserRatings($gBase->User['id'], false);
 							getUserInvoices($gBase->User['id']);} break;
 			case 'auctions': getLatestAuctions(true); checkTodaysAuctions(); break;
 			case 'market':	if($Action==''){ getLatestAuctions(false);} checkTodaysOffers(); break;

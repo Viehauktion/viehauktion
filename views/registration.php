@@ -1,9 +1,12 @@
 <div id="registration">
 
-
+  
+    <legend>
+     <h2><? echo($texts['registration_headline']); ?></h2>
+</legend>
 <form method="post" action="?"  enctype="multipart/form-data" >
   <fieldset>
-    <legend><? echo($texts['registration_headline']); ?></legend>
+
     <p><? echo($texts['registration_description']); ?></p>
     
     <div class="alert alert-error hide"  >

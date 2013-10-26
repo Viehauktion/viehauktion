@@ -1,14 +1,24 @@
 <?
 
+$nextDates=getNextAuctions(1);
 
 ?>
+
+<div id="aktive_auction">
 <div  class="span12">
-<h1><? echo($texts['show_auction_headline']); ?></h1>
+<h2><? echo($texts['show_auction_headline']); ?></h2>
 </div>	
 <div id="running_auction" class="span6">
 	<div id="googlemap">
 <img  id="map" src="http://maps.googleapis.com/maps/api/staticmap?center=<? echo($gBase->CurrentAuction["postcode"]."+".$gBase->CurrentAuction["city"]); ?>&zoom=10&size=500x300&maptype=roadmap&sensor=false" />
 </div>
+
+
+<div id="auction_over" class="hide well"> 
+<h3><? echo($texts['show_auction_over_headline']); ?></h3>
+<p><? echo($texts['show_auction_over_description_1'].' <strong>'.$nextDates[0]['readable_date'].'</strong> '.$texts['show_auction_over_description_2']); ?></p>
+</div>	
+
 
 <div id="main_data" class="well"> 	
 <p >
@@ -186,7 +196,7 @@ echo("<p>".$texts['auction_is_buyer']."</p>");
 <div id="waiting_box" class="well"> 
 	<p> <? echo($texts['auction_is_waiting']) ;?></p>
 	<table>
-		<tr><td><strong><? echo($texts['auction_start_time']) ;?>:</strong></td><td id="start_time" ><? echo($gBase->CurrentAuction["start_time"]);?></td></tr>
+		<tr><td><strong><? echo($texts['auction_start_time']) ;?>:</strong></td><td id="start_time" ><? echo(substr($gBase->CurrentAuction["start_time"],10));?></td></tr>
 	</table>	
      
 
@@ -228,21 +238,30 @@ if($_REQUEST["is_preview"]!="yes"){
 </div>
 </div>
 
+
+
 <?	
 }
 ?>
+
+</div>
+
+
+
 
 <script type="text/javascript">
 
 
 var scheduleNeedsUpdate=true;
+var aktivInterval;
+
 
 <? 
 
 if($_REQUEST['is_preview']!="yes"){
 
 ?>
-window.setInterval("getRunningAuction()", 2000);
+aktivInterval=window.setInterval("getRunningAuction()", 2000);
 
 currentAuctionID='<? echo($gBase->CurrentAuction["id"]);?>';
 <?
@@ -276,6 +295,10 @@ function submitBid(){
 
 				echo("alert('".$texts['auction_not_buyer_error']."')");
 
+		}else if($gBase->User['active']!='2'){
+
+				echo("alert('".$texts['auction_not_activated_buyer_error']."')");
+
 		}else{ 
 			?>
 
@@ -308,6 +331,22 @@ function Runden2Dezimal(x) { Ergebnis = Math.round(x * 100) / 100 ; return Ergeb
 function Runden3Dezimal(x) { Ergebnis = Math.round(x * 1000) / 1000 ; return Ergebnis; }
 
 function displayResponse(data){
+
+
+
+								if(data.current_auction==null){
+
+ 									 window.clearInterval(aktivInterval);
+
+ 									$("#auction_over").show();
+									$("#main_data").hide();
+									$("#bid_box").hide();
+									$("#time_box").hide();
+									$("#googlemap").hide();
+									$("#waiting_box").hide();
+
+									return;
+								}
 
 								if(data.current_auction.auction_id==null){
 
@@ -425,7 +464,7 @@ function displayResponse(data){
 
 								$("#end_time").html(data.current_auction.end_time.substr(10,10));
 								$("#bids").html(data.current_auction.bids);
-								$("#start_time").html(data.current_auction.start_time);
+								$("#start_time").html(data.current_auction.start_time.substr(10,10));
 								$("#current_time").html(data.current_auction.current_time);
 								$("#origin").html(data.current_auction.auction_origin);
 								$("#form").html(data.current_auction.metadata.form);

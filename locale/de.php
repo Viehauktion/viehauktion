@@ -12,8 +12,22 @@ $texts['attention']="Achtung";
 $texts['success']="Erfolg!";
 $texts['error']="Fehler";
 
+$texts['you']="Sie";
+$texts['from']="von";
+
+$texts['about']="über";
+$texts['at']="am";
+$texts['to_date']="zum";
+
 $texts['page_title']="viehauktion.com";
 $texts["stage_banner"]="Willkommen auf viehauktion.com";
+
+$texts["home_bullet_1"]="Ihre erste Auktion ist provisionsfrei";
+$texts["home_bullet_2"]="Anonym anbieten und bieten";
+$texts["home_bullet_3"]="Sie legen den Preis fest.";
+$texts["home_bullet_4"]="Nur geprüfte Käufer und Verkäufer";
+
+
 $texts["page_keywords"]="";
 $texts['page_organisation']="MEYBORG UG (haftungsbeschränkt)";
 $texts['page_ceo']="Geschäftsführer: Simon Meyborg, Felix Meyborg";
@@ -37,8 +51,10 @@ $texts['pigs']="Mastschweine";
 $texts['bulls']="Bullen";
 $texts['chicken']="Geflügel";
 
+$texts['address_invoice']="Rechnungsadresse";
+$texts['address_stall']="Stalladresse";
 
-
+$texts["documents_insurance"]="Warenversicherung";
 
 $texts['navi_news']="Startseite";
 $texts['navi_auction']="Auktionskatalog";
@@ -166,7 +182,12 @@ $texts['profile_deny_sell']="Kauf ablehnen";
 $texts['profile_not_logged_in_headline']='Bitte melden Sie sich an.';
 $texts['profile_not_logged_in']='Damit Sie auf Ihr Profil zugreifen können, müssen Sie sich zunächst <a href="#loginModal" role="button"  data-toggle="modal">einloggen</a>';
 
-
+$texts['profile_my_ratings']="Aktuellste Bewertungen";
+$texts['ratings_received']="Über Sie";
+$texts['ratings_written']="Von Ihnen";
+$texts['ratings_not_received']="Über Sie wurden bisher keine Bewertungen abgegeben.";
+$texts['ratings_not_written']="Sie haben bisher keine Bewertunge";
+$texts['no_comment']="Keinen Kommentar hinterlassen";
 
 $texts['profile_no_auction_won']="Sie haben bisher bei keiner Auktion den Zuschlag erhalten.";
 $texts['profile_add_auction']="Neue Auktion erstellen";
@@ -194,9 +215,9 @@ $texts['auction']="Auktion";
 $texts['offer']="Festpreisangebot";
 
 $texts['is_own_price']="Eingenen Preis festlegen";
-$texts['is_vezg_price']="Abhängig vom ZEVG-Preis anbieten.";
-$texts['zevg_date']="ZEVG Preis vom";
-$texts['zevg_price_placeholer']="z.B. +0.04";
+$texts['is_vezg_price']="Abhängig vom VEZG-Preis anbieten.";
+$texts['vezg_date']="VEZG Preis vom";
+$texts['vezg_price_placeholer']="z.B. +0.04";
 
 $texts['profile_offers_won']="Angenommen Angebote";
 $texts['bought_offer_date']="Kaufdatum";
@@ -212,6 +233,10 @@ $texts['profile_delete_auction']="Löschen";
 $texts['profile_delete_auction_question']="Sind Sie sicher das Sie die Auktion löschen möchten?";
 $texts['profile_edit_auction']="Bearbeiten";
 $texts['edit_password']="Passwort ändern";
+
+$texts['edit_auction_main_data_headline']="Grundsätzliches";
+$texts['edit_auction_classifiction_data_headline']="Klassifizierung";
+$texts['edit_auction_transportation_data_headline']="Ablieferung";
 
 
 $texts['change_password_headline']="Password ändern";
@@ -245,7 +270,7 @@ $texts['offer_creation_date']="Einstellungsdatum";
 $texts["offer_id"]="Angebotsnummer";
 $texts['offer_entitity_price']="Angebotspreis (in €)";
 $texts['offer_buy_submit']="Tiere jetzt verbindlich kaufen.";
-$texts['buy_offer_description']="Sie können diese Anbot direkt kaufen.";
+$texts['buy_offer_description']="Sie können dieses Angebot direkt kaufen.";
 $texts['buy_offer_question']="Sie verplichten sich zu Kauf der angebotenen Tiere.";
 
 $texts['seller']="Verkäufer";
@@ -256,13 +281,22 @@ $texts['show_auction_empty_rating']="Bisher nicht bewertet.";
 $texts['show_auction_detail']="Autionsdetails";
 $texts['show_offer_detail']="Angebotsdetails";
 
+$texts['show_buyer_detail']="Käuferdetails";
+$texts['show_seller_detail']="Verkäuferdetails";
+
 $texts['auction_main_auction']="Die Auktion soll im Rahmen der Hauptauktion stattfinden.";
 $texts['auction_side_auction']="Die ist eine Nebenauktion. Ich bestimme selbst, wann die Auktion enden soll.";
+
+
+$texts['show_auction_over_headline']="Auktion beendet";
+$texts['show_auction_over_description_1']="Die heutigen Auktionen sind beendet. <br/><br/>Wir hoffen Sie demnächst wieder bei der nächsten Auktion am";
+$texts['show_auction_over_description_2']="begrüssen zu dürfen.";
 
 $texts['auction_category']="Tierart";
 $texts['auction_user_rating']="Verkäuferbewertung";
 $texts['auction_not_loggedin_error']="Sie können nur als angemeldeter Händler bieten. Bitte loggen Sie sich ein oder registrieren sich als Händler";
 $texts['auction_not_buyer_error']="Sie können nur als angemeldeter Händler bieten. Sie sind nur als Verkäufer registriert.";
+$texts['auction_not_activated_buyer_error']="Sie wurden von uns noch nicht als Händler freigeschaltet. Falls Sie auf die Freischaltung bereits einige Tage warten, melden Sie sich bitte über das Kontaktformular";
 
 $texts['auction_amount']="Anzahl der Tiere";
 $texts['auction_amount_placeholder']="z.B. 178";
@@ -542,7 +576,7 @@ $texts['backend_offers_management']="Festpreisangebote";
 $texts['backend_user_addresses']="Adressen";
 
 $texts['backend_user_ratings_from']="Bewertungen des Nutzers";
-$texts['backend_user_ratings_about']="Bewertungen über den Nutzers";
+$texts['backend_user_ratings_about']="Bewertungen über den Nutzer";
 $texts['backend_auctions_management']="Auktionen";
 $texts['backend_address_type']="Adresstype";
 $texts['backend_address_show_on_map']="Auf Karte anzeigen";

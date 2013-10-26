@@ -104,12 +104,16 @@ if($gBase->User['is_buyer']=="yes"){
 
   <li><a href="#invoices" id="invoices_link" onclick="showSubnavigation('invoices')"><? echo($texts['profile_my_invoices']); ?></a></li>
 
+
 </ul>
 
 
 
 
   <div id="userdata_layer" class="sublayer">
+
+
+    <div id="about_user" class="span6">
     <h2><? echo($texts['profile_my_data']); ?></h2>
     <h4><? echo($texts['registration_address']); ?></h4>
     <p>
@@ -151,9 +155,16 @@ if($gBase->User['is_buyer']=="yes"){
   
     <a href="#changePasswordModal" class="btn" type="button" id="editPassword" data-toggle="modal" ><?  echo($texts['edit_password']); ?></a>
     
+</div>
+
+
+<?
+include('profile_ratings.php')
+
+?>
+  
+  
   </div>
-  
-  
      <?
 
  

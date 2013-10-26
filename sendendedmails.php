@@ -81,6 +81,7 @@ $lDB=connectDB();
 $endedAuctions=array();
 
 $lDB->resetExampleAuctions();
+
 if($endedAuctions=$lDB->getEndedAuction("ended","","")){
 
 
@@ -240,7 +241,7 @@ if($endedAuctions=$lDB->getEndedAuction("ended","","")){
 
 
 						$auctionsToConfirm=array();
-$passedStornoTime=date("y-m-d H:i:s", strtotime("-".$GLOBALS["VIEHAUKTION"]["STORNO"]["TIME"]."Minute"));
+$passedStornoTime=date("Y-m-d H:i:s", strtotime("-".$GLOBALS["VIEHAUKTION"]["STORNO"]["TIME"]."Minute"));
 
 if($auctionsToConfirm=$lDB->getEndedAuction("ended","ended_mail_complete", $passedStornoTime)){
 

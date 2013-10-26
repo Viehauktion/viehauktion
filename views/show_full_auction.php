@@ -173,8 +173,9 @@ if($_REQUEST['is_auction']=="yes"){
 
 
 
-
 	<?
+		echo($gBase->CurrentAuction["is_vezg"]);
+
 		if($gBase->CurrentAuction["is_seller"]=="yes"){		
 echo("<p >".$texts['auction_is_seller']."</p>");
 		}
@@ -183,9 +184,19 @@ echo("<p >".$texts['auction_is_seller']."</p>");
 <div id="time_box" > 
 	<div id="highestBid" class="well">
 	<table>
-		<tr><td ><strong><? if($_REQUEST['is_auction']=='yes'){echo($texts['auction_your_end_price']) ;}else{ echo($texts['offer_entitity_price']) ;}?>:</strong></td><td  id="curent_price"><? echo($gBase->CurrentAuction["auction"]["current_entity_price"]);?></td></tr>
+		<tr><td ><strong><? if($_REQUEST['is_auction']=='yes'){echo($texts['auction_your_end_price']) ;}else{ echo($texts['offer_entitity_price']) ;}?>:</strong></td><td  id="curent_price"><? echo($gBase->CurrentAuction["auction"]["current_entity_price"].'€');?></td></tr>
 
 	</table>
+	<?
+
+	if($gBase->CurrentAuction["auction"]["is_vezg"]=="yes"){
+
+		?>
+<p><? echo($texts['to_date'].' '.$texts['vezg_date'].": ".date("d.m.Y", strtotime($gBase->CurrentAuction["auction"]['start_time']))); ?></p>
+		<?
+	}
+
+	?>
 </div>
 
 
@@ -204,6 +215,9 @@ echo("<p >".$texts['auction_is_seller']."</p>");
 		<? echo($gBase->CurrentAuction["address"]["postcode"]." ".$gBase->CurrentAuction["address"]["city"]); ?><br />
 		
 		<? echo($texts['registration_phone'].": ".$gBase->CurrentAuction["seller"]["phone"]."<br />".$texts['registration_email'].": ".$gBase->CurrentAuction["seller"]["email"]); ?><br />
+     <br/>
+  <a href="?view=show_full_user&action=show_full_user&user_id=<? echo($gBase->CurrentAuction["auction"]["user_id"]);?>&auction_id=<? echo($gBase->CurrentAuction["auction"]["id"]);?>" class="btn" type="button" ><? echo(
+$texts['show_seller_detail']); ?></a><br/><br/>
      </p>
        
 </div>
@@ -223,6 +237,9 @@ echo("<p >".$texts['auction_is_seller']."</p>");
 		<? echo($gBase->CurrentAuction["buyer"]["address"]["postcode"]." ".$gBase->CurrentAuction["buyer"]["address"]["city"]); ?><br />
 	
 		<? echo($texts['registration_phone'].": ".$gBase->CurrentAuction["buyer"]["phone"]."<br />".$texts['registration_email'].": ".$gBase->CurrentAuction["buyer"]["email"]); ?><br />
+   <br/>
+  <a href="?view=show_full_user&action=show_full_user&user_id=<? echo($gBase->CurrentAuction["auction"]["buyer_id"]);?>&auction_id=<? echo($gBase->CurrentAuction["auction"]["id"]);?>"  class="btn" type="button" ><? echo(
+$texts['show_buyer_detail']); ?></a><br/><br/>
      </p>
        
 </div>
@@ -302,6 +319,21 @@ function buyOffer(){
 
 
 
+	<?
+	if($gBase->User!=null){
+
+		if($gBase->User["is_buyer"]=="no"){
+
+				echo("alert('".$texts['auction_not_buyer_error']."')");
+
+		}else if($gBase->User['active']!='2'){
+
+				echo("alert('".$texts['auction_not_activated_buyer_error']."')");
+
+		}else{ 
+			?>
+
+
   $.getJSON("index.php", { "action": "buy_offer", "view": "show_running_auction", "mode":"ajax","auction_id":currentAuctionID, "sid":"<? echo($_COOKIE["PHPSESSID"]); ?>"},
 			
 			  			function(data){
@@ -311,6 +343,19 @@ function buyOffer(){
 
 
 						 });
+
+
+  <?  		
+		}
+
+  	}else{
+
+		echo("alert('".$texts['auction_not_loggedin_error']."')");
+
+  	} 
+
+
+  	?>
 	
 	}
 

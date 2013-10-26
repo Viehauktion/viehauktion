@@ -25,7 +25,7 @@ if($_REQUEST['is_auction']=="yes"){
 
 ?>
 
-<div id="editAuction">
+<div id="editAuction" class="span9">
   <?
 
 	$isEditing=false;

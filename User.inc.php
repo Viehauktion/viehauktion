@@ -787,7 +787,7 @@ function sendActivationMailAgain($lang){
 		}
 
 
-	function getUserDetails($user_id, $auction_id=''){
+	function getUserDetails($user_id, $auction_id='', $page=1){
 
 
 		global $gBase;
@@ -813,19 +813,50 @@ function sendActivationMailAgain($lang){
 
 			}
 			if($gBase->User['role'] == "admin" || $flag) {
+
+				$start=$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"]*$page-$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"];
+		
+
 				if($userArray=$lDB->getUserByID($user_id)){
 					$gBase->RawData=array();
 					$gBase->RawData["user_data"]=$userArray;
 					$gBase->RawData["user_addresses"]=$lDB->getUserAddresses($user_id);
 					$gBase->RawData["user_files"]=$lDB->getUserFiles($user_id);
-					$gBase->RawData["ratings_about_user"]=$lDB->getRatingForUserId($user_id);
-					$gBase->RawData["ratings_from_user"]=$lDB->getRatingFromUserId($user_id);
+					getUserRatings($user_id, true, $page);
+					getUserRatings($user_id, false, $page);
 
 				}
 
 			}
 
 	}
+
+		
+	}
+
+
+
+	function getUserRatings($user_id, $isAbout, $page=1){
+
+
+		global $gBase;
+	
+		$lDB=connectDB();
+		if (!$lDB->failed){
+			$userArray=array();
+			$start=	$GLOBALS["VIEHAUKTION"]["SMALLPAGEELEMENTS"]*$page-$GLOBALS["VIEHAUKTION"]["SMALLPAGEELEMENTS"];
+			
+				if($isAbout){
+					
+					$gBase->RawData["ratings_about_user"]=$lDB->getRatingForUserId($user_id, $start,$GLOBALS["VIEHAUKTION"]["SMALLPAGEELEMENTS"]);
+					}else{
+					$gBase->RawData["ratings_from_user"]=$lDB->getRatingFromUserId($user_id,$start,$GLOBALS["VIEHAUKTION"]["SMALLPAGEELEMENTS"]);
+}
+			
+
+			
+
+		}
 
 		
 	}

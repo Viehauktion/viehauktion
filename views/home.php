@@ -13,19 +13,29 @@
   <div id="stage" class="span12">
 
 <div id="inner_stage" class="well span7" >
+  <div  class="no_transparancy">
     <h1><? echo($texts["stage_banner"]); ?></h1>
     <ul class="unstyled">
       <li>
         <span class="icon-stack"><i class="icon-certificate icon-stack-base"></i><i class="icon-ok icon-light"></i></span>
-        Die erste Auktion ist provisionsfrei
+        <? echo($texts["home_bullet_1"]); ?>
       </li>
       <li>
         <span class="icon-stack"><i class="icon-certificate icon-stack-base"></i><i class="icon-ok icon-light"></i></span>
-        Anonyme Angebote sind möglich
+         <? echo($texts["home_bullet_2"]); ?>
+      </li>
+      <li>
+        <span class="icon-stack"><i class="icon-certificate icon-stack-base"></i><i class="icon-ok icon-light"></i></span>
+         <? echo($texts["home_bullet_3"]); ?>
+      </li>
+      <li>
+        <span class="icon-stack"><i class="icon-certificate icon-stack-base"></i><i class="icon-ok icon-light"></i></span>
+         <? echo($texts["home_bullet_4"]); ?>
       </li>
     </ul>
-    <button onclick="submitSelectAuctionForm();" class="btn btn-primary btn-large">Jetzt Ausprobieren</button>
+    <a href="?view=registration" class="btn btn-primary btn-large">Jetzt Ausprobieren</button>
     <a href="?view=how_it_works" class="btn"><? echo($texts['how_it_works_headline']); ?></a>
+</div>
 </div>
   </div>
 
