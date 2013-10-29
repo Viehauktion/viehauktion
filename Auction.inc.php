@@ -160,7 +160,7 @@
 	}
 	
 	
-	function editAuction($category_id, $auction_id, $is_preview, $is_auction, $is_main_auction,$is_vezg, $auction_date, $auction_endtime, $auction_amount, $auction_min_entitity_price, $auction_origin, $form, $auction_pigs_form_value, $autoform, $auction_pigs_autoform_value, $auction_pigs_qs, $auction_pigs_samonelle_state, $address, $auction_loading_stations_amount, $auction_loading_stations_distance, $auction_loading_stations_vehicle, $auction_loading_stations_availability, $auction_loading_stations_availability_til, $auction_additional_informations){
+	function editAuction($category_id, $auction_id, $is_preview, $is_auction, $is_main_auction,$is_vezg, $auction_date, $auction_endtime, $auction_amount, $auction_min_entitity_price, $auction_origin, $auction_classification_mask, $auction_pigs_classification_mask_value, $auction_pigs_qs, $auction_pigs_samonelle_state, $address, $auction_loading_stations_amount, $auction_loading_stations_distance, $auction_loading_stations_vehicle, $auction_loading_stations_availability, $auction_loading_stations_availability_til, $is_public,  $auction_additional_informations){
 	
 		global $gBase;
 		
@@ -207,7 +207,9 @@
 						$auctionArray['buyer_id']=0;
 						$auctionArray['category_id']=$category_id;
 						$auctionArray['is_main']=$is_main_auction;
-
+					
+							$auctionArray['is_public']=$is_public;
+					
 						
 						if($is_main_auction=="yes"){
 							$auctionArray['start_time']=$auction_date;
@@ -306,6 +308,8 @@
 						$auctionArray['buyer_id']=0;
 						$auctionArray['category_id']=$category_id;
 						$auctionArray['is_auction']=$is_auction;
+
+						$auctionArray['is_public']=$is_public;
 
 						if($is_main_auction=="yes"){
 							$auctionArray['start_time']=$auction_date;
@@ -759,6 +763,7 @@ function getRunningAuction($county_id, $state_id, $auction_id){
 									
 										$memcache->connect('127.0.0.1', 11211);
 										if(!$gBase->CurrentAuction=$memcache->get($auction_id)){
+										
 													getCurrentAuctionFromDB($county_id, "");
 													return;
 
@@ -913,6 +918,14 @@ global $gBase;
 
 										}
 
+										if($currentAuction['is_public']=="yes"){
+											$userArray=$lDB->getUserByID($gBase->CurrentAuction["user_id"]);
+											$gBase->CurrentAuction["seller_name"]=$userArray['firstname']." ".$userArray["lastname"];
+										}else{
+											$gBase->CurrentAuction["seller_name"]="";
+
+										}
+
 										$gBase->CurrentAuction["is_auction"] ="yes";
 										
 										$gBase->CurrentAuction['current_time']=date("H:i:s");
@@ -993,6 +1006,15 @@ if($currentAuction=$lDB->getAuctionLikeRunningAction($auction_id)){
 										}else{
 											$gBase->CurrentAuction["is_seller"] ="no";
 
+
+										}
+
+
+										if($currentAuction['is_public']=="yes"){
+											$userArray=$lDB->getUserByID($gBase->CurrentAuction["user_id"]);
+											$gBase->CurrentAuction["seller_name"]=$userArray['firstname']." ".$userArray["lastname"];
+										}else{
+											$gBase->CurrentAuction["seller_name"]="";
 
 										}
 
@@ -1090,6 +1112,15 @@ global $gBase;
 							$fullAuction["buyer_rating"]=$lDB->getUserRating($auctionArray["buyer_id"]);
 							$fullAuction["buyer"]["address"]=$buyer_address;
 					}
+
+
+						if($auctionArray['is_public']=="yes"){
+											$userArray=$lDB->getUserByID($auctionArray["user_id"]);
+											$fullAuction["seller_name"]=$userArray['firstname']." ".$userArray["lastname"];
+										}else{
+											$fullAuction["seller_name"]="";
+
+										}
 
 
 						$gBase->CurrentAuction=$fullAuction;

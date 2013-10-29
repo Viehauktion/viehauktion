@@ -31,7 +31,7 @@ $oldValues=nil;
 
 <div id="pigs_auction" class="span9">     
   <form  class="form-horizontal" id="auction_form" method="get" action="?">
-    <fieldset>
+ 
 
       <div class="alert alert-error hide"  >
         <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -45,6 +45,8 @@ $oldValues=nil;
       <input type="hidden" id="is_auction" name="is_auction" value="<? echo($_REQUEST['is_auction']); ?>" />
        <input type="hidden" id="is_main_auction" name="is_main_auction" value="yes" />
       <input type="hidden" id="is_preview" name="is_preview" value="" />
+    <div id="auction_main_data"> 
+  <h3><? echo($texts['edit_auction_main_data_headline']); ?></h3>
       <?
       if($_REQUEST['is_auction']=="yes"){
         ?>
@@ -60,14 +62,14 @@ $oldValues=nil;
   <? echo($texts['auction_side_auction']); ?>
 </label>
 -->
+
 <br/>
-<br/>
 
 
 
-<div id="auction_main_data"> 
 
-  <h3><? echo($texts['edit_auction_main_data_headline']); ?></h3>
+
+
   <div class="control-group" id="main_time">
         <label class="control-label" for="auction_date"><? echo($texts['add_auction_date']); ?></label>
         <div class="controls">
@@ -190,7 +192,9 @@ $oldValues=nil;
   <input type="radio" name="is_vezg" id="is_vezg" value="no" onclick="changePrice('vezg');">
   <? echo($texts['is_vezg_price']); ?>
 </label>
-</div>
+</div><br/>
+
+
     <div id="own" class="control-group">
         <label class="control-label" for="auction_min_entitity_price"><? echo($texts['offer_entitity_price']); ?></label>
         <div class="controls">
@@ -231,7 +235,7 @@ $oldValues=nil;
 
 
 <script type="text/javascript">
-var is_vezg="no";
+
 
 function changePrice(price_system){
 
@@ -263,7 +267,12 @@ function changePrice(price_system){
 
 
 
-
+  <div class="control-group">
+        <label class="control-label" for="auction_genes"><? echo($texts['auction_genes']); ?></label>
+        <div class="controls">
+          <input type="text" id="auction_genes" name="auction_genes" placeholder="<? echo($texts['auction_genes_placholder']); ?>" value="<? if($oldValues!=nil) echo($oldValues['auction_genes']); ?>">
+        </div>
+      </div>
 
 
       <div class="control-group">
@@ -272,8 +281,8 @@ function changePrice(price_system){
           <input type="text" id="auction_origin" name="auction_origin" placeholder="<? echo($texts['auction_origin_placeholder']); ?>" value="<? if($oldValues!=nil) echo($oldValues['auction_origin']); ?>">
         </div>
       </div>
-
-
+<h5><? echo($texts['hint']); ?></h5>
+<p><? echo($texts['auction_optional_hint']); ?></p>
 </div>
 
 
@@ -286,53 +295,77 @@ function changePrice(price_system){
   <h3><? echo($texts['edit_auction_classifiction_data_headline']); ?></h3>
             <span class="help-block"><? echo($texts['auction_pigs_calssification_hint']); ?></span><br/>
 
-      <div class="control-group">
-        <label class="control-label" for="form"><? echo($texts['auction_pigs_form']); ?></label>
+
+
+
+
+
+
+      
+        <div class="control-group">
+        <label class="control-label" for="auction_classification_mask"><? echo($texts['auction_classification_mask']); ?></label>
         <div class="controls">
-          <input type="checkbox" id="form" name="form"
-<? if($oldValues['form']=="on"){
-
-echo ' checked="checked" ';
-
+         
+          
+          <select  name="auction_classification_mask" id="auction_classification_mask" >
+            <option value="FOM" <? if($oldValues['auction_classification_mask']=="FOM"){
+echo (' selected="selected" ');
 }
-?>
 
-           />
-        </div>
-      </div>
-      <div class="control-group">
-        <label class="control-label" for="auction_pigs_form_value"><? echo($texts['auction_pigs_form_entity']); ?></label>
-        <div class="controls">
-          <input type="text" id="auction_pigs_form_value" name="auction_pigs_form_value" placeholder="<? echo($texts['auction_pigs_form_entity_placeholder']); ?>" value="<? if($oldValues!=nil) echo($oldValues['auction_pigs_form_value']); ?>">
-        </div>
-      </div>
-      <div class="control-group">
-        <label class="control-label" for="autoform"><? echo($texts['auction_pigs_autoform']); ?></label>
-        <div class="controls">
-          <input type="checkbox" id="autoform" name="autoform"
-<? if($oldValues['autoform']=="on"){
+?> ><? echo($texts['auction_pigs_fom']) ;?></option>
 
-echo ' checked="checked" ';
-
+  <option value="AUTOFOM" <? if($oldValues['auction_classification_mask']=="AUTOFOM"){
+echo (' selected="selected" ');
 }
-?>
-
-           />
+?> ><? echo($texts['auction_pigs_autofom']) ;?></option>
+        
+        
+          </select>
         </div>
       </div>
-      <div class="control-group">
-        <label class="control-label" for="auction_pigs_autoform_value"><? echo($texts['auction_pigs_autoform_entity']); ?></label>
+
+
+
+
+<div id="classification_mask">
+    <div class="control-group">
+      <label class="control-label" for="auction_pigs_classification_mask_value"><? echo($texts['auction_pigs_fom_entity']); ?></label>
         <div class="controls">
-          <input type="text" id="auction_pigs_autoform_value" name="auction_pigs_autoform_value" placeholder="<? echo($texts['auction_pigs_autoform_entity_placeholder']); ?>" value="<? if($oldValues!=nil) echo($oldValues['auction_pigs_autoform_value']); ?>">
+          <input type="text" id="auction_pigs_classification_mask_value" name="auction_pigs_classification_mask_value" placeholder="<? echo($texts['auction_pigs_fom_entity_placeholder']); ?>" value="<? if($oldValues!=nil) echo($oldValues['auction_pigs_classification_mask_value']); ?>">
         </div>
-      </div>
+    </div>
+  </div>
 
-    
+<script type="text/javascript">
+
+$("#auction_classification_mask").change(
+  function(){
+
+checkedClassificationMask()
+
+  });
 
 
+function  checkedClassificationMask(){
+
+html="";
+   
+if($("#auction_classification_mask").val()=="FOM"){
+html='<div class="control-group"><label class="control-label" for="auction_pigs_classification_mask_value"><? echo($texts['auction_pigs_fom_entity']); ?></label><div class="controls"><input type="text" id="auction_pigs_classification_mask_value" name="auction_pigs_classification_mask_value" placeholder="<? echo($texts['auction_pigs_fom_entity_placeholder']); ?>" value="<? if($oldValues!=nil) echo($oldValues['auction_pigs_classification_mask_value']); ?>"></div></div>';
+  
+}else{
+
+html='<div class="control-group"> <label class="control-label" for="auction_pigs_classification_mask_value"><? echo($texts['auction_pigs_autofom_entity']); ?></label><div class="controls"><input type="text" id="auction_pigs_classification_mask_value" name="auction_pigs_classification_mask_value" placeholder="<? echo($texts['auction_pigs_autofom_entity_placeholder']); ?>" value="<? if($oldValues!=nil) echo($oldValues['auction_pigs_classification_mask_value']); ?>"></div></div>';
+}
+  
+  $("#classification_mask").html(html);
+
+  }
 
 
+  checkedClassificationMask();
 
+</script>
 
 
 
@@ -561,7 +594,7 @@ echo ' selected="selected" ';
       <div class="controls">
 
   <div id="from_time" class="input-append date">
-    <input data-format="dd-MM-yyyy hh:mm" name="auction_loading_stations_availability" id="auction_loading_stations_availability" value="<? if($oldValues!=nil) echo($oldValues['auction_loading_stations_availability']); ?>"  type="text"></input>
+    <input data-format="dd.MM.yyyy" name="auction_loading_stations_availability" id="auction_loading_stations_availability" value="<? if($oldValues!=nil) echo($oldValues['auction_loading_stations_availability']); ?>"  type="text"></input>
     <span class="add-on">
       <i data-time-icon="icon-time" data-date-icon="icon-calendar">
       </i>
@@ -576,7 +609,7 @@ echo ' selected="selected" ';
       <div class="controls">
 
   <div id="till_time" class="input-append date">
-    <input data-format="dd-MM-yyyy hh:mm" name="auction_loading_stations_availability_til" id="auction_loading_stations_availability_til" value="<? if($oldValues!=nil) echo($oldValues['auction_loading_stations_availability_til']); ?>" type="text"></input>
+    <input data-format="dd.MM.yyyy" name="auction_loading_stations_availability_til" id="auction_loading_stations_availability_til" value="<? if($oldValues!=nil) echo($oldValues['auction_loading_stations_availability_til']); ?>" type="text"></input>
     <span class="add-on">
       <i data-time-icon="icon-time" data-date-icon="icon-calendar">
       </i>
@@ -590,7 +623,41 @@ echo ' selected="selected" ';
 
 <hr>
 
-<div id="auction_final">      
+<div id="auction_final">     
+
+
+     <div class="control-group">
+        <label class="control-label" for="needs_original"><? echo($texts['auction_needs_original']); ?></label>
+        <div class="controls">
+          <input type="checkbox" id="needs_original" name="needs_original"
+<? if($oldValues['needs_original']=="yes"){
+
+echo ' checked="checked" ';
+
+}
+?>
+
+           />
+        </div>
+      </div>
+
+
+
+       <div class="control-group">
+        <label class="control-label" for="is_public"><? echo($texts['auction_pigs_offer_openly']); ?></label>
+        <div class="controls">
+          <input type="checkbox" id="is_public" name="is_public"
+<? if($oldValues['is_public']=="yes"){
+
+echo ' checked="checked" ';
+
+}
+?>
+
+           />
+        </div>
+      </div>
+
       <div class="control-group">
         <label class="control-label" for="auction_additional_informations"><? echo($texts['auction_additional_informations']); ?></label>
         <div class="controls">
@@ -607,14 +674,14 @@ echo ' selected="selected" ';
 
 </div>
 
-    </fieldset>
+ 
   </form>
   
   </div>
   <script type="text/javascript">
 
 
-
+var is_vezg="no";
         
     $('#endtime').datetimepicker({
       language: 'de-DE'
@@ -632,6 +699,8 @@ $('#till_time').datetimepicker({
 
  picker=$('#endtime').data('datetimepicker');
 picker.setLocalDate(new Date());
+
+
 
 $("#pigs_auction #auction_preview").click(function(){
       $("#pigs_auction #view").val("show_full_auction");
@@ -683,10 +752,24 @@ function sendForm(nextview, is_preview){
   price=$("#auction_min_entitity_price").val();
   price=price.replace("€","");
   price=price.replace(" ","");
-$("#auction_min_entitity_price").val(price);
+
+  is_public="no";
+
+  needs_original="no";
 
 $("#auction_min_entitity_price").val(price);
 
+$("#auction_min_entitity_price").val(price);
+
+if($("#is_public").is(':checked')){
+
+    is_public="yes";
+}
+
+if($("#needs_original").is(':checked')){
+
+    needs_original="yes";
+}
 
 
 	
@@ -717,29 +800,24 @@ $("#auction_min_entitity_price").val(price);
 
 		}
 		
-		if((!$("#form").is(':checked')) &&(!$("#autoform").is(':checked')) ){
+		
+    if($("#auction_pigs_classification_mask_value").val()==''){
 	
-		$("#pigs_auction #error_message").append('<? echo($texts['auction_classification_error']); ?><br/>');
+  if($("#auction_classification_mask").val()=="FOM"){
+		$("#pigs_auction #error_message").append('<? echo($texts['auction_pigs_fom_value_error']); ?><br/>');
 		errorflag=true;
+}else{
+
+      $("#pigs_auction #error_message").append('<? echo($texts['auction_pigs_fom_value_error']); ?><br/>');
+    errorflag=true;
+}
+
+
 
 		}
 		
 		
-		if(($("#form").is(':checked')) && $("#auction_pigs_form_value").val()==''){
-		
-		
-		$("#pigs_auction #error_message").append('<? echo($texts['auction_pigs_form_value_error']); ?><br/>');
-		errorflag=true;
 
-		}
-	 
-	 	if(($("#autoform").is(':checked')) && $("#auction_pigs_autoform_value").val()==''){
-		
-		
-		$("#pigs_auction #error_message").append('<? echo($texts['auction_pigs_autoform_value_error']); ?><br/>');
-		errorflag=true;
-
-		}
 	 
 	 
 	 	 	if(($("#auction_loading_stations_amount").val()!="1") && ($("#auction_loading_stations_distance").val()=='')){
@@ -778,7 +856,8 @@ $("#auction_min_entitity_price").val(price);
 		}else{
 			
 
- $.getJSON("index.php", { "action": $("#action").val(), "view": "profile", "mode":"ajax", "category_id":$("#category_id").val(), "auction_id":$("#auction_id").val(), "is_auction":$("#is_auction").val(), "is_main_auction":$("#is_main_auction").val(), "is_vezg": is_vezg, "is_preview":$("#is_preview").val(),"auction_date":$("#auction_date").val(),"endtime":$("#endtime").val(),"auction_amount":$("#auction_amount").val(),"auction_min_entitity_price":$("#auction_min_entitity_price").val(),"auction_origin":$("#auction_origin").val(),"form":$("#form").val(),"auction_pigs_form_value":$("#auction_pigs_form_value").val(),"autoform":$("#autoform").val(),"auction_pigs_autoform_value":$("#auction_pigs_autoform_value").val(),"auction_pigs_qs":$("#auction_pigs_qs").val(),"auction_pigs_samonelle_state":$("#auction_pigs_samonelle_state").val(),"address":$("#address").val(),"auction_loading_stations_amount":$("#auction_loading_stations_amount").val(),"auction_loading_stations_distance":$("#auction_loading_stations_distance").val(),"auction_loading_stations_vehicle":$("#auction_loading_stations_vehicle").val(),"auction_loading_stations_availability":$("#auction_loading_stations_availability").val(), "auction_loading_stations_availability_til":$("#auction_loading_stations_availability_til").val(),"auction_additional_informations":$("#auction_additional_informations").val(), "sid":"<? echo($_COOKIE["PHPSESSID"]); ?>"},
+
+ $.getJSON("index.php", { "action": $("#action").val(), "view": "profile", "mode":"ajax", "category_id":$("#category_id").val(), "auction_id":$("#auction_id").val(), "is_auction":$("#is_auction").val(), "is_main_auction":$("#is_main_auction").val(), "is_vezg": is_vezg, "is_preview":$("#is_preview").val(),"auction_date":$("#auction_date").val(),"endtime":$("#endtime").val(),"auction_amount":$("#auction_amount").val(),"auction_min_entitity_price":$("#auction_min_entitity_price").val(), "auction_genes":$("#auction_genes").val(), "auction_origin":$("#auction_origin").val(),"auction_classification_mask":$("#auction_classification_mask").val(),"auction_pigs_classification_mask_value":$("#auction_pigs_classification_mask_value").val(),"auction_pigs_qs":$("#auction_pigs_qs").val(),"auction_pigs_samonelle_state":$("#auction_pigs_samonelle_state").val(),"address":$("#address").val(),"auction_loading_stations_amount":$("#auction_loading_stations_amount").val(),"auction_loading_stations_distance":$("#auction_loading_stations_distance").val(),"auction_loading_stations_vehicle":$("#auction_loading_stations_vehicle").val(),"auction_loading_stations_availability":$("#auction_loading_stations_availability").val(), "auction_loading_stations_availability_til":$("#auction_loading_stations_availability_til").val(), "needs_original":needs_original, "is_public": is_public, "auction_additional_informations":$("#auction_additional_informations").val(), "sid":"<? echo($_COOKIE["PHPSESSID"]); ?>"},
       
         function(data){
            

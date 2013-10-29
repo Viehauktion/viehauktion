@@ -24,8 +24,11 @@ $nextDates=getNextAuctions(1);
 <p >
 	<table class="table">
 		<tr><td  class="leftSide"><strong><? echo($texts["auction_id"]) ;?>:</strong></td><td id="auction_id" class="rightSide"><? echo($gBase->CurrentAuction["auction_id"]);?></td></tr>
-		<tr><td  class="leftSide"><strong><? echo($texts['auction_amount']); ?>:</strong></td><td id="amount_of_animals" class="rightSide"><? echo($gBase->CurrentAuction["amount_of_annimals"]);?></td></tr>
+		<tr><td  class="leftSide"><strong><? echo($texts['auction_min_entitity_price']); ?>:</strong></td><td id="min_entity_price" class="rightSide" ><? echo($gBase->CurrentAuction["min_entity_price"]);?></td></tr>
+				<tr><td  class="leftSide"><strong><? echo($texts['auction_amount']); ?>:</strong></td><td id="amount_of_animals" class="rightSide"><? echo($gBase->CurrentAuction["amount_of_annimals"]);?></td></tr>
 		<tr><td class="leftSide"><strong><? echo($texts['auction_city']); ?>:</strong></td><td  id="city" class="rightSide"><? echo($gBase->CurrentAuction["city"]);?></td></tr>
+		<tr><td class="leftSide"><strong><? echo($texts['auction_user_name']); ?>:</strong></td><td  id="user_name" class="rightSide"><? if($gBase->CurrentAuction["seller_name"]!=''){ echo($gBase->CurrentAuction["seller_name"]); }else{ echo($texts["seller_anonym"]);}?></td></tr>
+
 		<tr><td class="leftSide"><strong><? echo($texts['auction_user_rating']); ?>:</strong></td><td  id="user_rating" class="rightSide">
 
 		<div class="emptyPigsRating"  ></div>
@@ -36,39 +39,26 @@ $nextDates=getNextAuctions(1);
 </td></tr>
 	
 	
-
+		<tr><td class="leftSide"><strong><? echo($texts['auction_genes']) ;?>:</strong></td><td id="genes" class="rightSide"><? echo($gBase->CurrentAuction["metadata"]["auction_genes"]);?></td></tr>
 		<tr><td class="leftSide"><strong><? echo($texts['auction_origin']) ;?>:</strong></td><td id="origin" class="rightSide"><? echo($gBase->CurrentAuction["metadata"]["auction_origin"]);?></td></tr>
-		<?
-		if($gBase->CurrentAuction["metadata"]["form"]=="on"){
-			?>
-		<tr><td class="leftSide"><strong><? echo($texts['auction_pigs_form']); ?>:</strong></td><td id="form" class="rightSide"><? echo($texts["yes"]);?></td></tr>
-		<tr><td class="leftSide"><strong><? echo($texts['auction_pigs_form_entity']); ?>:</strong></td><td id="form_value" class="rightSide" ><? echo($gBase->CurrentAuction["metadata"]["auction_pigs_form_value"]);?></td></tr>
-<?}else{
+		<tr><td  class="leftSide"><strong><? echo($texts['auction_classification_mask']); ?>:</strong></td><td id="classification_mask" class="rightSide"><? echo($gBase->CurrentAuction["metadata"]["metadata"]["auction_classification_mask"]);?></td></tr>
+		
+<?
+if($gBase->CurrentAuction["metadata"]["metadata"]["auction_classification_mask"]=='FOM'){
 	?>
 
-	<tr><td class="leftSide"><strong><? echo($texts['auction_pigs_form']); ?>:</strong></td><td id="form" class="rightSide"><? echo($texts["no"]);?></td></tr>
-	<tr><td class="leftSide"><strong><? echo($texts['auction_pigs_form_entity']); ?>:</strong></td><td id="form_value" class="rightSide" >-</td></tr>
-
-	
-	<?
-}
-?>
+<tr><td  class="leftSide"><strong><? echo($texts['auction_pigs_fom_entity']); ?>:</strong></td><td id="classification_mask_value" class="rightSide" ><? echo($gBase->CurrentAuction["metadata"]["metadata"]["auction_pigs_classification_mask_value"]);?></td></tr>
 
 <?
-		if($gBase->CurrentAuction["metadata"]["autoform"]=="on"){
-			?>
-		<tr><td class="leftSide"><strong><? echo($texts['auction_pigs_autoform']); ?>:</strong></td><td id="autoform" class="rightSide"><? echo($texts["yes"]);?></td></tr>
-		<tr><td class="leftSide"><strong><? echo($texts['auction_pigs_autoform_entity']); ?>:</strong></td><td id="autoform_value" class="rightSide"><? echo($gBase->CurrentAuction["metadata"]["auction_pigs_autoform_value"]);?></td></tr>
-<?}else{
-	?>
+}else{
+?>
 
-	<tr><td class="leftSide"><strong><? echo($texts['auction_pigs_autoform']); ?>:</strong></td><td id="autoform" class="rightSide"><? echo($texts["no"]);?></td></tr>
-		<tr><td class="leftSide"><strong><? echo($texts['auction_pigs_autoform_entity']); ?>:</strong></td><td id="autoform_value" class="rightSide">-</td></tr>
+<tr><td  class="leftSide"><strong><? echo($texts['auction_pigs_autofom_entity']); ?>:</strong></td><td id="classification_mask_value" class="rightSide" ><? echo($gBase->CurrentAuction["metadata"]["metadata"]["auction_pigs_classification_mask_value"]);?></td></tr>
 
-	
-	<?
+<?
 }
 ?>
+		
 
 <tr><td><strong><? echo($texts['auction_pigs_qs']); ?>:</strong></td><td id="qs" class="rightSide"><? echo($texts[$gBase->CurrentAuction["metadata"]["auction_pigs_qs"]]);?></td></tr>
 
@@ -122,7 +112,18 @@ switch ($gBase->CurrentAuction["metadata"]["auction_loading_stations_vehicle"]) 
 	<tr><td class="leftSide"><strong><? echo($texts['auction_loading_stations_vehicle']); ?>:</strong></td><td id="stations_vehicle" class="rightSide"><? echo($vehicle);?></td></tr>
 
 <tr><td class="leftSide"><strong><? echo($texts['auction_loading_stations_availability']); ?>:</strong></td><td id="stations_availability" class="rightSide"><? echo($gBase->CurrentAuction["metadata"]["auction_loading_stations_availability"]." ".$texts['auction_loading_stations_availability_til']." ".$gBase->CurrentAuction["metadata"]["auction_loading_stations_availability_til"]);?></td></tr>
-<tr><td class="leftSide"><strong><? echo($texts['auction_additional_informations']); ?>:</strong></td><td id="additional_informations" class="rightSide"><? echo($gBase->CurrentAuction["metadata"]["auction_additional_informations"]);?></td></tr>
+
+
+<tr><td class="leftSide"><strong><? echo($texts['auction_additional_informations']); ?>:</strong></td><td id="additional_informations" class="rightSide"><? echo($gBase->CurrentAuction["metadata"]["auction_additional_informations"]);
+
+
+if($gBase->CurrentAuction["metadata"]["metadata"]["needs_original"]=="yes"){
+
+	echo('<br/><br/>'.$texts['auction_original_needed']); 
+}
+
+
+?></td></tr>
 	</table>
 </p>
 
@@ -380,6 +381,14 @@ function displayResponse(data){
 									$("#is_seller").html("");
 								}
 
+								if(data.current_auction.seller_name!=""){
+								
+									$("#user_name").html(data.current_auction.seller_name);
+
+									}else{
+										$("#user_name").html("<? echo($texts["seller_anonym"]); ?>");
+								}
+
 								if(data.current_auction.user_rating.amount==0){
 									$("#user_rating").html('<? echo($texts['show_auction_empty_rating']) ?>');
 								}else{
@@ -461,23 +470,41 @@ function displayResponse(data){
 
 								//}
 
-
+								$("#min_entity_price").html(data.current_auction.min_entity_price+" €");
 								$("#end_time").html(data.current_auction.end_time.substr(10,10));
 								$("#bids").html(data.current_auction.bids);
 								$("#start_time").html(data.current_auction.start_time.substr(10,10));
 								$("#current_time").html(data.current_auction.current_time);
+								$("#genes").html(data.current_auction.auction_genes);
 								$("#origin").html(data.current_auction.auction_origin);
-								$("#form").html(data.current_auction.metadata.form);
-								$("#form_value").html(data.current_auction.metadata.auction_pigs_form_value);
-								$("#autoform").html(data.current_auction.metadata.autoform);
-								$("#autoform_value").html(data.current_auction.metadata.auction_pigs_autoform_value);
-								$("#qs").html(data.current_auction.metadata.auction_pigs_qs);
+								$("#classification_mask").html(data.current_auction.metadata.auction_classification_mask);
+								$("#classification_mask_value").html(data.current_auction.metadata.auction_pigs_classification_mask_value);
+								if(data.current_auction.metadata.auction_pigs_qs=="yes"){
+									$("#qs").html("<? echo($texts['yes']); ?>");
+								}else{
+								$("#qs").html("<? echo($texts['no']); ?>");
+									}
 								$("#samonelle_state").html(data.current_auction.metadata.auction_pigs_samonelle_state);
 								$("#stations_amount").html(data.current_auction.metadata.auction_loading_stations_amount);
 								$("#stations_distance").html(data.current_auction.metadata.auction_loading_stations_distance);
-								$("#stations_vehicle").html(data.current_auction.metadata.auction_loading_stations_vehicle);
+								vehicle="";
+								switch(data.current_auction.metadata.auction_loading_stations_vehicle){
+									case "0": vehicle="<? echo($texts['vehicle_1']); ?>"; break;
+									case "1": vehicle="<? echo($texts['vehicle_2']); ?>"; break;
+									case "2": vehicle="<? echo($texts['vehicle_3']); ?>"; break;
+									case "3": vehicle="<? echo($texts['vehicle_4']); ?>"; break;
+
+
+								}
+								$("#stations_vehicle").html(vehicle);
 								$("#stations_availability").html(data.current_auction.metadata.auction_loading_stations_availability+' <? echo($texts['auction_loading_stations_availability_til']);?> '+data.current_auction.metadata.auction_loading_stations_availability_til);
-								$("#additional_informations").html(data.current_auction.metadata.auction_additional_informations);
+								
+								additional=data.current_auction.metadata.auction_additional_informations;
+								if(data.current_auction.metadata.needs_original=="yes"){
+										additional+="<? echo('<br/><br/>'.$texts['auction_original_needed']); ?>";
+								}
+
+								$("#additional_informations").html(additional);
 
 						if(scheduleNeedsUpdate){
 							scheduleNeedsUpdate=false;

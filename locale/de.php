@@ -294,6 +294,8 @@ $texts['show_auction_over_description_2']="begrüssen zu dürfen.";
 
 $texts['auction_category']="Tierart";
 $texts['auction_user_rating']="Verkäuferbewertung";
+$texts['auction_user_name']="Verkäufer";
+$texts["seller_anonym"]="Anonym";
 $texts['auction_not_loggedin_error']="Sie können nur als angemeldeter Händler bieten. Bitte loggen Sie sich ein oder registrieren sich als Händler";
 $texts['auction_not_buyer_error']="Sie können nur als angemeldeter Händler bieten. Sie sind nur als Verkäufer registriert.";
 $texts['auction_not_activated_buyer_error']="Sie wurden von uns noch nicht als Händler freigeschaltet. Falls Sie auf die Freischaltung bereits einige Tage warten, melden Sie sich bitte über das Kontaktformular";
@@ -302,7 +304,8 @@ $texts['auction_amount']="Anzahl der Tiere";
 $texts['auction_amount_placeholder']="z.B. 178";
 
 $texts['auction_min_entitity_price_without_euro']="Mindestgebot";
-$texts['auction_min_entitity_price']="Mindestgebot (in €)";
+$texts['auction_min_entitity_price']="Mindestgebot <br/>(in € pro Kg Schlachgewicht)";
+$texts['offer_min_entitity_price']="Kaufpreis <br/>(in € pro Kg Schlachgewicht)";
 $texts['auction_min_entitity_price_placeholer']="z.B. 1.85";
 
 
@@ -329,13 +332,15 @@ $texts['add_auction_time_entity']="Uhr";
 
 
 $texts['auction_pigs_classification']="Klassifizierungsart";
-$texts['auction_pigs_form']="Form";
-$texts['auction_pigs_form_entity']="MFA(%) ca.";
-$texts['auction_pigs_form_entity_placeholder']="z.B. 57";
 
-$texts['auction_pigs_autoform']="Auto Form";
-$texts['auction_pigs_autoform_entity']="IXP/kg  ca.";
-$texts['auction_pigs_autoform_entity_placeholder']="z.B. 67";
+$texts['auction_classification_mask']="Abrechnungsmaske";
+$texts['auction_pigs_fom']="FOM";
+$texts['auction_pigs_fom_entity']="Muskelfettanteil(%) ca.";
+$texts['auction_pigs_fom_entity_placeholder']="z.B. 57";
+
+$texts['auction_pigs_autofom']="Auto FOM";
+$texts['auction_pigs_autofom_entity']="IXP/kg  ca.";
+$texts['auction_pigs_autofom_entity_placeholder']="z.B. 67";
 
 
 $texts['auction_pigs_qs']="QS";
@@ -355,7 +360,7 @@ $texts['auction_add_address']="Andere Stalladresse anlegen";
 $texts['auction_preview']="Vorschau";
 $texts['auction_submit']="Speichern";
 
-$texts['auction_additional_informations']="Weitere Informationen für die Bieter";
+$texts['auction_additional_informations']="Weitere Informationen für die Bieter<br/>(z.B. Zeitangabe für Ablieferung, etc.)";
 $texts['auction_additional_informations_hint']="Hier können Sie Angaben zum gewünschten Ablieferungszeitpunkt oder andere Besonderheiten angeben.";
 
 $texts['auction_loading_stations_amount']="Anzahl an Verladestellen";
@@ -384,17 +389,22 @@ $texts['auction_id']="Auktionsnummer";
 $texts['auction_amount_error']="Bitte geben sie eine Anzahl an Tieren an.";
 $texts['auction_min_entitity_price_error']="Bitte geben Sie einen Mindestpreis an.";
 $texts['auction_origin_error']="Bitte geben Sie eine Ferkelherkunft an.";
-$texts['auction_classification_error']="Bitte wählen SIe eine Berechnungsmaske.";
-$texts['auction_pigs_form_value_error']="Bitte geben Sie ein erwartbaren Muskelfleischanteil an.";
-$texts['auction_pigs_autoform_value_error']="Bitte geben Sie ein erwartbaren XPI Wert an.";
+
+$texts['auction_pigs_fom_value_error']="Bitte geben Sie ein erwartbaren Muskelfleischanteil an.";
+$texts['auction_pigs_autofom_value_error']="Bitte geben Sie ein erwartbaren XPI Wert an.";
 $texts['auction_loading_stations_distance_error']="Bitte geben Sie die summierte Entfernung zwischen Verladestationen an.";
 $texts['auction_loading_stations_availability_error']="Bitte geben Sei einen korrekten Verladezeitraum ein.";
 
+$texts['auction_pigs_offer_openly']="Dieses Angebot soll unter Nennung meines vollen Namens eingestellt werden.";
+$texts['auction_needs_original']="Ich fordere eine original Schlachtabrechnung";
+$texts['auction_genes']="Genetik";
+$texts['auction_genes_placholder']="z.B. Landrasse x Duroc";
 
+$texts['auction_original_needed']="Der Käufer verplichtet sich, dem Verkäufer später eine original Schlachtabrechnung zu liefern.";
 
 $text['edit_auction_not_allowed']="Ups hier ist etwas schief gelaufen. Ist nicht Ihre Auktion.";
 
-
+$texts['auction_optional_hint']="* - Diese Angaben sind freiwillig. Sie erhöht jedoch ihre Absatzchancen, da Ihr Angebot besser eingeschätzt werden kann.";
 
 
 $texts['select_running_headline']="Suchen Sie Ihre Region";

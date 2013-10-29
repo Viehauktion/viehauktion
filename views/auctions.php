@@ -82,7 +82,7 @@ $is_auction="yes";
 include("select_auction.php");
 
 ?>
-
+<hr>
 
 <div id="next_auction">
 

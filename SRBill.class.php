@@ -156,7 +156,7 @@ return $priceString;
 			$this->Cell(100, 4, $pDate, 0, 1, 'L');
 			$this->SetX(75);
 			
-		    $nettoprice=formatPrice(($pBruttoPrice/(100+$pVAT))*100);
+		    $nettoprice=$this->formatPrice(($pBruttoPrice/(100+$pVAT))*100);
 			
 			$this->SetY(110);
 			$this->SetFont('Arial', '', '10');
@@ -168,7 +168,7 @@ return $priceString;
 			$this->SetY(130);
 			$this->SetX(24);
 			$this->Cell(80, 4, "Daraus ergibt sich ein Rechnungbetrag von: ", 0, 1, 'L');
-			$totalNettoPrice=formatPrice($pAmountOfAnimals*$nettoprice);
+			$totalNettoPrice=$this->formatPrice($pAmountOfAnimals*$nettoprice);
 			$this->SetY(140);
 			$this->SetX(24);
 

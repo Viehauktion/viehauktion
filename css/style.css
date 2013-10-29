@@ -167,3 +167,6 @@ td.rightSide {
 label {
   width: 150px;
 }
+label.radio {
+  width: 300px;
+}

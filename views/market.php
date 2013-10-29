@@ -10,6 +10,7 @@ $is_auction="no";
 include("select_auction.php");
 ?>
 
+<hr>
 
 <div id="next_offers">
 

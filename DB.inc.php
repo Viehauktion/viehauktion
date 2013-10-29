@@ -1154,6 +1154,34 @@ function getLatestAuctions($start,$number_of_elements,$status, $is_auction){
  		}
 
 
+ 		function getTodaysMainAuctions(){
+
+				$lSQLQuery = "";
+
+			
+				$lSQLQuery = "SELECT DISTINCT id, status, state_id, county_id  FROM auctions WHERE (status='scheduled' ||  status='running') AND start_time < '".date('Y-m-d H:i:s')."';";
+	
+
+				
+				$list= array();
+						$j=0;
+						$lResult = $this->mysql_query_ex($lSQLQuery);
+						
+						if ($lResult) {
+							while($lRow = mysql_fetch_assoc($lResult)){
+							$list[$j]=$lRow;
+							
+							$j++;
+							}
+						}
+				
+				return $list;
+
+
+ 		}
+
+
+
 
 		function getCurrentAuction($auction_id){
 	
