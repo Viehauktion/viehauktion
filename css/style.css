@@ -170,3 +170,14 @@ label {
 label.radio {
   width: 300px;
 }
+#teasers {
+  margin: 20px 0;
+  padding-left: 20px;
+  overflow: visible;
+  width: 960px;
+}
+#teasers .teaser {
+  float: left;
+  margin-right: 20px;
+  height: 150px;
+}

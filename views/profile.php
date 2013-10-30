@@ -130,7 +130,7 @@ if($gBase->User['is_seller']=="yes"){
 
 ?>
 
-     <? echo($texts['registration_stall']); ?>:&nbsp;<? echo($gBase->User['stall_nr']); ?><br/>
+     <? echo($texts['registration_stall_label']); ?>:&nbsp;<? echo($gBase->User['stall_nr']); ?><br/>
    
 
 <?
@@ -139,14 +139,14 @@ if($gBase->User['is_seller']=="yes"){
 if($gBase->User['is_buyer']=="yes"){
 
 ?>
-  <? echo($texts['registration_hrb']); ?>:&nbsp;<? echo($gBase->User['hrb_nr']); ?><br/>
-      <? echo($texts['registration_retail']); ?>:&nbsp;<? echo($gBase->User['retail_nr']); ?><br/>
+  <? echo($texts['registration_hrb_label']); ?>:&nbsp;<? echo($gBase->User['hrb_nr']); ?><br/>
+      <? echo($texts['registration_retail_label']); ?>:&nbsp;<? echo($gBase->User['retail_nr']); ?><br/>
      
  <?
 }
 ?>
 
- <? echo($texts['registration_vat']); ?>:&nbsp;<? echo($gBase->User['retail_nr']); ?><br/>
+ <? echo($texts['registration_vat_label']); ?>:&nbsp;<? echo($gBase->User['retail_nr']); ?><br/>
 
     </p>
 

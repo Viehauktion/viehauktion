@@ -19,7 +19,7 @@ $texts['about']="über";
 $texts['at']="am";
 $texts['to_date']="zum";
 
-$texts['page_title']="viehauktion.com";
+$texts['page_title']="Viehauktion.com";
 $texts["stage_banner"]="Willkommen auf viehauktion.com";
 
 $texts["home_bullet_1"]="Ihre erste Auktion ist provisionsfrei";
@@ -27,18 +27,39 @@ $texts["home_bullet_2"]="Anonym anbieten und bieten";
 $texts["home_bullet_3"]="Sie legen den Preis fest.";
 $texts["home_bullet_4"]="Nur geprüfte Käufer und Verkäufer";
 
-
+$texts["home_headline"]="Endlich ist es soweit";
+$texts["home_text"]="Wir freuen uns, Sie auf viehauktion.com heute begrüßen zu dürfen. Nach monatiger Arbeit steht die Plattform endlich online. 
+<br/>Auf Viehauktion.com werden Schweine im Auktions und Festpreisverfahren gehandelt, wodurch wir einen frei zugänglichen Überblick über Marktlage und Marktpreise schaffen möchten. 
+<br/>Die Plattform bietet Betreibern von Mastbetrieben die Möglichkeit, ihre Tiere mehreren Viehhändlern gleichzeitig anzubieten und zu einem optimalen Preis zu verkaufen. Viehhändler können weitere Anbieter von Nutztieren als Marktpartner hinzugewinnen, Transportwege und Transportauslastung besser planen, sowie etwaige Prozess-Vorteile am Markt auszuspielen.
+<br/><br/>Ab sofort können Sie sich registrieren und bereits Festpreisangebote einstellen sowie auch kaufen. Unsere erste Auktion findet dann am 19.11.2013 pünktlich um 14:00 Uhr statt. 
+<br/><br/>Bis dahin hoffen, wir dass Sie sich einen Überlick über die Internetseite mit Ihren Funktionen gemacht haben und Lust haben an den Auktonen teilzunehmen, sei es als Verkäufer oder Käufer.
+<br/><br/>Bitte haben Sie Verständnis, dass Sie nicht direkt handeln können. Wir prüfen alle Erzeuger und Händler auf Amtliche Registriernummern, Warenkreditversicherungen etc. bevor reigeschaltet werden, um Ihnen ein Höchstmaß an Sicherheit zu geben.
+<br/><br/>
+<br/>Auf eine gute Zusammenarbeit
+<br/>
+<br/><br/>Ihre Viehauktion.com Team
+<br/>
+<br/>
+<br/>
+";
 $texts["page_keywords"]="";
-$texts['page_organisation']="MEYBORG UG (haftungsbeschränkt)";
-$texts['page_ceo']="Geschäftsführer: Simon Meyborg, Felix Meyborg";
-$texts['page_address']="Bahnhofstrasse 6<br/>49699 Lindern (Oldb.)";
-$texts['page_phone']="Tel: +49 (0) 5957 486";
+$texts['page_organisation']="<strong>Betreiber:</strong> 2M Viehauktionen UG (haftungsbeschränkt)";
+$texts['page_ceo']="<strong>Geschäftsführer:</strong> Felix Meyborg";
+$texts['page_address']="<strong>Geschäftsadresse:</strong><br/>Bahnhofstrasse 6<br/>49699 Lindern (Oldb.)";
+$texts['page_phone']="<strong>Telefonnummer:</strong> +49 (0) 5957 486";
+
+$texts['page_credits']="<strong>Programmierung</strong>: 2M Viehauktionen  UG (haftungsbeschränkt)<br/><strong>Design:</strong> Daniel Kurtius<br/><strong>Teamfoto:</strong> Dustin Korcz";
+$texts['page_thanks']="<strong>Danksagung:</strong><br/>Vielen Dank an Dustin für die Teamfotos, Daniel fürs Design und alle, die uns Rat und Tat zur Seite gestanden haben.";
+
+$texts['press_headline']="Presse";
+$texts['press_description']="Hier finden Sie unsere Logo, einige Screenshots und Fotos zur freien Verwendung für eine redaktionelle Berichterstattung.";
+
 $texts['link_disclaimer']="Für verlinkte Inhalte auf anderen Seiten als viehauktion.com übernehmen wir keine Haftung.";
 
-$texts['email_label']="E-Mailadresse";
+$texts['email_label']="<strong>E-Mailadresse</strong>";
 $texts['email_link']='<a href="mailto:info@viehauktion.com" >info@viehauktion.com</a>';
-$texts['page_vat']="Steuernummer: beantragt";
-
+$texts['page_vat']="<strong>Steuernummer:</strong> beantragt";
+$texts['page_hrb']="<strong>Handelsregisternummer:</strong> beantragt";
 $texts['signin_login']="Einloggen";
 $texts['signin_register']="Neu anmelden";
 $texts['signin_signedin_as']="eingelogged als: ";
@@ -87,18 +108,24 @@ $texts['registration_street']="Strasse";
 $texts['registration_number']="Hausnummer";
 $texts['registration_postcode']="Postleitzahl";
 $texts['registration_city']="Ort";
-$texts['registration_phone']="Telefonnummer";
+$texts['registration_phone_label']="Telefonnummer";
+$texts['registration_phone']="z.B. 0176/70064536";
 $texts['registration_is_buyer']="Ich plane, Tiere zu kaufen. (Anmeldung als Viehhändlers)";
 $texts['registration_is_seller']="Ich plane, Tiere zu verkaufen. (Anmeldung als Erzeuger/Mäster) ";
 
 $texts['registration_business']="Handelsdaten";
 $texts['registration_insurance']="Wenn Sie sich als Händler registrieren möchten, brauchen wir einen Nachweis über eine Warenkreditversicherung. Bitte laden Sie einen Beleg in digitaler Form (PDF, JPG) hoch.";
 $texts['registration_browse']="Datei auswählen";
-$texts['registration_hrb']="Handelsregister Nr.";
-$texts['registration_retail']="Händler Nr.";
+$texts['registration_hrb_label']="Handelsregister Nr.";
+$texts['registration_hrb']="zB. HRB 12337";
+$texts['registration_insurance_label']="Versicherungsbeleg";
+$texts['registration_retail_label']="Amtliche Registriernummer";
+$texts['registration_retail']="zwölfstellige Nr";
 $texts['registration_seller_mandatory']="Da Sie sich als Erzeuger anmelden möchten, benötigen wir Ihre Betriebsnummer.";
-$texts['registration_stall']="Betriebsnummer";
-$texts['registration_vat']="Steuernummer";
+$texts['registration_stall_label']="Amtliche Betriebsnummer";
+$texts['registration_stall']="zwölfstellige Nr";
+$texts['registration_vat_label']="Steuernummer";
+$texts['registration_vat']="z.B. 46/3453/4523";
 
 
 $texts['registration_agb']='Ich akzeptiere die <a href="?view=agb" target="_blank" >Allgemeinen Geschäftsbedingungen</a> - Zum Herunterladen als <a href="assets/agb.pdf" target="_blank" >PDF-Version</a>';
@@ -440,7 +467,7 @@ $texts['footer_imprint']="Impressum";
 $texts['footer_team']="Unser Team";
 $texts['footer_buyer']="Für Händler";
 $texts['footer_seller']="Für Erzeuger";
-$texts['footer_us']="About us";
+$texts['footer_us']="Über uns";
 
 
 
@@ -488,6 +515,7 @@ $texts["faq_answer_6"]='Scheuen Sie sich nicht, uns zu kontaktieren. Nutzen Sie 
 
 $texts["team_headline"]="Team";
 $texts["team_subheadline"]="Team/Philosophie";
+$texts["team_image_description"]="Simon und Felix Meyborg - Die Gründer von Viehauktion.com";
 $texts["team_text"]="Viehauktion.com ist ein Projekt der Brüder Felix und Simon Meyborg aus Lindern bei Oldenburg. Felix studierte Landwirtschaft an der Fachhochschule Osnabrück. Im Jahre 2010 übernahm er den elterlichen Hof und führt ihn seither erfolgreich. Als Betreiber eines Schweinemastbetriebes hat er selbst schwierige Marktphasen erlebt und stets nach Wegen gesucht, sowohl die Verhandlungsposition der Bauern zu stärken , als auch mehr Markttransparenz zu schaffen. Zusammen mit seinem Bruder Simon, der sich als Diplom- Informatiker für die Programmierung verantwortlich zeichnet, ist aus diesen Bemühen viehauktion.com entstanden.
 <br/><br/>
 Viehauktion.com schafft einen frei zugänglichen Überblick über Marktlage und Marktpreis. Es bietet Betreibern von Mastbetrieben die Möglichkeit, ihre Tiere mehreren Viehhändlern gleichzeitig anzubieten und zu einem optimalen Preis zu verkaufen. Viehhändler können weitere Anbieter von Nutztieren als Marktpartner hinzugewinnen, Transportwege und Transportauslastung besser planen, sowie etwaige Prozess-Vorteile am Markt auszuspielen.

@@ -23,6 +23,7 @@
       <li><a href="?view=team" class="footerBtn"  role="button" ><?  echo($texts['footer_team']); ?></a></li>
       <li><a href="?view=agb" class="footerBtn" role="button" ><?  echo($texts['footer_agb']); ?></a></li>
       <li><a href="?view=imprint" class="footerBtn"  role="button"  ><?  echo($texts['footer_imprint']); ?></a></li>
+         <li><a href="?view=press" class="footerBtn"  role="button"  ><?  echo($texts['press_headline']); ?></a></li>
       <li><a href="#contactModal" class="footerBtn"  role="button"  data-toggle="modal"><?  echo($texts['footer_contact']); ?></a></li>
     </ul>
   </div>

@@ -1,3 +1,20 @@
+<?
+$rating=array();
+
+if(count($gBase->CurrentAuction["auction_ratings"])){
+
+for($i=0; $i<count($gBase->CurrentAuction["auction_ratings"]);$i++){
+	if($gBase->CurrentAuction["auction_ratings"][$i]["writer_id"]==$gBase->User['id']){
+			$rating=$gBase->CurrentAuction["auction_ratings"][$i];
+			break;
+	}
+}
+
+}
+
+
+?>
+
 <div id="add_rating">
 
  <h1><? echo($texts['add_rating_headline']); ?></h1>
@@ -61,12 +78,36 @@
 
 <table><tr valign="top" ><td class="topSide"><? echo($texts['add_rating']); ?>
 </td><td class="rightSide topSide">
- <div id="ratingIcons"><img src="assets/pig_icon_empty.png" onclick="rate(1)" height="30" width="50" /><img src="assets/pig_icon_empty.png" onclick="rate(2)" height="30" width="50" /><img src="assets/pig_icon_empty.png" onclick="rate(3)" height="30" width="50" /><img src="assets/pig_icon_empty.png" onclick="rate(4)" height="30" width="50" /><img src="assets/pig_icon_empty.png" onclick="rate(5)" height="30" width="50" /> </div>
+
+ <div id="ratingIcons">
+
+<? 
+if($rating["rating"]){
+
+	for($i=0;$i<$rating["rating"];$i++){
+		echo('<img src="assets/pig_icon_full.png" onclick="rate('.($i+1).')" height="30" width="50" />');
+	}
+	for($i=$rating["rating"];$i<5;$i++){
+		echo('<img src="assets/pig_icon_empty.png" onclick="rate('.($i+1).')" height="30" width="50" />');
+	}
+?>
+
+<?	
+}else{
+?>
+
+<img src="assets/pig_icon_empty.png" onclick="rate(1)" height="30" width="50" /><img src="assets/pig_icon_empty.png" onclick="rate(2)" height="30" width="50" /><img src="assets/pig_icon_empty.png" onclick="rate(3)" height="30" width="50" /><img src="assets/pig_icon_empty.png" onclick="rate(4)" height="30" width="50" /><img src="assets/pig_icon_empty.png" onclick="rate(5)" height="30" width="50" /> 
+<?
+}
+?>
+
+</div>
+
        </td></tr>
     <tr valign="top" ><td class="topSide"> 
     	<? echo($texts['add_coment']); ?></td><td class="rightSide topSide">
        
-          <textarea id="comment" name="comment" rows="3"></textarea>
+          <textarea id="comment" name="comment" rows="3"><? echo($rating["comment"]); ?></textarea>
        </td></tr></table>
 
        <button onclick="return false" class="btn btn-primary" id="rating_submit"><? echo($texts['add_rate_now']); ?></button>

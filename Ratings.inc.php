@@ -12,6 +12,7 @@ global $gBase;
 				//Update Auction
 				$ratingArray=array();
 				if($ratingArray=$lDB->getRatingByAuctionIdandWriterId($auction_id, $gBase->User['id'])){
+						
 						$ratingArray['comment']=$comment;
 						$ratingArray['rating']=$rating;
 
@@ -32,6 +33,10 @@ global $gBase;
 						$ratingArray['about_id']=$about_id;
 						$ratingArray['comment']=$comment;
 						$ratingArray['rating']=$rating;
+
+
+						
+
 						if($about_id!=0){
 						$lDB->addRating($ratingArray);
 						}

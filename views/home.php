@@ -39,16 +39,24 @@
 </div>
   </div>
 
+<div  class="clearfix"></div>
+<hr>
+<div id="teasers" class="clearfix">
+<div class="teaser"><a href="?view=how_it_works" border="0"><img src="assets/how_to_teaser.jpg" /></a></div>
+<div class="teaser"><a href="?view=team" border="0"><img src="assets/team_teaser.jpg" /></a></div>
+<div class="teaser"><a href="?action=get_running_auction&view=show_running_auction&is_auction=yes&state_id=0&county_id=0" border="0"><img src="assets/example_teaser.jpg" /></a></div>
+</div>
+<hr>
 
-  <div class="span6">
-  	<br/><br/>
-  	<a href="?view=how_it_works" ><? echo($texts['how_it_works_headline']); ?></a>
-      <br/><br/>
-    <a href="?action=get_running_auction&view=show_running_auction&is_auction=yes&state_id=0&county_id=0" ><? echo($texts['example_auction']); ?></a>
- 
- 
+  <div class="span7">
+  <h2><? echo($texts['home_headline']); ?></h2>
+   <p><? echo($texts['home_text']); ?></p>
   </div>
+
+
+
     <div div="socialMedia" class="class4 pull-right">
+
 <div class="fb-like-box" data-href="https://www.facebook.com/pages/Viehauktioncom/126104434226988" data-width="300" data-height="241" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="true"></div>
 
   </div>

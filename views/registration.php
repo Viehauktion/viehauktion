@@ -24,7 +24,7 @@
     <input type="text" id="registration_email" name="email" placeholder="<? echo($texts['registration_email']); ?>"><br/>
      <input type="password"  id="registration_password" name="password" placeholder="<? echo($texts['registration_password']); ?>"><br/>
       <input type="password"  id="registration_password_again" placeholder="<? echo($texts['registration_password_again']); ?>"><br/>
-     
+ <hr>    
 <h4><? echo($texts['registration_address']); ?></h4>
 
 
@@ -72,8 +72,47 @@
 
 
 <br/>
-   <input type="text"id="registration_phone" name="phone" placeholder="<? echo($texts['registration_phone']); ?>"><br/>
 
+
+<script type="text/javascript">
+
+countyid='72';
+
+
+
+
+
+  $.getJSON("index.php", { "action": "get_counties", "view": "add_address_modal", "mode":"ajax", "state_id":'7', "sid":"<? echo($_COOKIE["PHPSESSID"]); ?>"},
+			
+			  function(data){
+			 				 session_id=data.conf.session_id;
+							 	html="";
+								$(".counties").empty();
+							for(i=0;i<data.raw_data.length;i++){
+								html+='<option value="'+data.raw_data[i].id+'"';
+
+								if(countyid==data.raw_data[i].id){
+									html+='selected="selected"';
+								}
+
+								html+='>'+data.raw_data[i].name+'</option>';
+								}	
+						
+			 				$(".counties").append(html);
+						 });
+	
+	
+
+</script>
+
+<table>
+	<tr><td>
+<p><? echo($texts['registration_phone_label']); ?>:</p>
+</td><td class="rightSide">
+   <input type="text"id="registration_phone" name="phone" placeholder="<? echo($texts['registration_phone']); ?>"><br/>
+ </td></tr> 
+</table>
+<hr>
 <h4><? echo($texts['registration_business']); ?></h4>
 <div id="buyer_mandantory" class="hide">
 <p> <? echo($texts['registration_insurance']); ?></p>
@@ -81,7 +120,10 @@
 
 <input id="insureance" name="insurance" type="file" style="display:none">
 
-
+<table>
+	<tr><td>
+<p><? echo($texts['registration_insurance_label']); ?>:</p>
+</td><td class="rightSide">	
 <div class="input-append">
 <input id="filePreview" class="input-large" type="text">
 <a class="btn" onclick="$('input[id=insureance]').click();"><? echo($texts['registration_browse']); ?></a>
@@ -92,22 +134,41 @@ $('#filePreview').val($(this).val());
 });
 </script>
 
+ </td></tr> 
+	<tr><td>
+<p><? echo($texts['registration_hrb_label']); ?>:</p>
+</td><td class="rightSide">
  <input type="text" id="registration_hrb_nr" name="hrb_nr" placeholder="<? echo($texts['registration_hrb']); ?>"><br/>
+ </td></tr> 
+ <tr><td>
+  <p><? echo($texts['registration_retail_label']); ?>:</p>
+</td><td class="rightSide">
   <input type="text" id="registration_retail_nr" name="retail_nr" placeholder="<? echo($texts['registration_retail']); ?>"><br/>
-
-
+ </td></tr> 
+</table>
 
 </div>
 <div id="seller_mandantory" class="hide">
 
    <p> <? echo($texts['registration_seller_mandatory']); ?></p>
+  
+<table>
+	<tr><td>
+<p><? echo($texts['registration_stall_label']); ?>:</p>
+		</td><td class="rightSide">
    <input type="text"id="registration_stall_nr" name="stall_nr" placeholder="<? echo($texts['registration_stall']); ?>"><br/>
-
- 
+ </td></tr> 
+ </table>
 </div>
 
-
+<table>
+	<tr><td>
+<p><? echo($texts['registration_vat_label']); ?>:</p>
+		</td><td class="rightSide">
   <input type="text" id="registration_vat_nr" name="vat_nr" placeholder="<? echo($texts['registration_vat']); ?>"><br/>
+ </td></tr> 
+ </table>
+
 <br/>
       <input type="checkbox" id="registration_agb">   <span class="help"><? echo($texts['registration_agb']); ?><span><br/>
    <br/>

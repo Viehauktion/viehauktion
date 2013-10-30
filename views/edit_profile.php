@@ -22,7 +22,7 @@
   <input type="checkbox" id="registration_is_buyer" onclick="toggleBuyer();" name="is_buyer"  <? if($gBase->User['is_buyer']=="yes"){ echo('checked="checked"'); } ?> >   <span class="help"><? echo($texts['registration_is_buyer']); ?><span><br/><br/>
 <h4><? echo($texts['registration_account']); ?></h4>
     <input type="text" id="registration_email" name="email" placeholder="<? echo($texts['registration_email']); ?>" value="<? echo($gBase->User['email']); ?>"><br/>
-     
+ <hr>    
 <h4><? echo($texts['registration_address']); ?></h4>
 
 
@@ -34,8 +34,81 @@
              <input type="text" id="registration_postcode" name="postcode" placeholder="<? echo($texts['registration_postcode']); ?>" value="<? echo($gBase->UserAddresses[0]['postcode']); ?>">&nbsp;
             <input type="text"id="registration_city" name="city" placeholder="<? echo($texts['registration_city']); ?>" value="<? echo($gBase->UserAddresses[0]['city']); ?>"><br/><br/>
 
-   <input type="text"id="registration_phone" name="phone" placeholder="<? echo($texts['registration_phone']); ?>" value="<? echo($gBase->User['phone']); ?>"><br/>
 
+<table>
+      <tr><td>
+  
+          <label class="control-label" for="state"><? echo($texts['state']); ?>:</label>
+           </td><td class="rightSide">
+         
+            <select name="state"  id="state" onchange="getCounties()">
+              <option value="1" <? if($gBase->UserAddresses[0]['state_id']=='1') echo('selected="selected"'); ?> >Bayern</option>
+              <option value="2" <? if($gBase->UserAddresses[0]['state_id']=='2') echo('selected="selected"'); ?> >Baden-Württemberg</option>
+              <option value="3" <? if($gBase->UserAddresses[0]['state_id']=='3') echo('selected="selected"'); ?> >Rheinland-Pfalz</option>
+              <option value="4" <? if($gBase->UserAddresses[0]['state_id']=='4') echo('selected="selected"'); ?> >Mecklenburg-Vorpommern</option>
+              <option value="5" <? if($gBase->UserAddresses[0]['state_id']=='5') echo('selected="selected"'); ?> >Sachsen-Anhalt</option>
+              <option value="6" <? if($gBase->UserAddresses[0]['state_id']=='6') echo('selected="selected"'); ?> >Brandenburg</option>
+              <option value="7"  <? if($gBase->UserAddresses[0]['state_id']=='7') echo('selected="selected"'); ?>  >Niedersachsen</option>
+              <option value="8" <? if($gBase->UserAddresses[0]['state_id']=='8') echo('selected="selected"'); ?> >Schleswig-Holstein</option>
+              <option value="9" <? if($gBase->UserAddresses[0]['state_id']=='9') echo('selected="selected"'); ?> >Nordrhein-Westfalen</option>
+              <option value="10" <? if($gBase->UserAddresses[0]['state_id']=='10') echo('selected="selected"'); ?> >Thüringen</option>
+              <option value="11" <? if($gBase->UserAddresses[0]['state_id']=='11') echo('selected="selected"'); ?> >Hessen</option>
+              <option value="12" <? if($gBase->UserAddresses[0]['state_id']=='12') echo('selected="selected"'); ?> >Sachsen</option>
+              <option value="13" <? if($gBase->UserAddresses[0]['state_id']=='13') echo('selected="selected"'); ?> >Berlin</option>
+              <option value="14" <? if($gBase->UserAddresses[0]['state_id']=='14') echo('selected="selected"'); ?> >Saarland</option>
+              <option value="15" <? if($gBase->UserAddresses[0]['state_id']=='15') echo('selected="selected"'); ?> >Bremen</option>
+              <option value="16" <? if($gBase->UserAddresses[0]['state_id']=='16') echo('selected="selected"'); ?> >Hamburg</option>
+            </select>
+         </td></tr>
+	<tr><td>
+          <label class="control-label" for="county"><? echo($texts['county']); ?>:</label>
+          </td><td class="rightSide">            
+          <select name="county" class="counties"  id="county" >
+            </select>
+        </td></tr>
+      
+     </table>
+
+<table>
+
+<script type="text/javascript">
+
+countyid='<? echo($gBase->UserAddresses[0]['county_id']); ?>';
+
+
+
+
+
+  $.getJSON("index.php", { "action": "get_counties", "view": "add_address_modal", "mode":"ajax", "state_id":'<? echo($gBase->UserAddresses[0]['state_id']); ?>', "sid":"<? echo($_COOKIE["PHPSESSID"]); ?>"},
+			
+			  function(data){
+			 				 session_id=data.conf.session_id;
+							 	html="";
+								$(".counties").empty();
+							for(i=0;i<data.raw_data.length;i++){
+								html+='<option value="'+data.raw_data[i].id+'"';
+
+								if(countyid==data.raw_data[i].id){
+									html+='selected="selected"';
+								}
+
+								html+='>'+data.raw_data[i].name+'</option>';
+								}	
+						
+			 				$(".counties").append(html);
+						 });
+	
+	
+
+</script>
+
+	<tr><td>
+<p><? echo($texts['registration_phone_label']); ?>:</p>
+</td><td class="rightSide">
+   <input type="text"id="registration_phone" name="phone" placeholder="<? echo($texts['registration_phone']); ?>" value="<? echo($gBase->User['phone']); ?>"><br/>
+ </td></tr> 
+</table>
+<hr>
 <h4><? echo($texts['registration_business']); ?></h4>
 <div id="buyer_mandantory" <? if($gBase->User['is_buyer']=="no"){ echo('class="hide"'); } ?> >
 <p> <? echo($texts['registration_insurance']); ?></p>
@@ -43,6 +116,11 @@
 
 <input id="insureance" name="insurance" type="file" style="display:none">
 
+
+<table>
+	<tr><td>
+<p><? echo($texts['registration_insurance_label']); ?>:</p>
+</td><td class="rightSide">	
 
 <div class="input-append">
 <input id="filePreview" class="input-large" type="text">
@@ -53,25 +131,42 @@ $('input[id=insureance]').change(function() {
 $('#filePreview').val($(this).val());
 });
 </script>
-
+ </td></tr> 
+	<tr><td>
+<p><? echo($texts['registration_hrb_label']); ?>:</p>
+</td><td class="rightSide">
  <input type="text" id="registration_hrb_nr" name="hrb_nr" placeholder="<? echo($texts['registration_hrb']); ?>" value="<? echo($gBase->User['hrb_nr']); ?>"><br/>
+ </td></tr> 
+ <tr><td>
+  <p><? echo($texts['registration_retail_label']); ?>:</p>
+</td><td class="rightSide">
   <input type="text" id="registration_retail_nr" name="retail_nr" placeholder="<? echo($texts['registration_retail']); ?>" value="<? echo($gBase->User['retail_nr']); ?>"><br/>
-
+ </td></tr> 
+</table>
 
 
 </div>
 <div id="seller_mandantory" <? if($gBase->User['is_seller']=="no"){ echo('class="hide"'); } ?> >
 
    <p> <? echo($texts['registration_seller_mandatory']); ?></p>
+   <table>
+	<tr><td>
+<p><? echo($texts['registration_stall_label']); ?>:</p>
+		</td><td class="rightSide">
    <input type="text"id="registration_stall_nr" name="stall_nr" placeholder="<? echo($texts['registration_stall']); ?>" value="<? echo($gBase->User['stall_nr']); ?>"><br/>
-
+ </td></tr> 
+ </table>
  
 </div>
 
-
+<table>
+	<tr><td>
+<p><? echo($texts['registration_vat_label']); ?>:</p>
+		</td><td class="rightSide">
   <input type="text"id="registration_vat_nr" name="vat_nr" placeholder="<? echo($texts['registration_vat']); ?>" value="<? echo($gBase->User['vat_nr']); ?>"><br/>
+ </td></tr> 
+ </table>
 
-    <p><? echo($texts['registration_newsletter_hint']); ?></p>
       <br/>
       <input type="checkbox" id="registration_newsletter" name="newsletter">   <span class="help"><? echo($texts['registration_newsletter']); ?><span><br/><br/>
       <br/>

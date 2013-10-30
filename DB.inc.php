@@ -1817,6 +1817,34 @@ function updateRating($ratingArray) {
 
 
 		}
+
+
+
+
+		function getAuctionRating($auction_id){
+
+
+			$lSQLQuery = "SELECT * FROM  `ratings` WHERE  `auction_id` ='".mysql_real_escape_string($auction_id)."';";
+	
+	
+	
+					$list= array();
+						$j=0;
+						$lResult = $this->mysql_query_ex($lSQLQuery);
+						
+						if ($lResult) {
+							while($lRow = mysql_fetch_assoc($lResult)){
+							$list[$j]=$lRow;
+							
+							$j++;
+							}
+						}
+				
+				return $list;
+			
+
+
+		}
 /*
 //
 //RATING
