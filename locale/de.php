@@ -37,7 +37,7 @@ $texts["home_text"]="Wir freuen uns, Sie auf viehauktion.com heute begrüßen zu
 <br/><br/>
 <br/>Auf eine gute Zusammenarbeit
 <br/>
-<br/><br/>Ihre Viehauktion.com Team
+<br/><br/>Ihr Viehauktion.com Team
 <br/>
 <br/>
 <br/>
