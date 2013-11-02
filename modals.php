@@ -12,7 +12,7 @@
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <h4><? echo($texts['error']); ?></h4>
             <span id="error_message"></span> </div>
-          <div class="alert-success hide"  >
+          <div class="alert alert-success hide"  >
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <h4><? echo($texts['hint']); ?></h4>
             <span id="success_message"></span> </div>
@@ -57,7 +57,7 @@ $("#login_submit").click(function(){
 	
 	errorflag=false;
 	$("#login #error_message").empty();
-	
+	$("#recover #error_message").empty();
 		if($("#login_identifier").val()==''){
 	
 		$("#login #error_message").append('<? echo($texts['login_error_identifier']); ?><br/>');
@@ -122,7 +122,7 @@ $("#login_submit").click(function(){
 	
 	
 	$("#recover_submit").click(function(){
-	
+	$("#login #error_message").empty();
 	errorflag=false;
 	$("#recover #error_message").empty();
 	

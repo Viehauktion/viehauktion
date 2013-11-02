@@ -1,7 +1,6 @@
 <?
 
  
-if($gBase->User['is_seller']!="no"){
 
   if($gBase->User==null){
 ?>
@@ -63,11 +62,11 @@ if($_REQUEST['is_auction']=="yes"){
        
         <?if($_REQUEST['auction_id']!=""){
 ?>
-  <h2><? echo($texts['edit_auction_headline']); ?></h2>
+  <h2><? echo($texts['edit_auction_headline']); ?> (1/2)</h2>
 <?
 }else{
 ?>
- <h2><? echo($texts['add_auction_headline']); ?></h2>
+ <h2><? echo($texts['add_auction_headline']); ?> (1/2)</h2>
 <?
 
 }
@@ -85,11 +84,11 @@ echo("<p>".$texts['add_first_auction']."</p>");
 
          <?if($_REQUEST['auction_id']!=""){
 ?>
-  <h2><? echo($texts['edit_offer_headline']); ?></h2>
+  <h2><? echo($texts['edit_offer_headline']); ?> (1/2)</h2>
 <?
 }else{
 ?>
- <h2><? echo($texts['add_offer_headline']); ?></h2>
+ <h2><? echo($texts['add_offer_headline']); ?> (1/2)</h2>
 <?
 
 }
@@ -97,14 +96,15 @@ echo("<p>".$texts['add_first_auction']."</p>");
       <p><? echo($texts['add_offer_description']); ?></p>
 
       <? } ?>
-     <!--  <form>
+      <br/>
+ <form class="form-horizontal">
   <div class="control-group">
-        <label class="control-label" for="category"><? echo($texts['auction_category']); ?></label>
+        <label class="control-label" for="category"><strong><? echo($texts['auction_category']); ?></strong></label>
         <div class="controls">
           <select name="category"  id="category" onchange="showForm()" >
             <option value="pigs_auction" ><? echo($texts['pigs']); ?></option>
-            <option value="bulls_auction" ><? echo($texts['bulls']); ?></option>
-            <option value="chickens_auction" ><? echo($texts['chicken']); ?></option>
+            <option value="ferkel_auction"  ><? echo($texts['ferkel']); ?></option>
+        
           </select>
         </div>
       </div>
@@ -112,32 +112,64 @@ echo("<p>".$texts['add_first_auction']."</p>");
 
 
       </form>
- -->
+
   
   	<div id="auction_form">
-    	<? include('edit_pigs_auction.php')?>
-        <? include('edit_bulls_auction.php')?>
-        <? include('edit_chickens_auction.php')?>
+    	<? include('edit_pigs_auction.php') ?>
+
+      <? include('edit_ferkel_auction.php') ?>
+    
     </div>
     <script type="text/javascript">
 
 function showForm(){
 	$("#pigs_auction").hide();
-	$("#bulls_auction").hide();
-	$("#chickens_auction").hide();
-	
-	//$("#"+$("#category").val()).show();
+  $("#ferkel_auction").hide();
+	$("#"+$("#category").val()).show();
   
   
-  $("#pigs_auction").show();
 	
 	}
 	
 	
+
+    <?
+            if($_REQUEST['category_id']=='2'){
+          ?>
+
+          $("#category").val('ferkel_auction');
+  $("#pigs_auction").hide();
+  $("#ferkel_auction").show();
+          <?  }else{
+?>
+
+ $("#category").val('pigs_auction');
+  $("#pigs_auction").show();
+  $("#ferkel_auction").hide();
+
+<?            }
+              ?>
+  
+
+
 	
-	
-	
-	
+	<?
+
+ 
+if($gBase->User['is_seller']=="no"){
+
+?>
+
+  $("#category").val('ferkel_auction');
+  $("#pigs_auction").hide();
+  $("#ferkel_auction").show();
+
+<?
+
+}
+
+?>
+	        
 </script>
   
   <? } ?>
@@ -148,19 +180,5 @@ function showForm(){
 
 
 
-<?
 
- 
-}else{
-
-?>
-
-<h2><? echo($texts['no_seller_error_headline']); ?></h2>
-<p><? echo($texts['no_seller_error_description']); ?></p>
-
-<?
-
-}
-
-?>
 

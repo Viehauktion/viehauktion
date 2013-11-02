@@ -173,7 +173,7 @@ $lDB=connectDB();
 
 
                 $date=array();
-                $date['readable_date']=date("d.m.y", strtotime("+".$additionalDays." day"))." ".$auctionCategory['start_time']." ".$texts['add_auction_time_entity'];
+                $date['readable_date']=date("d.m.y", strtotime("+".$additionalDays." day"))." ".$auctionCategory['start_time'];
                 $date['submitable_date']=date("Y-m-d", strtotime("+".$additionalDays." day"))." ".$auctionCategory['start_time'];
                 $date['additional_days']=$additionalDays;
 
@@ -212,7 +212,12 @@ return $nextDates;
 		}
 	$Mode=  $_REQUEST["mode"]; 
 	$lang='de';
-		
+	
+
+    $category_id=$_REQUEST["category_id"];
+    if($category_id==""){
+	$category_id='1';	
+	}	
 	   switch ($Action) {
 		   
 		   			
@@ -249,16 +254,16 @@ return $nextDates;
 					case "edit_auction":  editAuction($_REQUEST['category_id'], $_REQUEST['auction_id'], $_REQUEST['is_preview'], $_REQUEST['is_auction'], $_REQUEST['is_main_auction'],$_REQUEST['is_vezg'], $_REQUEST['auction_date'], $_REQUEST['endtime'], $_REQUEST['auction_amount'], $_REQUEST['auction_min_entitity_price'], $_REQUEST['auction_origin'], $_REQUEST['auction_classification_mask'], $_REQUEST['auction_pigs_classification_mask_value'], $_REQUEST['auction_pigs_qs'], $_REQUEST['auction_pigs_samonelle_state'], $_REQUEST['address'], $_REQUEST['auction_loading_stations_amount'], $_REQUEST['auction_loading_stations_distance'], $_REQUEST['auction_loading_stations_vehicle'], $_REQUEST['auction_loading_stations_availability'], $_REQUEST['auction_loading_stations_availability_til'], $_REQUEST['is_public'], $_REQUEST['auction_additional_informations']); getUserAuctions($gBase->User['id'], false); break;
 					case "save_auction":	saveAuction($_REQUEST['auction_id'], $_REQUEST['is_auction'], "yes"); break;
 
-					case "get_pending_auction_states":	getPendingStates($_REQUEST['is_auction']); break;
-					case "get_pending_auction_counties":	getPendingCounties($_REQUEST['state_id'], $_REQUEST['is_auction']); break;
-					case "get_next_auction":		getNextAuction($_REQUEST['county_id'],$_REQUEST['state_id'], $_REQUEST['is_auction']); break;
-					case "get_running_auction":		getRunningAuction($_REQUEST['county_id'],$_REQUEST['state_id'], $_REQUEST['auction_id']); break;
+					case "get_pending_auction_states":	getPendingStates($_REQUEST['is_auction'], $category_id); break;
+					case "get_pending_auction_counties":	getPendingCounties($_REQUEST['state_id'], $_REQUEST['is_auction'], $category_id); break;
+					case "get_next_auction":		getNextAuction($_REQUEST['county_id'],$_REQUEST['state_id'], $_REQUEST['is_auction'], $category_id); break;
+					case "get_running_auction":		getRunningAuction($_REQUEST['county_id'],$_REQUEST['state_id'], $_REQUEST['auction_id'], $category_id); break;
 
 					case "confirm_auction":			confirmAuction($_REQUEST['auction_id']); break;
 					case "get_auction_details":		getAuctionDetails($_REQUEST['auction_id'], $_REQUEST['county_id'], $_REQUEST['state_id']); break;
 					case "buy_offer":				buyOffer($_REQUEST['auction_id']); break;
 
-					case "bid_on_running_auction":  bidOnRunningAution($_REQUEST['county_id'], $_REQUEST['auction_id'], $_REQUEST['bid']); break;
+					case "bid_on_running_auction":  bidOnRunningAution($_REQUEST['county_id'], $_REQUEST['auction_id'], $_REQUEST['bid'],$category_id); break;
 
 					case "check_code":		$hasInvite=checkCode($_REQUEST['invite_code']); break;
 				
@@ -296,8 +301,8 @@ return $nextDates;
 							getUserRatings($gBase->User['id'], true);
 							getUserRatings($gBase->User['id'], false);
 							getUserInvoices($gBase->User['id']);} break;
-			case 'auctions': getLatestAuctions(true); checkTodaysAuctions(); break;
-			case 'market':	if($Action==''){ getLatestAuctions(false);} checkTodaysOffers(); break;
+			case 'auctions': getLatestAuctions($category_id, true); checkTodaysAuctions($category_id); break;
+			case 'market':	if($Action==''){ getLatestAuctions($category_id,false);} checkTodaysOffers($category_id); break;
 
 			case 'edit_auction':  getCurrentAuction($_REQUEST['auction_id']); break;
 			case 'backend':		if($Action==''){ getBuyerToConfirm(1); getUsers(1);  getFinishedOffers(1); getFinishedAuctions(1);} break;

@@ -67,7 +67,7 @@
 	
 	}
 	
-	function getLatestAuctions($is_auction, $page=1){
+	function getLatestAuctions($category_id, $is_auction, $page=1){
 		global $gBase;
 	
 		$start=$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"]*$page-$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"];
@@ -77,13 +77,13 @@
 					$latestAuctions=array();
 
 					if($is_auction){
-								if($latestAuctions=$lDB->getLatestAuctions($start,$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"],"pending", "yes")){
+								if($latestAuctions=$lDB->getLatestAuctions($category_id,$start,$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"],"pending", "yes")){
 
 											$gBase->RawData['latest_auctions']=$latestAuctions;
 									}
 					}else{
 
-								if($latestAuctions=$lDB->getLatestAuctions($start,$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"],"offering", "no")){
+								if($latestAuctions=$lDB->getLatestAuctions($category_id,$start,$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"],"offering", "no")){
 
 											$gBase->RawData['latest_offers']=$latestAuctions;
 									}
@@ -521,108 +521,6 @@ global $gBase;
 
 }
 
-/*
-
-function getInvoice($auction_id){
-
-
-
-
-		global $gBase;
-		
-			$lDB=connectDB();
-			if (!$lDB->failed){
-			
-				if($auction_id!=""){
-				//Update Auction	
-			
-				$auctionArray=array();
-				if($auctionArray=$lDB->getAuctionById($auction_id)){
-					
-					if($auctionArray['user_id']==$gBase->User['id']){
-					
-								$invoideAddress=array();
-								 for($i=0; $i<count($gBase->UserAddresses); $i++){
-								 		if($gBase->UserAddresses[$i]['type']=='invoice'){
-												$invoideAddress=$gBase->UserAddresses[$i];
-
-								 		}
-
-								 }
-
-								 $metadata=$lDB->getAuctionMetadataByAuctionId($auction_id);
-					
-
-						 		$pdf = new SRBill('P', 'mm', 'A4');
-								$pdf->AliasNbPages();
-								$pdf->AddPage();
-
-								$pdf->printRecipient("", $gBase->User["firstname"]." ".$gBase->User["lastname"], $invoideAddress["street"].' '.$invoideAddress["number"], $invoideAddress["postcode"].' '.$invoideAddress["city"],  $invoideAddress["country"]);
-								
-
-								$pdf->SetLeftMargin(20);
-								$pdf->SetRightMargin(20);
-										$date=date("d.m.Y",strtotime($auctionArray["end_time"]));
-
-								$pdf->printBillData($auctionArray["id"], $auctionArray["id"], $gBase->User['id'], $date, $metadata["amount_of_animals"], 0.40, 19, 10); 
-
-								$buyerAddress=$lDB->getInvoiceAddressByUserId($auctionArray["buyer_id"]);
-		
-								$buyer=$lDB->getUserByID($auctionArray["buyer_id"]);
-
-								$pdf->printBuyer("", $buyer["firstname"]." ".$buyer["lastname"], $buyerAddress["street"].' '.$buyerAddress["number"], $buyerAddress["postcode"].' '.$buyerAddress["city"],  $buyerAddress["country"]);
-								
-								$pdfStream=$pdf->Output("","S");
-
-
-
-
-								header("Pragma: public");
-								header("Expires: 0");
-								header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-								header("Cache-Control: public");
-								header("Content-Description: File Transfer");
-								header("Content-Type: application/pdf");
-
-								$header="Content-Disposition: attachment; filename=Rechnung_Viehauktion_".$auctionArray["id"].".pdf\n";
-								header($header );
-								header("Content-Transfer-Encoding: binary \n");
-								header("Content-Length: ".strlen($pdfStream)."\n\n");
-
-								echo($pdfStream);
-
-
-
-
-
-
-
-
-		 	 	 	 	 	 	
-						
-					}else{
-						
-						$gBase->Error="EDITING_NOT_ALLOWED";
-								
-						return false;	
-						
-					}
-					
-			    }else{
-					
-					
-				$gBase->Error="AUCTION_NOT_FOUND";
-								
-				return false;	
-					
-				}
-			}
-		}
-
-}
-
-
-*/
 
 
 
@@ -632,7 +530,7 @@ function getInvoice($auction_id){
 //
 ____________________________*/
 
-function getPendingStates($is_auction){
+function getPendingStates($is_auction, $category_id){
 
 	global $gBase;
 		
@@ -640,7 +538,7 @@ function getPendingStates($is_auction){
 			if (!$lDB->failed){
 
 				$statesArray=array();
-				if($statesArray=$lDB->getStatesOfPendingAuctions($is_auction)){
+				if($statesArray=$lDB->getStatesOfPendingAuctions($is_auction, $category_id)){
 
 					
 
@@ -657,7 +555,7 @@ function getPendingStates($is_auction){
 }
 
 
-function getPendingCounties($state_id, $is_auction){
+function getPendingCounties($state_id, $is_auction, $category_id){
 
 	global $gBase;
 		
@@ -665,7 +563,7 @@ function getPendingCounties($state_id, $is_auction){
 			if (!$lDB->failed){
 
 				$countyArray=array();
-				if($countyArray=$lDB->getCountiesOfPendingAuctions($state_id, $is_auction)){
+				if($countyArray=$lDB->getCountiesOfPendingAuctions($state_id, $is_auction, $category_id)){
 
 					
 
@@ -681,7 +579,7 @@ function getPendingCounties($state_id, $is_auction){
 
 }
 
-function getNextAuction($county_id, $state_id, $is_auction){
+function getNextAuction($county_id, $state_id, $is_auction, $category_id){
 
 	global $gBase;
 		
@@ -689,7 +587,7 @@ function getNextAuction($county_id, $state_id, $is_auction){
 			$auctionArray=array();
 			if (!$lDB->failed){
 
-					$gBase->RawData=$lDB->getNextAuctions($county_id, $is_auction);
+					$gBase->RawData=$lDB->getNextAuctions($county_id, $is_auction, $category_id);
 					$county=$lDB->getCountyById($county_id);
 					$state=$lDB->getStateById($state_id);
 					$gBase->RawData["county_name"]=$county["name"];
@@ -700,22 +598,9 @@ function getNextAuction($county_id, $state_id, $is_auction){
 
 }
 		
-function getRunningAuctionOld($county_id){
 
-	global $gBase;
-		
-			$lDB=connectDB();
-			if (!$lDB->failed){
-
-					$gBase->CurrentAuction=$lDB->getRunningAuction($county_id);
-					$gBase->CurrentAuction['current_time']=date("H:i:s");
-									
-
-			}
-
-}
 			
-function bidOnRunningAution($county_id, $auction_id, $bid){
+function bidOnRunningAution($county_id, $auction_id, $bid, $category_id){
 
 global $gBase;
 		
@@ -726,7 +611,7 @@ if($gBase->CurrentAuction["current_entity_price"]<$bid){
 	$lDB=connectDB();
 			if (!$lDB->failed){
 
-				if($currentAuction=$lDB->getRunningAuction($county_id)){
+				if($currentAuction=$lDB->getRunningAuction($county_id, $category_id)){
 					if($currentAuction["current_entity_price"]<$bid){
 
 						
@@ -740,8 +625,10 @@ if($gBase->CurrentAuction["current_entity_price"]<$bid){
 							}
 
 							$lDB->updateBid($auction_id, $bid, $currentAuction["bids"]+1, $gBase->User['id'], $endTime);
+						
+										
 
-							getCurrentAuctionFromDB($county_id, "");
+							getCurrentAuctionFromDB($county_id, "", $category_id);
 
 					}
 
@@ -752,7 +639,7 @@ if($gBase->CurrentAuction["current_entity_price"]<$bid){
 
 }
 
-function getRunningAuction($county_id, $state_id, $auction_id){
+function getRunningAuction($county_id, $state_id, $auction_id, $category_id){
 
 	global $gBase;
 		
@@ -766,12 +653,12 @@ function getRunningAuction($county_id, $state_id, $auction_id){
 									
 										$memcache->connect('127.0.0.1', 11211);
 										if(!$gBase->CurrentAuction=$memcache->get($auction_id)){
-										
-													getCurrentAuctionFromDB($county_id, "");
+									
+													getCurrentAuctionFromDB($county_id, "", $category_id);
 													return;
 
 										}
-
+		
 										$gBase->RawData=$memcache->get($county_id);
 										$gBase->CurrentAuction['current_time']=date("H:i:s");
 										$gBase->CurrentAuction['running']="yes";
@@ -797,17 +684,28 @@ function getRunningAuction($county_id, $state_id, $auction_id){
 										if(strtotime($gBase->CurrentAuction["start_time"])>time()){
 											$gBase->CurrentAuction['running']="no";
 										}
+	
+										if($gBase->CurrentAuction["end_time"]=="0000-00-00 00:00:00"){
 
-										if (strtotime($gBase->CurrentAuction["end_time"])>time()) {
-											return;
-										}else if($gBase->CurrentAuction["end_time"]=="0000-00-00 00:00:00"){
-
-										
+									
 
 											if(strtotime($gBase->CurrentAuction["start_time"])<=strtotime("+30 seconds")){
-												getCurrentAuctionFromDB($county_id, "");
+											
+												$lDB=connectDB();
+													if (!$lDB->failed){
+												
+															$lDB->setFirstAuctionRunning($gBase->CurrentAuction['auction_id']);
+															getCurrentAuctionFromDB($county_id, $state_id, $category_id);
+
+													}
+											
 											}
 											return;
+
+										}else if(strtotime($gBase->CurrentAuction["end_time"])>time()) {
+								
+											return;
+											
 									
 
 										}else{
@@ -832,10 +730,9 @@ function getRunningAuction($county_id, $state_id, $auction_id){
 
 			}
 
-		getCurrentAuctionFromDB($county_id, $state_id);
+		getCurrentAuctionFromDB($county_id, $state_id, $category_id);
 
-					
-					
+			
 		
 }
 
@@ -886,7 +783,7 @@ global $gBase;
 
 
 
-function getCurrentAuctionFromDB($county_id, $state_id){
+function getCurrentAuctionFromDB($county_id, $state_id, $category_id){
 global $gBase;
 
 	$lDB=connectDB();
@@ -894,14 +791,21 @@ global $gBase;
 
 			
 
-									if($currentAuction=$lDB->getRunningAuction($county_id)){
+									if($currentAuction=$lDB->getRunningAuction($county_id, $category_id)){
 
 										$gBase->CurrentAuction["auction_id"] =$currentAuction["id"];
 										$gBase->CurrentAuction["amount_of_annimals"] =$currentAuction["amount_of_animals"];
 										$gBase->CurrentAuction["min_entity_price"] =$currentAuction["min_entity_price"];
 										$gBase->CurrentAuction["current_entity_price"] =$currentAuction["current_entity_price"];
 										$gBase->CurrentAuction["start_time"] =$currentAuction["start_time"];
+										
+										
 										$gBase->CurrentAuction["end_time"] =$currentAuction["end_time"];
+										$gBase->CurrentAuction["supposed_end_time"] =$currentAuction["end_time"];
+										if($gBase->CurrentAuction["supposed_end_time"]=='0000-00-00 00:00:00'){
+											$gBase->CurrentAuction["supposed_end_time"] =date('Y-m-d H:i:s', (strtotime($currentAuction["start_time"])+120));
+										}
+
 										$gBase->CurrentAuction["bids"] =$currentAuction["bids"];
 										$gBase->CurrentAuction["user_id"] =$currentAuction["user_id"];
 										$gBase->CurrentAuction["user_rating"]=$lDB->getUserRating($currentAuction["user_id"]);
@@ -996,6 +900,13 @@ if($currentAuction=$lDB->getAuctionLikeRunningAction($auction_id)){
 										$gBase->CurrentAuction["current_entity_price"] =$currentAuction["current_entity_price"];
 										$gBase->CurrentAuction["start_time"] =$currentAuction["start_time"];
 										$gBase->CurrentAuction["end_time"] =$currentAuction["end_time"];
+
+												$gBase->CurrentAuction["supposed_end_time"] =$currentAuction["end_time"];
+										if($gBase->CurrentAuction["supposed_end_time"]=='0000-00-00 00:00:00'){
+											$gBase->CurrentAuction["supposed_end_time"] =date('Y-m-d H:i:s', (strtotime($currentAuction["start_time"])+120));
+										}
+
+
 										$gBase->CurrentAuction["bids"] =$currentAuction["bids"];
 										if($currentAuction["buyer_id"]==$gBase->User['id']){
 											$gBase->CurrentAuction["is_buyer"] ="yes";
@@ -1047,26 +958,26 @@ if($currentAuction=$lDB->getAuctionLikeRunningAction($auction_id)){
 }
 }
 
-function checkTodaysAuctions(){
+function checkTodaysAuctions($category_id){
 
 	global $gBase;
 		
 			$lDB=connectDB();
 			if (!$lDB->failed){
-				$gBase->RawData["todays_auctions"]=$lDB->getPendingAuctions();
+				$gBase->RawData["todays_auctions"]=$lDB->getPendingAuctions($category_id);
 			}
 
 }
 
 
 
-function checkTodaysOffers(){
+function checkTodaysOffers($category_id){
 
 	global $gBase;
 		
 			$lDB=connectDB();
 			if (!$lDB->failed){
-				$gBase->RawData["todays_offers"]=$lDB->getPendingOffers();
+				$gBase->RawData["todays_offers"]=$lDB->getPendingOffers($category_id);
 			}
 
 }

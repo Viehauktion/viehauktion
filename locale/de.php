@@ -21,6 +21,7 @@ $texts['to_date']="zum";
 
 $texts['page_title']="Viehauktion.com";
 $texts["stage_banner"]="Willkommen auf viehauktion.com";
+$texts["overview"]="Übersicht";
 
 $texts["home_bullet_1"]="Ihre erste Auktion ist provisionsfrei";
 $texts["home_bullet_2"]="Anonym anbieten und bieten";
@@ -69,6 +70,7 @@ $texts['signin_logout']="Ausloggen";
 
 
 $texts['pigs']="Mastschweine";
+$texts['ferkel']="Ferkel";
 $texts['bulls']="Bullen";
 $texts['chicken']="Geflügel";
 
@@ -256,6 +258,9 @@ $texts['edit_auction_not_logged_in_headline']="Sie sind nicht angemeldet.";
 $texts['edit_auction_not_logged_in_description']="Sie können hier sehen, welche Informationen zu einstellen einer Auktion benötigt werden.<br/><strong>Damit Sie eine Auktion einzustellen können, müssen Sie sich zunächst registrieren.</strong>";
 $texts['edit_offer_not_logged_in_description']="Sie können hier sehen, welche Informationen zu einstellen eines Festpreisangebotes benötigt werden.<br/><strong>Damit Sie eine Angeot einzustellen können, müssen Sie sich zunächst registrieren.</strong>";
 
+$texts['edit_auction_overview_description']="Bitte schauen Sie sich ihre Daten nocheinmal an und drücken Sie 'speichern', wenn sie die Auktion einstellen möchten.<br/>Mit 'Zurück' gelangen Sie falls notwendig wieder in die Eingabemaske und können ihre Daten korrigieren.";
+$texts['edit_offer_overview_description']="Bitte schauen Sie sich ihre Daten nocheinmal an und drücken Sie 'speichern', wenn sie das Festpreisangebot einstellen möchten.<br/>Mit 'Zurück' gelangen Sie falls notwendig wieder in die Eingabemaske und können ihre Daten korrigieren.";
+
 $texts['profile_delete_auction']="Löschen";
 $texts['profile_delete_auction_question']="Sind Sie sicher das Sie die Auktion löschen möchten?";
 $texts['profile_edit_auction']="Bearbeiten";
@@ -283,7 +288,7 @@ $texts['change_password_wrong_password_error']="Ihr altes Password war nicht kor
 
 $texts['add_auction_headline']="Auktion einstellen";
 $texts['no_seller_error_headline']="Sie sind kein Verkäufer.";
-$texts['no_seller_error_description']="Sie haben Sie nicht als Verkäufer registriert.<br/>Falls Sie Tiere anbieten, müssen Sie in Ihren Status im Profil ändern.";
+$texts['no_seller_error_description']="Sie haben Sie nicht als Erzeuger registriert.<br/>Falls Sie Mastschweine anbieten, müssen Sie in Ihren Status im Profil ändern.<br/>Sie können momentan nur Ferkel anbieten.";
 $texts['add_auction_description']="Sie können hier Ihr Vieh für die nächste Auktion anmelden. <br/>Sie können dabei einen Mindestgebot festlegen.<br/>Wir stellen Ihnen nur eine Provision in Rechnung, wenn Ihre Tiere einen Abnehmer über dem Mindestgebot gefunden haben.";
 $texts['add_first_auction']="Für diese erste Auktion berechnen wir KEINE Provision";
 $texts['edit_auction_headline']="Auktion bearbeiten";
@@ -331,6 +336,7 @@ $texts['auction_amount']="Anzahl der Tiere";
 $texts['auction_amount_placeholder']="z.B. 178";
 
 $texts['auction_min_entitity_price_without_euro']="Mindestgebot";
+$texts['offer_min_entitity_price_without_euro']="Kaufpreis";
 $texts['auction_min_entitity_price']="Mindestgebot <br/>(in € pro Kg Schlachgewicht)";
 $texts['offer_min_entitity_price']="Kaufpreis <br/>(in € pro Kg Schlachgewicht)";
 $texts['auction_min_entitity_price_placeholer']="z.B. 1.85";
@@ -369,6 +375,22 @@ $texts['auction_pigs_autofom']="Auto FOM";
 $texts['auction_pigs_autofom_entity']="IXP/kg  ca.";
 $texts['auction_pigs_autofom_entity_placeholder']="z.B. 67";
 
+$texts['auction_ferkel_min_entity_price']="Mindestgebot<br/>(pro 25 kg Ferkel*)";
+$texts['offer_ferkel_min_entity_price']="Kaufpreis<br/>(pro 25 kg Ferkel*)";
+$texts['auction_ferkel_origin']="Herkunft";
+$texts['auction_ferkel_status']="Status";
+$texts['auction_ferkel_status_placeholder']="SPS-WErt";
+$texts['auction_ferkel_health']="Impfungen";
+$texts['auction_ferkel_health_placeholder']="z.B. ";
+$texts['auction_ferkel_stalls']="Anzahl unterschiedlicher Herkunftsbetriebe";
+$texts['auction_ferkel_stalls_placholder']="z.B. 1";
+$texts['edit_auction_ferkel_transportation_data_headline']="Anlieferung";
+
+
+$texts['auction_stalls_error']="Bitte geben Sie eine Stallanzahl ein.";
+$texts['auction_status_error']="Bitte geben Sie einen Status an.";
+$texts['auction_genes_error']="Bitte geben Sie eine Genetik an.";
+
 
 $texts['auction_pigs_qs']="QS";
 
@@ -384,7 +406,7 @@ $texts['auction_address']="Adresse des Stalls";
 $texts['auction_address_hint']="Ihre genaue Stallanschrift bleibt bis zum erfolgreichen Abschluss der Auktion geheim. Wir geben nur Ihre Postleitzahl und den Ort an.";
 $texts['auction_add_address']="Andere Stalladresse anlegen";
 
-$texts['auction_preview']="Vorschau";
+$texts['auction_preview']="Weiter";
 $texts['auction_submit']="Speichern";
 
 $texts['auction_additional_informations']="Weitere Informationen für die Bieter<br/>(z.B. Zeitangabe für Ablieferung, etc.)";

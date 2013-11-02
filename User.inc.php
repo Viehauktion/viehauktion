@@ -180,6 +180,7 @@
  										$search[12]="___STALLNR___";
  										$search[13]="___LINK___";
  										$search[14]="___INSUREANCE___";
+ 										$search[15]="___SUBJECT___";
 
 									$replace = array();
 									$replace[0]=$userArray['firstname'];
@@ -205,11 +206,11 @@
 									
 									$subject="Ein neuer Händler auf viehauktion.com"; 
 										
-									
+									$replace[15]=$subject;
 								
 									$lRecipient=$GLOBALS["VIEHAUKTION"]["EMAIL"]["ACTIVATOR"];
 				
-									sendEmail('./mails/new_buyer.de.txt', $search, $replace, $subject, $lRecipient);
+									sendEmail('./mails/new_buyer.de.html', $search, $replace, $subject, $lRecipient);
 										
 										
 
@@ -257,6 +258,7 @@
 									$lSearch[] = "___LASTNAME___";
 									$lSearch[] = "___SITENAME___";
 									$lSearch[] = "___LINK___";
+									$lSearch[] = "___SUBJECT___";
 									
 									$code=substr(md5($userArray['id'].$userArray['email']), 0, 8);
 									$activationLink=$GLOBALS["VIEHAUKTION"]["BASE"]["HTTPROOT"]."?view=profile&action=activate_user&user_id=".$gBase->User['id']."&user_email=".$gBase->User['email']."&activationcode=".$code."&lang=".$lang."#userdata";
@@ -274,13 +276,14 @@
 								
 									$lReplacement = array();
 									$lReplacement[] =$userArray['firstname'];
-									$lReplacement[] =$userArray['laststname'];
+									$lReplacement[] =$userArray['lastname'];
 									$lReplacement[] =$GLOBALS["VIEHAUKTION"]["BASE"]["APPNAME"];
 									$lReplacement[] =$activationLink;
-									
+									$lReplacement[] =$subject;
+
 									$lRecipient=$userArray['email'];
 				
-									if(sendEmail('./mails/activationmail.'.$lang.'.txt', $lSearch, $lReplacement, $subject, $email)){
+									if(sendEmail('./mails/activationmail.'.$lang.'.html', $lSearch, $lReplacement, $subject, $email)){
 										
 										
 											
@@ -318,6 +321,7 @@ function sendActivationMailAgain($lang){
 									$lSearch[] = "___LASTNAME___";
 									$lSearch[] = "___SITENAME___";
 									$lSearch[] = "___LINK___";
+									$lSearch[] = "___SUBJECT___";
 									
 									$code=substr(md5($gBase->User['id'].$gBase->User['email']), 0, 8);
 									$activationLink=$GLOBALS["VIEHAUKTION"]["BASE"]["HTTPROOT"]."?view=profile&action=activate_user&user_id=".$gBase->User['id']."&user_email=".$gBase->User['email']."&activationcode=".$code."&lang=".$lang."#userdata";
@@ -326,7 +330,7 @@ function sendActivationMailAgain($lang){
 									
 									switch($lang){
 										
-										case "de": $subject="BestätigenSie Ihre E-Mailadresse"; break;
+										case "de": $subject="Bestätigen Sie Ihre E-Mailadresse"; break;
 										case "en": $subject="Activate your account."; break;
 										default: $subject="Activate your account.";
 										
@@ -338,10 +342,10 @@ function sendActivationMailAgain($lang){
 									$lReplacement[] =$gBase->User['laststname'];
 									$lReplacement[] =$GLOBALS["VIEHAUKTION"]["BASE"]["APPNAME"];
 									$lReplacement[] =$activationLink;
-									
+									$lReplacement[] =$subject;
 									$lRecipient=$gBase->User['email'];
 				
-									if(sendEmail('./mails/activationmail.'.$lang.'.txt', $lSearch, $lReplacement, $subject, $lRecipient)){
+									if(sendEmail('./mails/activationmail.'.$lang.'.html', $lSearch, $lReplacement, $subject, $lRecipient)){
 										
 										
 											return true;
@@ -475,7 +479,7 @@ function sendActivationMailAgain($lang){
 									$lSearch[] = "___SITENAME___";
 									$lSearch[] = "___EMAIL___";
 									$lSearch[] = "___PASSWORD___";
-									
+									$lSearch[] = "___SUBJECT___";
 
 									$lReplacement = array();
 									$lReplacement[] =$userArray['firstname'];
@@ -494,9 +498,9 @@ function sendActivationMailAgain($lang){
 										default: $subject="Your new password.";
 										
 										}
-									
+									$lReplacement[]=$subject;
 				
-									if(sendEmail('./mails/newpassword.'.$lang.'.txt', $lSearch, $lReplacement,	$subject, $userArray['email'])){
+									if(sendEmail('./mails/newpassword.'.$lang.'.html', $lSearch, $lReplacement,	$subject, $userArray['email'])){
 										
 										
 										
@@ -568,7 +572,7 @@ function sendActivationMailAgain($lang){
 									
 									$lRecipient=$userArray['email'];
 				
-									if(sendEmail('./mails/activationmail.'.$lang.'.txt', $lSearch, $lReplacement, $subject, $userArray['email'])){
+									if(sendEmail('./mails/activationmail.'.$lang.'.html', $lSearch, $lReplacement, $subject, $userArray['email'])){
 										
 										
 											
@@ -619,24 +623,29 @@ function sendActivationMailAgain($lang){
 			
 			}
 		
-				function sendEmail($emailTemplate, $lSearch, $lReplacement, $subject, $lRecipient) {
+			function sendEmail($emailTemplate, $lSearch, $lReplacement, $subject, $lRecipient) {
 					
 					$eMail = file_get_contents($emailTemplate);
 					$finalEmail = str_replace($lSearch, $lReplacement, $eMail);
 				
-		
+			
 							$mail = new PHPMailer();
-							
-							$mail->IsSMTP(); // send via SMTP
-							$mail->Host = $GLOBALS["VIEHAUKTION"]["EMAIL"]["SERVER"]; // SMTP servers
-							$mail->SMTPAuth = false; // turn on SMTP authentication
-							
-							
+
+					
+							$mail->IsSMTP();                                      // Set mailer to use SMTP
+							$mail->Host = $GLOBALS["VIEHAUKTION"]["EMAIL"]["SERVER"];                 // Specify main and backup server
+							$mail->Port = 587;                                    // Set the SMTP port
+							$mail->SMTPAuth = true;                               // Enable SMTP authentication
+							$mail->Username = $GLOBALS["VIEHAUKTION"]["EMAIL"]["USERNAME"];                // SMTP username
+							$mail->Password = $GLOBALS["VIEHAUKTION"]["EMAIL"]["PASSWORD"];                  // SMTP password
+							$mail->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
+
+
 							$mail->From = $GLOBALS["VIEHAUKTION"]["EMAIL"]["SENDERADDRESS"];
 							$mail->FromName = $GLOBALS["VIEHAUKTION"]["EMAIL"]["SENDERNAME"];
 							$mail->AddAddress($lRecipient, $lRecipient);
-							
-							$mail->IsHTML(false); // send as HTML
+						
+							$mail->IsHTML(true); // send as HTML
 							
 							$mail->Subject = $subject;
 							$mail->Body = $finalEmail;
@@ -654,6 +663,7 @@ function sendActivationMailAgain($lang){
 			
 				}
 				
+
 				
 				
 				
@@ -769,7 +779,7 @@ function sendActivationMailAgain($lang){
 										
 										
 				
-									sendEmail('./mails/buyer_activated.de.txt', $lSearch, $lReplacement,	$subject, $userArray['email']);
+									sendEmail('./mails/buyer_activated.de.html', $lSearch, $lReplacement,	$subject, $userArray['email']);
 										
 										
 										

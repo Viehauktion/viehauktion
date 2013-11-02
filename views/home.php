@@ -33,8 +33,8 @@
          <? echo($texts["home_bullet_4"]); ?>
       </li>
     </ul>
-    <a href="?view=registration" class="btn btn-primary btn-large">Jetzt Ausprobieren</button>
-    <a href="?view=how_it_works" class="btn"><? echo($texts['how_it_works_headline']); ?></a>
+    <a href="?view=registration" class="btn btn-primary btn-large">Jetzt Ausprobieren</a>
+    <!--<a href="?view=how_it_works" class="btn"><? echo($texts['how_it_works_headline']); ?></a>-->
 </div>
 </div>
   </div>
@@ -44,7 +44,7 @@
 <div id="teasers" class="clearfix">
 <div class="teaser"><a href="?view=how_it_works" border="0"><img src="assets/how_to_teaser.jpg" /></a></div>
 <div class="teaser"><a href="?view=team" border="0"><img src="assets/team_teaser.jpg" /></a></div>
-<div class="teaser"><a href="?action=get_running_auction&view=show_running_auction&is_auction=yes&state_id=0&county_id=0" border="0"><img src="assets/example_teaser.jpg" /></a></div>
+<div class="teaser"><a href="?action=get_running_auction&view=show_running_auction&is_auction=yes&category_id=1&state_id=0&county_id=0" border="0"><img src="assets/example_teaser.jpg" /></a></div>
 </div>
 <hr>
 

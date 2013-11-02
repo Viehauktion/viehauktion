@@ -29,7 +29,14 @@ $oldValues=nil;
 ?>
 
 
-<div id="pigs_auction" class="span9">     
+<div id="pigs_auction" class="span9">    
+
+<?
+
+if($gBase->User['is_seller']!="no"){
+?>
+
+
   <form  class="form-horizontal" id="auction_form" method="get" action="?">
  
 
@@ -131,7 +138,7 @@ $oldValues=nil;
 
       <div class="control-group">
       
-        <label class="control-label" for="auction_min_entitity_price"><? echo($texts['auction_min_entitity_price']); ?></label>
+        <label class="control-label" for="auction_min_entitity_price"><? echo($texts['offer_min_entitity_price_without_euro']); ?></label>
         <div class="controls">
           <input type="text" id="auction_min_entitity_price" name="auction_min_entitity_price" placeholder="<? echo($texts['auction_min_entitity_price_placeholer']); ?>" value="<? if($oldValues!=nil) echo($oldValues['auction_min_entitity_price']); ?>" >
         </div>
@@ -667,7 +674,8 @@ echo ' checked="checked" ';
       <?
   if($gBase->User["is_seller"]=="yes"){
 ?>
-       <button onclick="return false" class="btn btn-primary" id="auction_preview"><? echo($texts['auction_preview']); ?></button><button onclick="return false" class="btn btn-primary" id="auction_submit"><? echo($texts['auction_submit']); ?></button>
+       <button onclick="return false" class="btn btn-primary" id="auction_preview"><? echo($texts['auction_preview']); ?></button>
+       <!--<button onclick="return false" class="btn btn-primary" id="auction_submit"><? echo($texts['auction_submit']); ?></button>-->
  <?
  }
 ?>
@@ -677,28 +685,49 @@ echo ' checked="checked" ';
  
   </form>
   
+<?
+
+ 
+}else{
+
+?>
+
+<h2><? echo($texts['no_seller_error_headline']); ?></h2>
+<p><? echo($texts['no_seller_error_description']); ?></p>
+
+<?
+
+}
+
+?> 
+
+
   </div>
   <script type="text/javascript">
 
+<?
+
+if($gBase->User['is_seller']!="no"){
+?>
 
 var is_vezg="no";
         
-    $('#endtime').datetimepicker({
+    $('#pigs_auction #endtime').datetimepicker({
       language: 'de-DE'
     });
 
 
     
-    $('#from_time').datetimepicker({
+    $('#pigs_auction #from_time').datetimepicker({
       language: 'de-DE'
     });
 
-$('#till_time').datetimepicker({
+$('#pigs_auction #till_time').datetimepicker({
       language: 'de-DE'
     });
 
- picker=$('#endtime').data('datetimepicker');
-picker.setLocalDate(new Date());
+ //picker=$('#pigs_auction #endtime').data('datetimepicker');
+//picker.setLocalDate(new Date());
 
 
 
@@ -707,10 +736,10 @@ $("#pigs_auction #auction_preview").click(function(){
       $("#pigs_auction #is_preview").val("yes");
       //$("#pigs_auction #auction_form").attr("target", "_blank");
 
-  if($("#is_auction").val()=="yes"){
-      sendForm('view=show_full_auction&action=get_auction_details', true);
+  if($("#pigs_auction #is_auction").val()=="yes"){
+      sendPigsForm('view=show_full_auction&action=get_auction_details', true);
     }else{
-      sendForm('view=show_full_auction&action=get_auction_details', true);
+      sendPigsForm('view=show_full_auction&action=get_auction_details', true);
     }
 
 
@@ -721,23 +750,32 @@ $("#pigs_auction #auction_submit").click(function(){
       $("#pigs_auction #view").val("profile");
       $("#pigs_auction #is_preview").val("no");
 
-      if($("#is_auction").val()=="yes"){
-      sendForm('view=profile#auctions', false);
+      if($("#pigs_auction #is_auction").val()=="yes"){
+      sendPigsForm('view=profile#auctions', false);
 }else{
-   sendForm('view=profile#offers', false);
+   sendPigsForm('view=profile#offers', false);
 }
 
    });
+
+
+
+<?
+
+}
+
+?> 
+
 
 function changeTime(toTime){
 
 if(toTime=='side'){
 
-  $("#main_time").hide();
-  $("#side_time").show();
+  $("#pigs_auction #main_time").hide();
+  $("#pigs_auction #side_time").show();
 }else{
-  $("#side_time").hide();
-  $("#main_time").show();
+  $("#pigs_auction #side_time").hide();
+  $("#pigs_auction #main_time").show();
 }
 
 }
@@ -747,7 +785,7 @@ if(toTime=='side'){
   if($gBase->User["is_seller"]=="yes"){
 ?>
 
-function sendForm(nextview, is_preview){
+function sendPigsForm(nextview, is_preview){
 
   price=$("#auction_min_entitity_price").val();
   price=price.replace("€","");
@@ -757,16 +795,16 @@ function sendForm(nextview, is_preview){
 
   needs_original="no";
 
-$("#auction_min_entitity_price").val(price);
+$("#pigs_auction #auction_min_entitity_price").val(price);
 
-$("#auction_min_entitity_price").val(price);
+$("#pigs_auction #auction_min_entitity_price").val(price);
 
-if($("#is_public").is(':checked')){
+if($("#pigs_auction #is_public").is(':checked')){
 
     is_public="yes";
 }
 
-if($("#needs_original").is(':checked')){
+if($("#pigs_auction #needs_original").is(':checked')){
 
     needs_original="yes";
 }
@@ -776,14 +814,14 @@ if($("#needs_original").is(':checked')){
 	errorflag=false;
 	$("#pigs_auction #error_message").empty();
 	
-		if($("#auction_amount").val()==''){
+		if($("#pigs_auction #auction_amount").val()==''){
 	
 		$("#pigs_auction #error_message").append('<? echo($texts['auction_amount_error']); ?><br/>');
 		errorflag=true;
 
 		}
 		
-	 	if($("#auction_min_entitity_price").val()==''){
+	 	if($("#pigs_auction #auction_min_entitity_price").val()==''){
 	
 		$("#pigs_auction #error_message").append('<? echo($texts['auction_min_entitity_price_error']); ?><br/>');
 		errorflag=true;
@@ -793,17 +831,17 @@ if($("#needs_original").is(':checked')){
 
 
 
-	  	if($("#auction_origin").val()==''){
+	  	if($("#pigs_auction #auction_origin").val()==''){
 	
-		$("#pigs_auction #error_message").append('<? echo($texts['auction_origin_error']); ?><br/>');
+		$("#pigs_auction #pigs_auction #error_message").append('<? echo($texts['auction_origin_error']); ?><br/>');
 		errorflag=true;
 
 		}
 		
 		
-    if($("#auction_pigs_classification_mask_value").val()==''){
+    if($("#pigs_auction #auction_pigs_classification_mask_value").val()==''){
 	
-  if($("#auction_classification_mask").val()=="FOM"){
+  if($("#pigs_auction #auction_classification_mask").val()=="FOM"){
 		$("#pigs_auction #error_message").append('<? echo($texts['auction_pigs_fom_value_error']); ?><br/>');
 		errorflag=true;
 }else{
@@ -820,7 +858,7 @@ if($("#needs_original").is(':checked')){
 
 	 
 	 
-	 	 	if(($("#auction_loading_stations_amount").val()!="1") && ($("#auction_loading_stations_distance").val()=='')){
+	 	 	if(($("#pigs_auction #auction_loading_stations_amount").val()!="1") && ($("#pigs_auction #auction_loading_stations_distance").val()=='')){
 	
 		$("#pigs_auction #error_message").append('<? echo($texts['auction_loading_stations_distance_error']); ?><br/>');
 		errorflag=true;
@@ -829,7 +867,7 @@ if($("#needs_original").is(':checked')){
 		
 		
 		
-	    if($("#auction_loading_stations_availability").val()==''){
+	    if($("#pigs_auction #auction_loading_stations_availability").val()==''){
 	
 		$("#pigs_auction #error_message").append('<? echo($texts['auction_loading_stations_availability_error']); ?><br/>');
 		errorflag=true;
@@ -837,7 +875,7 @@ if($("#needs_original").is(':checked')){
 		}
 		
 		
-		  if($("#auction_loading_stations_availability_til").val()==''){
+		  if($("#pigs_auction #auction_loading_stations_availability_til").val()==''){
 	
 		$("#pigs_auction #error_message").append('<? echo($texts['auction_loading_stations_availability_error']); ?><br/>');
 		errorflag=true;
@@ -850,14 +888,15 @@ if($("#needs_original").is(':checked')){
 
 			
 		if(errorflag){
-				 $(".alert-error").show();
+    
+				 $("#pigs_auction .alert-error").show();
          $(document).scrollTop(0);
 				 return false;
 		}else{
 			
 
 
- $.getJSON("index.php", { "action": $("#action").val(), "view": "profile", "mode":"ajax", "category_id":$("#category_id").val(), "auction_id":$("#auction_id").val(), "is_auction":$("#is_auction").val(), "is_main_auction":$("#is_main_auction").val(), "is_vezg": is_vezg, "is_preview":$("#is_preview").val(),"auction_date":$("#auction_date").val(),"endtime":$("#endtime").val(),"auction_amount":$("#auction_amount").val(),"auction_min_entitity_price":$("#auction_min_entitity_price").val(), "auction_genes":$("#auction_genes").val(), "auction_origin":$("#auction_origin").val(),"auction_classification_mask":$("#auction_classification_mask").val(),"auction_pigs_classification_mask_value":$("#auction_pigs_classification_mask_value").val(),"auction_pigs_qs":$("#auction_pigs_qs").val(),"auction_pigs_samonelle_state":$("#auction_pigs_samonelle_state").val(),"address":$("#address").val(),"auction_loading_stations_amount":$("#auction_loading_stations_amount").val(),"auction_loading_stations_distance":$("#auction_loading_stations_distance").val(),"auction_loading_stations_vehicle":$("#auction_loading_stations_vehicle").val(),"auction_loading_stations_availability":$("#auction_loading_stations_availability").val(), "auction_loading_stations_availability_til":$("#auction_loading_stations_availability_til").val(), "needs_original":needs_original, "is_public": is_public, "auction_additional_informations":$("#auction_additional_informations").val(), "sid":"<? echo($_COOKIE["PHPSESSID"]); ?>"},
+ $.getJSON("index.php", { "action": $("#action").val(), "view": "profile", "mode":"ajax", "category_id":$("#pigs_auction #category_id").val(), "auction_id":$("#pigs_auction #auction_id").val(), "is_auction":$("#pigs_auction #is_auction").val(), "is_main_auction":$("#pigs_auction #is_main_auction").val(), "is_vezg": is_vezg, "is_preview":$("#pigs_auction #is_preview").val(),"auction_date":$("#pigs_auction #auction_date").val(),"endtime":$("#pigs_auction #endtime").val(),"auction_amount":$("#pigs_auction #auction_amount").val(),"auction_min_entitity_price":$("#pigs_auction #auction_min_entitity_price").val(), "auction_genes":$("#pigs_auction #auction_genes").val(), "auction_origin":$("#pigs_auction #auction_origin").val(),"auction_classification_mask":$("#pigs_auction #auction_classification_mask").val(),"auction_pigs_classification_mask_value":$("#pigs_auction #auction_pigs_classification_mask_value").val(),"auction_pigs_qs":$("#pigs_auction #auction_pigs_qs").val(),"auction_pigs_samonelle_state":$("#pigs_auction #auction_pigs_samonelle_state").val(),"address":$("#pigs_auction #address").val(),"auction_loading_stations_amount":$("#pigs_auction #auction_loading_stations_amount").val(),"auction_loading_stations_distance":$("#pigs_auction #auction_loading_stations_distance").val(),"auction_loading_stations_vehicle":$("#pigs_auction #auction_loading_stations_vehicle").val(),"auction_loading_stations_availability":$("#pigs_auction #auction_loading_stations_availability").val(), "auction_loading_stations_availability_til":$("#pigs_auction #auction_loading_stations_availability_til").val(), "needs_original":needs_original, "is_public": is_public, "auction_additional_informations":$("#pigs_auction #auction_additional_informations").val(), "sid":"<? echo($_COOKIE["PHPSESSID"]); ?>"},
       
         function(data){
            
@@ -868,7 +907,7 @@ if($("#needs_original").is(':checked')){
 
                 if(is_preview){
 
-                  is_preview="&is_preview=yes&auction_id="+data.current_auction.auction_id+"&is_auction="+data.current_auction.is_auction+"&state_id="+data.current_auction.state_id+"&county_id="+data.current_auction.county_id;
+                  is_preview="&is_preview=yes&auction_id="+data.current_auction.auction_id+"&is_auction="+data.current_auction.is_auction+"&state_id="+data.current_auction.state_id+"&county_id="+data.current_auction.county_id+"&category_id="+1;
    window.open("?"+nextview+is_preview, "_self");
               
                 }else{

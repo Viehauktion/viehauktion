@@ -12,6 +12,9 @@
       <input type="hidden" name="action" value="<? echo($_form_action); ?>" />
       <input type="hidden" name="view" value="<? echo($_form_view); ?>" />
       <input type="hidden" name="is_auction" value="<? echo($is_auction); ?>" />
+
+ <input type="hidden" name="category_id" value="<? echo($category_id); ?>" />
+
         <div class="control-group" id="states">
           <label class="control-label" for="state_id_for_auction"><? echo($texts['state']); ?></label>
           <div class="controls" >
@@ -65,7 +68,7 @@ function getPendingStatesForAuction(){
 
 
 
-  $.getJSON("index.php", { "action": "get_pending_auction_states", "view": "add_address_modal", "mode":"ajax", "is_auction":"<? echo($is_auction); ?>", "sid":"<? echo($_COOKIE["PHPSESSID"]); ?>"},
+  $.getJSON("index.php", { "action": "get_pending_auction_states", "view": "add_address_modal", "mode":"ajax", "category_id":<? echo($category_id);?>,  "is_auction":"<? echo($is_auction); ?>", "sid":"<? echo($_COOKIE["PHPSESSID"]); ?>"},
       
                  function(data){
                session_id=data.conf.session_id;
@@ -126,7 +129,7 @@ function getPendingCountiesForAuction(){
 
 
 
-  $.getJSON("index.php", { "action": "get_pending_auction_counties", "view": "add_address_modal", "mode":"ajax", "state_id":$("#state_id_for_auction").val(), "is_auction":"<? echo($is_auction); ?>", "sid":"<? echo($_COOKIE["PHPSESSID"]); ?>"},
+  $.getJSON("index.php", { "action": "get_pending_auction_counties", "view": "add_address_modal", "mode":"ajax", "category_id":<? echo($category_id);?>, "state_id":$("#state_id_for_auction").val(), "is_auction":"<? echo($is_auction); ?>", "sid":"<? echo($_COOKIE["PHPSESSID"]); ?>"},
 			
 			  				 function(data){
 			 				 session_id=data.conf.session_id;

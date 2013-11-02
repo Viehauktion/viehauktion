@@ -50,39 +50,39 @@ return $priceString;
 			//Arial 8
 			$this->SetFont('Arial', 'B', 8);
 			
-			$this->Cell($lWidth, 0, 'SYBORG STUDIOS | Virtual Tour Architect', 0, 0, 'L');
+			$this->Cell($lWidth, 0, '2M Viehauktionen UG (haftungsbeschränkt)', 0, 0, 'L');
 		
-			$this->Cell($lWidth, 0, 'www.syborgstudios.com | www.virtualtourarchitect.com', 0, 0, 'L');
+			$this->Cell($lWidth, 0, 'www.viehauktion.com', 0, 0, 'L');
 				$this->SetFont('Arial', '', 8);
 			$this->Cell($lWidth, 0, '', 0, 0, 'L');
 			
 			$this->Ln(4);
 				$this->SetFont('Arial', 'B', 8);
-			$this->Cell($lWidth, 0, 'Ruhrstrasse 114', 0, 0, 'L');
+			$this->Cell($lWidth, 0, 'Bahnhofstrasse 6', 0, 0, 'L');
 				$this->SetFont('Arial', '', 8);
 			$this->Cell($lWidth, 0, 'ING Diba 50010517 ', 0, 0, 'L');
 			$this->Cell($lWidth, 0, '', 0, 0, 'L');
 
 			$this->Ln(4);
 				$this->SetFont('Arial', 'B', 8);
-			$this->Cell($lWidth, 0, '22761 Hamburg', 0, 0, 'L');
+			$this->Cell($lWidth, 0, '49699 Lindern', 0, 0, 'L');
 				$this->SetFont('Arial', '', 8);
 			$this->Cell($lWidth, 0, 'Konto 5531710 762', 0, 0, 'L');
-			$this->Cell($lWidth, 0, 'Ust-ID DE253919539 ', 0, 0, 'L');						
+			$this->Cell($lWidth, 0, 'Ust-ID beantragt ', 0, 0, 'L');						
 			
 			$this->Ln(4);			
 				$this->SetFont('Arial', 'B', 8);
-			$this->Cell($lWidth, 0, 'e-Mail  buchhaltung@syborgstudios.com', 0, 0, 'L');
+			$this->Cell($lWidth, 0, 'E-Mail:  info@viehauktion.com', 0, 0, 'L');
 				$this->SetFont('Arial', '', 8);
 			$this->Cell($lWidth, 0, 'IBAN DE27500105175531710762', 0, 0, 'L');
-			$this->Cell($lWidth, 0, 'FA Tüb. St.-Nr.  86320/67014', 0, 0, 'L');									
+			$this->Cell($lWidth, 0, 'St.-Nr.  beantragt', 0, 0, 'L');									
 
 			$this->Ln(4);			
 				$this->SetFont('Arial', 'B', 8);
-			$this->Cell($lWidth, 0, 'Tel (+49) 07071 / 85888 - 7', 0, 0, 'L');
+			$this->Cell($lWidth, 0, 'Tel (+49) 5957 / 486', 0, 0, 'L');
 				$this->SetFont('Arial', '', 8);
 			$this->Cell($lWidth, 0, 'BIC  INGDDEFF', 0, 0, 'L');
-			$this->Cell($lWidth, 0, 'Geschäftsführung:  Simon Meyborg', 0, 0, 'L');												
+			$this->Cell($lWidth, 0, 'Geschäftsführung:  Felix Meyborg', 0, 0, 'L');												
 		}
 		
 		// Setze den Empfänger
@@ -122,7 +122,7 @@ return $priceString;
 		}
 		
 		
-		function printBillData($pBillNo, $pAuctionID, $pUserID, $pDate, $pAmountOfAnimals, $pBruttoPrice, $pVAT, $pFontSize) {
+		function printBillData($pBillNo, $pAuctionID, $pUserID, $pDate, $pAmountOfAnimals, $pNettoPrice, $pVAT, $pFontSize) {
 			
 			$this->SetY(75);
 			$this->SetFont('Arial', 'B', $pFontSize);
@@ -156,7 +156,7 @@ return $priceString;
 			$this->Cell(100, 4, $pDate, 0, 1, 'L');
 			$this->SetX(75);
 			
-		    $nettoprice=$this->formatPrice(($pBruttoPrice/(100+$pVAT))*100);
+		    $bruttoprice=$this->formatPrice(($pNettoPrice*(100+$pVAT))/100);
 			
 			$this->SetY(110);
 			$this->SetFont('Arial', '', '10');
@@ -164,18 +164,18 @@ return $priceString;
 			
 			$this->Cell(80, 4, "Es wurden erfolgreich $pAmountOfAnimals Tiere auf viehauktion.com versteigert.", 0, 1, 'L');
 			$this->SetX(24);
-			$this->Cell(80, 4, "Wir berechnen pro Tier eine Provision von $nettoprice € ( ".number_format($pBruttoPrice, 2, '.', '')."0 € inkl. Mehrwertsteuer ).", 0, 1, 'L');
+			$this->Cell(80, 4, "Wir berechnen pro Tier eine Provision von ".number_format($pNettoPrice, 2, '.', '')." € ( ".number_format($bruttoprice, 2, '.', '')." € inkl. Mehrwertsteuer ).", 0, 1, 'L');
 			$this->SetY(130);
 			$this->SetX(24);
 			$this->Cell(80, 4, "Daraus ergibt sich ein Rechnungbetrag von: ", 0, 1, 'L');
-			$totalNettoPrice=$this->formatPrice($pAmountOfAnimals*$nettoprice);
+			$totalNettoPrice=$this->formatPrice($pAmountOfAnimals*$pNettoPrice);
 			$this->SetY(140);
 			$this->SetX(24);
 
-			$this->Cell(80, 4, "Leistung:                                   ".$pAmountOfAnimals." Tiere á ".number_format($nettoprice, 2, '.', '')." €  =     ".number_format($totalNettoPrice, 2, '.', '')." €", 0, 1, 'L');
+			$this->Cell(80, 4, "Leistung:                                   ".$pAmountOfAnimals." Tiere á ".number_format($pNettoPrice, 2, '.', '')." €  =     ".number_format($totalNettoPrice, 2, '.', '')." €", 0, 1, 'L');
 			$vatPrice=($totalNettoPrice/100)*19;
 			$this->SetX(24);
-			$this->Cell(80, 4, "Mehrwertsteuer ($pVAT %):                                                +".number_format($vatPrice, 2, '.', '')." €", 0, 1, 'L');
+			$this->Cell(80, 4, "Mehrwertsteuer ($pVAT %):                                                  +".number_format($vatPrice, 2, '.', '')." €", 0, 1, 'L');
 				$this->SetX(24);
 			$this->Cell(80, 4, "________________________________________________________", 0, 1, 'L');
 			$totalBruttoPrice=$vatPrice+$totalNettoPrice;

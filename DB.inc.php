@@ -521,14 +521,14 @@ function getUserWithAddressByID($user_id){
 		}
 
 
-function getLatestAuctions($start,$number_of_elements,$status, $is_auction){
+function getLatestAuctions($category_id, $start,$number_of_elements,$status, $is_auction){
 
 		
 			
-			$lSQLQuery = "SELECT SQL_CALC_FOUND_ROWS * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.is_auction =  '".$is_auction."' AND auctions.status='".$status."' ORDER BY auctions.id DESC LIMIT ".mysql_real_escape_string($start).", ".mysql_real_escape_string($number_of_elements).";";
+			$lSQLQuery = "SELECT SQL_CALC_FOUND_ROWS * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.category_id ='".mysql_real_escape_string($category_id)."' AND auctions.is_auction =  '".$is_auction."' AND auctions.status='".$status."' ORDER BY auctions.id DESC LIMIT ".mysql_real_escape_string($start).", ".mysql_real_escape_string($number_of_elements).";";
 			if($is_auction=="yes" && $status=='pending'){
 
-				$lSQLQuery = "SELECT SQL_CALC_FOUND_ROWS * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.is_auction =  '".$is_auction."' AND (auctions.status='".$status."' OR auctions.status='scheduled') ORDER BY auctions.id DESC LIMIT ".mysql_real_escape_string($start).", ".mysql_real_escape_string($number_of_elements).";";
+				$lSQLQuery = "SELECT SQL_CALC_FOUND_ROWS * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.category_id ='".mysql_real_escape_string($category_id)."' AND auctions.is_auction =  '".$is_auction."' AND (auctions.status='".$status."' OR auctions.status='scheduled') ORDER BY auctions.id DESC LIMIT ".mysql_real_escape_string($start).", ".mysql_real_escape_string($number_of_elements).";";
 			
 			}
 
@@ -755,6 +755,7 @@ function getLatestAuctions($start,$number_of_elements,$status, $is_auction){
 					$lSQLQuery = "SELECT * FROM `auctions` WHERE `status`=  '".$status."' AND `mail_status`='".$mail_status."' AND `end_time`<'".$storno_time."';";
 					
 					}
+
 				
 						
 						$list= array();
@@ -919,16 +920,16 @@ function getLatestAuctions($start,$number_of_elements,$status, $is_auction){
 					return false;	
 		}
    
-   function getStatesOfPendingAuctions($is_auction){
+   function getStatesOfPendingAuctions($is_auction, $category_id){
 
 
 			$lSQLQuery = "";
 			if($is_auction=="no"){
 
-				$lSQLQuery ="SELECT DISTINCT   auctions.state_id, state.name FROM auctions INNER JOIN state ON auctions.state_id=state.id WHERE auctions.status =  'offering'";
+				$lSQLQuery ="SELECT DISTINCT   auctions.state_id, state.name FROM auctions INNER JOIN state ON auctions.state_id=state.id WHERE auctions.category_id='".mysql_real_escape_string($category_id)."' AND auctions.status =  'offering'";
 
 			}else{
-				$lSQLQuery ="SELECT DISTINCT   auctions.state_id, state.name FROM auctions INNER JOIN state ON auctions.state_id=state.id WHERE (auctions.status =  'pending' OR auctions.status = 'scheduled' OR auctions.status = 'running' )";
+				$lSQLQuery ="SELECT DISTINCT   auctions.state_id, state.name FROM auctions INNER JOIN state ON auctions.state_id=state.id WHERE auctions.category_id='".mysql_real_escape_string($category_id)."' AND (auctions.status =  'pending' OR auctions.status = 'scheduled' OR auctions.status = 'running' )";
 			}
 
 	$list= array();
@@ -949,10 +950,10 @@ function getLatestAuctions($start,$number_of_elements,$status, $is_auction){
 			for($i=0;$i<count($list);$i++){
 						
 							if($is_auction=="no"){
-								 $lSQLQuery ="SELECT COUNT(auctions.id)  FROM auctions WHERE status = 'offering'  AND state_id='".$list[$i]['state_id']."'";
+								 $lSQLQuery ="SELECT COUNT(auctions.id)  FROM auctions WHERE category_id='".mysql_real_escape_string($category_id)."' AND status = 'offering'  AND state_id='".$list[$i]['state_id']."'";
 								}else{
 
-								 $lSQLQuery ="SELECT COUNT(auctions.id)  FROM auctions WHERE ( status =  'pending' OR status = 'scheduled' OR status = 'running' ) AND state_id='".$list[$i]['state_id']."'";
+								 $lSQLQuery ="SELECT COUNT(auctions.id)  FROM auctions WHERE category_id='".mysql_real_escape_string($category_id)."' AND ( status =  'pending' OR status = 'scheduled' OR status = 'running' ) AND state_id='".$list[$i]['state_id']."'";
 								}
 
 								$lResult = $this->mysql_query_ex($lSQLQuery);
@@ -970,16 +971,16 @@ function getLatestAuctions($start,$number_of_elements,$status, $is_auction){
 
 		}
 
-		function getCountiesOfPendingAuctions($state_id, $is_auction){
+		function getCountiesOfPendingAuctions($state_id, $is_auction, $category_id){
 
 
 			$lSQLQuery = "";
 			if($is_auction=="no"){
 
-				$lSQLQuery ="SELECT DISTINCT(auctions.county_id), auctions.state_id, county.name  FROM auctions INNER JOIN county ON auctions.county_id=county.id WHERE auctions.status =  'offering' AND county.state_id='".$state_id."'";
+				$lSQLQuery ="SELECT DISTINCT(auctions.county_id), auctions.state_id, county.name  FROM auctions INNER JOIN county ON auctions.county_id=county.id WHERE auctions.category_id='".mysql_real_escape_string($category_id)."' AND auctions.status =  'offering' AND county.state_id='".$state_id."'";
 
 			}else{
-				$lSQLQuery ="SELECT DISTINCT(auctions.county_id), auctions.state_id, county.name  FROM auctions INNER JOIN county ON auctions.county_id=county.id WHERE (auctions.status =  'pending' OR auctions.status = 'scheduled' OR auctions.status = 'running' ) AND county.state_id='".$state_id."'";
+				$lSQLQuery ="SELECT DISTINCT(auctions.county_id), auctions.state_id, county.name  FROM auctions INNER JOIN county ON auctions.county_id=county.id WHERE auctions.category_id='".mysql_real_escape_string($category_id)."' AND (auctions.status =  'pending' OR auctions.status = 'scheduled' OR auctions.status = 'running' ) AND county.state_id='".$state_id."'";
 			}
 	
 	
@@ -1000,10 +1001,10 @@ function getLatestAuctions($start,$number_of_elements,$status, $is_auction){
 						for($i=0;$i<count($list);$i++){
 							
 							if($is_auction=="no"){
-								 $lSQLQuery ="SELECT COUNT(auctions.id)  FROM auctions WHERE status = 'offering'  AND county_id='".$list[$i]['county_id']."'";
+								 $lSQLQuery ="SELECT COUNT(auctions.id)  FROM auctions WHERE category_id='".mysql_real_escape_string($category_id)."' AND status = 'offering'  AND county_id='".$list[$i]['county_id']."'";
 								}else{
 
-								 $lSQLQuery ="SELECT COUNT(auctions.id)  FROM auctions WHERE ( status =  'pending' OR status = 'scheduled' OR status = 'running' ) AND county_id='".$list[$i]['county_id']."'";
+								 $lSQLQuery ="SELECT COUNT(auctions.id)  FROM auctions WHERE category_id='".mysql_real_escape_string($category_id)."' AND ( status =  'pending' OR status = 'scheduled' OR status = 'running' ) AND county_id='".$list[$i]['county_id']."'";
 								}
 
 								$lResult = $this->mysql_query_ex($lSQLQuery);
@@ -1031,7 +1032,7 @@ function getLatestAuctions($start,$number_of_elements,$status, $is_auction){
 
 						$lSQLQuery = "UPDATE  `auctions` SET  `status` =  'scheduled' WHERE  `start_time` < '".$futureHour."' AND `is_auction`='yes' AND `status`='pending';";
 
-			echo($lSQLQuery);
+			
 					$lResult = $this->mysql_query_ex($lSQLQuery);
 					if ($lResult) {
 					
@@ -1041,10 +1042,10 @@ function getLatestAuctions($start,$number_of_elements,$status, $is_auction){
 							return false;
 		}
 
-		function getPendingAuctions(){
+		function getPendingAuctions($category_id){
 
 
-			$lSQLQuery = "SELECT DISTINCT start_time, state_id FROM auctions  WHERE (`status` =  'pending'  OR `status` = 'scheduled') AND `start_time` LIKE  '".date('Y-m-d')."%';";
+			$lSQLQuery = "SELECT DISTINCT start_time, state_id FROM auctions  WHERE category_id='".mysql_real_escape_string($category_id)."' AND (`status` =  'pending'  OR `status` = 'scheduled' OR `status` = 'running')  AND `state_id`!='0' AND `start_time` LIKE  '".date('Y-m-d')."%';";
 
 
 	
@@ -1067,10 +1068,10 @@ function getLatestAuctions($start,$number_of_elements,$status, $is_auction){
 
 
 
-		function getPendingOffers(){
+		function getPendingOffers($category_id){
 
 
-			$lSQLQuery = "SELECT DISTINCT state_id FROM auctions WHERE start_time LIKE  '".date('Y-m-d')."%';";
+			$lSQLQuery = "SELECT DISTINCT state_id FROM auctions WHERE category_id='".mysql_real_escape_string($category_id)."' AND tart_time LIKE  '".date('Y-m-d')."%';";
 
 	
 	
@@ -1095,17 +1096,17 @@ function getLatestAuctions($start,$number_of_elements,$status, $is_auction){
 
 
 
- 		function getNextAuctions($county_id, $is_auction){
+ 		function getNextAuctions($county_id, $is_auction, $category_id){
 
 				$lSQLQuery = "";
 
 			 if($is_auction=="yes"){
-					$lSQLQuery = "SELECT * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.county_id =  '".mysql_real_escape_string($county_id)."' AND (auctions.status='pending' OR auctions.status='scheduled') ORDER BY auctions.id ASC;";
+					$lSQLQuery = "SELECT * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.category_id =  '".mysql_real_escape_string($category_id)."' AND auctions.county_id =  '".mysql_real_escape_string($county_id)."' AND (auctions.status='pending' OR auctions.status='scheduled') ORDER BY auctions.id ASC;";
 	
 
 			 }else{
 
-					 $lSQLQuery = "SELECT * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.county_id =  '".mysql_real_escape_string($county_id)."' AND auctions.status='offering' ORDER BY auctions.id ASC;";
+					 $lSQLQuery = "SELECT * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.category_id=  '".mysql_real_escape_string($category_id)."' AND auctions.county_id =  '".mysql_real_escape_string($county_id)."' AND auctions.status='offering' ORDER BY auctions.id ASC;";
 	
 			 }
 				
@@ -1159,7 +1160,7 @@ function getLatestAuctions($start,$number_of_elements,$status, $is_auction){
 				$lSQLQuery = "";
 
 			
-				$lSQLQuery = "SELECT DISTINCT id, status, state_id, county_id  FROM auctions WHERE (status='scheduled' ||  status='running') AND start_time < '".date('Y-m-d H:i:s')."';";
+				$lSQLQuery = "SELECT DISTINCT id, status, state_id, county_id, category_id  FROM auctions WHERE (status='scheduled' ||  status='running') AND start_time < '".date('Y-m-d H:i:s')."';";
 	
 
 				
@@ -1197,34 +1198,35 @@ function getLatestAuctions($start,$number_of_elements,$status, $is_auction){
 		}
    
    
-		function getRunningAuction($county_id){
+		function getRunningAuction($county_id, $category_id){
 	
 			
-				$lSQLQuery = "SELECT * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.county_id =  '".mysql_real_escape_string($county_id)."' AND auctions.status='running' AND auctions.end_time>'".date('Y-m-d H:i:s')."' ORDER BY auctions.id ASC LIMIT 1;";
+				$lSQLQuery = "SELECT * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.category_id =  '".mysql_real_escape_string($category_id)."' AND auctions.county_id =  '".mysql_real_escape_string($county_id)."' AND auctions.status='running' AND auctions.end_time>'".date('Y-m-d H:i:s')."' ORDER BY auctions.id ASC LIMIT 1;";
+
 
 					$lResult = $this->mysql_query_ex($lSQLQuery);
 					if ($lResult) {
 					
 							$lArray = mysql_fetch_assoc($lResult);
 							
-							
+					
 							
 				if($lArray==false){
 
-					//THERE IS NO
+					///THERE IS NO
+
 					$nextStartTime=date("Y-m-d H:i:s", strtotime("+30 seconds"));
 					$nextEndTime=date("Y-m-d H:i:s", strtotime("+2 minutes 30 seconds"));
 
 
-					$lSQLQuery2 = "UPDATE  `auctions` SET  `status` =  'running',`end_time` = '".$nextEndTime."',`start_time` =  '".$nextStartTime."' WHERE  `start_time` < '".date('Y-m-d H:i:s', strtotime("+30 seconds"))."' AND `county_id`='".$county_id."' AND `status`='scheduled' LIMIT 1;";
+					$lSQLQuery2 = "UPDATE  `auctions` SET  `status` =  'running',`end_time` = '".$nextEndTime."',`start_time` =  '".$nextStartTime."' WHERE  `start_time` < '".date('Y-m-d H:i:s', strtotime("+30 seconds"))."' AND `county_id`='".$county_id."' AND `category_id`='".$category_id."' AND `status`='scheduled' AND `status`!='running' LIMIT 1;";
 
-				
 
 					$lResult2 = $this->mysql_query_ex($lSQLQuery2);
 					if ($lResult2) {
 			if(mysql_fetch_assoc($lResult2)==null){
 
-										$lSQLQuery3 = "SELECT * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.county_id =  '".mysql_real_escape_string($county_id)."' AND auctions.status='scheduled'  ORDER BY auctions.id ASC LIMIT 1;";
+										$lSQLQuery3 = "SELECT * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.category_id =  '".mysql_real_escape_string($category_id)."' AND auctions.county_id =  '".mysql_real_escape_string($county_id)."' AND auctions.status='scheduled'  ORDER BY auctions.id ASC LIMIT 1;";
 								
 												$lResult3 = $this->mysql_query_ex($lSQLQuery3);
 												if ($lResult3) {
@@ -1236,12 +1238,12 @@ function getLatestAuctions($start,$number_of_elements,$status, $is_auction){
 												}
 
 
-			}else{
+							}else{
 
 											
 
 
-												$lSQLQuery3 = "SELECT * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.county_id =  '".mysql_real_escape_string($county_id)."' AND auctions.status='running' AND auctions.end_time>'".date('Y-m-d H:i:s')."' ORDER BY auctions.id ASC LIMIT 1;";
+												$lSQLQuery3 = "SELECT * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.category_id =  '".mysql_real_escape_string($category_id)."' AND auctions.county_id =  '".mysql_real_escape_string($county_id)."' AND auctions.status='running' AND auctions.end_time>'".date('Y-m-d H:i:s')."' ORDER BY auctions.id ASC LIMIT 1;";
 								
 												$lResult3 = $this->mysql_query_ex($lSQLQuery3);
 												if ($lResult3) {
@@ -1255,6 +1257,8 @@ function getLatestAuctions($start,$number_of_elements,$status, $is_auction){
 
 
 					}
+
+					
 				}else{
 
 
@@ -1265,6 +1269,32 @@ function getLatestAuctions($start,$number_of_elements,$status, $is_auction){
 		
 		}
 
+
+
+function setFirstAuctionRunning($auction_id){
+
+
+
+	$nextStartTime=date("Y-m-d H:i:s", strtotime("+30 seconds"));
+					$nextEndTime=date("Y-m-d H:i:s", strtotime("+2 minutes 30 seconds"));
+
+
+					$lSQLQuery2 = "UPDATE  `auctions` SET  `status` =  'running',`end_time` = '".$nextEndTime."',`start_time` =  '".$nextStartTime."' WHERE  `id`='".mysql_real_escape_string($auction_id)."' LIMIT 1;";
+
+
+					$lResult2 = $this->mysql_query_ex($lSQLQuery2);
+					if ($lResult2) {
+							
+							mysql_fetch_assoc($lResult2);
+
+										
+
+
+						
+
+					}
+
+}
 
 function resetExampleAuctions(){
 

@@ -37,7 +37,9 @@
 
 	$GLOBALS["VIEHAUKTION"]["EMAIL"]["SENDERNAME"]="Service | Viehauktion.com";
 	$GLOBALS["VIEHAUKTION"]["EMAIL"]["SENDERADDRESS"]="service@viehauktion.com";
-	$GLOBALS["VIEHAUKTION"]["EMAIL"]["SERVER"]="localhost";
+	$GLOBALS["VIEHAUKTION"]["EMAIL"]["SERVER"]="smtp.mandrillapp.com";
+	$GLOBALS["VIEHAUKTION"]["EMAIL"]["USERNAME"]="simon.meyborg@viehauktion.com";
+	$GLOBALS["VIEHAUKTION"]["EMAIL"]["PASSWORD"]="-R4gV30ldAB6Tjlvnfnq0w";
 	
 		$GLOBALS["VIEHAUKTION"]["EMAIL"]["ACTIVATOR"]="meyborg@syborgstudios.com";
 
@@ -49,10 +51,10 @@
     |
     |---------------------------------------------------------------------------------------------------------------------------------*/
 
-	$GLOBALS["VIEHAUKTION"]["STORNO"]["TIME"]=60;
+	$GLOBALS["VIEHAUKTION"]["STORNO"]["TIME"]=120;
 	$GLOBALS["VIEHAUKTION"]["STORNO"]["MONEY"]=40;
 	$GLOBALS["VIEHAUKTION"]["VAT"]=19;
-	$GLOBALS["VIEHAUKTION"]["PROVISION"]=0.4;
+	$GLOBALS["VIEHAUKTION"]["PROVISION"]=0.40;
 
 
 	$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"]=10;

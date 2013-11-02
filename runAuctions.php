@@ -58,8 +58,8 @@ if($auctionsToStart=$lDB->getTodaysMainAuctions()){
 									//$call=$GLOBALS["VIEHAUKTION"]["BASE"]["HTTPROOT"]."?action=get_running_auction&mode=ajax&is_auction=yes&state_id=".$auctionsToStart[$i]['state_id']."&county_id=".$auctionsToStart[$i]['county_id'];
 									
 
-										$result=$lDB->getRunningAuction($auctionsToStart[$i]['county_id']);
-										var_dump($result);
+										$result=$lDB->getRunningAuction($auctionsToStart[$i]['county_id'], $auctionsToStart[$i]['category_id']);
+									
 										
 
 
@@ -73,7 +73,7 @@ if($auctionsToStart=$lDB->getTodaysMainAuctions()){
 
 										if ((strtotime($result["end_time"])<time()) && ($result["end_time"]!='0000-00-00 00:00:00') && ($auctionsToStart[$i]['status']=='running')) {
 																$lDB->closeAuction($auctionsToStart[$i]['id']);
-																echo("close Auctio2".$auctionsToStart[$i]['id']);
+																
 										}
 									// getCurrentAuctionFromDB($auctionsToStart[$i]['county_id'], $auctionsToStart[$i]['state_id']);
 								}

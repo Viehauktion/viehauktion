@@ -84,23 +84,13 @@ return false;
 <ul id="subnavigation" class="nav nav-tabs">
   <li class="active"><a href="#userdata" id="userdata_link" onclick="showSubnavigation('userdata')"><? echo($texts['profile_my_data']); ?></a></li>
  
- <?
-if($gBase->User['is_seller']=="yes"){
 
-?>
   <li><a href="#auctions" id="auctions_link" onclick="showSubnavigation('auctions')"><? echo($texts['profile_my_auctions']); ?></a></li>
   <li><a href="#offers" id="offers_link" onclick="showSubnavigation('offers')"><? echo($texts['profile_my_offers']); ?></a></li>
- <?
-}
 
-if($gBase->User['is_buyer']=="yes"){
-
-?>
   <li><a href="#won_auctions" id="won_auctions_link" onclick="showSubnavigation('won_auctions')"><? echo($texts['profile_auctions_won']); ?></a></li>
   <li><a href="#won_offers" id="won_offers_link" onclick="showSubnavigation('won_offers')"><? echo($texts['profile_offers_won']); ?></a></li>
- <?
-}
-?>
+ 
 
   <li><a href="#invoices" id="invoices_link" onclick="showSubnavigation('invoices')"><? echo($texts['profile_my_invoices']); ?></a></li>
 
@@ -168,8 +158,8 @@ include('profile_ratings.php')
      <?
 
  
-if($gBase->User['is_seller']=="yes"){
-
+//if($gBase->User['is_seller']=="yes"){
+if(true){
 ?>
 
 
@@ -211,7 +201,7 @@ if($auctionToApprove){
     <tr>
       <td><? echo($texts['add_auction_date']); ?></td>
       <td><? echo($texts['auction_amount']); ?></td>
-      <td><? echo($texts['auction_min_entitity_price']); ?></td>
+      <td><? echo($texts['auction_min_entitity_price_without_euro']); ?></td>
       <td><? echo($texts['auction_last_bid']); ?></td>
      <td></td>
       <!--<td></td>-->
@@ -240,27 +230,7 @@ $counter++;
   }
   ?>
 </table>
-<div class="pagination">
-  <ul>
-<?
-  $pages=(int)$auctions["number_of_rows"]/$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"]+1;
-  $active=1;
-if ($_REQUEST['page']!='') {
-  $active=$_REQUEST['page'];
-}
- for ($i=1; $i <= $pages; $i++) { 
-  if($i==$active){
-    echo('<li class="active"><a href="?view=profile&action=get_user_actions&page='.$i.'#auctions"  >'.$i.'</a></li>');
-  }else{
-   echo('<li ><a href="?view=profile&action=get_user_actions&page='.$i.'#auctions" >'.$i.'</a></li>');
-   }
- }
 
-?>
- 
-   
-  </ul>
-</div>
     </p>
   </div>
 
@@ -317,7 +287,7 @@ if(count($auctions)>1){
     <tr>
       <td><? echo($texts['add_auction_date']); ?></td>
       <td><? echo($texts['auction_amount']); ?></td>
-      <td><? echo($texts['auction_min_entitity_price']); ?></td>
+      <td><? echo($texts['auction_min_entitity_price_without_euro']); ?></td>
       <td><? echo($texts['auction_last_bid']); ?></td>
       <td></td>
       <td></td>
@@ -487,7 +457,7 @@ if($auctionToApprove){
     <tr>
         <td><? echo($texts['offer_creation_date']); ?></td>
       <td><? echo($texts['auction_amount']); ?></td>
-      <td><? echo($texts['auction_min_entitity_price']); ?></td>
+      <td><? echo($texts['auction_min_entitity_price_without_euro']); ?></td>
       <td><? echo($texts['auction_buying_location']); ?></td>
       <td><? echo($texts['auction_origin']); ?></td>
       <td></td>
@@ -583,7 +553,7 @@ if(count($auctions)>1){
     <tr>
       <td><? echo($texts['offer_creation_date']); ?></td>
       <td><? echo($texts['auction_amount']); ?></td>
-      <td><? echo($texts['auction_min_entitity_price']); ?></td>
+      <td><? echo($texts['auction_min_entitity_price_without_euro']); ?></td>
       <td><? echo($texts['auction_buying_location']); ?></td>
       <td><? echo($texts['auction_origin']); ?></td>
 
@@ -696,7 +666,9 @@ if($counter==0){
 <div id="won_auctions_layer" class="sublayer hide" >
 
      <?
-if($gBase->User['is_buyer']=="yes"){
+//if($gBase->User['is_buyer']=="yes"){
+
+  if(true){
 ?>
 
 

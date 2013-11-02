@@ -37,24 +37,31 @@ function connectDB() {
 		return new DB($lHost, $lUser, $lPassword, $lDBName);
 	}
 	
-		function sendEmail($emailTemplate, $lSearch, $lReplacement, $subject, $lRecipient) {
+			function sendEmail($emailTemplate, $lSearch, $lReplacement, $subject, $lRecipient, $attachmentPath) {
 					
 					$eMail = file_get_contents($emailTemplate);
 					$finalEmail = str_replace($lSearch, $lReplacement, $eMail);
 				
 			
 							$mail = new PHPMailer();
-							
-							$mail->IsSMTP(); // send via SMTP
-							$mail->Host = $GLOBALS["VIEHAUKTION"]["EMAIL"]["SERVER"]; // SMTP servers
-							$mail->SMTPAuth = false; // turn on SMTP authentication
-							
-							
+
+					
+							$mail->IsSMTP();                                      // Set mailer to use SMTP
+							$mail->Host = $GLOBALS["VIEHAUKTION"]["EMAIL"]["SERVER"];                 // Specify main and backup server
+							$mail->Port = 587;                                    // Set the SMTP port
+							$mail->SMTPAuth = true;                               // Enable SMTP authentication
+							$mail->Username = $GLOBALS["VIEHAUKTION"]["EMAIL"]["USERNAME"];                // SMTP username
+							$mail->Password = $GLOBALS["VIEHAUKTION"]["EMAIL"]["PASSWORD"];                  // SMTP password
+							$mail->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
+
+
 							$mail->From = $GLOBALS["VIEHAUKTION"]["EMAIL"]["SENDERADDRESS"];
 							$mail->FromName = $GLOBALS["VIEHAUKTION"]["EMAIL"]["SENDERNAME"];
 							$mail->AddAddress($lRecipient, $lRecipient);
-							
-							$mail->IsHTML(false); // send as HTML
+							if($attachmentPath!=''){
+							$mail->AddAttachment($attachmentPath);
+							}
+							$mail->IsHTML(true); // send as HTML
 							
 							$mail->Subject = $subject;
 							$mail->Body = $finalEmail;
@@ -72,6 +79,7 @@ function connectDB() {
 			
 				}
 				
+
 
 
 
@@ -119,6 +127,7 @@ if($endedAuctions=$lDB->getEndedAuction("ended","","")){
 															$lSearch[16] = "___BUYERPHONE___";
 															$lSearch[17] = "___BUYEREMAIL___";
 															$lSearch[18] = "___TILLTIME___";
+															$lSearch[19] = "___SUBJECT___";
 
 
 															$lReplacement = array();
@@ -157,8 +166,8 @@ if($endedAuctions=$lDB->getEndedAuction("ended","","")){
 															if(($endedAuctions[$i]["bids"]==0) && ($endedAuctions[$i]["is_auction"]=="yes")){
 
 																$sellersubject=$texts['failure_auction_seller_subject'];
-																
-																if(sendEmail('./mails/failure_to_seller.'.$lang.'.txt', $lSearch, $lReplacement, $sellersubject, $seller['email'])){
+																$lReplacement[19] = $sellersubject;
+																if(sendEmail('./mails/failure_to_seller.'.$lang.'.html', $lSearch, $lReplacement, $sellersubject, $seller['email'])){
 																	$flag=3;
 																}
 
@@ -198,13 +207,14 @@ if($endedAuctions=$lDB->getEndedAuction("ended","","")){
 																if($endedAuctions[$i]["is_auction"]=="no"){
 																	$offer_inset="offer_";
 																}
+																$lReplacement[19] = $sellersubject;
 
-																if(sendEmail('./mails/ended_'.$offer_inset.'to_seller.'.$lang.'.txt', $lSearch, $lReplacement, $sellersubject, $seller['email'])){
+																if(sendEmail('./mails/ended_'.$offer_inset.'to_seller.'.$lang.'.html', $lSearch, $lReplacement, $sellersubject, $seller['email'])){
 
 																	$flag=1;
 																}
-
-																if(sendEmail('./mails/ended_'.$offer_inset.'to_buyer.'.$lang.'.txt', $lSearch, $lReplacement, $buyersubject, $buyer['email'])){
+																$lReplacement[19] = $buyersubject;
+																if(sendEmail('./mails/ended_'.$offer_inset.'to_buyer.'.$lang.'.html', $lSearch, $lReplacement, $buyersubject, $buyer['email'])){
 																	if($flag==1){
 																			$flag=3;
 																		}else{

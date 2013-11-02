@@ -1,6 +1,25 @@
+
+
+
 <div id="market">
 <h2><? echo($texts['navi_market']); ?></h2>
-
+  <ul id="marketnavigation" class="nav nav-tabs">
+      <li 
+      <?
+      if($category_id=='1'){
+      echo('class="active"');
+}
+?>
+      ><a href="?view=market&category_id=1" ><? echo($texts['pigs']); ?></a></li>
+      <li
+      <?
+      if($category_id=='2'){
+      echo('class="active"');
+}
+?>
+ ><a href="?view=market&category_id=2" ><? echo($texts['ferkel']); ?></a></li>
+   
+    </ul>
 <p><? echo($texts['market_description']); ?></p
 <?
 
@@ -66,7 +85,7 @@ if($auctions[$i]["is_vezg"]=="yes"){
   </td>
   <td><? echo($auctions[$i]["city"]); ?></td>
     <td><? echo($metadata["auction_origin"]); ?></td>
-  <td> <a href="?view=show_full_auction&action=get_auction_details&is_auction=no&auction_id=<? echo($auctions[$i]["id"]); ?>&state_id=<? echo($auctions[$i]['state_id']); ?>&county_id=<? echo($auctions[$i]["county_id"]); ?>" class="btn" type="button" id="showAuction" ><?  echo($texts['auction_details']); ?></a></td>
+  <td> <a href="?view=show_full_auction&action=get_auction_details&is_auction=no&category_id=<? echo($auctions[$i]["category_id"]); ?>&auction_id=<? echo($auctions[$i]["id"]); ?>&state_id=<? echo($auctions[$i]['state_id']); ?>&county_id=<? echo($auctions[$i]["county_id"]); ?>" class="btn" type="button" id="showAuction" ><?  echo($texts['auction_details']); ?></a></td>
  
 </tr>
 
@@ -97,9 +116,9 @@ if ($_REQUEST['page']!='') {
 }
  for ($i=1; $i <= $pages; $i++) { 
   if($i==$active){
-    echo('<li class="active"><a href="?view=market&action=get_latest_offers&page='.$i.'"  >'.$i.'</a></li>');
+    echo('<li class="active"><a href="?view=market&category_id=<? echo($category_id); ?>&action=get_latest_offers&page='.$i.'"  >'.$i.'</a></li>');
   }else{
-   echo('<li ><a href="?view=market&action=get_latest_offers&page='.$i.'" >'.$i.'</a></li>');
+   echo('<li ><a href="?view=market&action=get_latest_offers&category_id=<? echo($category_id); ?>&page='.$i.'" >'.$i.'</a></li>');
    }
  }
 

@@ -1,7 +1,7 @@
 <?PHP
 
 
-error_reporting(E_ERROR | E_WARNING | E_PARSE);
+//error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
 ini_set('default_charset','utf-8');
 	
@@ -46,19 +46,24 @@ function connectDB() {
 				
 			
 							$mail = new PHPMailer();
-							
-							$mail->IsSMTP(); // send via SMTP
-							$mail->Host = $GLOBALS["VIEHAUKTION"]["EMAIL"]["SERVER"]; // SMTP servers
-							$mail->SMTPAuth = false; // turn on SMTP authentication
-							
-							
+
+					
+							$mail->IsSMTP();                                      // Set mailer to use SMTP
+							$mail->Host = $GLOBALS["VIEHAUKTION"]["EMAIL"]["SERVER"];                 // Specify main and backup server
+							$mail->Port = 587;                                    // Set the SMTP port
+							$mail->SMTPAuth = true;                               // Enable SMTP authentication
+							$mail->Username = $GLOBALS["VIEHAUKTION"]["EMAIL"]["USERNAME"];                // SMTP username
+							$mail->Password = $GLOBALS["VIEHAUKTION"]["EMAIL"]["PASSWORD"];                  // SMTP password
+							$mail->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
+
+
 							$mail->From = $GLOBALS["VIEHAUKTION"]["EMAIL"]["SENDERADDRESS"];
 							$mail->FromName = $GLOBALS["VIEHAUKTION"]["EMAIL"]["SENDERNAME"];
 							$mail->AddAddress($lRecipient, $lRecipient);
 							if($attachmentPath!=''){
 							$mail->AddAttachment($attachmentPath);
 							}
-							$mail->IsHTML(false); // send as HTML
+							$mail->IsHTML(true); // send as HTML
 							
 							$mail->Subject = $subject;
 							$mail->Body = $finalEmail;
@@ -75,9 +80,29 @@ function connectDB() {
 							
 			
 				}
-				
+			
 
-	
+	function formatPrice($price){
+
+		$priceString="".$price;
+
+		$splittedPrice=explode(".", $priceString);
+		if(count($splittedPrice)==1){
+
+			$priceString.=".00";
+		}else{
+		if(strlen($splittedPrice[1])=="1"){
+			$priceString.="0";
+		}
+
+}
+
+
+
+return $priceString;
+
+	}
+
 
 $lDB=connectDB();
 			if (!$lDB->failed){
@@ -121,7 +146,7 @@ if($endedAuctions=$lDB->getEndedAuction("confirmed","confirmed","")){
 															$lSearch[17] = "___BUYEREMAIL___";
 
 															$lSearch[18] = "___PROVISION___";
-															
+															$lSearch[19] = "___SUBJECT___";
 
 
 															$lReplacement = array();
@@ -152,7 +177,7 @@ if($endedAuctions=$lDB->getEndedAuction("confirmed","confirmed","")){
 															$lReplacement[17] = $buyer["email"];
 
 
-															$lReplacement[18] = $GLOBALS["VIEHAUKTION"]["PROVISION"];
+															
 															
 
 
@@ -177,6 +202,9 @@ if($endedAuctions=$lDB->getEndedAuction("confirmed","confirmed","")){
 																$invoice["buyer_id"]=$endedAuctions[$i]["buyer_id"];
 																$invoice["price"]=$endedAuctions[$i]["current_entity_price"];
 																$invoice["vat"]=$GLOBALS["VIEHAUKTION"]["VAT"];
+																$total=$GLOBALS["VIEHAUKTION"]["PROVISION"]*$metadata["amount_of_animals"]*(100+$GLOBALS["VIEHAUKTION"]["VAT"])/100;
+																$invoice["total"]=number_format($total, 2, '.', '');
+																$lReplacement[18]=$total;
 																$invoice["provision"]=$GLOBALS["VIEHAUKTION"]["PROVISION"];
 																$invoice["amount_of_animals"]=$metadata["amount_of_animals"];
 																$invoice["filename"]="provision_".$endedAuctions[$i]["id"]."_".$endedAuctions[$i]["user_id"].".pdf";
@@ -217,27 +245,29 @@ if($endedAuctions=$lDB->getEndedAuction("confirmed","confirmed","")){
 																}
 
 
+															
+
 
 																$offer_inset="";
 																if($endedAuctions[$i]["is_auction"]=="no"){
 																	$offer_inset="offer_";
 																}
 																if($attachmentPath==""){
-
-																	if(sendEmail('./mails/success_'.$offer_inset.'without_invoice_to_seller.'.$lang.'.txt', $lSearch, $lReplacement, $sellersubject, $seller['email'], $attachmentPath)){
+																		$lReplacement[19]=$sellersubject;
+																	if(sendEmail('./mails/success_'.$offer_inset.'without_invoice_to_seller.'.$lang.'.html', $lSearch, $lReplacement, $sellersubject, $seller['email'], $attachmentPath)){
 
 																	$flag=1;
 																	}
 																}else{
-
-																	if(sendEmail('./mails/success_'.$offer_inset.'to_seller.'.$lang.'.txt', $lSearch, $lReplacement, $sellersubject, $seller['email'], $attachmentPath)){
+																			$lReplacement[19]=$sellersubject;
+																	if(sendEmail('./mails/success_'.$offer_inset.'to_seller.'.$lang.'.html', $lSearch, $lReplacement, $sellersubject, $seller['email'], $attachmentPath)){
 
 																		$flag=1;
 																	}
 
 																}
-
-																if(sendEmail('./mails/success_'.$offer_inset.'to_buyer.'.$lang.'.txt', $lSearch, $lReplacement, $buyersubject, $buyer['email'],"")){
+																			$lReplacement[19]=$buyersubject;
+																if(sendEmail('./mails/success_'.$offer_inset.'to_buyer.'.$lang.'.html', $lSearch, $lReplacement, $buyersubject, $buyer['email'],"")){
 																	if($flag==1){
 																			$flag=3;
 																		}else{
@@ -266,7 +296,7 @@ if($endedAuctions=$lDB->getEndedAuction("confirmed","confirmed","")){
 
 
 															$lDB->updateAuction($endedAuctions[$i]);
-
+	@unlink("./invoices/".$invoice["filename"]);
 														}
 
 
@@ -276,5 +306,4 @@ if($endedAuctions=$lDB->getEndedAuction("confirmed","confirmed","")){
 					}
 
 	
-
 ?>
