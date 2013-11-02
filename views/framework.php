@@ -3,6 +3,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title><? echo($texts["Page_Title"]);?></title>
     <meta name="keywords" content="<? echo($texts["Page_Keywords"]);?>" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="assets/ico/apple-touch-icon-ipad-retina.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="assets/ico/apple-touch-icon-iphone-retina.png">
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="assets/ico/apple-touch-icon-ipad.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-iphone.png">
+    <link rel="shortcut icon" href="assets/ico/favicon.png">
     <link rel="stylesheet" href="css/bootstrap.css" media="screen" type="text/css" />
     <link rel="stylesheet" href="css/font-awesome.min.css" media="screen" type="text/css" />
     <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
