@@ -9,8 +9,8 @@
           <span id="error_message"></span> 
        </div>
         
-      <input type="hidden" name="action" value="<? echo($_form_action); ?>" />
-      <input type="hidden" name="view" value="<? echo($_form_view); ?>" />
+      <input type="hidden" name="action" id="actionvalue" value="<? echo($_form_action); ?>" />
+      <input type="hidden" name="view" id="viewvalue" value="<? echo($_form_view); ?>" />
       <input type="hidden" name="is_auction" value="<? echo($is_auction); ?>" />
 
  <input type="hidden" name="category_id" value="<? echo($category_id); ?>" />
@@ -43,7 +43,22 @@
         </div>
 
 
-        <button onclick="submitSelectAuctionForm();" class="btn btn-primary" id="select_auctions_button" ><? if($is_auction=="yes"){
+<?
+if($is_auction=="yes"){
+if($areSoonRunning||$areAlreadyRunning){
+?>
+<button onclick="submitSelectAuctionFormToKatalog();" class="btn btn-primary" id="select_auctions_button" >
+
+<? echo($texts['select_pending_auction_submit']); ?>
+</button>
+
+<?
+} 
+}
+?>
+
+        <button onclick="submitSelectAuctionForm();" class="btn btn-primary" id="select_auctions_button" >
+          <? if($is_auction=="yes"){
 
 if($areAuctionsToday){
           echo($texts['select_running_auction_submit']);
@@ -51,6 +66,10 @@ if($areAuctionsToday){
     echo($texts['select_pending_auction_submit']);
 }
       }else{ echo($texts['select_filter_offers']);} ?></button>
+
+
+
+
 
 
       </fieldset>
@@ -160,7 +179,29 @@ function getPendingCountiesForAuction(){
 	}
 
 
+  function submitSelectAuctionFormToKatalog(){
 
+
+        $("#actionvalue").val('get_next_auction');
+       
+        $("#viewvalue").val('show_next_auction');
+        $("#select_running_auction").submit();
+      if($("#county_id").val()!=null){
+
+
+
+
+      }else{
+
+        
+
+
+        return false;
+
+      }
+
+
+  }
 
 	function submitSelectAuctionForm(){
 

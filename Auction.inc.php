@@ -184,6 +184,8 @@
 				$auctionArray=array();
 				if($auctionArray=$lDB->getAuctionById($auction_id)){
 					
+					if(($auctionArray['status']=='preview')||($auctionArray['status']=='pending')||($auctionArray['status']=='offering')){
+
 					if($auctionArray['user_id']==$gBase->User['id']){
 					
 					
@@ -278,6 +280,7 @@
 						return false;	
 						
 					}
+				}
 					
 			    }else{
 					
@@ -416,6 +419,18 @@
 						$log['ip']=getRealIpAddr();
 
 						$lDB->addLog($log);	
+
+
+
+						if($auctionArray['is_auction']=="yes"){
+						
+							getUserAuctions($gBase->User['id'], false); 
+							
+							
+						}else{
+
+							getUserOffers($gBase->User['id'], false);
+						}
 					}
 
 								}

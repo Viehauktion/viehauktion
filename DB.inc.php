@@ -522,15 +522,21 @@ function getUserWithAddressByID($user_id){
 
 
 function getLatestAuctions($category_id, $start,$number_of_elements,$status, $is_auction){
-
-		
+$lSQLQuery ="";
+		if($is_auction=='yes'){
 			
-			$lSQLQuery = "SELECT SQL_CALC_FOUND_ROWS * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.category_id ='".mysql_real_escape_string($category_id)."' AND auctions.is_auction =  '".$is_auction."' AND auctions.status='".$status."' ORDER BY auctions.id DESC LIMIT ".mysql_real_escape_string($start).", ".mysql_real_escape_string($number_of_elements).";";
-			if($is_auction=="yes" && $status=='pending'){
+			$lSQLQuery = "SELECT SQL_CALC_FOUND_ROWS * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.category_id ='".mysql_real_escape_string($category_id)."' AND auctions.is_auction =  '".$is_auction."' AND auctions.status='".$status."' AND auctions.start_time>='".date("Y-m-d H:i:s", strtotime("-1 hour"))."' ORDER BY auctions.id DESC LIMIT ".mysql_real_escape_string($start).", ".mysql_real_escape_string($number_of_elements).";";
+			if($status=='pending'){
 
-				$lSQLQuery = "SELECT SQL_CALC_FOUND_ROWS * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.category_id ='".mysql_real_escape_string($category_id)."' AND auctions.is_auction =  '".$is_auction."' AND (auctions.status='".$status."' OR auctions.status='scheduled') ORDER BY auctions.id DESC LIMIT ".mysql_real_escape_string($start).", ".mysql_real_escape_string($number_of_elements).";";
+				$lSQLQuery = "SELECT SQL_CALC_FOUND_ROWS * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.category_id ='".mysql_real_escape_string($category_id)."' AND auctions.is_auction =  '".$is_auction."' AND (auctions.status='".$status."' OR auctions.status='scheduled'  OR auctions.status='running')  AND auctions.start_time>='".date("Y-m-d H:i:s", strtotime("-1 hour"))."' ORDER BY auctions.id DESC LIMIT ".mysql_real_escape_string($start).", ".mysql_real_escape_string($number_of_elements).";";
 			
 			}
+
+		}else{
+
+			$lSQLQuery = "SELECT SQL_CALC_FOUND_ROWS * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.category_id ='".mysql_real_escape_string($category_id)."' AND auctions.is_auction =  '".$is_auction."' AND auctions.status='".$status."' ORDER BY auctions.id DESC LIMIT ".mysql_real_escape_string($start).", ".mysql_real_escape_string($number_of_elements).";";
+		
+		}
 
 
 

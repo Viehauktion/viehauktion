@@ -80,8 +80,8 @@
 										
 
 
-												array_push($breadcrumb, $texts['navi_auction']);  array_push($breadlinks, "auction");
-												array_push($breadcrumb, $gBase->CurrentAuction["state_name"]);  array_push($breadlinks, "auction");
+												array_push($breadcrumb, $texts['navi_auction']);  array_push($breadlinks, "auctions");
+												array_push($breadcrumb, $gBase->CurrentAuction["state_name"]);  array_push($breadlinks, "auctions");
 												array_push($breadcrumb, $gBase->CurrentAuction["county_name"]);
 												
 											
@@ -101,8 +101,8 @@
 
 												
 											}else{
-												array_push($breadcrumb, $texts['navi_auction']);  array_push($breadlinks, "market");
-												array_push($breadcrumb, $gBase->RawData["state_name"]);  array_push($breadlinks, "market");
+												array_push($breadcrumb, $texts['navi_auction']);  array_push($breadlinks, "auctions");
+												array_push($breadcrumb, $gBase->RawData["state_name"]);  array_push($breadlinks, "auctions");
 												array_push($breadcrumb, $gBase->RawData["county_name"]); 
 
 											}
