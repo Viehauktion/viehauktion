@@ -1989,9 +1989,45 @@ function updateRating($ratingArray) {
 
 
 
+//-------------------------
+//
+// LOGGING STUFF
+//
+//--------------
+
+
+
+
+		/*------------------------------
+		//
+		//	USER    DB
+		//
+		--------------------------------*/
+		
+
+       function addLog($logArray) {
+		
+		
+				$lSQLQuery = "INSERT INTO `auction_log` ( `" . implode('`, `', array_keys($logArray)) . "`, `time`) VALUES ('" . implode("' ,'", $logArray) . "', '".date('Y-m-d H:i:s')."');";
+			
+				$lResult = $this->mysql_query_ex($lSQLQuery);
+				if ($lResult) {
+					
+						
+							return true;
+							
+					
+					}
+			
+			return false;
+		}
+		
 
 			
 }
 
+
+
+		
 
 ?>

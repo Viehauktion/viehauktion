@@ -155,6 +155,14 @@
 
 						$lDB->updateAuction($auctionArray);
 
+						$log=array();
+						$log['auction_id']=$auction_id;
+						$log['event']='Saving auction';
+						$log['actor']=$gBase->User['id'];
+						$log['ip']=getRealIpAddr();
+
+						$lDB->addLog($log);
+
 				}
 			}
 		}
@@ -254,7 +262,13 @@
 							previewAuction($auction_id);
 						}
 
-						 	
+						$log=array();
+						$log['auction_id']=$auction_id;
+						$log['event']='Editing auction';
+						$log['actor']=$gBase->User['id'];
+						$log['ip']=getRealIpAddr();
+
+						$lDB->addLog($log);	
 		 	 	 	 	 	 	
 						
 					}else{
@@ -360,6 +374,13 @@
 						}
 
 
+						$log=array();
+						$log['auction_id']=$auction_id;
+						$log['event']='Creating auction';
+						$log['actor']=$gBase->User['id'];
+						$log['ip']=getRealIpAddr();
+
+						$lDB->addLog($log);	
 
 					
 				}
@@ -384,8 +405,19 @@
 				if($auctionArray=$lDB->getAuctionById($auction_id)){
 
 								if($gBase->User['id']==$auctionArray['user_id']||$gBase->User['role']=='admin'){
+									if(($auctionArray['status']=='pending')||($auctionArray['status']=='preview')||($auctionArray['status']=='offering')){
 								$auctionArray['status']="deleted";
 								$lDB->updateAuction($auctionArray);
+
+								$log=array();
+						$log['auction_id']=$auction_id;
+						$log['event']='Removing auction';
+						$log['actor']=$gBase->User['id'];
+						$log['ip']=getRealIpAddr();
+
+						$lDB->addLog($log);	
+					}
+
 								}
 
 
@@ -509,7 +541,13 @@ global $gBase;
 										
 
 
+									$log=array();
+						$log['auction_id']=$auction_id;
+						$log['event']='Cancel auction';
+						$log['actor']=$gBase->User['id'];
+						$log['ip']=getRealIpAddr();
 
+						$lDB->addLog($log);	
 
 
 
@@ -626,6 +664,13 @@ if($gBase->CurrentAuction["current_entity_price"]<$bid){
 
 							$lDB->updateBid($auction_id, $bid, $currentAuction["bids"]+1, $gBase->User['id'], $endTime);
 						
+							$log=array();
+						$log['auction_id']=$auction_id;
+						$log['event']='Bids '.$bid;
+						$log['actor']=$gBase->User['id'];
+						$log['ip']=getRealIpAddr();
+
+						$lDB->addLog($log);	
 										
 
 							getCurrentAuctionFromDB($county_id, "", $category_id);
@@ -1105,6 +1150,14 @@ global $gBase;
 					if($lDB->updateAuction($auctionArray)){
 
 						$gBase->RawData="true";
+
+							$log=array();
+						$log['auction_id']=$auction_id;
+						$log['event']='Buys offer';
+						$log['actor']=$gBase->User['id'];
+						$log['ip']=getRealIpAddr();
+
+						$lDB->addLog($log);	
 
 					}else{
 

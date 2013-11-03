@@ -2,7 +2,16 @@
 
 
 <div id="market">
-<h2><? echo($texts['navi_market']); ?></h2>
+<h2><? echo($texts['navi_market']); ?>
+<?
+      if($category_id=='1'){
+      echo(' - '.$texts['pigs']);
+}else{
+  echo(' - '.$texts['ferkel']);
+}
+?>
+
+</h2>
   <ul id="marketnavigation" class="nav nav-tabs">
       <li 
       <?

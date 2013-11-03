@@ -199,6 +199,7 @@ if($auctionToApprove){
 
  <table class="table table-striped span8">
     <tr>
+      <td><? echo($texts['profile_category']); ?></td>
       <td><? echo($texts['add_auction_date']); ?></td>
       <td><? echo($texts['auction_amount']); ?></td>
       <td><? echo($texts['auction_min_entitity_price_without_euro']); ?></td>
@@ -215,14 +216,15 @@ $counter++;
       ?>
 
 <tr>
- 
+ <td><a class="tooltipbtn" data-toggle="tooltip" data-placement="top" title="<? echo($texts['profile_category_long_'.$auctions[$i]["category_id"]]); ?>" ><? echo($texts['profile_category_'.$auctions[$i]["category_id"]]); ?></a></td>
+
  <td><? echo(date("d.m.Y", strtotime($auctions[$i]["end_time"]))); ?></td>
   <td><? echo($auctions[$i]["amount_of_animals"]); ?></td>
   <td><? echo(formatPrice($auctions[$i]["min_entity_price"])); ?></td>
   <td><? echo(formatPrice($auctions[$i]["current_entity_price"])); ?></td>
-  <td> <a href="?from=profile&view=show_full_auction&action=get_auction_details&is_auction=yes&auction_id=<? echo($auctions[$i]["id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_buyer_details']); ?></a></td>
-  <!--<td> <a href="?view=profile&action=confirm_auction&is_auction=yes&auction_id=<? echo($auctions[$i]["id"]); ?>" onclick = "if (! confirm('<? echo($texts['profile_confirm_question']); ?>')) { return false; }" class="btn" type="button" ><?  echo($texts['profile_confirm_sell']); ?></a></td>-->
-  <td> <a href="?view=profile&action=cancel_auction&auction_id=<? echo($auctions[$i]["id"]); ?>" onclick = "if (! confirm('<? echo($texts['profile_delete_auction_question']); ?>')) { return false; }" class="btn" type="button"  ><?  echo($texts['profile_deny_sell']); ?></a></td>
+  <td> <a href="?from=profile&view=show_full_auction&action=get_auction_details&is_auction=yes&auction_id=<? echo($auctions[$i]["id"]); ?>&category_id=<? echo($auctions[$i]["category_id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_buyer_details']); ?></a></td>
+  <!--<td> <a href="?view=profile&action=confirm_auction&is_auction=yes&auction_id=<? echo($auctions[$i]["id"]); ?>&category_id=<? echo($auctions[$i]["category_id"]); ?>" onclick = "if (! confirm('<? echo($texts['profile_confirm_question']); ?>')) { return false; }" class="btn" type="button" ><?  echo($texts['profile_confirm_sell']); ?></a></td>-->
+  <td> <a href="?view=profile&action=cancel_auction&auction_id=<? echo($auctions[$i]["id"]); ?>&category_id=<? echo($auctions[$i]["category_id"]); ?>" onclick = "if (! confirm('<? echo($texts['profile_delete_auction_question']); ?>')) { return false; }" class="btn" type="button"  ><?  echo($texts['profile_deny_sell']); ?></a></td>
 </tr>
 
       <?
@@ -285,6 +287,7 @@ if(count($auctions)>1){
 
  <table class="table table-striped span8">
     <tr>
+      <td><? echo($texts['profile_category']); ?></td>
       <td><? echo($texts['add_auction_date']); ?></td>
       <td><? echo($texts['auction_amount']); ?></td>
       <td><? echo($texts['auction_min_entitity_price_without_euro']); ?></td>
@@ -301,13 +304,17 @@ $counter++;
       ?>
 
 <tr>
- 
+
+
+
+<td><a class="tooltipbtn" data-toggle="tooltip" data-placement="top" title="<? echo($texts['profile_category_long_'.$auctions[$i]["category_id"]]); ?>" ><? echo($texts['profile_category_'.$auctions[$i]["category_id"]]); ?></a></td>
+
 
   <?
    if( $auctions[$i]["is_main"]=="yes"){
 
       ?>
- <td><? echo(date("d.m.Y", strtotime($auctions[$i]["start_time"]))); ?></td>
+ <td><a class="tooltipbtn" data-toggle="tooltip" data-placement="top" title="<? echo($texts[$auctions[$i]["status"]]); ?>" ><? echo(date("d.m.Y", strtotime($auctions[$i]["start_time"]))); ?></a></td>
  
 <? 
 }else{
@@ -325,8 +332,8 @@ $counter++;
    if( $auctions[$i]["status"]=="pending" ||  $auctions[$i]["status"]=="preview" ){
 
       ?>
-  <td> <a href="?view=edit_auction&is_auction=yes&auction_id=<? echo($auctions[$i]["id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_edit_auction']); ?></a></td>
-  <td> <a href="?view=profile&action=remove_auction&auction_id=<? echo($auctions[$i]["id"]); ?>#auctions" onclick = "if (! confirm('<? echo($texts['profile_delete_auction_question']); ?>')) { return false; }" class="btn" type="button"  ><?  echo($texts['profile_delete_auction']); ?></a></td>
+  <td> <a href="?view=edit_auction&is_auction=yes&auction_id=<? echo($auctions[$i]["id"]); ?>&category_id=<? echo($auctions[$i]["category_id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_edit_auction']); ?></a></td>
+  <td> <a href="?view=profile&action=remove_auction&auction_id=<? echo($auctions[$i]["id"]); ?>&category_id=<? echo($auctions[$i]["category_id"]); ?>#auctions" onclick = "if (! confirm('<? echo($texts['profile_delete_auction_question']); ?>')) { return false; }" class="btn" type="button"  ><?  echo($texts['profile_delete_auction']); ?></a></td>
 
 
 
@@ -344,7 +351,7 @@ $counter++;
       ?>
 
 
-  <td colspan="2"> <a href="?view=profile&action=remove_auction&auction_id=<? echo($auctions[$i]["id"]); ?>#auctions" onclick = "if (! confirm('<? echo($texts['profile_delete_auction_question']); ?>')) { return false; }" class="btn" type="button"  ><?  echo($texts['profile_delete_auction']); ?></a></td>
+  <td colspan="2"> <a href="?view=profile&action=remove_auction&auction_id=<? echo($auctions[$i]["id"]); ?>&category_id=<? echo($auctions[$i]["category_id"]); ?>#auctions" onclick = "if (! confirm('<? echo($texts['profile_delete_auction_question']); ?>')) { return false; }" class="btn" type="button"  ><?  echo($texts['profile_delete_auction']); ?></a></td>
 
 
 
@@ -353,9 +360,9 @@ $counter++;
       }else if( $auctions[$i]["status"]=="confirmed"){
 
       ?>
-<td> <a href="?from=profile&view=show_full_auction&action=get_auction_details&is_auction=yes&auction_id=<? echo($auctions[$i]["id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_buyer_details']); ?></a></td>
+<td> <a href="?from=profile&view=show_full_auction&action=get_auction_details&is_auction=yes&auction_id=<? echo($auctions[$i]["id"]); ?>&category_id=<? echo($auctions[$i]["category_id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_buyer_details']); ?></a></td>
 
- <td> <a href="?view=add_rating&action=get_auction_details&auction_id=<? echo($auctions[$i]["id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_rate_partner']); ?></a></td>
+ <td> <a href="?view=add_rating&action=get_auction_details&auction_id=<? echo($auctions[$i]["id"]); ?>&category_id=<? echo($auctions[$i]["category_id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_rate_partner']); ?></a></td>
 
  <?
 
@@ -479,9 +486,9 @@ $counter++;
   <td><? echo(formatPrice($auctions[$i]["min_entity_price"])); ?></td>
  <td><? echo($auctions[$i]["city"]); ?></td>
     <td><? echo($metadata["auction_origin"]); ?></td>
-  <td> <a href="?from=profile&view=show_full_auction&action=get_auction_details&is_auction=yes&auction_id=<? echo($auctions[$i]["id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_buyer_details']); ?></a></td>
-  <td> <a href="?view=profile&action=confirm_auction&is_auction=yes&auction_id=<? echo($auctions[$i]["id"]); ?>" onclick = "if (! confirm('<? echo($texts['profile_confirm_question']); ?>')) { return false; }" class="btn" type="button" ><?  echo($texts['profile_confirm_sell']); ?></a></td>
-  <td> <a href="?view=profile&action=cancel_auction&auction_id=<? echo($auctions[$i]["id"]); ?>" onclick = "if (! confirm('<? echo($texts['profile_delete_auction_question']); ?>')) { return false; }" class="btn" type="button"  ><?  echo($texts['profile_deny_sell']); ?></a></td>
+  <td> <a href="?from=profile&view=show_full_auction&action=get_auction_details&is_auction=yes&auction_id=<? echo($auctions[$i]["id"]); ?>&category_id=<? echo($auctions[$i]["category_id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_buyer_details']); ?></a></td>
+  <!--<td> <a href="?view=profile&action=confirm_auction&is_auction=yes&auction_id=<? echo($auctions[$i]["id"]); ?>&category_id=<? echo($auctions[$i]["category_id"]); ?>" onclick = "if (! confirm('<? echo($texts['profile_confirm_question']); ?>')) { return false; }" class="btn" type="button" ><?  echo($texts['profile_confirm_sell']); ?></a></td>-->
+  <td> <a href="?view=profile&action=cancel_auction&auction_id=<? echo($auctions[$i]["id"]); ?>&category_id=<? echo($auctions[$i]["category_id"]); ?>" onclick = "if (! confirm('<? echo($texts['profile_delete_auction_question']); ?>')) { return false; }" class="btn" type="button"  ><?  echo($texts['profile_deny_sell']); ?></a></td>
 </tr>
 
       <?
@@ -551,6 +558,7 @@ if(count($auctions)>1){
 
  <table class="table table-striped span8">
     <tr>
+      <td><? echo($texts['profile_category']); ?></td>
       <td><? echo($texts['offer_creation_date']); ?></td>
       <td><? echo($texts['auction_amount']); ?></td>
       <td><? echo($texts['auction_min_entitity_price_without_euro']); ?></td>
@@ -569,7 +577,9 @@ $counter++;
       ?>
 
 <tr>
-  <td><? echo(date("d.m.Y", strtotime($auctions[$i]["created"]))); ?></td>
+  <td><a class="tooltipbtn" data-toggle="tooltip" data-placement="top" title="<? echo($texts['profile_category_long_'.$auctions[$i]["category_id"]]); ?>" ><? echo($texts['profile_category_'.$auctions[$i]["category_id"]]); ?></a></td>
+
+  <td><a class="tooltipbtn" data-toggle="tooltip" data-placement="top" title="<? echo($texts[$auctions[$i]["status"]]); ?>" ><? echo(date("d.m.Y", strtotime($auctions[$i]["created"]))); ?></a></td>
   <td><? echo($auctions[$i]["amount_of_animals"]); ?></td>
   <td><? echo(formatPrice($auctions[$i]["min_entity_price"])); ?></td>
  <td><? echo($auctions[$i]["city"]); ?></td>
@@ -587,7 +597,7 @@ $counter++;
 
       ?>
 
-  <td colspan="2"> <a href="?view=add_rating&action=get_auction_details&auction_id=<? echo($auctions[$i]["id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_rate_partner']); ?></a></td>
+  <td colspan="2"> <a href="?view=add_rating&action=get_auction_details&auction_id=<? echo($auctions[$i]["id"]); ?>&category_id=<? echo($auctions[$i]["category_id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_rate_partner']); ?></a></td>
 
 
  <?
@@ -685,10 +695,12 @@ if(count($won_auctions)>1){
 
    <table class="table table-striped span8">
     <tr>
+       <td><? echo($texts['profile_category']); ?></td>
       <td><? echo($texts['add_auction_date']); ?></td>
       <td><? echo($texts['auction_amount']); ?></td>
       <td><? echo($texts['auction_buying_price']); ?></td>
       <td><? echo($texts['auction_buying_location']); ?></td>
+      <td></td>
       <td></td>
       <td></td>
     </tr>
@@ -702,12 +714,30 @@ if(count($won_auctions)>1){
 
 
 <tr>
-  <td><? echo($won_auctions[$i]["end_time"]); ?></td>
+  <td><a class="tooltipbtn" data-toggle="tooltip" data-placement="top" title="<? echo($texts['profile_category_long_'.$won_auctions[$i]["category_id"]]); ?>" ><? echo($texts['profile_category_'.$won_auctions[$i]["category_id"]]); ?></a></td>
+
+  <td><a class="tooltipbtn" data-toggle="tooltip" data-placement="top" title="<? echo($texts[$won_auctions[$i]["status"]]); ?>" ><? echo(date("d.m.Y", strtotime($won_auctions[$i]["end_time"]))); ?></a></td>
   <td><? echo($won_auctions[$i]["amount_of_animals"]); ?></td>
   <td><? echo(formatPrice($won_auctions[$i]["current_entity_price"])); ?></td>
   <td><? echo($won_auctions[$i]["city"]); ?></td>
-  <td> <a href="?from=profile&view=show_full_auction&action=get_auction_details&is_auction=yes&auction_id=<? echo($won_auctions[$i]["id"]); ?>" class="btn" type="button" id="showAuction" ><?  echo($texts['auction_details']); ?></a></td>
+
+
+  <td> <a href="?from=profile&view=show_full_auction&action=get_auction_details&is_auction=yes&auction_id=<? echo($won_auctions[$i]["id"]); ?>&category_id=<? echo($won_auctions[$i]["category_id"]); ?>" class="btn" type="button" id="showAuction" ><?  echo($texts['auction_details']); ?></a></td>
  
+<?
+    
+     if( $won_auctions[$i]["status"]=="confirmed"){
+
+      ?>
+
+  <td colspan="2"> <a href="?view=add_rating&action=get_auction_details&auction_id=<? echo($won_auctions[$i]["id"]); ?>&category_id=<? echo($auctions[$i]["category_id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_rate_partner']); ?></a></td>
+
+
+ <?
+
+     }
+     ?>
+
 </tr>
 
 	<?
@@ -776,12 +806,14 @@ if(count($won_auctions)>1){
 
    <table class="table table-striped span8">
     <tr>
+      <td><? echo($texts['profile_category']); ?></td>
       <td><? echo($texts['bought_offer_date']); ?></td>
       <td><? echo($texts['auction_amount']); ?></td>
       <td><? echo($texts['auction_buying_price']); ?></td>
       <td><? echo($texts['auction_buying_location']); ?></td>
       <td></td>
       <td></td>
+       <td></td>
     </tr>
 
 <?
@@ -791,12 +823,28 @@ $counter++;
 ?>
 
 <tr>
-  <td><? echo($won_auctions[$i]["end_time"]); ?></td>
+   <td><a class="tooltipbtn" data-toggle="tooltip" data-placement="top" title="<? echo($texts['profile_category_long_'.$won_auctions[$i]["category_id"]]); ?>" ><? echo($texts['profile_category_'.$won_auctions[$i]["category_id"]]); ?></a></td>
+
+  <td><a class="tooltipbtn" data-toggle="tooltip" data-placement="top" title="<? echo($texts[$won_auctions[$i]["status"]]); ?>" ><? echo(date("d.m.Y", strtotime($won_auctions[$i]["end_time"]))); ?></a></td>
+ 
+
   <td><? echo($won_auctions[$i]["amount_of_animals"]); ?></td>
   <td><? echo(formatPrice($won_auctions[$i]["current_entity_price"])); ?></td>
   <td><? echo($won_auctions[$i]["city"]); ?></td>
-  <td> <a href="?from=profile&view=show_full_auction&action=get_auction_details&is_auction=no&auction_id=<? echo($won_auctions[$i]["id"]); ?>" class="btn" type="button" id="showAuction" ><?  echo($texts['auction_details']); ?></a></td>
- 
+  <td> <a href="?from=profile&view=show_full_auction&action=get_auction_details&is_auction=no&auction_id=<? echo($won_auctions[$i]["id"]); ?>&category_id=<? echo($won_auctions[$i]["category_id"]); ?>" class="btn" type="button" id="showAuction" ><?  echo($texts['auction_details']); ?></a></td>
+ <?
+    
+     if( $won_auctions[$i]["status"]=="confirmed"){
+
+      ?>
+
+  <td colspan="2"> <a href="?view=add_rating&action=get_auction_details&auction_id=<? echo($won_auctions[$i]["id"]); ?>&category_id=<? echo($auctions[$i]["category_id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_rate_partner']); ?></a></td>
+
+
+ <?
+
+     }
+     ?>
 </tr>
 
   <?
@@ -975,6 +1023,9 @@ if ($_REQUEST['page']!='') {
 
 
 $( document ).ready(function() {
+
+ $(".tooltipbtn").tooltip();
+
 if(window.location.hash.length>2){
   $("#profile .sublayer").hide();
 

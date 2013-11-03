@@ -412,6 +412,9 @@ function sendActivationMailAgain($lang){
 									 $gBase->User['rating']=$lDB->getUserRating($userArray['id']);
 											$gBase->UserAddresses=$lDB->getUserAddresses($userArray['id']);
 
+											$userArray['last_login']=date('Y-m-d H:i:s');
+											$lDB->updateUser($userArray);
+
 									   return true;
 										
 										}else{

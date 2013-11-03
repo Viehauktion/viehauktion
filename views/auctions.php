@@ -35,7 +35,16 @@ if($gBase->RawData["todays_auctions"][$i]["state_id"]!='0'){
 
 <div class="row">
   <div class="span12">
-   <h2><? echo($texts['navi_auction']); ?></h2>
+   <h2><? echo($texts['navi_auction']); ?>
+<?
+      if($category_id=='1'){
+      echo(' - '.$texts['pigs']);
+}else{
+  echo(' - '.$texts['ferkel']);
+}
+?>
+
+   </h2>
 
   <ul id="auctionsnavigation" class="nav nav-tabs">
       <li 

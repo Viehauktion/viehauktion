@@ -30,11 +30,11 @@ $texts["home_bullet_4"]="Nur geprüfte Käufer und Verkäufer";
 
 $texts["home_headline"]="Endlich ist es soweit";
 $texts["home_text"]="Wir freuen uns, Sie auf viehauktion.com heute begrüßen zu dürfen. Nach monatiger Arbeit steht die Plattform endlich online. 
-<br/>Auf Viehauktion.com werden Schweine im Auktions und Festpreisverfahren gehandelt, wodurch wir einen frei zugänglichen Überblick über Marktlage und Marktpreise schaffen möchten. 
+<br/>Auf Viehauktion.com werden Schweine im Auktions- und Festpreisverfahren gehandelt, wodurch wir einen frei zugänglichen Überblick über Marktlage und Marktpreise schaffen möchten. 
 <br/>Die Plattform bietet Betreibern von Mastbetrieben die Möglichkeit, ihre Tiere mehreren Viehhändlern gleichzeitig anzubieten und zu einem optimalen Preis zu verkaufen. Viehhändler können weitere Anbieter von Nutztieren als Marktpartner hinzugewinnen, Transportwege und Transportauslastung besser planen, sowie etwaige Prozess-Vorteile am Markt auszuspielen.
-<br/><br/>Ab sofort können Sie sich registrieren und bereits Festpreisangebote einstellen sowie auch kaufen. Unsere erste Auktion findet dann am 19.11.2013 pünktlich um 14:00 Uhr statt. 
-<br/><br/>Bis dahin hoffen, wir dass Sie sich einen Überlick über die Internetseite mit Ihren Funktionen gemacht haben und Lust haben an den Auktonen teilzunehmen, sei es als Verkäufer oder Käufer.
-<br/><br/>Bitte haben Sie Verständnis, dass Sie nicht direkt handeln können. Wir prüfen alle Erzeuger und Händler auf Amtliche Registriernummern, Warenkreditversicherungen etc. bevor reigeschaltet werden, um Ihnen ein Höchstmaß an Sicherheit zu geben.
+<br/><br/>Ab sofort können Sie sich registrieren und bereits Festpreisangebote einstellen sowie auch kaufen. Unsere erste Auktion findet dann am 26.11.2013 pünktlich um 14:00 Uhr statt. 
+<br/><br/>Bis dahin hoffen wir, dass Sie sich einen Überlick über die Internetseite mit Ihren Funktionen gemacht haben und Lust haben, an den Auktonen teilzunehmen, sei es als Verkäufer oder Käufer.
+<br/><br/>Bitte haben Sie Verständnis, dass Sie nicht direkt kaufen können. Wir prüfen alle Erzeuger und Händler auf Amtliche Registriernummern, Warenkreditversicherungen etc. bevor reigeschaltet werden, um Ihnen gegenseitig ein Höchstmaß an Sicherheit zu geben.
 <br/><br/>
 <br/>Auf eine gute Zusammenarbeit
 <br/>
@@ -50,10 +50,10 @@ $texts['page_address']="<strong>Geschäftsadresse:</strong><br/>Bahnhofstrasse 6
 $texts['page_phone']="<strong>Telefonnummer:</strong> +49 (0) 5957 486";
 
 $texts['page_credits']="<strong>Programmierung</strong>: 2M Viehauktionen  UG (haftungsbeschränkt)<br/><strong>Design:</strong> Daniel Kurtius<br/><strong>Teamfoto:</strong> Dustin Korcz";
-$texts['page_thanks']="<strong>Danksagung:</strong><br/>Vielen Dank an Dustin für die Teamfotos, Daniel fürs Design und alle, die uns Rat und Tat zur Seite gestanden haben.";
+$texts['page_thanks']="<strong>Danksagung:</strong><br/>Vielen Dank an Dustin für die Teamfotos, Daniel fürs Design und alle, die uns mit Rat und Tat zur Seite gestanden haben.";
 
 $texts['press_headline']="Presse";
-$texts['press_description']="Hier finden Sie unsere Logo, einige Screenshots und Fotos zur freien Verwendung für eine redaktionelle Berichterstattung.";
+$texts['press_description']="Hier finden Sie unser Logo, einige Screenshots und Fotos zur freien Verwendung für eine redaktionelle Berichterstattung.";
 
 $texts['link_disclaimer']="Für verlinkte Inhalte auf anderen Seiten als viehauktion.com übernehmen wir keine Haftung.";
 
@@ -123,14 +123,14 @@ $texts['registration_hrb']="zB. HRB 12337";
 $texts['registration_insurance_label']="Versicherungsbeleg";
 $texts['registration_retail_label']="Amtliche Registriernummer";
 $texts['registration_retail']="zwölfstellige Nr";
-$texts['registration_seller_mandatory']="Da Sie sich als Erzeuger anmelden möchten, benötigen wir Ihre Betriebsnummer.";
+$texts['registration_seller_mandatory']="Da Sie sich als Erzeuger anmelden möchten, benötigen wir Ihre amtliche Betriebsnummer.";
 $texts['registration_stall_label']="Amtliche Betriebsnummer";
 $texts['registration_stall']="zwölfstellige Nr";
 $texts['registration_vat_label']="Steuernummer";
 $texts['registration_vat']="z.B. 46/3453/4523";
 
 
-$texts['registration_agb']='Ich akzeptiere die <a href="?view=agb" target="_blank" >Allgemeinen Geschäftsbedingungen</a> - Zum Herunterladen als <a href="assets/agb.pdf" target="_blank" >PDF-Version</a>';
+$texts['registration_agb']='Ich akzeptiere die <a href="?view=agb" target="_blank" >Allgemeinen Geschäftsbedingungen</a> - Hier zum Herunterladen als <a href="assets/agb.pdf" target="_blank" >PDF-Version</a>';
 $texts['agb_download']='Die Allgemeinen Geschäftsbedingungen zum Herunterladen als <a href="assets/agb.pdf" target="_blank" >PDF-Version</a>';
 $texts['registration_newsletter']="Bitte informieren Sie mich über Neuigkeiten per E-Mail";
 $texts['registration_submit']="Absenden";
@@ -139,10 +139,10 @@ $texts['registration_error_email']="Bitte geben Sie eine korrekte E-Mailadresse 
 $texts['registration_error_password']="Bitte geben Sie ein Passwort ein.";
 $texts['registration_error_password_again']="Ihre Passwörter stimmern leider nicht überein.";
 $texts['registration_error_agb']='Bitte akzeptieren Sie die Allgemeinen Geschäftsbedingungen.';
-$texts['registration_newsletter_hint']='Um das Dokument zu betrachten benötigen Sie den Acrobat Reader, den sie <a href="http://get.adobe.com/de/reader/" target="_blank">hier</a> gratis herunterladen können.';
+$texts['registration_newsletter_hint']='Um das Dokument zu betrachten, benötigen Sie den Acrobat Reader, den sie <a href="http://get.adobe.com/de/reader/" target="_blank">hier</a> gratis herunterladen können.';
 
 $texts['registration_error_email_already_registered']="Ein Benutzer mit der E-Mailadresse existiert bereits.";
-$texts['registration_error_role']="Bitte wählen Sie ob, sie als Käufer und/oder Verkäufer auftreten möchten";
+$texts['registration_error_role']="Bitte wählen Sie ob, sie als Käufer und/oder Verkäufer auftreten möchten.";
 
 
 $texts['registration_error_firstname']="Bitte geben Sie einen Vornamen an.";
@@ -179,12 +179,12 @@ $texts['login_register']="Noch kein Mitglied?";
 
 $texts['login_error_identifier']="Bitte geben Sie Ihre registrierte E-Mailadresse an.";
 $texts['login_error_password']="Bitte geben Sie ein Passwort ein.";
-$texts['login_credentials_invalid']="Leider führen wir keinen Nutzer mit unter dieser Email/Password-Kombination.<br/>Vielleicht haben SIe sich vertippt.<br />Falls Sie Ihr Passwort vergessen haben, können Sie sich unter \'Passwort vergessen?\' ein neues erstellen";
+$texts['login_credentials_invalid']="Leider führen wir keinen Nutzer mit unter dieser Email/Password-Kombination.<br/>Vielleicht haben Sie sich vertippt.<br />Falls Sie Ihr Passwort vergessen haben, können Sie sich unter \'Passwort vergessen?\' ein neues erstellen";
 
 
 $texts['recover_description']="Wir erstellen Ihnen ein neues Passwort und senden es Ihnen zu.";
 $texts['recover_submit']="Neues Passwort erstellen";
-$texts['recover_error_no_user']="Einen Benutzer mit diesem Namen oder dieser E-Mailadresse führen wir nicht.";
+$texts['recover_error_no_user']="Einen Benutzer mit dieser E-Mailadresse führen wir nicht.";
 $texts['recover_success']="Wir haben Ihnen eine E-Mail mit Ihrem neuen Passwort zugesandt.";
 
 
@@ -196,12 +196,12 @@ $texts['profile_my_auctions']="Ihre Auktionen";
 $texts['profile_no_invoice']="Sie haben bisher keine Rechnungen.";
 
 $texts['profile_my_offers']="Ihre Festpreisangebote";
-$texts['profile_my_offers_to_confirm']="Ihre zu bestätigende Verkäufe";
+$texts['profile_my_offers_to_confirm']="Ihre kürzlich stattgefundenen Verkäufe";
 $texts['profile_no_offers']="Sie haben bisher keine Festpreisangebote eingestellt.";
 $texts['profile_no_auction']="Sie haben bisher keine Auktion durchgeführt.";
 
 $texts['profile_auctions_won']="Gewonnene Auktionen";
-$texts['profile_offers_won']="Gewonnene Marktplatzangebote";
+$texts['profile_offers_won']="Angenommene Festpreisangebote";
 
 $texts['profile_buyer_details']="Käufer Details";
 $texts['profile_confirm_sell']="Kauf bestätigen";
@@ -215,15 +215,15 @@ $texts['profile_my_ratings']="Aktuellste Bewertungen";
 $texts['ratings_received']="Über Sie";
 $texts['ratings_written']="Von Ihnen";
 $texts['ratings_not_received']="Über Sie wurden bisher keine Bewertungen abgegeben.";
-$texts['ratings_not_written']="Sie haben bisher keine Bewertunge";
-$texts['no_comment']="Keinen Kommentar hinterlassen";
+$texts['ratings_not_written']="Sie haben bisher keine Bewertungen.";
+$texts['no_comment']="Keinen Kommentar hinterlassen.";
 
 $texts['profile_no_auction_won']="Sie haben bisher bei keiner Auktion den Zuschlag erhalten.";
 $texts['profile_add_auction']="Neue Auktion erstellen";
 $texts['profile_add_offer']="Neues Angebot einstellen";
 $texts['profile_get_invoice']="Rechnung herunterladen";
 $texts['profile_rate_partner']="Handelspartner bewerten";
-$texts['profile_my_auctions_to_approve']="Abgeschlossene Auktionen zur Bestätigung";
+$texts['profile_my_auctions_to_approve']="Kürzlich abgeschlossene Auktionen.";
 $texts['profile_auction_locked']="Nimmt an baldiger Hauptauktion teil.";
 
 
@@ -248,18 +248,18 @@ $texts['is_vezg_price']="Abhängig vom VEZG-Preis anbieten.";
 $texts['vezg_date']="VEZG Preis vom";
 $texts['vezg_price_placeholer']="z.B. +0.04";
 
-$texts['profile_offers_won']="Angenommen Angebote";
+$texts['profile_offers_won']="Angenommene Angebote";
 $texts['bought_offer_date']="Kaufdatum";
 
 $texts['auction_last_bid']="Letztes Gebot";
 $texts['auction_status']="Status";
 
 $texts['edit_auction_not_logged_in_headline']="Sie sind nicht angemeldet.";
-$texts['edit_auction_not_logged_in_description']="Sie können hier sehen, welche Informationen zu einstellen einer Auktion benötigt werden.<br/><strong>Damit Sie eine Auktion einzustellen können, müssen Sie sich zunächst registrieren.</strong>";
-$texts['edit_offer_not_logged_in_description']="Sie können hier sehen, welche Informationen zu einstellen eines Festpreisangebotes benötigt werden.<br/><strong>Damit Sie eine Angeot einzustellen können, müssen Sie sich zunächst registrieren.</strong>";
+$texts['edit_auction_not_logged_in_description']="Sie können hier sehen, welche Informationen zum Einstellen einer Auktion benötigt werden.<br/><strong>Damit Sie eine Auktion einzustellen können, müssen Sie sich zunächst registrieren.</strong>";
+$texts['edit_offer_not_logged_in_description']="Sie können hier sehen, welche Informationen zum Einstellen eines Festpreisangebotes benötigt werden.<br/><strong>Damit Sie eine Angeot einzustellen können, müssen Sie sich zunächst registrieren.</strong>";
 
-$texts['edit_auction_overview_description']="Bitte schauen Sie sich ihre Daten nocheinmal an und drücken Sie 'speichern', wenn sie die Auktion einstellen möchten.<br/>Mit 'Zurück' gelangen Sie falls notwendig wieder in die Eingabemaske und können ihre Daten korrigieren.";
-$texts['edit_offer_overview_description']="Bitte schauen Sie sich ihre Daten nocheinmal an und drücken Sie 'speichern', wenn sie das Festpreisangebot einstellen möchten.<br/>Mit 'Zurück' gelangen Sie falls notwendig wieder in die Eingabemaske und können ihre Daten korrigieren.";
+$texts['edit_auction_overview_description']="Bitte schauen Sie sich ihre Daten nocheinmal an und drücken Sie 'speichern', wenn sie die Auktion einstellen möchten.<br/>Mit 'Zurück' gelangen Sie, falls notwendig, wieder in die Eingabemaske und können ihre Daten korrigieren.";
+$texts['edit_offer_overview_description']="Bitte schauen Sie sich ihre Daten nocheinmal an und drücken Sie 'speichern', wenn sie das Festpreisangebot einstellen möchten.<br/>Mit 'Zurück' gelangen Sie, falls notwendig, wieder in die Eingabemaske und können ihre Daten korrigieren.";
 
 $texts['profile_delete_auction']="Löschen";
 $texts['profile_delete_auction_question']="Sind Sie sicher das Sie die Auktion löschen möchten?";
@@ -288,22 +288,22 @@ $texts['change_password_wrong_password_error']="Ihr altes Password war nicht kor
 
 $texts['add_auction_headline']="Auktion einstellen";
 $texts['no_seller_error_headline']="Sie sind kein Verkäufer.";
-$texts['no_seller_error_description']="Sie haben Sie nicht als Erzeuger registriert.<br/>Falls Sie Mastschweine anbieten, müssen Sie in Ihren Status im Profil ändern.<br/>Sie können momentan nur Ferkel anbieten.";
-$texts['add_auction_description']="Sie können hier Ihr Vieh für die nächste Auktion anmelden. <br/>Sie können dabei einen Mindestgebot festlegen.<br/>Wir stellen Ihnen nur eine Provision in Rechnung, wenn Ihre Tiere einen Abnehmer über dem Mindestgebot gefunden haben.";
+$texts['no_seller_error_description']="Sie haben Sie nicht als Erzeuger registriert.<br/>Falls Sie Mastschweine anbieten möchten, müssen Sie in Ihren Status im Profil ändern.<br/>Sie können momentan nur Ferkel anbieten.";
+$texts['add_auction_description']="Sie können hier Ihr Vieh für die nächste Auktion anmelden. <br/>Sie können dabei einen Mindestgebot festlegen.<br/>Wir stellen Ihnen nur eine Provision in Rechnung, wenn Ihre Tiere rechtsverbindlich einen Abnehmer über dem Mindestgebot gefunden haben.";
 $texts['add_first_auction']="Für diese erste Auktion berechnen wir KEINE Provision";
 $texts['edit_auction_headline']="Auktion bearbeiten";
 
 
 $texts['add_offer_headline']="Festpreisangebot einstellen";
-$texts['add_offer_description']="Sie können hier Ihr Vieh zum Festpreis anbieten. <br/>Wir stellen Ihnen nur eine Provision in Rechnung, wenn Ihre Tiere einen Käufer gefunden haben.";
+$texts['add_offer_description']="Sie können hier Ihr Vieh zum Festpreis anbieten. <br/>Wir stellen Ihnen nur eine Provision in Rechnung, wenn Ihre Tiere rechtsverbindlich einen Käufer gefunden haben.";
 $texts['edit_offer_headline']="Kaufangebot bearbeiten";
 $texts['next_offers']="Aktuelle Angebote";
 $texts['offer_creation_date']="Einstellungsdatum";
 $texts["offer_id"]="Angebotsnummer";
 $texts['offer_entitity_price']="Angebotspreis (in €)";
-$texts['offer_buy_submit']="Tiere jetzt verbindlich kaufen.";
+$texts['offer_buy_submit']="Das Angebot jetzt verbindlich kaufen.";
 $texts['buy_offer_description']="Sie können dieses Angebot direkt kaufen.";
-$texts['buy_offer_question']="Sie verplichten sich zu Kauf der angebotenen Tiere.";
+$texts['buy_offer_question']="Sie verplichten sich zu Kauf der angebotenen Tiere. Ein Stornierung kann jedoch immer noch beidseitig binnen 2 Stunden erfolgen. Der Stornierende hat dabei eine Gebühr von 40€ zu entrichten.";
 
 $texts['seller']="Verkäufer";
 
@@ -400,7 +400,7 @@ $texts['auction_pigs_samonelle_state_1']="Status I";
 $texts['auction_pigs_samonelle_state_2']="Status II";
 $texts['auction_pigs_samonelle_state_3']="Status III";
 
-$texts['auction_pigs_calssification_hint']='Wählen Sie die Art der klassifizierung. Genaue Angaben zu den Masken finden Sie in dieser <a href="#formsModal" class="footerBtn"  role="button"  data-toggle="modal">Übersicht</a>.';
+$texts['auction_pigs_calssification_hint']='Wählen Sie die Art der Klassifizierung. Genaue Angaben zu den Masken finden Sie in dieser <a href="#formsModal" class="footerBtn"  role="button"  data-toggle="modal">Übersicht</a>.';
 
 $texts['auction_address']="Adresse des Stalls";
 $texts['auction_address_hint']="Ihre genaue Stallanschrift bleibt bis zum erfolgreichen Abschluss der Auktion geheim. Wir geben nur Ihre Postleitzahl und den Ort an.";
@@ -473,7 +473,7 @@ $texts['auctions_no_auction_today']="Heute finden keine Auktionen mehr statt. <b
 $texts['auctions_start_auction']="Auktionstart";
 $texts['auctions_next_auction']="Nächster Auktionstermin";
 $texts['auctions_already_running']="Die heutigen Auktionen laufen bereits. <br/>Wählen Sie ihren Landkreis, um direkt zu der Hauptauktion in ihrer Umgebung zugelangen";
-$texts['auctions_soon_running']="Die heutigen Auktionen starten in weniger als Minuten.<br/>Wählen Sie ihren Landkreis, um die anstehende Auktion in ihrer Umgebung aufzurufen.";
+$texts['auctions_soon_running']="Die heutigen Auktionen starten in wenigen Minuten.<br/>Wählen Sie ihren Landkreis, um die anstehende Auktion in ihrer Umgebung aufzurufen.";
 
 $texts['offers_offer_today']="Wählen Sie den Landkreis, in dem Sie Festpreisangebote suchen.";
 $texts['offers_no_offer_today']="Leider gibt es momentan keine Festpreisangebote.";
@@ -495,12 +495,12 @@ $texts['footer_us']="Über uns";
 
 
 $texts['add_rating_headline']="Bewertung abgeben";
-$texts['add_rating_seller_description']="Damit sich zukünftige, mögliche Verkäufer auf viehauktion.com sich einen Überblick über Seriösität des Handelspartners machen können, bitten wir sie hier eine kleine Bewertung vorzunehmen.";
-$texts['add_rating_buyer_description']="Damit sich zukünftige, mögliche Käufer auf viehauktion.com sich einen Überblick über Seriösität des Handelspartners machen können, bitten wir sie hier eine kleine Bewertung vorzunehmen.";
+$texts['add_rating_seller_description']="Damit sich zukünftige, mögliche Verkäufer auf viehauktion.com einen Überblick über Seriösität des Handelspartners machen können, bitten wir Sie hier eine kleine Bewertung vorzunehmen.";
+$texts['add_rating_buyer_description']="Damit sich zukünftige, mögliche Käufer auf viehauktion.com einen Überblick über Seriösität des Handelspartners machen können, bitten wir Sie hier eine kleine Bewertung vorzunehmen.";
 $texts['add_rating_about']="Zu Bewerten:";
 $texts['add_rating_success']="Vielen Dank für Ihre Bewertung!";
 
-$texts['add_rating']="Bewertung <br/>(5 Scheine gut, 1 Schwein schlecht)";
+$texts['add_rating']="Bewertung <br/>(5 Schweine ist gut, 1 Schwein ist schlecht)";
 $texts['add_coment']="Kommentar (optional)";
 $texts['add_rate_now']="Bewertung abgeben";
 $texts['add_no_rating_error']="Bitte klicken Sie auf die Schweine, um eine Bewertung abzugeben.";
@@ -508,7 +508,7 @@ $texts['add_no_rating_error']="Bitte klicken Sie auf die Schweine, um eine Bewer
 $texts["faq_headline"]="Häufige Fragen";
 
 $texts["faq_question_1"]="Was kostet eine Auktion auf viehauktion.com?";
-$texts["faq_answer_1"]="Wir erheben bei einer <strong>erfolgreichen</strong> Auktion eine Provisionsgebühr pro Tier von 0,40 € (Mehrwertsteuer inklusive).<br/>
+$texts["faq_answer_1"]="Wir erheben bei einer <strong>erfolgreichen</strong> Auktion eine Provisionsgebühr pro Tier von 0,40 € (exklusive 19% Mehrwertsteuer).<br/>
 Der Käufer ist berechtigt Ihnen Vorkosten in Höhe von 4€ pro Tier in der Anrechnung in Rechnung zu stellen.<br/>
 Damit Sie unseren Service testen können, ist Ihre erste Auktion provisionsfrei.";
 
@@ -518,17 +518,17 @@ Findet sich kein Käufer, der Ihre Tiere für Ihren Preis abnehmen möchte, habe
 Sie können Ihr Tiere dann weiterhin auf traditionellem Wege verkaufen oder es über ein Festpreisangebot auf unserem Marktplatz versuchen.";
 
 $texts["faq_question_3"]="Kann ich meine Tiere anonym listen?";
-$texts["faq_answer_3"]="Ja. Standartmäßig wird bei den Auktionen nur der Ort des Stalles genannt, sowie die notwednigen Angaben zu den Tieren.<br/> 
+$texts["faq_answer_3"]="Ja. Standartmäßig wird bei den Auktionen nur der Ort des Stalles genannt, sowie die notwendigen Angaben zu den Tieren.<br/> 
 Ihr Name, Ihre Anschrift, E-Mailadresse und Telefonummer wird nur dem Käufer nach erfolgreicher Auktion übermittelt.<br/>
-Im Gegenzug bekommen Sie die Daten des Käufers, um sich mit über die Lieferung zu verständigen.";
+Im Gegenzug bekommen Sie die Daten des Käufers, um sich mit Ihm über die Lieferung zu verständigen.";
 
 $texts["faq_question_4"]="Was, wenn der Käufer nicht zahlt?";
-$texts["faq_answer_4"]="Wir lassen uns vor der Freischaltung eines Käuferkontos ein Nachweis über eine gültige Warenauswahlversicherung zusenden.<br />
+$texts["faq_answer_4"]="Wir lassen uns vor der Freischaltung eines Käuferkontos ein Nachweis über eine gültige Warenausfallersicherung zusenden.<br />
 Diesen können Sie nach erfolgreicher Auktion als digitale Kopie einsehen.<br />
 Sollte es dennoch zu einem Problem kommen, stehen wir Ihnen gerne zu Seite und stellen Ihnen die technische Dokumentation (elektronisches Protokoll) über den Kaufvorgang bereit.";
 
-$texts["faq_question_5"]="Was passiert nach einer erflogreichen Auktion?";
-$texts["faq_answer_5"]="Sie bekommen direkt nach einer erfolgreichen Auktion oder dem Verkauf eines Festpreisangebotes auf dem Marktplatz eine E-Mail. Diese beinhaltet alle Daten über den Käufer, sowie den erzielten Kaufpreis.
+$texts["faq_question_5"]="Was passiert nach einer erfolgreichen Auktion?";
+$texts["faq_answer_5"]="Sie bekommen direkt nach einer erfolgreichen Auktion oder dem Verkauf eines Festpreisangebotes eine E-Mail. Diese beinhaltet alle Daten über den Käufer, sowie den erzielten Kaufpreis.
 Sie selbst können natürlich Ihre Auktion auch im Browser live mit ansehen und schauen, wie sich der Preis entwickelt.";
 
 $texts["faq_question_6"]="Ich habe weitere Fragen, an wen kann ich mich wenden?";
@@ -576,7 +576,7 @@ $texts['modal_contact_name']="Ihr Name";
 $texts['modal_contact_name_placeholder']="Max Musterbauer";
 $texts['modal_contact_email']="Ihre E-Mailadresse";
 $texts['modal_contact_email_placeholder']="musterbauer@mail.de";
-$texts['modal_contact_message']="Ihre Message";
+$texts['modal_contact_message']="Ihre Nachricht";
 $texts['modal_contact_submit']="Absenden";
 
 $texts['contact_name_error']="Bitte geben Sie Ihren Namen an.";
@@ -585,7 +585,7 @@ $texts['contact_message_error']="Bitte geben Sie eine Nachricht ein.";
 $texts['contact_message_success']="Vielen Dank für Ihre Nachricht.";
 
 $texts['modal_agb_headline']="Allgemeine Geschäftsbedingungen";
-$texts['modal_agb_agb']="blablabla";
+
 
 
 $texts['modal_add_address_headline']="Neue Adresse anlegen";
@@ -638,7 +638,7 @@ $texts['backend_user_addresses']="Adressen";
 $texts['backend_user_ratings_from']="Bewertungen des Nutzers";
 $texts['backend_user_ratings_about']="Bewertungen über den Nutzer";
 $texts['backend_auctions_management']="Auktionen";
-$texts['backend_address_type']="Adresstype";
+$texts['backend_address_type']="Adresstyp";
 $texts['backend_address_show_on_map']="Auf Karte anzeigen";
 
 $texts['backend_user_files']="Belege";
@@ -654,9 +654,19 @@ $texts['backend_is_seller']="Ist Erzeuger?";
 $texts['backend_is_buyer']="Ist Händler?";
 $texts['backend_has_newsletter']="Newsletter?";
 
+$texts['preview']="Noch unvollständig.";
+$texts['pending']="Wartet auf Auktion";
+$texts['scheduled']="Nimmt an baldiger Auktion teil.";
+$texts['running']="Wird momentan versteigert";
+$texts['ended']="Auktion wurde beendet.";
+$texts['confirmed']="Rechtsverbindlich abgeschlossen.";
+$texts['offering']="Im Verkauf gelistet";
 
-
-
+$texts['profile_category']="Art";
+$texts['profile_category_1']="M";
+$texts['profile_category_long_1']="Mastschweine";
+$texts['profile_category_2']="F";
+$texts['profile_category_long_2']="Ferkel";
 
 $texts['forms']='<div class="clearfix">
 <p><strong>Die vorgeschlagene <u>FOM- Maske</u> sieht folgendermaßen aus:</strong></p>
