@@ -1,3 +1,4 @@
+<div class="row">
 <div id="imprint" class="span9">
 
 
@@ -19,6 +20,6 @@
      <p><? echo($texts['link_disclaimer']); ?></p>
     <? echo($texts['google_disclaimer']); ?> 
 </div>
-
+</div>
 
 

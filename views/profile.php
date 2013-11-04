@@ -193,11 +193,11 @@ if($auctionToApprove){
  
   <div id="userauctionstoapprove" >
     <h2><? echo($texts['profile_my_auctions_to_approve']); ?></h2>
-    <p>
+   
 
 
 
- <table class="table table-striped span8">
+ <table class="table table-striped">
     <tr>
       <td><? echo($texts['profile_category']); ?></td>
       <td><? echo($texts['add_auction_date']); ?></td>
@@ -233,7 +233,7 @@ $counter++;
   ?>
 </table>
 
-    </p>
+
   </div>
 
 
@@ -269,7 +269,7 @@ $counter++;
     <h2><? echo($texts['profile_my_auctions']); ?></h2>
 
 
-    <p>
+
       <?
 
  $auctions=$gBase->UserAuctions;
@@ -285,7 +285,7 @@ if(count($auctions)>1){
 
 
 
- <table class="table table-striped span8">
+ <table class="table table-striped">
     <tr>
       <td><? echo($texts['profile_category']); ?></td>
       <td><? echo($texts['add_auction_date']); ?></td>
@@ -419,7 +419,7 @@ if($counter==0){
 ?>
 <br/>
 
-    </p>
+    
   </div>
 
 </div>
@@ -457,10 +457,10 @@ if($auctionToApprove){
 <div id="userofferstoconfirm">
 
     <h2><? echo($texts['profile_my_offers_to_confirm']); ?></h2>
-    <p>
+ 
 
 
- <table class="table table-striped span8">
+ <table class="table table-striped">
     <tr>
         <td><? echo($texts['offer_creation_date']); ?></td>
       <td><? echo($texts['auction_amount']); ?></td>
@@ -522,7 +522,7 @@ if ($_REQUEST['page']!='') {
 
 <br/>
  
-    </p>
+ 
   </div>
 
 
@@ -542,7 +542,7 @@ if ($_REQUEST['page']!='') {
   <div class="pull-right"><a href="?view=edit_auction&is_auction=no" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_add_offer']); ?></a>
 </div>
     <h2><? echo($texts['profile_my_offers']); ?></h2>
-    <p>
+    
       <?
 
  $auctions=$gBase->UserOffers;
@@ -556,7 +556,7 @@ if(count($auctions)>1){
 
 
 
- <table class="table table-striped span8">
+ <table class="table table-striped">
     <tr>
       <td><? echo($texts['profile_category']); ?></td>
       <td><? echo($texts['offer_creation_date']); ?></td>
@@ -657,7 +657,7 @@ if($counter==0){
 ?>
 <br/>
  
-    </p>
+  
   </div>
 
 
@@ -684,7 +684,7 @@ if($counter==0){
 
   <div id="won_auctions">
     <h2><? echo($texts['profile_auctions_won']); ?></h2>
-    <p>
+    
       <?
 
 $won_auctions=$gBase->UserWonAuctions;
@@ -693,7 +693,7 @@ if(count($won_auctions)>1){
 
 ?>
 
-   <table class="table table-striped span8">
+   <table class="table table-striped">
     <tr>
        <td><? echo($texts['profile_category']); ?></td>
       <td><? echo($texts['add_auction_date']); ?></td>
@@ -730,11 +730,14 @@ if(count($won_auctions)>1){
 
       ?>
 
-  <td colspan="2"> <a href="?view=add_rating&action=get_auction_details&auction_id=<? echo($won_auctions[$i]["id"]); ?>&category_id=<? echo($auctions[$i]["category_id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_rate_partner']); ?></a></td>
+  <td> <a href="?view=add_rating&action=get_auction_details&auction_id=<? echo($won_auctions[$i]["id"]); ?>&category_id=<? echo($auctions[$i]["category_id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_rate_partner']); ?></a></td>
 
 
  <?
 
+     }else{
+
+      echo('<td></td>');
      }
      ?>
 
@@ -782,7 +785,7 @@ if($counter==0){
 
 
 ?>
-    </p>
+    
   </div>
 
 
@@ -795,7 +798,7 @@ if($counter==0){
 
 <div id="won_offers" >
     <h2><? echo($texts['profile_offers_won']); ?></h2>
-    <p>
+    
       <?
 
 $won_auctions=$gBase->UserWonOffers;
@@ -804,7 +807,7 @@ if(count($won_auctions)>1){
 
 ?>
 
-   <table class="table table-striped span8">
+   <table class="table table-striped">
     <tr>
       <td><? echo($texts['profile_category']); ?></td>
       <td><? echo($texts['bought_offer_date']); ?></td>
@@ -838,11 +841,14 @@ $counter++;
 
       ?>
 
-  <td colspan="2"> <a href="?view=add_rating&action=get_auction_details&auction_id=<? echo($won_auctions[$i]["id"]); ?>&category_id=<? echo($auctions[$i]["category_id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_rate_partner']); ?></a></td>
+  <td > <a href="?view=add_rating&action=get_auction_details&auction_id=<? echo($won_auctions[$i]["id"]); ?>&category_id=<? echo($auctions[$i]["category_id"]); ?>" class="btn" type="button" id="addAuction" ><?  echo($texts['profile_rate_partner']); ?></a></td>
 
 
  <?
 
+     }else{
+
+      echo('<td></td>');
      }
      ?>
 </tr>
@@ -891,7 +897,7 @@ if($counter==0){
 
 
 ?>
-    </p>
+   
   </div>
 
 
@@ -918,7 +924,7 @@ if($counter==0){
 <div id="invoices_layer"  class="sublayer hide"> 
       <h2><? echo($texts['profile_my_invoices']); ?></h2>
       
-       <p>
+     
       <?
 
 $invoices=$gBase->UserInvoices;
@@ -927,7 +933,7 @@ if(count($invoices)>1){
 
 ?>
 
-   <table class="table table-striped span8">
+   <table class="table table-striped">
     <tr>
       <td><? echo($texts['invoice_date']); ?></td>
       <td><? echo($texts['invoice_number']); ?></td>
@@ -999,7 +1005,7 @@ if ($_REQUEST['page']!='') {
 
 
 ?>
-    </p>
+  
 
 <?
 

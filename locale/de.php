@@ -486,7 +486,7 @@ $texts['next_auctions']="Neuste Auktionen im Auktionskatalog";
 $texts['footer_agb']="Allg. Geschäftsbedingungen";
 $texts['footer_contact']="Kontakt";
 $texts['footer_imprint']="Impressum";
-$texts['footer_team']="Unser Team";
+$texts['footer_team']="Die Gründer";
 $texts['footer_buyer']="Für Händler";
 $texts['footer_seller']="Für Erzeuger";
 $texts['footer_us']="Über uns";
@@ -535,8 +535,8 @@ $texts["faq_question_6"]="Ich habe weitere Fragen, an wen kann ich mich wenden?"
 $texts["faq_answer_6"]='Scheuen Sie sich nicht, uns zu kontaktieren. Nutzen Sie dafür bitte das <a href="#contactModal" class="footerBtn"  role="button"  data-toggle="modal">Kontaktformular.</a>';
 
 
-$texts["team_headline"]="Team";
-$texts["team_subheadline"]="Team/Philosophie";
+$texts["team_headline"]="Die Gründer";
+$texts["team_subheadline"]="Die Gründer/Philosophie";
 $texts["team_image_description"]="Simon und Felix Meyborg - Die Gründer von Viehauktion.com";
 $texts["team_text"]="Viehauktion.com ist ein Projekt der Brüder Felix und Simon Meyborg aus Lindern bei Oldenburg. Felix studierte Landwirtschaft an der Fachhochschule Osnabrück. Im Jahre 2010 übernahm er den elterlichen Hof und führt ihn seither erfolgreich. Als Betreiber eines Schweinemastbetriebes hat er selbst schwierige Marktphasen erlebt und stets nach Wegen gesucht, sowohl die Verhandlungsposition der Bauern zu stärken , als auch mehr Markttransparenz zu schaffen. Zusammen mit seinem Bruder Simon, der sich als Diplom- Informatiker für die Programmierung verantwortlich zeichnet, ist aus diesen Bemühen viehauktion.com entstanden.
 <br/><br/>
