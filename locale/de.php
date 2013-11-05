@@ -20,7 +20,7 @@ $texts['at']="am";
 $texts['to_date']="zum";
 
 $texts['page_title']="Viehauktion.com";
-$texts["stage_banner"]="Willkommen auf viehauktion.com";
+$texts["stage_banner"]="Willkommen auf Viehauktion.com";
 $texts["overview"]="Übersicht";
 
 $texts["home_bullet_1"]="Ihre erste Auktion ist provisionsfrei";
