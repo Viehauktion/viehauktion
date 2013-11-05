@@ -43,9 +43,9 @@
 <hr>
 <div id="teasers" class="clearfix">
 <div class="teaser"><a href="?view=how_it_works" border="0"><img src="assets/how_to_teaser.jpg" />
-<div class="teaser_text">Wie funktioniert's?</div></a></div>
-<div class="teaser"><a href="?view=team" border="0"><img src="assets/team_teaser.jpg" /></a></div>
-<div class="teaser"><a href="?action=get_running_auction&view=show_running_auction&is_auction=yes&category_id=1&state_id=0&county_id=0" border="0"><img src="assets/example_teaser.jpg" /></a></div>
+<div class="teaser_text"><?= $texts["teaser_how"] ?></div></a></div>
+<div class="teaser"><a href="?view=team" border="0"><img src="assets/team_teaser.jpg" /><div class="teaser_text"><?= $texts["teaser_team"] ?></div></a></div>
+<div class="teaser"><a href="?action=get_running_auction&view=show_running_auction&is_auction=yes&category_id=1&state_id=0&county_id=0" border="0"><img src="assets/example_teaser.jpg" /><div class="teaser_text"><?= $texts["teaser_example"] ?></div></a></div>
 </div>
 <hr>
 

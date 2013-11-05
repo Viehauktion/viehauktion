@@ -27,6 +27,9 @@ $texts["home_bullet_1"]="Ihre erste Auktion ist provisionsfrei";
 $texts["home_bullet_2"]="Anonym anbieten und bieten";
 $texts["home_bullet_3"]="Sie legen den Preis fest.";
 $texts["home_bullet_4"]="Nur geprüfte Käufer und Verkäufer";
+$texts["teaser_how"]="Wie funktioniert's?";
+$texts["teaser_team"]="Die Gründer";
+$texts["teaser_example"]="Zur Beispielauktion";
 
 $texts["home_headline"]="Endlich ist es soweit";
 $texts["home_text"]="Wir freuen uns, Sie auf viehauktion.com heute begrüßen zu dürfen. Nach monatiger Arbeit steht die Plattform endlich online. 
@@ -54,6 +57,10 @@ $texts['page_thanks']="<strong>Danksagung:</strong><br/>Vielen Dank an Dustin f�
 
 $texts['press_headline']="Presse";
 $texts['press_description']="Hier finden Sie unser Logo, einige Screenshots und Fotos zur freien Verwendung für eine redaktionelle Berichterstattung.";
+$texts['press_kit']="Pressematerial (ZIP-Datei, 7,3MB)";
+$texts['press_logo_png']="Logo 512px (PNG-Datei)";
+$texts['press_logo_ai']="Logo, vektorisiert (AI-Datei)";
+$texts['press_logo_claim']="Logo mit Claim (PSD-Datei)";
 
 $texts['link_disclaimer']="Für verlinkte Inhalte auf anderen Seiten als viehauktion.com übernehmen wir keine Haftung.";
 
