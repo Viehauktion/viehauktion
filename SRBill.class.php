@@ -60,28 +60,28 @@ return $priceString;
 				$this->SetFont('Arial', 'B', 8);
 			$this->Cell($lWidth, 0, 'Bahnhofstrasse 6', 0, 0, 'L');
 				$this->SetFont('Arial', '', 8);
-			$this->Cell($lWidth, 0, 'ING Diba 50010517 ', 0, 0, 'L');
+			$this->Cell($lWidth, 0, 'Volkbank Löningen 28065061 ', 0, 0, 'L');
 			$this->Cell($lWidth, 0, '', 0, 0, 'L');
 
 			$this->Ln(4);
 				$this->SetFont('Arial', 'B', 8);
 			$this->Cell($lWidth, 0, '49699 Lindern', 0, 0, 'L');
 				$this->SetFont('Arial', '', 8);
-			$this->Cell($lWidth, 0, 'Konto 5531710 762', 0, 0, 'L');
+			$this->Cell($lWidth, 0, 'Konto 1205934000', 0, 0, 'L');
 			$this->Cell($lWidth, 0, 'Ust-ID beantragt ', 0, 0, 'L');						
 			
 			$this->Ln(4);			
 				$this->SetFont('Arial', 'B', 8);
 			$this->Cell($lWidth, 0, 'E-Mail:  info@viehauktion.com', 0, 0, 'L');
 				$this->SetFont('Arial', '', 8);
-			$this->Cell($lWidth, 0, 'IBAN DE27500105175531710762', 0, 0, 'L');
+			$this->Cell($lWidth, 0, 'IBAN DE25280650611205934000', 0, 0, 'L');
 			$this->Cell($lWidth, 0, 'St.-Nr.  beantragt', 0, 0, 'L');									
 
 			$this->Ln(4);			
 				$this->SetFont('Arial', 'B', 8);
 			$this->Cell($lWidth, 0, 'Tel (+49) 5957 / 486', 0, 0, 'L');
 				$this->SetFont('Arial', '', 8);
-			$this->Cell($lWidth, 0, 'BIC  INGDDEFF', 0, 0, 'L');
+			$this->Cell($lWidth, 0, 'BIC  GENODEF1LOG', 0, 0, 'L');
 			$this->Cell($lWidth, 0, 'Geschäftsführung:  Felix Meyborg', 0, 0, 'L');												
 		}
 		
