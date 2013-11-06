@@ -198,7 +198,7 @@
 									$replace[11]=$vat_nr;
 									$replace[12]=$stall_nr; 
 									$replace[13]=$link;
-									$replace[14]=$GLOBALS["VIEHAUKTION"]["AMAZON"]["DOCUMENTSURL"]."documents/".$newFileName;
+									$replace[14]=$GLOBALS["VIEHAUKTION"]["AMAZON"]["DOCUMENTSURL"].$newFileName;
 
 
 									

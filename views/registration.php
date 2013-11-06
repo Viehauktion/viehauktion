@@ -80,8 +80,6 @@ countyid='72';
 
 
 
-
-
   $.getJSON("index.php", { "action": "get_counties", "view": "add_address_modal", "mode":"ajax", "state_id":'7', "sid":"<? echo($_COOKIE["PHPSESSID"]); ?>"},
 			
 			  function(data){
@@ -188,6 +186,25 @@ $('#filePreview').val($(this).val());
 
 
 <script type="text/javascript">
+
+
+
+<?
+
+if($_REQUEST['error']='user_already_registered'){
+?>
+
+$("#error_message").append('<? echo($texts['registration_error_email_already_registered']); ?><br/>');
+		errorflag=true;
+$(".alert-error").show();
+<?
+
+}
+
+
+?>
+
+
 
 var is_buyer=false;
 var is_seller=false;

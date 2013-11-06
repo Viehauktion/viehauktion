@@ -267,7 +267,7 @@ return $nextDates;
 					case "activate_user":	activateUser($_REQUEST['user_id'], $_REQUEST['user_email'], $_REQUEST['activationcode']); break;
 
 					case "edit_auction":  editAuction($_REQUEST['category_id'], $_REQUEST['auction_id'], $_REQUEST['is_preview'], $_REQUEST['is_auction'], $_REQUEST['is_main_auction'],$_REQUEST['is_vezg'], $_REQUEST['auction_date'], $_REQUEST['endtime'], $_REQUEST['auction_amount'], $_REQUEST['auction_min_entitity_price'], $_REQUEST['auction_origin'], $_REQUEST['auction_classification_mask'], $_REQUEST['auction_pigs_classification_mask_value'], $_REQUEST['auction_pigs_qs'], $_REQUEST['auction_pigs_samonelle_state'], $_REQUEST['address'], $_REQUEST['auction_loading_stations_amount'], $_REQUEST['auction_loading_stations_distance'], $_REQUEST['auction_loading_stations_vehicle'], $_REQUEST['auction_loading_stations_availability'], $_REQUEST['auction_loading_stations_availability_til'], $_REQUEST['is_public'], $_REQUEST['auction_additional_informations']); getUserAuctions($gBase->User['id'], false); break;
-					case "save_auction":	saveAuction($_REQUEST['auction_id'], $_REQUEST['is_auction'], "yes"); break;
+					case "save_auction":	saveAuction($_REQUEST['auction_id'], $_REQUEST['is_auction'], "yes"); getUserAuctions($gBase->User['id'], false); getUserOffers($gBase->User['id'], false); break;
 
 					case "get_pending_auction_states":	getPendingStates($_REQUEST['is_auction'], $category_id); break;
 					case "get_pending_auction_counties":	getPendingCounties($_REQUEST['state_id'], $_REQUEST['is_auction'], $category_id); break;

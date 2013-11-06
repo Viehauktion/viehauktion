@@ -43,7 +43,7 @@ return $priceString;
 //Page footer
 		function Footer() {
 			// Spaltenbreite für die Footer Table
-			$lWidth = 60;
+			$lWidth = 66;
 			//Position at 4.5 cm from bottom
 			$this->SetX(24);
 			$this->SetY(-45);

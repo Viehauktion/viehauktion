@@ -195,10 +195,12 @@ label.radio {
   height: 22px;
   color: #ffffff;
   background-color: #3e937e;
+  opacity: 0.9;
 }
 #teasers .teaser_text:hover {
   background-color: #25574b;
   height: 30px;
   margin-top: -43px;
   font-size: 20px;
+  opacity: 1.0;
 }

@@ -192,14 +192,7 @@ if($_REQUEST['is_auction']=="yes"){
 
 
 
-	<?
-		echo($gBase->CurrentAuction["is_vezg"]);
-
-		if($gBase->CurrentAuction["is_seller"]=="yes"){		
-echo("<p >".$texts['auction_is_seller']."</p>");
-		}
-
-		?>
+	
 <div id="time_box" > 
 	<div id="highestBid" class="well">
 	<table>
@@ -218,8 +211,14 @@ echo("<p >".$texts['auction_is_seller']."</p>");
 	?>
 </div>
 
+<?
+		
 
+		if($gBase->CurrentAuction["is_seller"]=="yes"){		
+			echo("<p>".$texts['auction_is_seller']."</p>");
+		}
 
+		?>
 
 
 
@@ -376,6 +375,8 @@ function buyOffer(){
 
 				echo("alert('".$texts['auction_not_activated_buyer_error']."')");
 
+		}else if($gBase->CurrentAuction["is_seller"]=="yes"){		
+			echo("alert('".$texts['auction_not_buy_own_stuff']."')");
 		}else{ 
 			?>
 

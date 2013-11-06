@@ -34,7 +34,7 @@
       </li>
     </ul>
     <a href="?view=registration" class="btn btn-primary btn-large">Jetzt Ausprobieren</a>
-    <!--<a href="?view=how_it_works" class="btn"><? echo($texts['how_it_works_headline']); ?></a>-->
+    <a class="btn" href="#loginModal" role="button"  data-toggle="modal" ><? echo($texts['signin_login']); ?></a>
 </div>
 </div>
   </div>

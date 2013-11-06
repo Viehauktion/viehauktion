@@ -259,10 +259,7 @@
 						$lDB->updateAuctionMetadata($auctionMetadataArray);
 
 
-						if($is_preview=="yes"){
-
-							previewAuction($auction_id);
-						}
+						
 
 						$log=array();
 						$log['auction_id']=$auction_id;
@@ -272,6 +269,11 @@
 
 						$lDB->addLog($log);	
 		 	 	 	 	 	 	
+
+		 	 	 	 	 	 	if($is_preview=="yes"){
+
+							previewAuction($auction_id);
+						}
 						
 					}else{
 						
@@ -371,10 +373,7 @@
 						$lDB->addAuctionMetadata($auctionMetadataArray);
 
 
-						if($is_preview=="yes"){
-
-							previewAuction($auctionArray['id']);
-						}
+					
 
 
 						$log=array();
@@ -384,7 +383,11 @@
 						$log['ip']=getRealIpAddr();
 
 						$lDB->addLog($log);	
+								
+							if($is_preview=="yes"){
 
+							previewAuction($auctionArray['id']);
+						}
 					
 				}
 		}
@@ -995,7 +998,12 @@ if($currentAuction=$lDB->getAuctionLikeRunningAction($auction_id)){
 										$gBase->CurrentAuction["user_rating"]=$lDB->getUserRating($currentAuction["user_id"]);
 										$gBase->CurrentAuction["county_id"] =$currentAuction["county_id"];
 										$gBase->CurrentAuction["state_id"] =$currentAuction["state_id"];
+										if($currentAuction["is_auction"]=="yes"){
 										$gBase->CurrentAuction["is_auction"] ="yes";
+									}else{
+										$gBase->CurrentAuction["is_auction"] ="no";
+
+									}
 										
 										$gBase->CurrentAuction['current_time']=date("H:i:s");
 
@@ -1069,6 +1077,14 @@ global $gBase;
 					$address=$lDB->getUserAddressesById($metadataArray["user_address_id"]);
 
 					$fullAuction["auction_ratings"]=$lDB->getAuctionRating($auction_id);
+
+					if($auctionArray["user_id"]==$gBase->User['id']){
+
+						$fullAuction["is_seller"]="yes";
+					}else{
+
+						$fullAuction["is_seller"]="no";
+					}
 
 					if((($auctionArray["buyer_id"]==$gBase->User['id'])||($auctionArray["user_id"]==$gBase->User['id'])) && ($auctionArray["status"]=="ended" || $auctionArray["status"]=="confirmed" )){
 						$sellerArray=array();

@@ -1107,12 +1107,12 @@ $lSQLQuery ="";
 				$lSQLQuery = "";
 
 			 if($is_auction=="yes"){
-					$lSQLQuery = "SELECT * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.category_id =  '".mysql_real_escape_string($category_id)."' AND auctions.county_id =  '".mysql_real_escape_string($county_id)."' AND (auctions.status='pending' OR auctions.status='scheduled') ORDER BY auctions.id ASC;";
+					$lSQLQuery = "SELECT * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.category_id =  '".mysql_real_escape_string($category_id)."' AND auctions.county_id =  '".mysql_real_escape_string($county_id)."' AND (auctions.status='pending' OR auctions.status='scheduled') AND auctions.is_auction='yes' ORDER BY auctions.id ASC;";
 	
 
 			 }else{
 
-					 $lSQLQuery = "SELECT * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.category_id=  '".mysql_real_escape_string($category_id)."' AND auctions.county_id =  '".mysql_real_escape_string($county_id)."' AND auctions.status='offering' ORDER BY auctions.id ASC;";
+					 $lSQLQuery = "SELECT * FROM auctions INNER JOIN auction_metadata ON auctions.id = auction_metadata.auction_id WHERE auctions.category_id=  '".mysql_real_escape_string($category_id)."' AND auctions.county_id =  '".mysql_real_escape_string($county_id)."' AND auctions.status='offering' AND auctions.is_auction='no' ORDER BY auctions.id ASC;";
 	
 			 }
 				

@@ -149,8 +149,11 @@ if($gBase->CurrentAuction["metadata"]["metadata"]["needs_original"]=="yes"){
 
 <p id="is_buyer">
 
+
 </p>
 <p id="is_seller"></p>
+
+
 <p>
 	<table>
 		<tr><td><strong><? echo($texts['auction_end_time']) ;?>:</strong></td><td id="end_time" class="rightSide" ><? echo(substr($gBase->CurrentAuction["end_time"], 10));?></td></tr>

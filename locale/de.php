@@ -148,7 +148,7 @@ $texts['registration_error_password_again']="Ihre Passwörter stimmern leider ni
 $texts['registration_error_agb']='Bitte akzeptieren Sie die Allgemeinen Geschäftsbedingungen.';
 $texts['registration_newsletter_hint']='Um das Dokument zu betrachten, benötigen Sie den Acrobat Reader, den sie <a href="http://get.adobe.com/de/reader/" target="_blank">hier</a> gratis herunterladen können.';
 
-$texts['registration_error_email_already_registered']="Ein Benutzer mit der E-Mailadresse existiert bereits.";
+$texts['registration_error_email_already_registered']='Ein Benutzer mit der E-Mailadresse existiert bereits. Nutzen Sie die "Passwort vergessen?"-Option in der <a  href="#loginModal" role="button"  data-toggle="modal" >Einloggen-Box</a>, um sich mit dieser E-Mailadresse anmelden.';
 $texts['registration_error_role']="Bitte wählen Sie ob, sie als Käufer und/oder Verkäufer auftreten möchten.";
 
 
@@ -338,6 +338,7 @@ $texts["seller_anonym"]="Anonym";
 $texts['auction_not_loggedin_error']="Sie können nur als angemeldeter Händler bieten. Bitte loggen Sie sich ein oder registrieren sich als Händler";
 $texts['auction_not_buyer_error']="Sie können nur als angemeldeter Händler bieten. Sie sind nur als Verkäufer registriert.";
 $texts['auction_not_activated_buyer_error']="Sie wurden von uns noch nicht als Händler freigeschaltet. Falls Sie auf die Freischaltung bereits einige Tage warten, melden Sie sich bitte über das Kontaktformular";
+$texts['auction_not_buy_own_stuff']="Sie können Ihr eigenes Angebot nicht kaufen.";
 
 $texts['auction_amount']="Anzahl der Tiere";
 $texts['auction_amount_placeholder']="z.B. 178";
