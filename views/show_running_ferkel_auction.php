@@ -229,7 +229,7 @@ function submitBid(){
 
 				echo("alert('".$texts['auction_not_buyer_error']."')");
 
-		}else if($gBase->User['active']!='2'){
+		}else if($gBase->User['active']!='1' && $gBase->User['active']!='2'){
 
 				echo("alert('".$texts['auction_not_activated_buyer_error']."')");
 

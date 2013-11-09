@@ -554,8 +554,8 @@ global $gBase;
 									$participiantsubject='Die Gegenseite hat den '.$type.' abgelehnt.';
 									
 										
-									sendEmail('./mails/cancel_to_recipient.de.txt', $lSearch, $lReplacement,$recipientsubject, $recipient['email']);
-									sendEmail('./mails/cancel_to_participiant.de.txt', $lSearch, $lReplacement, $participiantsubject, $participiant['email']);
+									sendEmail('./mails/cancel_to_recipient.de.html', $lSearch, $lReplacement,$recipientsubject, $recipient['email'], "./invoices/".$invoice["filename"]);
+									sendEmail('./mails/cancel_to_participiant.de.html', $lSearch, $lReplacement, $participiantsubject, $participiant['email'],'');
 										
 
 

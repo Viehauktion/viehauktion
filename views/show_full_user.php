@@ -31,12 +31,12 @@
 <? echo($texts['backend_is_buyer'].": ".$texts[$gBase->RawData["user_data"]["is_buyer"]]); ?><br/>
 <br/>
 
-<? echo($texts['registration_hrb'].": ".$gBase->RawData["user_data"]["hrb_nr"]); ?><br/>
-<? echo($texts['registration_retail'].": ".$gBase->RawData["user_data"]["retail_nr"]); ?><br/>
+<? echo($texts['registration_hrb_label'].": ".$gBase->RawData["user_data"]["hrb_nr"]); ?><br/>
+<? echo($texts['registration_retail_label'].": ".$gBase->RawData["user_data"]["retail_nr"]); ?><br/>
 <br/>
 
-<? echo($texts['registration_stall'].": ".$gBase->RawData["user_data"]["stall_nr"]); ?><br/>
-<? echo($texts['registration_vat'].": ".$gBase->RawData["user_data"]["vat_nr"]); ?><br/>
+<? echo($texts['registration_stall_label'].": ".$gBase->RawData["user_data"]["stall_nr"]); ?><br/>
+<? echo($texts['registration_vat_label'].": ".$gBase->RawData["user_data"]["vat_nr"]); ?><br/>
             <?
       if($gBase->User['role']=="admin"){
 ?>

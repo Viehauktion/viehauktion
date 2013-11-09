@@ -147,37 +147,44 @@ if($endedAuctions=$lDB->getEndedAuction("confirmed","confirmed","")){
 
 															$lSearch[18] = "___PROVISION___";
 															$lSearch[19] = "___SUBJECT___";
-
+$lSearch[19] = "___VEZG___";
 
 															$lReplacement = array();
 															$lReplacement[0] =$endedAuctions[$i]["current_entity_price"];
 															$lReplacement[1] =$GLOBALS["VIEHAUKTION"]["BASE"]["APPNAME"];
 															
-															$lReplacement[2] = $seller["firstname"];
-															$lReplacement[3] = $seller["lastname"];
-															$lReplacement[4] = $seller["street"];
-															$lReplacement[5] = $seller["number"];
-															$lReplacement[6] = $seller["postcode"];
-															$lReplacement[7] = $seller["city"];
-															$lReplacement[8] = $seller["phone"];
-															$lReplacement[9] = $seller["email"];
+															$lReplacement[2] =  htmlentities ( $seller["firstname"], ENT_QUOTES, "UTF-8");
+															$lReplacement[3] =  htmlentities ( $seller["lastname"], ENT_QUOTES, "UTF-8");
+															$lReplacement[4] =  htmlentities ( $seller["street"], ENT_QUOTES, "UTF-8");
+															$lReplacement[5] =  htmlentities ( $seller["number"], ENT_QUOTES, "UTF-8");
+															$lReplacement[6] =  htmlentities ( $seller["postcode"], ENT_QUOTES, "UTF-8");
+															$lReplacement[7] =  htmlentities ( $seller["city"], ENT_QUOTES, "UTF-8");
+															$lReplacement[8] =  htmlentities ( $seller["phone"], ENT_QUOTES, "UTF-8");
+															$lReplacement[9] =  htmlentities ( $seller["email"], ENT_QUOTES, "UTF-8");
 
 
-															$lReplacement[10] = $buyer["firstname"];
-															$lReplacement[11] = $buyer["lastname"];
-															$lReplacement[12] = $buyer["street"];
-															$lReplacement[13] = $buyer["number"];
-															$lReplacement[14] = $buyer["postcode"];
-															$lReplacement[15] = $buyer["city"];
+															$lReplacement[10] =  htmlentities ( $buyer["firstname"], ENT_QUOTES, "UTF-8");
+															$lReplacement[11] =  htmlentities ( $buyer["lastname"], ENT_QUOTES, "UTF-8");
+															$lReplacement[12] =  htmlentities ( $buyer["street"], ENT_QUOTES, "UTF-8");
+															$lReplacement[13] =  htmlentities ( $buyer["number"], ENT_QUOTES, "UTF-8");
+															$lReplacement[14] =  htmlentities ( $buyer["postcode"], ENT_QUOTES, "UTF-8");
+															$lReplacement[15] =  htmlentities ( $buyer["city"], ENT_QUOTES, "UTF-8");
+															$lReplacement[16] =  htmlentities ( $buyer["phone"], ENT_QUOTES, "UTF-8");
+															$lReplacement[17] =  htmlentities ( $buyer["email"], ENT_QUOTES, "UTF-8");
+
+
 															$lReplacement[16] = $buyer["phone"];
 															$lReplacement[17] = $buyer["email"];
+															$$lReplacement[18] = "";
+															$lReplacement[19] = "";
 
+																if($endedAuctions[$i]["is_vezg"]=="yes"){
+																	$lReplacement[20]=$texts['mail_vezg_date'].date("d.m.Y", strtotime($endedAuctions[$i]["start_time"]));
+															}else{
 
-															$lReplacement[16] = $buyer["phone"];
-															$lReplacement[17] = $buyer["email"];
-
-
-															
+																$lReplacement[20]="";
+															}
+														
 															
 
 
@@ -202,10 +209,16 @@ if($endedAuctions=$lDB->getEndedAuction("confirmed","confirmed","")){
 																$invoice["buyer_id"]=$endedAuctions[$i]["buyer_id"];
 																$invoice["price"]=$endedAuctions[$i]["current_entity_price"];
 																$invoice["vat"]=$GLOBALS["VIEHAUKTION"]["VAT"];
-																$total=$GLOBALS["VIEHAUKTION"]["PROVISION"]*$metadata["amount_of_animals"]*(100+$GLOBALS["VIEHAUKTION"]["VAT"])/100;
+																
+																$invoice["provision"]=$GLOBALS["VIEHAUKTION"]["PROVISION"];
+																if($endedAuctions[$i]["category_id"]=='2'){
+																	$invoice["provision"]=$GLOBALS["VIEHAUKTION"]["FERKEL_PROVISION"];
+																}
+
+																$total=$invoice["provision"]*$metadata["amount_of_animals"]*(100+$GLOBALS["VIEHAUKTION"]["VAT"])/100;
 																$invoice["total"]=number_format($total, 2, '.', '');
 																$lReplacement[18]=$total;
-																$invoice["provision"]=$GLOBALS["VIEHAUKTION"]["PROVISION"];
+
 																$invoice["amount_of_animals"]=$metadata["amount_of_animals"];
 																$invoice["filename"]="provision_".$endedAuctions[$i]["id"]."_".$endedAuctions[$i]["user_id"].".pdf";
 																$invoice["downloaded"]=0;
@@ -230,7 +243,8 @@ if($endedAuctions=$lDB->getEndedAuction("confirmed","confirmed","")){
 
 																$pdf->printBillData($currentInvoice["invoice_number"], $endedAuctions[$i]["id"], $endedAuctions[$i]['user_id'], $date, $metadata["amount_of_animals"], $currentInvoice["provision"], $currentInvoice["vat"], 10); 
 
-																$pdf->printBuyer("", $buyer["firstname"]." ".$buyer["lastname"], $buyer["street"].' '.$buyer["number"], $buyer["postcode"].' '.$buyer["city"],  $buyer["country"]);
+
+																$pdf->printBuyer("", $buyer["firstname"]." ".$buyer["lastname"], $buyer["street"].' '.$buyer["number"], $buyer["postcode"].' '.$buyer["city"],  $buyer["country"],  $endedAuctions[$i]["current_entity_price"], $lReplacement[20]);
 																
 																$pdfStream=$pdf->Output($attachmentPath,"F");
 

@@ -27,10 +27,11 @@ for($i=0; $i<count($gBase->CurrentAuction["auction_ratings"]);$i++){
 		  <h4><? echo($texts['error']); ?></h4>
 		 <span id="error_message"></span>
 		</div>
-
+<br/>
+<br/>
 
 <table><tr valign="top"><td>
-        <p><? echo($texts['add_rating_about']); ?></p>
+        <p><strong><? echo($texts['add_rating_about']); ?></strong></p>
      
          </td><td class="rightSide">
 

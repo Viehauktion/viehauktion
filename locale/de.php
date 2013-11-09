@@ -199,11 +199,12 @@ $texts['recover_success']="Wir haben Ihnen eine E-Mail mit Ihrem neuen Passwort 
 
 $texts['profile_my_data']="Ihre Daten";
 $texts['profile_my_invoices']="Rechnungen";
+$texts['profile_open_invoices']="Offene Rechnungen";
 $texts['profile_my_auctions']="Ihre Auktionen";
 $texts['profile_no_invoice']="Sie haben bisher keine Rechnungen.";
 
 $texts['profile_my_offers']="Ihre Festpreisangebote";
-$texts['profile_my_offers_to_confirm']="Ihre kürzlich stattgefundenen Verkäufe";
+
 $texts['profile_no_offers']="Sie haben bisher keine Festpreisangebote eingestellt.";
 $texts['profile_no_auction']="Sie haben bisher keine Auktion durchgeführt.";
 
@@ -232,7 +233,7 @@ $texts['profile_get_invoice']="Rechnung herunterladen";
 $texts['profile_rate_partner']="Handelspartner bewerten";
 $texts['profile_my_auctions_to_approve']="Kürzlich abgeschlossene Auktionen.";
 $texts['profile_auction_locked']="Nimmt an baldiger Hauptauktion teil.";
-
+$texts['profile_my_offers_to_approve']="Kürzlich abgeschlossene Festpreisangebote";
 
 $texts['invoice_date']="Rechnungsdatum";
 $texts['invoice_number']="Nummer";
@@ -270,6 +271,7 @@ $texts['edit_offer_overview_description']="Bitte schauen Sie sich ihre Daten noc
 
 $texts['profile_delete_auction']="Löschen";
 $texts['profile_delete_auction_question']="Sind Sie sicher das Sie die Auktion löschen möchten?";
+$texts['profile_storno_auction_question']="Sind Sie sicher das Sie die Auktion stornieren möchten?  Diese Aktion kann nicht rückgängig gemacht werden. Ihnen wird dadurch eine Gebühr von 30 € berechnet.";
 $texts['profile_edit_auction']="Bearbeiten";
 $texts['edit_password']="Passwort ändern";
 
@@ -503,6 +505,7 @@ $texts['footer_us']="Über uns";
 
 
 $texts['add_rating_headline']="Bewertung abgeben";
+$texts['add_rating_description']="Bitte geben Sie für Ihren Handelspartner eine Wertung ab.<br/><br/><i>Hilfestellung: Stellen Sie sich die 5 Schweine als die Punkte Korrektheit der Angaben, Zuverlässigkeit bei der Lieferung/Ablieferung, Kommunikationsbereitschaft, Zahlungsabschluss.<br/>Vergeben Sie doch für jeden Punkt, mit dem Sie zufrieden waren ein Schwein.</i>";
 $texts['add_rating_seller_description']="Damit sich zukünftige, mögliche Verkäufer auf viehauktion.com einen Überblick über Seriösität des Handelspartners machen können, bitten wir Sie hier eine kleine Bewertung vorzunehmen.";
 $texts['add_rating_buyer_description']="Damit sich zukünftige, mögliche Käufer auf viehauktion.com einen Überblick über Seriösität des Handelspartners machen können, bitten wir Sie hier eine kleine Bewertung vorzunehmen.";
 $texts['add_rating_about']="Zu Bewerten:";
@@ -661,6 +664,7 @@ $texts['backend_rating_to_writer']="Zum Schreiber";
 $texts['backend_is_seller']="Ist Erzeuger?";
 $texts['backend_is_buyer']="Ist Händler?";
 $texts['backend_has_newsletter']="Newsletter?";
+$texts['backend_invoice_status_set_paid']="Bezahlt setzen";
 
 $texts['preview']="Noch unvollständig.";
 $texts['pending']="Wartet auf Auktion";
@@ -921,6 +925,8 @@ $texts['forms']='<div class="clearfix">
   Bei der &bdquo;Schnitt-Verkaufsmaske&ldquo; ist für das Erreichen des vollen Basispreises ausschließlich die Einhaltung eines Schlachtgewichtskorridors zwischen 84 und 106 kg notwendig. In diesem Bereich sind keine weiteren Parameter für die Bezahlung ausschlaggebend. Außerhalb dieses Korridors wird nach obiger FOM- Maske klassiffiziert, will heißen, dass das Schlachtgewicht, das Gewicht des Schinkens, sowie der Muskelfleischanteil maßgebend für die Auszahlung je kg Schlachtgewicht sind.</p>
 <p>&nbsp;</p>';
 
+
+$texts['mail_vezg_date']=" zum VEZG Preis vom ";
 
 
 ?>

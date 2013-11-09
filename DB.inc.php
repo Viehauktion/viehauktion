@@ -1598,6 +1598,40 @@ function updateInviteCode($codeArray) {
 	}
 
 
+function getInvoices($status, $start, $number_of_elements){
+
+				$lSQLQuery = "SELECT SQL_CALC_FOUND_ROWS * FROM `invoices` ORDER BY `invoice_number` DESC LIMIT ".mysql_real_escape_string($start).", ".mysql_real_escape_string($number_of_elements).";";
+				if($status!=''){
+					$lSQLQuery = "SELECT SQL_CALC_FOUND_ROWS * FROM `invoices` WHERE `status`='".$status."' ORDER BY `invoice_number` DESC LIMIT ".mysql_real_escape_string($start).", ".mysql_real_escape_string($number_of_elements).";";
+			
+				}
+				
+				$list= array();
+						$j=0;
+						$lResult = $this->mysql_query_ex($lSQLQuery);
+						
+						if ($lResult) {
+							while($lRow = mysql_fetch_assoc($lResult)){
+							$list[$j]=$lRow;
+							
+							$j++;
+							}
+						}
+
+
+						$lSQLQuery = "SELECT FOUND_ROWS();";
+					$lResult = $this->mysql_query_ex($lSQLQuery);
+					
+						if ($lResult) {
+						$FOUND_ROWS=mysql_fetch_assoc($lResult);
+						$list['number_of_rows']=$FOUND_ROWS["FOUND_ROWS()"];
+						}
+				
+				return $list;
+
+	
+
+	}
 
 
 

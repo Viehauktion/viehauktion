@@ -626,7 +626,7 @@ function sendActivationMailAgain($lang){
 			
 			}
 		
-			function sendEmail($emailTemplate, $lSearch, $lReplacement, $subject, $lRecipient) {
+			function sendEmail($emailTemplate, $lSearch, $lReplacement, $subject, $lRecipient, $attachmentPath="") {
 					
 					$eMail = file_get_contents($emailTemplate);
 					$finalEmail = str_replace($lSearch, $lReplacement, $eMail);
@@ -647,7 +647,9 @@ function sendActivationMailAgain($lang){
 							$mail->From = $GLOBALS["VIEHAUKTION"]["EMAIL"]["SENDERADDRESS"];
 							$mail->FromName = $GLOBALS["VIEHAUKTION"]["EMAIL"]["SENDERNAME"];
 							$mail->AddAddress($lRecipient, $lRecipient);
-						
+							if($attachmentPath!=''){
+							$mail->AddAttachment($attachmentPath);
+							}
 							$mail->IsHTML(true); // send as HTML
 							
 							$mail->Subject = $subject;

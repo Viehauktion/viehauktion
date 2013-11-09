@@ -242,7 +242,7 @@ if($gBase->User['is_seller']!="no"){
 
 
 <script type="text/javascript">
-
+ 
 
 function changePrice(price_system){
 
@@ -710,7 +710,9 @@ echo ' checked="checked" ';
 if($gBase->User['is_seller']!="no"){
 ?>
 
-var is_vezg="no";
+var is_vezg="";
+
+
         
     $('#pigs_auction #endtime').datetimepicker({
       language: 'de-DE'
@@ -732,6 +734,8 @@ $('#pigs_auction #till_time').datetimepicker({
 
 
 $("#pigs_auction #auction_preview").click(function(){
+
+
       $("#pigs_auction #view").val("show_full_auction");
       $("#pigs_auction #is_preview").val("yes");
       //$("#pigs_auction #auction_form").attr("target", "_blank");

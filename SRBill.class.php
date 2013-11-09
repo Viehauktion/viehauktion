@@ -105,10 +105,10 @@ return $priceString;
 		}
 		
 	
-		function printBuyer($pCompany, $pName, $pStreet, $pCity, $pCountry) {			
+		function printBuyer($pCompany, $pName, $pStreet, $pCity, $pCountry, $pPrice, $pVezg="") {			
 			$this->SetXY(50,190);
 			$this->SetFont('Arial', '', 10);
-			$this->Cell(100, 4, "Die Tiere wurden ersteigert von:", 0, 1, 'L');
+			$this->Cell(100, 4, "Die Tiere wurden gekauft von:", 0, 1, 'L');
 			$this->SetX(60);
 			$this->Cell(100, 4, utf8_decode($pCompany), 0, 1, 'L');
 			$this->SetX(60);
@@ -119,6 +119,11 @@ return $priceString;
 			$this->Cell(100, 4, utf8_decode($pCity), 0, 1, 'L');
 			$this->SetX(60);
 			$this->Cell(100, 4, utf8_decode($pCountry), 0, 1, 'L');
+			$this->SetX(60);
+			$this->Cell(100, 4, "Zum Preis von: ", 0, 1, 'L');
+			$this->SetX(60);
+
+			$this->Cell(100, 4, utf8_decode($pPrice)." € ".$pVezg, 0, 1, 'L');
 		}
 		
 		
@@ -257,7 +262,7 @@ return $priceString;
 			$this->SetY(140);
 			$this->SetX(24);
 
-			$this->Cell(80, 4, "Leistung:                       ".$leistung.": ".number_format($pnettoPrice, 2, '.', '')." €  =     ".number_format($pnettoPrice, 2, '.', '')." €", 0, 1, 'L');
+			$this->Cell(80, 4, "Leistung:                  ".$leistung.":  =     ".number_format($pnettoPrice, 2, '.', '')." €", 0, 1, 'L');
 			$vatPrice=($pnettoPrice/100)*$pVAT;
 			$this->SetX(24);
 			$this->Cell(80, 4, "Mehrwertsteuer ($pVAT %):                                                +".number_format($vatPrice, 2, '.', '')." €", 0, 1, 'L');

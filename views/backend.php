@@ -4,6 +4,13 @@
   <li class="active"><a href="#users" id="users_link" onclick="showSubnavigation('users')"><? echo($texts['backend_user_management']); ?></a></li>
   <li><a href="#auctions" id="auctions_link" onclick="showSubnavigation('auctions')"><? echo($texts['backend_auctions_management']); ?></a></li>
  <li><a href="#offers" id="offers_link" onclick="showSubnavigation('offers')"><? echo($texts['backend_offers_management']); ?></a></li>
+
+  <li><a href="#invoices" id="invoices_link" onclick="showSubnavigation('invoices')"><? echo($texts['profile_my_invoices']); ?></a></li>
+
+  <li><a href="#open_invoices" id="open_invoices_link" onclick="showSubnavigation('open_invoices')"><? echo($texts['profile_open_invoices']); ?></a></li>
+
+
+
 </ul>
 
 
@@ -401,6 +408,195 @@ if ($_REQUEST['page']!='') {
  </div> 
 
 
+
+
+
+<div id="invoices_layer"  class="sublayer hide"> 
+      <h2><? echo($texts['profile_my_invoices']); ?></h2>
+      
+     
+      <?
+
+$invoices=$gBase->RawData['invoices'];
+$counter=0;
+if(count($invoices)>1){
+
+?>
+
+   <table class="table table-striped">
+    <tr>
+      <td><? echo($texts['invoice_date']); ?></td>
+      <td><? echo($texts['invoice_number']); ?></td>
+      <td><? echo($texts['invoice_type']); ?></td>
+      <td><? echo($texts['invoice_total']); ?></td>
+      <td></td>
+   
+    </tr>
+
+<?
+  for($i=0; $i<count($invoices)-1; $i++){
+ 
+?>
+
+<tr>
+  <td><? echo(date("d.m.Y", strtotime($invoices[$i]["date"]))); ?></td>
+  <td><? echo($invoices[$i]["invoice_number"]); ?></td>
+  <td><? 
+  if($invoices[$i]['type']=='provision'){
+  echo($texts["invoice_provision"]); 
+}else{
+ echo($texts["invoice_storno"]); 
+}
+?>
+</td>
+  <td><? echo(formatPrice($invoices[$i]["total"])); ?></td>
+  <td> <a href="?action=get_invoice&invoice_id=<? echo($invoices[$i]["invoice_number"]); ?>" class="btn" type="button" target="_blank"  ><?  echo($texts['profile_get_invoice']); ?></a></td>
+ 
+</tr>
+
+  <?
+
+  }
+
+?>
+
+</table>
+
+<div class="pagination">
+  <ul>
+<?
+  $pages=(int)$invoices["number_of_rows"]/$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"]+1;
+  $active=1;
+if ($_REQUEST['page']!='') {
+  $active=$_REQUEST['page'];
+}
+ for ($i=1; $i <= $pages; $i++) { 
+  if($i==$active){
+    echo('<li class="active"><a href="?view=profile&action=get_user_invoices&page='.$i.'#invoices"  >'.$i.'</a></li>');
+  }else{
+   echo('<li ><a href="?view=profile&action=get_user_invoices&page='.$i.'#invoices" >'.$i.'</a></li>');
+   }
+ }
+
+?>
+ 
+   
+  </ul>
+</div>
+
+
+<?
+
+
+}else{
+   echo($texts['profile_no_invoice']);
+  
+  }
+
+
+?>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="open_invoices_layer"  class="sublayer hide"> 
+      <h2><? echo($texts['profile_open_invoices']); ?></h2>
+      
+     
+      <?
+
+$invoices=$gBase->RawData['open_invoices'];
+$counter=0;
+if(count($invoices)>1){
+
+?>
+
+   <table class="table table-striped">
+    <tr>
+      <td><? echo($texts['invoice_date']); ?></td>
+      <td><? echo($texts['invoice_number']); ?></td>
+      <td><? echo($texts['invoice_type']); ?></td>
+      <td><? echo($texts['invoice_total']); ?></td>
+      <td></td>
+         <td></td>
+    </tr>
+
+<?
+  for($i=0; $i<count($invoices)-1; $i++){
+ 
+?>
+
+<tr>
+  <td><? echo(date("d.m.Y", strtotime($invoices[$i]["date"]))); ?></td>
+  <td><? echo($invoices[$i]["invoice_number"]); ?></td>
+  <td><? 
+  if($invoices[$i]['type']=='provision'){
+  echo($texts["invoice_provision"]); 
+}else{
+ echo($texts["invoice_storno"]); 
+}
+?>
+</td>
+  <td><? echo(formatPrice($invoices[$i]["total"])); ?></td>
+  <td> <a href="?action=get_invoice&invoice_id=<? echo($invoices[$i]["invoice_number"]); ?>" class="btn" type="button" target="_blank"  ><?  echo($texts['profile_get_invoice']); ?></a></td>
+ <td><a href="?action=update_invoice&view=backend&status=paid&page=<?= $_REQUEST['page'] ?>&invoice_id=<? echo($invoices[$i]["invoice_number"]); ?>" class="btn" type="button" target="_blank"  ><?= $texts['backend_invoice_status_set_paid'] ?></a></td>
+</tr>
+
+  <?
+
+  }
+
+?>
+
+</table>
+
+<div class="pagination">
+  <ul>
+<?
+  $pages=(int)$invoices["number_of_rows"]/$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"]+1;
+  $active=1;
+if ($_REQUEST['page']!='') {
+  $active=$_REQUEST['page'];
+}
+ for ($i=1; $i <= $pages; $i++) { 
+  if($i==$active){
+    echo('<li class="active"><a href="?view=profile&action=get_user_invoices&page='.$i.'#invoices"  >'.$i.'</a></li>');
+  }else{
+   echo('<li ><a href="?view=profile&action=get_user_invoices&page='.$i.'#invoices" >'.$i.'</a></li>');
+   }
+ }
+
+?>
+ 
+   
+  </ul>
+</div>
+
+
+<?
+
+
+}else{
+   echo($texts['profile_no_invoice']);
+  
+  }
+
+
+?>
+
+
+</div>
 
 
 </div>

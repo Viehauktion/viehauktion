@@ -183,17 +183,7 @@ $oldValues=nil;
 
 ?>
 
- <div id="vezg_radios">
 
-<label class="radio">
- <input type="radio" name="is_vezg" id="is_own_price" value="yes" onclick="changePrice('own');" checked>
-  <? echo($texts['is_own_price']); ?>
-</label>
-<label class="radio">
-  <input type="radio" name="is_vezg" id="is_vezg" value="no" onclick="changePrice('vezg');">
-  <? echo($texts['is_vezg_price']); ?>
-</label>
-</div><br/>
 
 
     <div id="own" class="control-group">
@@ -206,57 +196,6 @@ $oldValues=nil;
 
 
 
-<div id="vezg" class="hide">
-     <div class="control-group" >
-        <label class="control-label" for="auction_date"><? echo($texts['vezg_date']); ?></label>
-        <div class="controls">
-          <select name="auction_date"  id="auction_date">
-            <?
-             for($i=0;$i<count($vezgDates);$i++){
-
-              echo('<option value="'.$vezgDates[$i]["submitable_date"].'"');
-
-              if(($vezgDates[$i]["submitable_date"])==$oldValues['start_time']){
-
-                  echo(" selected ");
-
-              }
-
-                echo(' >'.$vezgDates[$i]["readable_date"].'</option>');
-             }
-
-            ?>
-            
-      
-          </select>
-        </div>
-      </div>
-
-</div>      
-
-
-<script type="text/javascript">
-
-
-function changePrice(price_system){
-
-  if(price_system=='own'){
-
-    $("#vezg").hide();
-    is_vezg="no";
-    $("#auction_min_entitity_price").attr("placeholder", "<? echo($texts['auction_min_entitity_price_placeholer']); ?>");
-
-  }else{
-    is_vezg="yes";
-  $("#vezg").show();
-    $("#auction_min_entitity_price").attr("placeholder", "<? echo($texts['vezg_price_placeholer']); ?>");
-
-
-
-  }
-
-}
-</script>
 
 <?
 
@@ -400,7 +339,7 @@ echo ' checked="checked" ';
   <script type="text/javascript">
 
 
-var is_vezg="no";
+
         
   
 
@@ -539,7 +478,7 @@ if($("#ferkel_auction #is_public").is(':checked')){
 			
 
 
- $.getJSON("index.php", { "action": $("#ferkel_auction #action").val(), "view": "profile", "mode":"ajax", "category_id":$("#ferkel_auction #category_id").val(), "address":$("#address").val(), "auction_id":$("#ferkel_auction #auction_id").val(), "is_auction":$("#ferkel_auction #is_auction").val(), "is_main_auction":$("#ferkel_auction #is_main_auction").val(), "is_vezg": is_vezg, "is_preview":$("#ferkel_auction #is_preview").val(),"auction_date":$("#ferkel_auction #auction_date").val(),"endtime":$("#ferkel_auction #endtime").val(),"auction_amount":$("#ferkel_auction #auction_amount").val(),"auction_min_entitity_price":$("#ferkel_auction #auction_min_entitity_price").val(), "auction_genes":$("#ferkel_auction #auction_genes").val(), "auction_origin":$("#ferkel_auction #auction_origin").val(), "auction_stalls":$("#ferkel_auction #auction_stalls").val(), "auction_health":$("#ferkel_auction #auction_health").val(), "auction_status":$("#ferkel_auction #auction_status").val(),"auction_loading_stations_availability":$("#ferkel_auction #auction_loading_stations_availability").val(), "auction_loading_stations_availability_til":$("#ferkel_auction #auction_loading_stations_availability_til").val(), "is_public": is_public, "auction_additional_informations":$("#ferkel_auction #auction_additional_informations").val(), "sid":"<? echo($_COOKIE["PHPSESSID"]); ?>"},
+ $.getJSON("index.php", { "action": $("#ferkel_auction #action").val(), "view": "profile", "mode":"ajax", "category_id":$("#ferkel_auction #category_id").val(), "address":$("#address").val(), "auction_id":$("#ferkel_auction #auction_id").val(), "is_auction":$("#ferkel_auction #is_auction").val(), "is_main_auction":$("#ferkel_auction #is_main_auction").val(), "is_vezg":"no", "is_preview":$("#ferkel_auction #is_preview").val(),"auction_date":$("#ferkel_auction #auction_date").val(),"endtime":$("#ferkel_auction #endtime").val(),"auction_amount":$("#ferkel_auction #auction_amount").val(),"auction_min_entitity_price":$("#ferkel_auction #auction_min_entitity_price").val(), "auction_genes":$("#ferkel_auction #auction_genes").val(), "auction_origin":$("#ferkel_auction #auction_origin").val(), "auction_stalls":$("#ferkel_auction #auction_stalls").val(), "auction_health":$("#ferkel_auction #auction_health").val(), "auction_status":$("#ferkel_auction #auction_status").val(),"auction_loading_stations_availability":$("#ferkel_auction #auction_loading_stations_availability").val(), "auction_loading_stations_availability_til":$("#ferkel_auction #auction_loading_stations_availability_til").val(), "is_public": is_public, "auction_additional_informations":$("#ferkel_auction #auction_additional_informations").val(), "sid":"<? echo($_COOKIE["PHPSESSID"]); ?>"},
       
         function(data){
            

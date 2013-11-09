@@ -259,7 +259,13 @@ return $nextDates;
 					case "get_invoice":  getInvoice($_REQUEST['invoice_id']); break; 
 
 					case "remove_auction": removeAuction($_REQUEST['auction_id']); break;
-					case "cancel_auction": cancelAuction($_REQUEST['auction_id']); break;	
+					case "cancel_auction": cancelAuction($_REQUEST['auction_id']); getUserAuctions($gBase->User['id'], true); 
+							getUserAuctions($gBase->User['id'], false); 
+							getUserOffers($gBase->User['id'], true); 
+							getUserOffers($gBase->User['id'], false);
+							getUserRatings($gBase->User['id'], true);
+							getUserRatings($gBase->User['id'], false);
+							getUserInvoices($gBase->User['id']); break;	
 
 
 
@@ -303,8 +309,8 @@ return $nextDates;
 					case 'show_full_user':	getUserDetails($_REQUEST['user_id'], $_REQUEST['auction_id']); break;
 					case 'get_finished_offers': getFinishedOffers($_REQUEST['page']); break;
 					case 'get_finished_auctions': getFinishedAuctions($_REQUEST['page']); break;
-
-
+					case 'update_invoice':	updateInvoice($_REQUEST['invoice_id'], $_REQUEST['status']); getInvoices($_REQUEST['page']); break;
+					case 'get_invoices': 	getInvoices($_REQUEST['page']); break;
 		}
 		switch ($View) {
 		
@@ -320,7 +326,7 @@ return $nextDates;
 			case 'market':	if($Action==''){ getLatestAuctions($category_id,false);} checkTodaysOffers($category_id); break;
 
 			case 'edit_auction':  getCurrentAuction($_REQUEST['auction_id']); break;
-			case 'backend':		if($Action==''){ getBuyerToConfirm(1); getUsers(1);  getFinishedOffers(1); getFinishedAuctions(1);} break;
+			case 'backend':		if($Action==''){ getBuyerToConfirm(1); getUsers(1);  getFinishedOffers(1); getFinishedAuctions(1); getInvoices(1); } break;
 
 
 			

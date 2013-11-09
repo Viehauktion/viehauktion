@@ -52,10 +52,10 @@
     |---------------------------------------------------------------------------------------------------------------------------------*/
 
 	$GLOBALS["VIEHAUKTION"]["STORNO"]["TIME"]=120;
-	$GLOBALS["VIEHAUKTION"]["STORNO"]["MONEY"]=40;
+	$GLOBALS["VIEHAUKTION"]["STORNO"]["MONEY"]=30;
 	$GLOBALS["VIEHAUKTION"]["VAT"]=19;
 	$GLOBALS["VIEHAUKTION"]["PROVISION"]=0.40;
-
+	$GLOBALS["VIEHAUKTION"]["FERKEL_PROVISION"]=0.15;
 
 	$GLOBALS["VIEHAUKTION"]["PAGEELEMENTS"]=10;
 	$GLOBALS["VIEHAUKTION"]["SMALLPAGEELEMENTS"]=5;

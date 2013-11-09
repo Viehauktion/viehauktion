@@ -129,34 +129,43 @@ if($endedAuctions=$lDB->getEndedAuction("ended","","")){
 															$lSearch[18] = "___TILLTIME___";
 															$lSearch[19] = "___SUBJECT___";
 
+												$lSearch[20] = "___VEZG___";
+
 
 															$lReplacement = array();
 															$lReplacement[0] =$endedAuctions[$i]["current_entity_price"];
 															$lReplacement[1] =$GLOBALS["VIEHAUKTION"]["BASE"]["APPNAME"];
 															
-															$lReplacement[2] = $seller["firstname"];
-															$lReplacement[3] = $seller["lastname"];
-															$lReplacement[4] = $seller["street"];
-															$lReplacement[5] = $seller["number"];
-															$lReplacement[6] = $seller["postcode"];
-															$lReplacement[7] = $seller["city"];
-															$lReplacement[8] = $seller["phone"];
-															$lReplacement[9] = $seller["email"];
+															$lReplacement[2] =  htmlentities ( $seller["firstname"], ENT_QUOTES, "UTF-8");
+															$lReplacement[3] =  htmlentities ( $seller["lastname"], ENT_QUOTES, "UTF-8");
+															$lReplacement[4] =  htmlentities ( $seller["street"], ENT_QUOTES, "UTF-8");
+															$lReplacement[5] =  htmlentities ( $seller["number"], ENT_QUOTES, "UTF-8");
+															$lReplacement[6] =  htmlentities ( $seller["postcode"], ENT_QUOTES, "UTF-8");
+															$lReplacement[7] =  htmlentities ( $seller["city"], ENT_QUOTES, "UTF-8");
+															$lReplacement[8] =  htmlentities ( $seller["phone"], ENT_QUOTES, "UTF-8");
+															$lReplacement[9] =  htmlentities ( $seller["email"], ENT_QUOTES, "UTF-8");
 
 
-															$lReplacement[10] = $buyer["firstname"];
-															$lReplacement[11] = $buyer["lastname"];
-															$lReplacement[12] = $buyer["street"];
-															$lReplacement[13] = $buyer["number"];
-															$lReplacement[14] = $buyer["postcode"];
-															$lReplacement[15] = $buyer["city"];
-															$lReplacement[16] = $buyer["phone"];
-															$lReplacement[17] = $buyer["email"];
-															$lReplacement[16] = $buyer["phone"];
-															$lReplacement[17] = $buyer["email"];
+															$lReplacement[10] =  htmlentities ( $buyer["firstname"], ENT_QUOTES, "UTF-8");
+															$lReplacement[11] =  htmlentities ( $buyer["lastname"], ENT_QUOTES, "UTF-8");
+															$lReplacement[12] =  htmlentities ( $buyer["street"], ENT_QUOTES, "UTF-8");
+															$lReplacement[13] =  htmlentities ( $buyer["number"], ENT_QUOTES, "UTF-8");
+															$lReplacement[14] =  htmlentities ( $buyer["postcode"], ENT_QUOTES, "UTF-8");
+															$lReplacement[15] =  htmlentities ( $buyer["city"], ENT_QUOTES, "UTF-8");
+															$lReplacement[16] =  htmlentities ( $buyer["phone"], ENT_QUOTES, "UTF-8");
+															$lReplacement[17] =  htmlentities ( $buyer["email"], ENT_QUOTES, "UTF-8");
+															$lReplacement[16] =  htmlentities ( $buyer["phone"], ENT_QUOTES, "UTF-8");
+															$lReplacement[17] =  htmlentities ( $buyer["email"], ENT_QUOTES, "UTF-8");
 															$lReplacement[18] = date("d.m.Y - H:i", 
 															strtotime($endedAuctions[$i]["end_time"])+60*$GLOBALS["VIEHAUKTION"]["STORNO"]["TIME"])." Uhr";
+															$lReplacement[19] = "";
+															if($endedAuctions[$i]["is_vezg"]=="yes"){
+																	$lReplacement[20]=$texts['mail_vezg_date'].date("d.m.Y", strtotime($endedAuctions[$i]["start_time"]));
+															}else{
 
+																$lReplacement[20]="";
+															}
+														
 
 
 															$sellersubject='';
@@ -167,10 +176,10 @@ if($endedAuctions=$lDB->getEndedAuction("ended","","")){
 
 																$sellersubject=$texts['failure_auction_seller_subject'];
 																$lReplacement[19] = $sellersubject;
-																if(sendEmail('./mails/failure_to_seller.'.$lang.'.html', $lSearch, $lReplacement, $sellersubject, $seller['email'])){
+																if(sendEmail('./mails/failure_to_seller.'.$lang.'.html', $lSearch, $lReplacement, $sellersubject, $seller['email'],"")){
 																	$flag=3;
 																}
-
+																
 
 															}else{
 
@@ -209,13 +218,14 @@ if($endedAuctions=$lDB->getEndedAuction("ended","","")){
 																}
 																$lReplacement[19] = $sellersubject;
 
-																if(sendEmail('./mails/ended_'.$offer_inset.'to_seller.'.$lang.'.html', $lSearch, $lReplacement, $sellersubject, $seller['email'])){
-
+																if(sendEmail('./mails/ended_'.$offer_inset.'to_seller.'.$lang.'.html', $lSearch, $lReplacement, $sellersubject, $seller['email'],"")){
+																			
 																	$flag=1;
 																}
 																$lReplacement[19] = $buyersubject;
-																if(sendEmail('./mails/ended_'.$offer_inset.'to_buyer.'.$lang.'.html', $lSearch, $lReplacement, $buyersubject, $buyer['email'])){
-																	if($flag==1){
+																if(sendEmail('./mails/ended_'.$offer_inset.'to_buyer.'.$lang.'.html', $lSearch, $lReplacement, $buyersubject, $buyer['email'],"")){
+																	
+																		if($flag==1){
 																			$flag=3;
 																		}else{
 																			$flag=2;

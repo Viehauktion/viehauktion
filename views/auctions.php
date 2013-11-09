@@ -7,7 +7,7 @@
 
 $areAuctionsToday=false; 
 $areAlreadyRunning=false;
-
+if(count($gBase->RawData["todays_auctions"])>0){
  for($i=0; $i<count($gBase->RawData["todays_auctions"]); $i++){
 if($gBase->RawData["todays_auctions"][$i]["state_id"]!='0'){
 
@@ -28,7 +28,7 @@ if($gBase->RawData["todays_auctions"][$i]["state_id"]!='0'){
  	}
 }
  }
-
+}
 
 
 ?>
