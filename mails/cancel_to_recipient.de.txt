@@ -17,7 +17,7 @@ Wir hoffen Sie denmächst mit einen neuen Angebot auf ___SITENAME___ begrüßen 
 Ihr ___SITENAME___ Team
 
 
-Diese E-Mail wurde automatisch erstellt. Bitte antworten Sie Ihr nicht.
+Diese E-Mail wurde automatisch erstellt. Bitte antworten Sie ihr nicht.
 
 
 ___SITENAME___
