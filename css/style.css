@@ -117,6 +117,9 @@ body {
 td.leftSide {
   width: 80px;
 }
+td.leftLabel {
+  width: 150px;
+}
 td.topSide {
   padding-top: 30px;
 }
@@ -126,7 +129,7 @@ td.rightSide {
 #highestBid {
   background-color: #F3F3F3;
   color: #000000;
-  font-size: 18px;
+  font-size: 16px;
 }
 .ishighest {
   background-color: #525252;
@@ -207,4 +210,7 @@ label.radio {
   margin-top: -43px;
   font-size: 20px;
   opacity: 1.0;
+}
+#formsModal .modal-body {
+  max-height: 600px;
 }

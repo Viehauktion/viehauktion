@@ -341,7 +341,7 @@ errorflag=false;
   <div class="modal-body">
 <?
 
-echo($texts['forms']);
+include('views/masks.php');
 
 ?>
 

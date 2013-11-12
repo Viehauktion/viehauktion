@@ -221,7 +221,7 @@ $oldValues=nil;
 
 
   <div class="control-group">
-        <label class="control-label" for="auction_genes"><? echo($texts['auction_genes']); ?></label>
+        <label class="control-label" for="auction_genes"><? echo($texts['auction_genes_optional']); ?></label>
         <div class="controls">
           <input type="text" id="auction_genes" name="auction_genes" placeholder="<? echo($texts['auction_genes_placholder']); ?>" value="<? if($oldValues!=nil) echo($oldValues['auction_genes']); ?>">
         </div>
@@ -232,7 +232,7 @@ $oldValues=nil;
 
 
       <div class="control-group">
-        <label class="control-label" for="auction_status"><? echo($texts['auction_ferkel_status']); ?></label>
+        <label class="control-label" for="auction_status"><? echo($texts['auction_ferkel_status_optional']); ?></label>
         <div class="controls">
           <input type="text" id="auction_status" name="auction_status" placeholder="<? echo($texts['auction_ferkel_status_placeholder']); ?>" value="<? if($oldValues!=nil) echo($oldValues['auction_status']); ?>">
         </div>
@@ -242,7 +242,7 @@ $oldValues=nil;
 
 
       <div class="control-group">
-        <label class="control-label" for="auction_health"><? echo($texts['auction_ferkel_health']); ?></label>
+        <label class="control-label" for="auction_health"><? echo($texts['auction_ferkel_health_optional']); ?></label>
         <div class="controls">
           <input type="text" id="auction_health" name="auction_health" placeholder="<? echo($texts['auction_ferkel_health_placeholder']); ?>" value="<? if($oldValues!=nil) echo($oldValues['auction_health']); ?>">
         </div>
@@ -251,6 +251,9 @@ $oldValues=nil;
 
 <h5><? echo($texts['hint']); ?></h5>
 <p><? echo($texts['auction_optional_hint']); ?></p>
+<p><table><tr valign="top"><td class="leftLabel"><strong><? echo($texts['twenty_five_hint']); ?></strong></td><td class="rightSide"><? echo($texts['twenty_five_value']); ?><br/><br/><?= $texts['twenty_five_additional_hint'] ?></td></tr></table></p>
+
+
 </div>
 
 
@@ -320,7 +323,7 @@ echo ' checked="checked" ';
       </div>
 
       <div class="control-group">
-        <label class="control-label" for="auction_additional_informations"><? echo($texts['auction_additional_informations']); ?></label>
+        <label class="control-label" for="auction_additional_informations"><? echo($texts['auction_ferkel_additional_informations']); ?></label>
         <div class="controls">
           <textarea id="auction_additional_informations" name="auction_additional_informations" rows="3"><? if($oldValues!=nil) echo($oldValues['auction_additional_informations']); ?></textarea>
         </div>
@@ -445,7 +448,7 @@ if($("#ferkel_auction #is_public").is(':checked')){
 
     }
 
-
+/*
  if($("#ferkel_auction #auction_genes").val()==''){
   
     $("#ferkel_auction #error_message").append('<? echo($texts['auction_genes_error']); ?><br/>');
@@ -460,7 +463,7 @@ if($("#ferkel_auction #is_public").is(':checked')){
 
     }
 
-
+*/
 
 
 

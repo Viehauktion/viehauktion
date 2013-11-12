@@ -36,7 +36,7 @@
 
 		</td></tr>
 		
-		<tr><td><strong><? echo($texts['auction_city']); ?>:</strong></td><td  id="city"><? echo($gBase->CurrentAuction["auction"]["city"]);?></td></tr>
+		<tr><td><strong><? echo($texts['auction_ferkel_city']); ?>:</strong></td><td  id="city"><? echo($gBase->CurrentAuction["auction"]["city"]);?></td></tr>
 		<tr><td class="leftSide"><strong><? echo($texts['auction_user_name']); ?>:</strong></td><td  id="user_name" ><? if($gBase->CurrentAuction["seller_name"]!=''){ echo($gBase->CurrentAuction["seller_name"]); }else{ echo($texts["seller_anonym"]);}?></td></tr>
 <tr><td class="leftSide"><strong><? echo($texts['auction_user_rating']); ?>:</strong></td><td  id="user_rating" >
 		<div class="emptyPigsRating"  ></div>
@@ -103,6 +103,10 @@ if($_REQUEST['is_auction']=="yes"){
 }
 ?>
   
+<h5><? echo($texts['hint']); ?></h5>
+
+<p><table><tr valign="top"><td class="leftLabel"><strong><? echo($texts['twenty_five_hint']); ?></strong></td><td class="rightSide"><? echo($texts['twenty_five_value']); ?><br/><br/><?= $texts['twenty_five_additional_hint'] ?></td></tr></table></p>
+
 
 
 </div>
@@ -120,7 +124,7 @@ if($_REQUEST['is_auction']=="yes"){
 <div id="time_box" > 
 	<div id="highestBid" class="well">
 	<table>
-		<tr><td ><strong><? if($_REQUEST['is_auction']=='yes'){echo($texts['auction_your_end_price']) ;}else{ echo($texts['offer_entitity_price']) ;}?>:</strong></td><td  id="curent_price"><? echo($gBase->CurrentAuction["auction"]["current_entity_price"].'€');?></td></tr>
+		<tr valign="top"><td ><strong><? if($_REQUEST['is_auction']=='yes'){echo($texts['auction_your_end_price']) ;}else{ echo($texts['offer_ferkel_min_entity_price']) ;}?>:</strong></td><td  id="curent_price"><? echo($gBase->CurrentAuction["auction"]["current_entity_price"].'€');?></td></tr>
 
 	</table>
 	<?

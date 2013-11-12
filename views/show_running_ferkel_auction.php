@@ -25,8 +25,8 @@ $nextDates=getNextAuctions(2);
 	<table class="table">
 		<tr><td  class="leftSide"><strong><? echo($texts["auction_id"]) ;?>:</strong></td><td id="auction_id" class="rightSide"><? echo($gBase->CurrentAuction["auction_id"]);?></td></tr>
 		<tr><td  class="leftSide"><strong><? echo($texts['auction_ferkel_min_entity_price']); ?>:</strong></td><td id="min_entity_price" class="rightSide" ><? echo($gBase->CurrentAuction["min_entity_price"]);?></td></tr>
-				<tr><td  class="leftSide"><strong><? echo($texts['auction_amount']); ?>:</strong></td><td id="amount_of_animals" class="rightSide"><? echo($gBase->CurrentAuction["amount_of_annimals"]);?></td></tr>
-		<tr><td class="leftSide"><strong><? echo($texts['auction_city']); ?>:</strong></td><td  id="city" class="rightSide"><? echo($gBase->CurrentAuction["city"]);?></td></tr>
+		<tr><td  class="leftSide"><strong><? echo($texts['auction_amount']); ?>:</strong></td><td id="amount_of_animals" class="rightSide"><? echo($gBase->CurrentAuction["amount_of_annimals"]);?></td></tr>
+		<tr><td class="leftSide"><strong><? echo($texts['auction_ferkel_city']); ?>:</strong></td><td  id="city" class="rightSide"><? echo($gBase->CurrentAuction["city"]);?></td></tr>
 		<tr><td class="leftSide"><strong><? echo($texts['auction_user_name']); ?>:</strong></td><td  id="user_name" class="rightSide"><? if($gBase->CurrentAuction["seller_name"]!=''){ echo($gBase->CurrentAuction["seller_name"]); }else{ echo($texts["seller_anonym"]);}?></td></tr>
 
 		<tr><td class="leftSide"><strong><? echo($texts['auction_user_rating']); ?>:</strong></td><td  id="user_rating" class="rightSide">
@@ -67,6 +67,12 @@ if($gBase->CurrentAuction["metadata"]["metadata"]["needs_original"]=="yes"){
 
 
 </div>
+
+  
+<h5><? echo($texts['hint']); ?></h5>
+
+<p><table><tr valign="top"><td class="leftLabel"><strong><? echo($texts['twenty_five_hint']); ?></strong></td><td class="rightSide"><? echo($texts['twenty_five_value']); ?><br/><br/><?= $texts['twenty_five_additional_hint'] ?></td></tr></table></p>
+
 
 
 </div>

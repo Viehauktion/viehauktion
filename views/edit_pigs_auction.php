@@ -138,7 +138,7 @@ if($gBase->User['is_seller']!="no"){
 
       <div class="control-group">
       
-        <label class="control-label" for="auction_min_entitity_price"><? echo($texts['offer_min_entitity_price_without_euro']); ?></label>
+        <label class="control-label" for="auction_min_entitity_price"><? echo($texts['auction_min_entitity_price']); ?></label>
         <div class="controls">
           <input type="text" id="auction_min_entitity_price" name="auction_min_entitity_price" placeholder="<? echo($texts['auction_min_entitity_price_placeholer']); ?>" value="<? if($oldValues!=nil) echo($oldValues['auction_min_entitity_price']); ?>" >
         </div>
@@ -275,7 +275,7 @@ function changePrice(price_system){
 
 
   <div class="control-group">
-        <label class="control-label" for="auction_genes"><? echo($texts['auction_genes']); ?></label>
+        <label class="control-label" for="auction_genes"><? echo($texts['auction_genes_optional']); ?></label>
         <div class="controls">
           <input type="text" id="auction_genes" name="auction_genes" placeholder="<? echo($texts['auction_genes_placholder']); ?>" value="<? if($oldValues!=nil) echo($oldValues['auction_genes']); ?>">
         </div>
@@ -341,7 +341,7 @@ echo (' selected="selected" ');
 
 <div id="classification_mask">
     <div class="control-group">
-      <label class="control-label" for="auction_pigs_classification_mask_value"><? echo($texts['auction_pigs_fom_entity']); ?></label>
+      <label class="control-label" for="auction_pigs_classification_mask_value"><? echo($texts['auction_pigs_fom_entity_optional']); ?></label>
         <div class="controls">
           <input type="text" id="auction_pigs_classification_mask_value" name="auction_pigs_classification_mask_value" placeholder="<? echo($texts['auction_pigs_fom_entity_placeholder']); ?>" value="<? if($oldValues!=nil) echo($oldValues['auction_pigs_classification_mask_value']); ?>">
         </div>
@@ -363,15 +363,15 @@ function  checkedClassificationMask(){
 html="";
    
 if($("#auction_classification_mask").val()=="FOM"){
-html='<div class="control-group"><label class="control-label" for="auction_pigs_classification_mask_value"><? echo($texts['auction_pigs_fom_entity']); ?></label><div class="controls"><input type="text" id="auction_pigs_classification_mask_value" name="auction_pigs_classification_mask_value" placeholder="<? echo($texts['auction_pigs_fom_entity_placeholder']); ?>" value="<? if($oldValues!=nil) echo($oldValues['auction_pigs_classification_mask_value']); ?>"></div></div>';
+html='<div class="control-group"><label class="control-label" for="auction_pigs_classification_mask_value"><? echo($texts['auction_pigs_fom_entity_optional']); ?></label><div class="controls"><input type="text" id="auction_pigs_classification_mask_value" name="auction_pigs_classification_mask_value" placeholder="<? echo($texts['auction_pigs_fom_entity_placeholder']); ?>" value="<? if($oldValues!=nil) echo($oldValues['auction_pigs_classification_mask_value']); ?>"></div></div>';
   
 }else if($("#auction_classification_mask").val()=="AUTOFOM"){
 
-html='<div class="control-group"> <label class="control-label" for="auction_pigs_classification_mask_value"><? echo($texts['auction_pigs_autofom_entity']); ?></label><div class="controls"><input type="text" id="auction_pigs_classification_mask_value" name="auction_pigs_classification_mask_value" placeholder="<? echo($texts['auction_pigs_autofom_entity_placeholder']); ?>" value="<? if($oldValues!=nil) echo($oldValues['auction_pigs_classification_mask_value']); ?>"></div></div>';
+html='<div class="control-group"> <label class="control-label" for="auction_pigs_classification_mask_value"><? echo($texts['auction_pigs_autofom_optional']); ?></label><div class="controls"><input type="text" id="auction_pigs_classification_mask_value" name="auction_pigs_classification_mask_value" placeholder="<? echo($texts['auction_pigs_autofom_entity_placeholder']); ?>" value="<? if($oldValues!=nil) echo($oldValues['auction_pigs_classification_mask_value']); ?>"></div></div>';
 
 }else{
 
-html='<div class="control-group"> <label class="control-label" for="auction_pigs_classification_mask_value"><? echo($texts['auction_pigs_autofom_entity']); ?></label><div class="controls"><input type="text" id="auction_pigs_classification_mask_value" name="auction_pigs_classification_mask_value" placeholder="<? echo($texts['auction_pigs_autofom_entity_placeholder']); ?>" value="<? if($oldValues!=nil) echo($oldValues['auction_pigs_classification_mask_value']); ?>"></div></div>';
+html='<div class="control-group"> <label class="control-label" for="auction_pigs_classification_mask_value"><? echo($texts['auction_pigs_autofom_optional']); ?></label><div class="controls"><input type="text" id="auction_pigs_classification_mask_value" name="auction_pigs_classification_mask_value" placeholder="<? echo($texts['auction_pigs_autofom_entity_placeholder']); ?>" value="<? if($oldValues!=nil) echo($oldValues['auction_pigs_classification_mask_value']); ?>"></div></div>';
 
 
 }
@@ -854,7 +854,7 @@ if($("#pigs_auction #needs_original").is(':checked')){
 		}
 		
 		
-    if($("#pigs_auction #auction_pigs_classification_mask_value").val()==''){
+  /*  if($("#pigs_auction #auction_pigs_classification_mask_value").val()==''){
 	
   if($("#pigs_auction #auction_classification_mask").val()=="FOM"){
 		$("#pigs_auction #error_message").append('<? echo($texts['auction_pigs_fom_value_error']); ?><br/>');
@@ -867,7 +867,7 @@ if($("#pigs_auction #needs_original").is(':checked')){
 
 
 
-		}
+		}*/
 		
 		
 

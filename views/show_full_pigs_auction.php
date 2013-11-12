@@ -17,7 +17,10 @@
 		<tr><td><strong><? if($_REQUEST['is_auction']=='yes'){echo($texts["auction_id"]) ;}else{ echo($texts["offer_id"]) ;}?>:</strong></td><td id="auction_id"><? echo($gBase->CurrentAuction["auction"]["id"]);?></td></tr>
 		<tr><td><strong><? echo($texts['auction_amount']); ?>:</strong></td><td id="amount_of_animals"><? echo($gBase->CurrentAuction["metadata"]["amount_of_animals"]);?></td></tr>
 
-		<tr><td  class="leftSide"><strong><? if($_REQUEST['is_auction']=='yes'){ echo($texts['auction_min_entitity_price']); }else{ echo($texts['offer_min_entitity_price']); } ?>:</strong></td><td id="min_entity_price" ><? echo($gBase->CurrentAuction["auction"]["min_entity_price"]);?> €
+		<tr><td  class="leftSide"><strong><? 
+
+
+		if($_REQUEST['is_auction']=='yes'){ echo($texts['auction_min_entitity_price']); }else{ echo($texts['offer_min_entitity_price']); } ?>:</strong></td><td id="min_entity_price" ><? echo($gBase->CurrentAuction["auction"]["min_entity_price"]);?> €
 
 
 <?
@@ -196,7 +199,7 @@ if($_REQUEST['is_auction']=="yes"){
 <div id="time_box" > 
 	<div id="highestBid" class="well">
 	<table>
-		<tr><td ><strong><? if($_REQUEST['is_auction']=='yes'){echo($texts['auction_your_end_price']) ;}else{ echo($texts['offer_entitity_price']) ;}?>:</strong></td><td  id="curent_price"><? echo($gBase->CurrentAuction["auction"]["current_entity_price"].'€');?></td></tr>
+		<tr><td ><strong><? if($_REQUEST['is_auction']=='yes'){ if(($gBase->CurrentAuction["auction"]["status"]=='pending') || ($gBase->CurrentAuction["auction"]["status"]=='scheduled') || ($gBase->CurrentAuction["auction"]["status"]=='preview')){ echo($texts['auction_your_pending_price']); }else{echo($texts['auction_min_entitity_price']);} }else{ echo($texts['offer_entitity_price']) ;}?>:</strong></td><td  id="curent_price"><? echo($gBase->CurrentAuction["auction"]["current_entity_price"].'€');?></td></tr>
 
 	</table>
 	<?

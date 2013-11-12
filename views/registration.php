@@ -191,7 +191,7 @@ $('#filePreview').val($(this).val());
 
 <?
 
-if($_REQUEST['error']='user_already_registered'){
+if($_REQUEST['error']=='user_already_registered'){
 ?>
 
 $("#error_message").append('<? echo($texts['registration_error_email_already_registered']); ?><br/>');

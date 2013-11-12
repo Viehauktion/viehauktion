@@ -1225,7 +1225,7 @@ $lSQLQuery ="";
 					$nextEndTime=date("Y-m-d H:i:s", strtotime("+2 minutes 30 seconds"));
 
 
-					$lSQLQuery2 = "UPDATE  `auctions` SET  `status` =  'running',`end_time` = '".$nextEndTime."',`start_time` =  '".$nextStartTime."' WHERE  `start_time` < '".date('Y-m-d H:i:s', strtotime("+30 seconds"))."' AND `county_id`='".$county_id."' AND `category_id`='".$category_id."' AND `status`='scheduled' AND `status`!='running' LIMIT 1;";
+					$lSQLQuery2 = "UPDATE  `auctions` SET  `status` =  'running',`end_time` = '".$nextEndTime."',`start_time` =  '".$nextStartTime."' WHERE  `start_time` < '".date('Y-m-d H:i:s', strtotime("+30 seconds"))."' AND `county_id`='".$county_id."' AND `category_id`='".$category_id."' AND `status`='scheduled' LIMIT 1;";
 
 
 					$lResult2 = $this->mysql_query_ex($lSQLQuery2);
@@ -1316,7 +1316,7 @@ function resetExampleAuctions(){
 						if ($lResult) {
 						
 							$lArrayTwo=mysql_fetch_assoc($lResult);
-							if($lArrayTwo['COUNT(*)']>1){
+							if($lArrayTwo['COUNT(*)']>2){
 									$flag=true;
 							}
 
@@ -1324,7 +1324,7 @@ function resetExampleAuctions(){
 
 						if($flag){
 
-							$lSQLQuery = "UPDATE  `auctions` SET  `status` =  'scheduled',`end_time` = '0000-00-00 00:00:00',`start_time` =  '".date("Y-m-d H:i:s", strtotime("-1 Minute"))."', `buyer_id`='0', `mail_status`='', `bids`='0', `current_entity_price`='1.75' WHERE  `state_id` = '0' AND `county_id`='0' AND `status`='running' ORDER BY 'end_time' ASC  LIMIT 1;";
+							$lSQLQuery = "UPDATE  `auctions` SET  `status` =  'scheduled',`end_time` = '0000-00-00 00:00:00',`start_time` =  '".date("Y-m-d H:i:s", strtotime("-1 Minute"))."', `buyer_id`='0', `mail_status`='', `bids`='0', `current_entity_price`='1.75' WHERE  `state_id` = '0' AND `county_id`='0' AND `status`='running' ORDER BY  `auctions`.`end_time` ASC  LIMIT 1;";
 				
 						}else{
 

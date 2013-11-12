@@ -33,12 +33,12 @@ $texts["teaser_team"]="Die Gründer";
 $texts["teaser_example"]="Zur Beispielauktion";
 
 $texts["home_headline"]="Endlich ist es soweit";
-$texts["home_text"]="Wir freuen uns, Sie auf viehauktion.com begrüßen zu dürfen. Nach monatiger Arbeit steht die Plattform endlich online. 
+$texts["home_text"]="Wir freuen uns, Sie auf viehauktion.com begrüßen zu dürfen.<br/><br/>Nach monatiger Arbeit steht die Plattform endlich online. 
 <br/>Auf Viehauktion.com werden Schweine im Auktions- und Festpreisverfahren gehandelt, wodurch wir einen frei zugänglichen Überblick über Marktlage und Marktpreise schaffen möchten. 
-<br/>Die Plattform bietet Betreibern von Mastbetrieben die Möglichkeit, ihre Tiere mehreren Viehhändlern gleichzeitig anzubieten und zu einem optimalen Preis zu verkaufen. Viehhändler können weitere Anbieter von Nutztieren als Marktpartner hinzugewinnen, Transportwege und Transportauslastung besser planen, sowie etwaige Prozess-Vorteile am Markt auszuspielen.
-<br/><br/>Ab sofort können Sie sich registrieren und bereits Festpreisangebote einstellen sowie auch kaufen. Unsere erste Auktion findet dann am 28.11.2013 pünktlich um 14:00 Uhr statt. 
-<br/><br/>Bis dahin hoffen wir, dass Sie sich einen Überlick über die Internetseite mit Ihren Funktionen gemacht haben und Lust haben, an den Auktonen teilzunehmen, sei es als Verkäufer oder Käufer.
-<br/><br/>Bitte haben Sie Verständnis, dass Sie nicht direkt kaufen können. Wir prüfen alle Erzeuger und Händler auf amtliche Registriernummern, Warenkreditversicherungen etc. bevor sie freigeschaltet werden, um Ihnen gegenseitig ein Höchstmaß an Sicherheit zu gewähren.
+<br/>Die Plattform bietet Anbietern von Schweinen die Möglichkeit, ihre Tiere mehreren Viehhändlern gleichzeitig anzubieten und zu einem optimalen Preis zu verkaufen. Viehhändler können weitere Anbieter von Nutztieren als Marktpartner hinzugewinnen, Transportwege und Transportauslastung besser planen, sowie etwaige Prozess-Vorteile am Markt auszuspielen.
+<br/><br/>Ab sofort können Sie sich registrieren und bereits Festpreisangebote einstellen sowie auch kaufen. Unsere erste Auktion findet dann pünktlich am 28.11.2013 um 14:00 Uhr statt. 
+<br/><br/>Bis dahin hoffen wir, dass Sie sich einen Überlick über die Internetseite mit Ihren Funktionen gemacht haben und Lust haben, an den Auktonen teilzunehmen - sei es als Verkäufer oder Käufer.
+<br/><br/>Bitte haben Sie Verständnis, dass Sie nicht direkt kaufen können. Wir prüfen alle Erzeuger und Händler auf amtliche Registriernummern, Warenkreditversicherungen etc., bevor sie freigeschaltet werden. Wir sorgen somit für ein Höchstmaß an Sicherheit!
 <br/><br/>
 <br/>Auf eine gute Zusammenarbeit
 <br/>
@@ -127,7 +127,7 @@ $texts['registration_business']="Handelsdaten";
 $texts['registration_insurance']="Wenn Sie sich als Händler registrieren möchten, brauchen wir einen Nachweis über eine Warenkreditversicherung. Bitte laden Sie einen Beleg in digitaler Form (PDF, JPG) hoch.";
 $texts['registration_browse']="Datei auswählen";
 $texts['registration_hrb_label']="Handelsregister Nr.";
-$texts['registration_hrb']="zB. HRB 12337";
+$texts['registration_hrb']="zB. HRB 123375";
 $texts['registration_insurance_label']="Versicherungsbeleg";
 $texts['registration_retail_label']="Amtliche Registriernummer";
 $texts['registration_retail']="zwölfstellige Nr";
@@ -135,7 +135,7 @@ $texts['registration_seller_mandatory']="Da Sie sich als Erzeuger anmelden möch
 $texts['registration_stall_label']="Amtliche Betriebsnummer";
 $texts['registration_stall']="zwölfstellige Nr";
 $texts['registration_vat_label']="Steuernummer";
-$texts['registration_vat']="z.B. 46/3453/4523";
+$texts['registration_vat']="z.B. 46/343/07574";
 
 
 $texts['registration_agb']='Ich akzeptiere die <a href="?view=agb" target="_blank" >Allgemeinen Geschäftsbedingungen</a> - Hier zum Herunterladen als <a href="assets/agb.pdf" target="_blank" >PDF-Version</a>';
@@ -252,7 +252,7 @@ $texts['auction_details']="Details aufrufen";
 $texts['auction']="Auktion";
 $texts['offer']="Festpreisangebot";
 
-$texts['is_own_price']="Eingenen Preis festlegen";
+$texts['is_own_price']="Eigenen Preis festlegen";
 $texts['is_vezg_price']="Abhängig vom VEZG-Preis anbieten.";
 $texts['vezg_date']="VEZG Preis vom";
 $texts['vezg_price_placeholer']="z.B. +0.04";
@@ -267,8 +267,8 @@ $texts['edit_auction_not_logged_in_headline']="Sie sind nicht angemeldet.";
 $texts['edit_auction_not_logged_in_description']="Sie können hier sehen, welche Informationen zum Einstellen einer Auktion benötigt werden.<br/><strong>Damit Sie eine Auktion einzustellen können, müssen Sie sich zunächst registrieren.</strong>";
 $texts['edit_offer_not_logged_in_description']="Sie können hier sehen, welche Informationen zum Einstellen eines Festpreisangebotes benötigt werden.<br/><strong>Damit Sie eine Angeot einzustellen können, müssen Sie sich zunächst registrieren.</strong>";
 
-$texts['edit_auction_overview_description']="Bitte schauen Sie sich ihre Daten nocheinmal an und drücken Sie 'speichern', wenn sie die Auktion einstellen möchten.<br/>Mit 'Zurück' gelangen Sie, falls notwendig, wieder in die Eingabemaske und können ihre Daten korrigieren.";
-$texts['edit_offer_overview_description']="Bitte schauen Sie sich ihre Daten nocheinmal an und drücken Sie 'speichern', wenn sie das Festpreisangebot einstellen möchten.<br/>Mit 'Zurück' gelangen Sie, falls notwendig, wieder in die Eingabemaske und können ihre Daten korrigieren.";
+$texts['edit_auction_overview_description']="Bitte schauen Sie sich ihre Daten noch einmal an und drücken Sie 'Speichern', wenn sie die Auktion einstellen möchten.<br/>Mit 'Zurück' gelangen Sie - falls notwendig - wieder in die Eingabemaske und können ihre Daten korrigieren.";
+$texts['edit_offer_overview_description']="Bitte schauen Sie sich ihre Daten noch einmal an und drücken Sie 'Speichern', wenn sie das Festpreisangebot einstellen möchten.<br/>Mit 'Zurück' gelangen Sie - falls notwendig - wieder in die Eingabemaske und können ihre Daten korrigieren.";
 
 $texts['profile_delete_auction']="Löschen";
 $texts['profile_delete_auction_question']="Sind Sie sicher das Sie die Auktion löschen möchten?";
@@ -306,14 +306,14 @@ $texts['edit_auction_headline']="Auktion bearbeiten";
 
 $texts['add_offer_headline']="Festpreisangebot einstellen";
 $texts['add_offer_description']="Sie können hier Ihr Vieh zum Festpreis anbieten. <br/>Wir stellen Ihnen nur eine Provision in Rechnung, wenn Ihre Tiere rechtsverbindlich einen Käufer gefunden haben.";
-$texts['edit_offer_headline']="Kaufangebot bearbeiten";
+$texts['edit_offer_headline']="Festpreisangebot bearbeiten";
 $texts['next_offers']="Aktuelle Angebote";
 $texts['offer_creation_date']="Einstellungsdatum";
 $texts["offer_id"]="Angebotsnummer";
-$texts['offer_entitity_price']="Angebotspreis (in €)";
+$texts['offer_entitity_price']="Angebotspreis - Basis <br/> (in € pro Kg Schlachgewicht)";
 $texts['offer_buy_submit']="Das Angebot jetzt verbindlich kaufen.";
 $texts['buy_offer_description']="Sie können dieses Angebot direkt kaufen.";
-$texts['buy_offer_question']="Sie verplichten sich zu Kauf der angebotenen Tiere. Ein Stornierung kann jedoch immer noch beidseitig binnen 2 Stunden erfolgen. Der Stornierende hat dabei eine Gebühr von 40€ zu entrichten.";
+$texts['buy_offer_question']="Sie verplichten sich zum Kauf der angebotenen Tiere. Ein Stornierung kann jedoch immer noch beidseitig binnen 2 Stunden erfolgen. Der Stornierende hat dabei eine Gebühr von 40€ zu entrichten.";
 
 $texts['seller']="Verkäufer";
 
@@ -348,15 +348,16 @@ $texts['auction_amount_placeholder']="z.B. 178";
 
 $texts['auction_min_entitity_price_without_euro']="Mindestgebot";
 $texts['offer_min_entitity_price_without_euro']="Kaufpreis";
-$texts['auction_min_entitity_price']="Mindestgebot <br/>(in € pro Kg Schlachgewicht)";
-$texts['offer_min_entitity_price']="Kaufpreis <br/>(in € pro Kg Schlachgewicht)";
+$texts['auction_min_entitity_price']="Mindestgebot - Basis<br/>(in € pro Kg Schlachgewicht)";
+$texts['offer_min_entitity_price']="Festpreis - Bases <br/>(in € pro Kg Schlachgewicht)";
 $texts['auction_min_entitity_price_placeholer']="z.B. 1.85";
 
 
 $texts['auction_origin']="Herkunft als Ferkel";
 $texts['auction_origin_placeholder']="z.B. Dänemark";
 
-$texts['auction_city']="Ort";
+$texts['auction_city']="Ort des Stalls";
+$texts['auction_ferkel_city']="Anbieter Standort";
 $texts['auction_current_price']="Aktuell höchstes Gebot";
 $texts['auction_highest_price']="Höchstgebot";
 $texts['auction_current_time']="Aktuelle Zeit";
@@ -364,6 +365,7 @@ $texts['auction_your_bid']="Ihr Gebot";
 $texts['auction_your_bid_placeholder_1']="z.B.";
 $texts['auction_your_bid_placeholder_2']="€";
 $texts['auction_your_end_price']="Kaufpreis";
+$texts['auction_your_pending_price']="Aktuelles Gebot";
 $texts['auction_end_time']="Auktionsende";
 $texts['auction_start_time']="Auktionsbeginn";
 $texts['auction_is_waiting']="Diese nächste Auktion startet in wenigen Sekunden.";
@@ -380,23 +382,31 @@ $texts['auction_pigs_classification']="Klassifizierungsart";
 $texts['auction_classification_mask']="Abrechnungsmaske";
 $texts['auction_pigs_fom']="FOM";
 $texts['auction_pigs_fom_entity']="Muskelfettanteil(%) ca.";
+$texts['auction_pigs_fom_entity_optional']="Muskelfettanteil (%) ca.*";
 $texts['auction_pigs_fom_entity_placeholder']="z.B. 57";
 
-$texts['auction_pigs_autofom']="Auto FOM";
-$texts['auction_pigs_autofom_entity']="IXP/kg  ca.";
-$texts['auction_pigs_autofom_entity_placeholder']="z.B. 67";
+$texts['auction_pigs_autofom']="Auto FOM1";
+$texts['auction_pigs_autofom_entity']="Indexpunkte (IXP) je Kg Schlachgewicht ca.";
+$texts['auction_pigs_autofom_optional']="Indexpunkte (IXP) je Kg Schlachgewicht ca.*";
+$texts['auction_pigs_autofom_entity_placeholder']="z.B. 0.98";
 
-$texts['auction_pigs_autofom_3']="Auto FOM 3";
+$texts['auction_pigs_autofom_3']="Auto FOM3";
 
-$texts['auction_ferkel_min_entity_price']="Mindestgebot<br/>(pro 25 kg Ferkel*)";
-$texts['offer_ferkel_min_entity_price']="Kaufpreis<br/>(pro 25 kg Ferkel*)";
-$texts['auction_ferkel_origin']="Herkunft";
+$texts['auction_ferkel_min_entity_price']="Mindestgebot - 25 kg Basis in €**";
+$texts['offer_ferkel_min_entity_price']="Kaufpreis - 25 kg Basis in €**";
+$texts['twenty_five_hint']="** Aufpreisregelung";
+$texts['twenty_five_value']=" 20 - 30Kg: 1.02 € je Kg<br/> > 30 Kg: 0.51€ je Kg";
+$texts['twenty_five_additional_hint']="Pro Ferkel wird zusätzlich ein zu bezahlender Gewichtsaufschlag von 1 Kg veranschlagt. (unvermeidbarer Transportverlust).";
+
+$texts['auction_ferkel_origin']="Ferkel-Herkunft";
 $texts['auction_ferkel_status']="Status";
-$texts['auction_ferkel_status_placeholder']="SPS-WErt";
+$texts['auction_ferkel_status_optional']="Status*";
+$texts['auction_ferkel_status_placeholder']="z.B. SPF";
 $texts['auction_ferkel_health']="Impfungen";
-$texts['auction_ferkel_health_placeholder']="z.B. ";
-$texts['auction_ferkel_stalls']="Anzahl unterschiedlicher Herkunftsbetriebe";
-$texts['auction_ferkel_stalls_placholder']="z.B. 1";
+$texts['auction_ferkel_health_optional']="Impfungen*";
+$texts['auction_ferkel_health_placeholder']="z.B. Mykoplasmen";
+$texts['auction_ferkel_stalls']="Anzahl Herkunftsbetriebe";
+$texts['auction_ferkel_stalls_placeholder']="z.B. 1";
 $texts['edit_auction_ferkel_transportation_data_headline']="Anlieferung";
 
 
@@ -422,7 +432,8 @@ $texts['auction_add_address']="Andere Stalladresse anlegen";
 $texts['auction_preview']="Weiter";
 $texts['auction_submit']="Speichern";
 
-$texts['auction_additional_informations']="Weitere Informationen für die Bieter<br/>(z.B. Zeitangabe für Ablieferung, etc.)";
+$texts['auction_additional_informations']="Weitere Informationen für die Bieter<br/>(z.B. Zeitangabe für Ablieferung, Zahlungsziel, etc.)";
+$texts['auction_ferkel_additional_informations']="Weitere Informationen für die Bieter<br/>(z.B. Zeitangabe für Ablieferung, Zahlungsziel, Skonto etc.)";
 $texts['auction_additional_informations_hint']="Hier können Sie Angaben zum gewünschten Ablieferungszeitpunkt oder andere Besonderheiten angeben.";
 
 $texts['auction_loading_stations_amount']="Anzahl an Verladestellen";
@@ -457,19 +468,21 @@ $texts['auction_pigs_autofom_value_error']="Bitte geben Sie ein erwartbaren XPI 
 $texts['auction_loading_stations_distance_error']="Bitte geben Sie die summierte Entfernung zwischen Verladestationen an.";
 $texts['auction_loading_stations_availability_error']="Bitte geben Sei einen korrekten Verladezeitraum ein.";
 
-$texts['auction_pigs_offer_openly']="Dieses Angebot soll unter Nennung meines vollen Namens eingestellt werden.";
-$texts['auction_needs_original']="Ich fordere eine original Schlachtabrechnung";
+$texts['auction_pigs_offer_openly']="Dieses Angebot soll unter Nennung meines vollständigen Namens eingestellt werden.";
+$texts['auction_needs_original']="Ich fordere ein Original-Wiegeprotokoll";
 $texts['auction_genes']="Genetik";
+$texts['auction_genes_optional']="Genetik*";
+
 $texts['auction_genes_placholder']="z.B. Landrasse x Duroc";
 
-$texts['auction_original_needed']="Der Käufer verplichtet sich, dem Verkäufer später eine original Schlachtabrechnung zu liefern.";
+$texts['auction_original_needed']="Der Käufer verplichtet sich, dem Verkäufer später ein Original-Wiegeprotokoll zu liefern.";
 
 $text['edit_auction_not_allowed']="Ups hier ist etwas schief gelaufen. Ist nicht Ihre Auktion.";
 
-$texts['auction_optional_hint']="* - Diese Angaben sind freiwillig. Sie erhöht jedoch ihre Absatzchancen, da Ihr Angebot besser eingeschätzt werden kann.";
+$texts['auction_optional_hint']="* - Diese Angaben sind freiwillig. Sie erhöhen aber ihre Absatzchancen, da Ihr Angebot besser eingeschätzt werden kann.";
 
 
-$texts['select_running_headline']="Suchen Sie Ihre Region";
+$texts['select_running_headline']="Suchen Sie in Ihrer Region";
 $texts['select_running_no_auctions']="Leider haben wir momentan in diesem Bundesland keine Angebote.";
 $texts['select_running_no_auctions_at_all']="Momentan habe wir leider keine anstehenden Auktionen für Sie.";
 $texts['select_running_no_offers_at_all']="Momentan habe wir leider keine anstehenden Festpreisangebote für Sie.";
@@ -523,26 +536,29 @@ $texts["faq_headline"]="Häufige Fragen";
 
 $texts["faq_question_1"]="Was kostet eine Auktion auf viehauktion.com?";
 $texts["faq_answer_1"]="Wir erheben bei einer <strong>erfolgreichen</strong> Auktion eine Provisionsgebühr pro Tier von 0,40 € (exklusive 19% Mehrwertsteuer).<br/>
+Abgerechnet wird entlang der vom Verkäufer ausgewählten Maske. Wir bieten drei Masken zur Auswahl (FOM, Auto FOM!, Auto FOM3) <br/>
 Der Käufer ist berechtigt Ihnen Vorkosten in Höhe von 4€ pro Tier in der Anrechnung in Rechnung zu stellen.<br/>
 Damit Sie unseren Service testen können, ist Ihre erste Auktion provisionsfrei.";
 
 $texts["faq_question_2"]="Trage ich ein finanzielles Risiko?";
-$texts["faq_answer_2"]="Nein. Sie können einen Mindestpreis pro Kilo festlegen, das als Startgebot bei der Auktion gesetzt wird.<br/>
+$texts["faq_answer_2"]="Nein. Sie können einen Mindestpreis für Ihre Tiere festlegen, das als Startgebot bei der Auktion gesetzt wird.<br/>
 Findet sich kein Käufer, der Ihre Tiere für Ihren Preis abnehmen möchte, haben Sie <strong>keine</strong> Provision zu zahlen.<br/>
 Sie können Ihr Tiere dann weiterhin auf traditionellem Wege verkaufen oder es über ein Festpreisangebot auf unserem Marktplatz versuchen.";
 
 $texts["faq_question_3"]="Kann ich meine Tiere anonym listen?";
-$texts["faq_answer_3"]="Ja. Standartmäßig wird bei den Auktionen nur der Ort des Stalles genannt, sowie die notwendigen Angaben zu den Tieren.<br/> 
-Ihr Name, Ihre Anschrift, E-Mailadresse und Telefonummer wird nur dem Käufer nach erfolgreicher Auktion übermittelt.<br/>
+$texts["faq_answer_3"]="Ja. Standardmäßig wird bei den Auktionen nur der Ort des Stalles genannt, sowie die notwendigen Angaben zu den Tieren.<br/> 
+Ihr Name, Ihre Anschrift, E-Mailadresse und Telefonummer werden nur dem Käufer nach erfolgreicher Auktion übermittelt.<br/>
 Im Gegenzug bekommen Sie die Daten des Käufers, um sich mit Ihm über die Lieferung zu verständigen.";
 
 $texts["faq_question_4"]="Was, wenn der Käufer nicht zahlt?";
-$texts["faq_answer_4"]="Wir lassen uns vor der Freischaltung eines Käuferkontos ein Nachweis über eine gültige Warenausfallersicherung zusenden.<br />
+$texts["faq_answer_4"]="Wir lassen uns vor der Freischaltung eines Käuferkontos einen Nachweis über eine gültige Warenkreditversicherung zusenden.<br />
 Diesen können Sie nach erfolgreicher Auktion als digitale Kopie einsehen.<br />
 Sollte es dennoch zu einem Problem kommen, stehen wir Ihnen gerne zu Seite und stellen Ihnen die technische Dokumentation (elektronisches Protokoll) über den Kaufvorgang bereit.";
 
 $texts["faq_question_5"]="Was passiert nach einer erfolgreichen Auktion?";
-$texts["faq_answer_5"]="Sie bekommen direkt nach einer erfolgreichen Auktion oder dem Verkauf eines Festpreisangebotes eine E-Mail. Diese beinhaltet alle Daten über den Käufer, sowie den erzielten Kaufpreis.
+$texts["faq_answer_5"]="Sie bekommen direkt nach einer erfolgreichen Auktion oder dem Verkauf eines Festpreisangebots eine E-Mail. Diese beinhaltet alle Daten über den Käufer, sowie den erzielten Kaufpreis.
+Danach wird beiden Parteien über eine Dauer von 2 Stunden die Möglichkeit gegeben, den Kauf noch zu stornieren. Nach Ablauf dieser 2 Stunden kommt ein rechtwirksamer Kaufvertrag zustande.
+Hierüber werden Sie ebenfalls direkt per E-Mail informiert.<br/>
 Sie selbst können natürlich Ihre Auktion auch im Browser live mit ansehen und schauen, wie sich der Preis entwickelt.";
 
 $texts["faq_question_6"]="Ich habe weitere Fragen, an wen kann ich mich wenden?";
@@ -552,11 +568,11 @@ $texts["faq_answer_6"]='Scheuen Sie sich nicht, uns zu kontaktieren. Nutzen Sie 
 $texts["team_headline"]="Die Gründer";
 $texts["team_subheadline"]="Die Gründer/Philosophie";
 $texts["team_image_description"]="Simon und Felix Meyborg - Die Gründer von Viehauktion.com";
-$texts["team_text"]="Viehauktion.com ist ein Projekt der Brüder Felix und Simon Meyborg aus Lindern bei Oldenburg. Felix studierte Landwirtschaft an der Fachhochschule Osnabrück. Im Jahre 2010 übernahm er den elterlichen Hof und führt ihn seither erfolgreich. Als Betreiber eines Schweinemastbetriebes hat er selbst schwierige Marktphasen erlebt und stets nach Wegen gesucht, sowohl die Verhandlungsposition der Bauern zu stärken , als auch mehr Markttransparenz zu schaffen. Zusammen mit seinem Bruder Simon, der sich als Diplom- Informatiker für die Programmierung verantwortlich zeichnet, ist aus diesen Bemühen viehauktion.com entstanden.
+$texts["team_text"]="Viehauktion.com ist ein Projekt der Brüder Felix und Simon Meyborg aus Lindern bei Oldenburg. Felix studierte Landwirtschaft an der Fachhochschule Osnabrück. Im Jahre 2010 übernahm er den elterlichen Hof und führt ihn seither erfolgreich. Als Betreiber eines Schweinemastbetriebs hat er selbst schwierige Marktphasen erlebt und stets nach Wegen gesucht, sowohl die Verhandlungsposition der Bauern zu stärken , als auch mehr Markttransparenz zu schaffen. Zusammen mit seinem Bruder Simon, der sich als Diplom- Informatiker für die Programmierung verantwortlich zeichnet, ist aus diesen Bemühen viehauktion.com entstanden.
 <br/><br/>
-Viehauktion.com schafft einen frei zugänglichen Überblick über Marktlage und Marktpreis. Es bietet Betreibern von Mastbetrieben die Möglichkeit, ihre Tiere mehreren Viehhändlern gleichzeitig anzubieten und zu einem optimalen Preis zu verkaufen. Viehhändler können weitere Anbieter von Nutztieren als Marktpartner hinzugewinnen, Transportwege und Transportauslastung besser planen, sowie etwaige Prozess-Vorteile am Markt auszuspielen.
+Viehauktion.com schafft einen frei zugänglichen Überblick über Marktlage und Marktpreis. Es bietet Anbietern von Schweinen die Möglichkeit, ihre Tiere mehreren Viehhändlern gleichzeitig anzubieten und zu einem optimalen Preis zu verkaufen. Viehhändler können weitere Anbieter von Nutztieren als Marktpartner hinzugewinnen, Transportwege und Transportauslastung besser planen, sowie etwaige Prozess-Vorteile am Markt auszuspielen.
 <br/><br/>
-Viehauktion.com tritt dabei lediglich als Vermittler zwischen den Geschäftsparteien auf. Die Plattform selbst kann keine Tiere erwerben oder anbieten. Stattdesssen erhebt sie für die Nutzung der ersteren eine Provisionsgebühr pro rechtswirksam verkauftem Tier. Diese zahlt der Einsteller der Annonce.
+Viehauktion tritt dabei lediglich als Vermittler zwischen den Geschäftsparteien auf. Die Plattform selbst kann keine Tiere erwerben oder anbieten. Stattdesssen erhebt sie für die Nutzung der ersteren eine Provisionsgebühr pro rechtswirksam verkauftem Tier. Diese zahlt der Einsteller der Annonce.
 ";
 
 $texts['example_auction']="Beispielauktion";

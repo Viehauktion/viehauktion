@@ -859,13 +859,15 @@ function getRunningAuction($county_id, $state_id, $auction_id, $category_id){
 
 
 													}
+
 										}
 										
 
-			}
+			}else{
 
+		
 		getCurrentAuctionFromDB($county_id, $state_id, $category_id);
-
+	}
 			
 		
 }
