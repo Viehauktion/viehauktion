@@ -1307,7 +1307,7 @@ function resetExampleAuctions(){
 
 			
 
-			$lSQLQuery = "SELECT  COUNT(*) FROM  `auctions`  WHERE  `state_id` = '0' AND `county_id`='0' AND `status`='running';";
+			$lSQLQuery = "SELECT  COUNT(*) FROM  `auctions`  WHERE  `state_id` = '0' AND `county_id`='0' AND `status`='running' and `is_auction`='yes';";
 			$flag=false;
 
 
@@ -1324,11 +1324,11 @@ function resetExampleAuctions(){
 
 						if($flag){
 
-							$lSQLQuery = "UPDATE  `auctions` SET  `status` =  'scheduled',`end_time` = '0000-00-00 00:00:00',`start_time` =  '".date("Y-m-d H:i:s", strtotime("-1 Minute"))."', `buyer_id`='0', `mail_status`='', `bids`='0' WHERE  `state_id` = '0' AND `county_id`='0' AND `status`='running' ORDER BY 'end_time' ASC  LIMIT 1;";
+							$lSQLQuery = "UPDATE  `auctions` SET  `status` =  'scheduled',`end_time` = '0000-00-00 00:00:00',`start_time` =  '".date("Y-m-d H:i:s", strtotime("-1 Minute"))."', `buyer_id`='0', `mail_status`='', `bids`='0', `current_entity_price`='1.75' WHERE  `state_id` = '0' AND `county_id`='0' AND `status`='running' ORDER BY 'end_time' ASC  LIMIT 1;";
 				
 						}else{
 
-							$lSQLQuery = "UPDATE  `auctions` SET  `status` =  'scheduled',`end_time` = '0000-00-00 00:00:00',`start_time` =  '".date("Y-m-d H:i:s", strtotime("-1 Minute"))."', `buyer_id`='0', `mail_status`='', `bids`='0' WHERE  `state_id` = '0' AND `county_id`='0' AND (`status`='ended' OR `status`='confirmed')   LIMIT 1;";
+							$lSQLQuery = "UPDATE  `auctions` SET  `status` =  'scheduled',`end_time` = '0000-00-00 00:00:00',`start_time` =  '".date("Y-m-d H:i:s", strtotime("-1 Minute"))."', `buyer_id`='0', `mail_status`='', `bids`='0', `current_entity_price`='1.75' WHERE  `state_id` = '0' AND `county_id`='0' AND (`status`='ended' OR `status`='confirmed')   LIMIT 1;";
 						}
 
 					$lResult = $this->mysql_query_ex($lSQLQuery);
@@ -1563,6 +1563,37 @@ function updateInviteCode($codeArray) {
 				
 	
 	}
+
+
+
+		 function getInvoicesByStatusAndDate($status, $date){
+	
+			
+			$lSQLQuery = "SELECT * FROM `invoices` WHERE `status` =  '".mysql_real_escape_string($status)."' AND `date`<'".$date."';";
+	
+	
+	
+					$list= array();
+						$j=0;
+						$lResult = $this->mysql_query_ex($lSQLQuery);
+						
+						if ($lResult) {
+							while($lRow = mysql_fetch_assoc($lResult)){
+							$list[$j]=$lRow;
+							
+							$j++;
+							}
+						}
+
+
+				
+				return $list;
+
+			
+				
+	
+	}
+
 
 
 	function getInvoicesByRecipientId($recipient_id, $start, $number_of_elements){
@@ -2061,7 +2092,95 @@ function updateRating($ratingArray) {
 			
 			return false;
 		}
+
+
+
+			/*------------------------------
+		//
+		//	USER    DB
+		//
+		--------------------------------*/
 		
+
+       function addUserMetadata($metadataArray) {
+		
+		
+				$lSQLQuery = "INSERT INTO `user_metadata` ( `" . implode('`, `', array_keys($metadataArray)) . "`) VALUES ('" . implode("' ,'", $metadataArray) . "');";
+			
+				$lResult = $this->mysql_query_ex($lSQLQuery);
+				if ($lResult) {
+					
+						
+							return true;
+							
+					
+					}
+			
+			return false;
+		}
+		
+	function updateUserMetadata($metadataArray){
+		
+			$lSQLQuery = "UPDATE `user_metadata` SET ";
+			
+			
+			for($i=0; $i<count($metadataArray); $i++){
+				
+									if($value = current($metadataArray)){
+					
+									if(key($metadataArray)!='user_id'){
+									$lSQLQuery .="`".key($metadataArray)."`='".$value."', ";
+									}
+									
+					} 
+					next($metadataArray);
+			}
+					
+					
+			$lSQLQuery=substr($lSQLQuery, 0, (strlen($lSQLQuery)-2));
+			
+			
+			$lSQLQuery .=" WHERE `user_id` = '".$metadataArray['user_id']."'";
+			
+		
+		
+			
+				$lResult = $this->mysql_query_ex($lSQLQuery);
+				if ($lResult) {
+			
+					return true ;
+				}
+			
+			return false;	
+		
+		}
+		
+
+
+		function getUserMetadata($user_id){
+	
+			
+			$lSQLQuery = "SELECT * FROM `user_metadata` WHERE `user_id` =  '".mysql_real_escape_string($user_id)."';";
+	
+	
+	
+				$lResult = $this->mysql_query_ex($lSQLQuery);
+					if ($lResult) {
+					
+							$lArray = mysql_fetch_assoc($lResult);
+							return $lArray;
+							
+							
+					}
+			
+					return false;	
+			
+				
+	
+	}
+
+
+
 
 			
 }

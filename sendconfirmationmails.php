@@ -113,12 +113,58 @@ if($endedAuctions=$lDB->getEndedAuction("confirmed","confirmed","")){
 
 
 	for($i=0; $i<count($endedAuctions); $i++){
-
+	if($endedAuctions[$i]['county_id']!=0){
 
 															$seller=$lDB->getUserWithAddressByID($endedAuctions[$i]["user_id"]);
 
 
 															$buyer=$lDB->getUserWithAddressByID($endedAuctions[$i]["buyer_id"]);
+
+															$seller_metada=array();
+															if($seller_metada=$lDB->getUserMetadata($endedAuctions[$i]["user_id"])){
+
+																
+																	if($endedAuctions[$i]["is_auction"]=="yes"){
+																			$seller_metada['sold_auctions']=$seller_metada['sold_auctions']+1;
+																	}else{
+																			$seller_metada['sold_offers']=$seller_metada['sold_offers']+1;
+																	}
+																	$lDB->updateUserMetadata($seller_metada);
+
+															}else{
+																	$seller_metada['user_id']=$endedAuctions[$i]["user_id"];
+																	if($endedAuctions[$i]["is_auction"]=="yes"){
+																			$seller_metada['sold_auctions']=1;
+																	}else{
+																			$seller_metada['sold_offers']=1;
+																	}
+																	$lDB->addUserMetadata($seller_metada);
+															}
+
+
+
+															$buyer_metada=array();
+															if($buyer_metada=$lDB->getUserMetadata($endedAuctions[$i]["buyer_id"])){
+
+																
+																	if($endedAuctions[$i]["is_auction"]=="yes"){
+																			$buyer_metada['bought_auctions']=$buyer_metada['bought_auctions']+1;
+																	}else{
+																			$buyer_metada['bought_offers']=$seller_metada['bought_offers']+1;
+																	}
+																	$lDB->updateUserMetadata($buyer_metada);
+
+															}else{
+																	$buyer_metada['user_id']=$endedAuctions[$i]["buyer_id"];
+																	if($endedAuctions[$i]["is_auction"]=="yes"){
+																			$buyer_metada['bought_auctions']=1;
+																	}else{
+																			$buyer_metada['bought_offers']=1;
+																	}
+																	$lDB->addUserMetadata($buyer_metada);
+															}
+
+															
 
 
 															$lSearch = array();
@@ -175,7 +221,7 @@ $lSearch[19] = "___VEZG___";
 
 															$lReplacement[16] = $buyer["phone"];
 															$lReplacement[17] = $buyer["email"];
-															$$lReplacement[18] = "";
+															$lReplacement[18] = "";
 															$lReplacement[19] = "";
 
 																if($endedAuctions[$i]["is_vezg"]=="yes"){
@@ -314,7 +360,7 @@ $lSearch[19] = "___VEZG___";
 														}
 
 
-
+}
 						}
 
 					}

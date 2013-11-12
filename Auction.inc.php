@@ -469,7 +469,32 @@ global $gBase;
 							$participiant=$lDB->getUserWithAddressByID($auctionArray['user_id']);
 								$type="Kauf";
 						}
-								
+								$recipient=$lDB->getUserWithAddressByID($gBase->User['id']);
+
+
+															$seller_metada=array();
+															if($seller_metada=$lDB->getUserMetadata($gBase->User['id'])){
+
+																
+																	if($auctionArray['status']=="buyer_canceled"){
+																			$seller_metada['canceled_as_buyer']=$seller_metada['canceled_as_buyer']+1;
+																	}else{
+																			$seller_metada['canceled_as_seller']=$seller_metada['canceled_as_seller']+1;
+																	}
+																	$lDB->updateUserMetadata($seller_metada);
+
+															}else{
+																	$seller_metada['user_id']=$gBase->User['id'];
+																	if($auctionArray['status']=="buyer_canceled"){
+																			$seller_metada['canceled_as_buyer']=1;
+																	}else{
+																			$seller_metada['canceled_as_seller']=1;
+																	}
+																	$lDB->addUserMetadata($seller_metada);
+															}
+
+
+						if($lDB->getNumberOfUserAuctions($gBase->User['id'], "confirmed")>0){
 								$invoice=array();
 								$invoice["auction_id"]=$auctionArray["id"];
 								$invoice["recipient_id"]=$gBase->User['id'];
@@ -485,7 +510,7 @@ global $gBase;
 								$lDB->addInvoice($invoice);
 
 								$currentInvoice=$lDB->getInvoiceByAuctionId($auctionArray["id"]);
-								$recipient=$lDB->getUserWithAddressByID($gBase->User['id']);
+								
 								
 
 									$pdf = new SRBill('P', 'mm', 'A4');
@@ -513,7 +538,7 @@ global $gBase;
 
 									$result=$s3->putObjectFile("./invoices/".$invoice["filename"], $GLOBALS["VIEHAUKTION"]["AMAZON"]["BUCKET"], "invoices/".$invoice["filename"], S3::ACL_PUBLIC_READ);
 
-									$lDB->updateAuction($auctionArray);
+									
 
 
 
@@ -557,7 +582,53 @@ global $gBase;
 									sendEmail('./mails/cancel_to_recipient.de.html', $lSearch, $lReplacement,$recipientsubject, $recipient['email'], "./invoices/".$invoice["filename"]);
 									sendEmail('./mails/cancel_to_participiant.de.html', $lSearch, $lReplacement, $participiantsubject, $participiant['email'],'');
 										
+								}else{
 
+											$lSearch = array();
+															
+									$lSearch[0] = "___TOTAL___";
+									$lSearch[1] = "___SITENAME___";
+
+									$lSearch[2] = "___RECIPIENTFIRSTNAME___";
+									$lSearch[3] = "___RECIPIENTLASTNAME___";
+									$lSearch[4] = "___TYPE___";
+									$lSearch[5] = "___NUMBER___";
+									$lSearch[6] = "___INVOICE___";
+									$lSearch[7] = "___PARTICIPANTFIRSTNAME___";
+									$lSearch[8] = "___PARTICIPANTLASTNAME___";
+								
+
+
+
+									$lReplacement = array();
+									$lReplacement[0] =$GLOBALS["VIEHAUKTION"]["STORNO"]["MONEY"];
+									$lReplacement[1] =$GLOBALS["VIEHAUKTION"]["BASE"]["APPNAME"];
+						
+									$lReplacement[2] = $recipient["firstname"];
+									$lReplacement[3] = $recipient["lastname"];
+									
+									$lReplacement[4] = $type;
+									
+									$lReplacement[5] = $invoice["auction_id"];
+									$lReplacement[6] = $GLOBALS["VIEHAUKTION"]["AMAZON"]["BUCKET"]["URL"].$invoice["filename"];
+									$lReplacement[7] = $participiant["firstname"];
+									$lReplacement[8] = $participiant["lastname"];
+									
+
+
+
+									$recipientsubject='Sie haben einen '.$type.' abgelehnt.';
+									$participiantsubject='Die Gegenseite hat den '.$type.' abgelehnt.';
+									
+										
+									sendEmail('./mails/cancel_to_recipient_without_invoice.de.html', $lSearch, $lReplacement,$recipientsubject, $recipient['email'], "");
+									sendEmail('./mails/cancel_to_participiant.de.html', $lSearch, $lReplacement, $participiantsubject, $participiant['email'],'');
+
+
+								}
+
+
+									$lDB->updateAuction($auctionArray);
 
 									$log=array();
 						$log['auction_id']=$auction_id;
@@ -1093,6 +1164,8 @@ global $gBase;
 						$fullAuction["seller_rating"]=$lDB->getUserRating($auctionArray["user_id"]);
 
 						$fullAuction["address"]=$address;
+
+
 					}
 
 					$fullAuction["address"]["postcode"]=$address['postcode'];

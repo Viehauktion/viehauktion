@@ -18,6 +18,7 @@ $texts['from']="von";
 $texts['about']="über";
 $texts['at']="am";
 $texts['to_date']="zum";
+$texts['in']="in";
 
 $texts['page_title']="Viehauktion.com";
 $texts["stage_banner"]="Willkommen auf Viehauktion.com";
@@ -32,12 +33,12 @@ $texts["teaser_team"]="Die Gründer";
 $texts["teaser_example"]="Zur Beispielauktion";
 
 $texts["home_headline"]="Endlich ist es soweit";
-$texts["home_text"]="Wir freuen uns, Sie auf viehauktion.com heute begrüßen zu dürfen. Nach monatiger Arbeit steht die Plattform endlich online. 
+$texts["home_text"]="Wir freuen uns, Sie auf viehauktion.com begrüßen zu dürfen. Nach monatiger Arbeit steht die Plattform endlich online. 
 <br/>Auf Viehauktion.com werden Schweine im Auktions- und Festpreisverfahren gehandelt, wodurch wir einen frei zugänglichen Überblick über Marktlage und Marktpreise schaffen möchten. 
 <br/>Die Plattform bietet Betreibern von Mastbetrieben die Möglichkeit, ihre Tiere mehreren Viehhändlern gleichzeitig anzubieten und zu einem optimalen Preis zu verkaufen. Viehhändler können weitere Anbieter von Nutztieren als Marktpartner hinzugewinnen, Transportwege und Transportauslastung besser planen, sowie etwaige Prozess-Vorteile am Markt auszuspielen.
-<br/><br/>Ab sofort können Sie sich registrieren und bereits Festpreisangebote einstellen sowie auch kaufen. Unsere erste Auktion findet dann am 26.11.2013 pünktlich um 14:00 Uhr statt. 
+<br/><br/>Ab sofort können Sie sich registrieren und bereits Festpreisangebote einstellen sowie auch kaufen. Unsere erste Auktion findet dann am 28.11.2013 pünktlich um 14:00 Uhr statt. 
 <br/><br/>Bis dahin hoffen wir, dass Sie sich einen Überlick über die Internetseite mit Ihren Funktionen gemacht haben und Lust haben, an den Auktonen teilzunehmen, sei es als Verkäufer oder Käufer.
-<br/><br/>Bitte haben Sie Verständnis, dass Sie nicht direkt kaufen können. Wir prüfen alle Erzeuger und Händler auf Amtliche Registriernummern, Warenkreditversicherungen etc. bevor reigeschaltet werden, um Ihnen gegenseitig ein Höchstmaß an Sicherheit zu geben.
+<br/><br/>Bitte haben Sie Verständnis, dass Sie nicht direkt kaufen können. Wir prüfen alle Erzeuger und Händler auf amtliche Registriernummern, Warenkreditversicherungen etc. bevor sie freigeschaltet werden, um Ihnen gegenseitig ein Höchstmaß an Sicherheit zu gewähren.
 <br/><br/>
 <br/>Auf eine gute Zusammenarbeit
 <br/>
@@ -271,7 +272,7 @@ $texts['edit_offer_overview_description']="Bitte schauen Sie sich ihre Daten noc
 
 $texts['profile_delete_auction']="Löschen";
 $texts['profile_delete_auction_question']="Sind Sie sicher das Sie die Auktion löschen möchten?";
-$texts['profile_storno_auction_question']="Sind Sie sicher das Sie die Auktion stornieren möchten?  Diese Aktion kann nicht rückgängig gemacht werden. Ihnen wird dadurch eine Gebühr von 30 € berechnet.";
+$texts['profile_storno_auction_question']="Sind Sie sicher das Sie die Auktion stornieren möchten?  Diese Aktion kann nicht rückgängig gemacht werden. Ihnen wird dadurch eine Gebühr von 30 € berechnet. Sollte dies Ihr erster erfolgreicher Abschluß gewesen sein, entfällt die Gebühr.";
 $texts['profile_edit_auction']="Bearbeiten";
 $texts['edit_password']="Passwort ändern";
 
@@ -384,6 +385,8 @@ $texts['auction_pigs_fom_entity_placeholder']="z.B. 57";
 $texts['auction_pigs_autofom']="Auto FOM";
 $texts['auction_pigs_autofom_entity']="IXP/kg  ca.";
 $texts['auction_pigs_autofom_entity_placeholder']="z.B. 67";
+
+$texts['auction_pigs_autofom_3']="Auto FOM 3";
 
 $texts['auction_ferkel_min_entity_price']="Mindestgebot<br/>(pro 25 kg Ferkel*)";
 $texts['offer_ferkel_min_entity_price']="Kaufpreis<br/>(pro 25 kg Ferkel*)";
@@ -673,6 +676,8 @@ $texts['running']="Wird momentan versteigert";
 $texts['ended']="Auktion wurde beendet.";
 $texts['confirmed']="Rechtsverbindlich abgeschlossen.";
 $texts['offering']="Im Verkauf gelistet";
+$texts['seller_canceled']="Vom Verkäufer storniert.";
+$texts['buyer_canceled']="Vom Käufer storniert.";
 
 $texts['profile_category']="Art";
 $texts['profile_category_1']="M";
@@ -927,6 +932,12 @@ $texts['forms']='<div class="clearfix">
 
 
 $texts['mail_vezg_date']=" zum VEZG Preis vom ";
+
+$texts['first_reminder_subject']="Sie haben noch Zahlungsausstaende zu begleichen. 1. Mahnung";
+$texts['second_reminder_subject']="Achtung: 2. Mahnung. Sie haben noch Zahlungsausstaende zu begleichen.";
+$texts['first_reminder']="1. Mahnung";
+$texts['second_reminder']="2. Mahnung";
+
 
 
 ?>

@@ -3,8 +3,14 @@ if($_REQUEST['is_auction']=="yes"){
 ?>
 <div id="next_auction">
 
-    <h2><? echo($texts['next_auctions']); ?></h2>
-    <p>
+    <h2><? echo($texts['next_auctions']); ?><?
+      if($category_id=='1'){
+      echo(' - '.$texts['pigs']." ".$texts['in']." ".$gBase->RawData["county_name"]);
+}else{
+  echo(' - '.$texts['ferkel']." ".$texts['in']." ".$gBase->RawData["county_name"]);
+}
+?> </h2>
+<div class="row">
 
 
       <?
@@ -38,7 +44,7 @@ if(count($auctions)>0){
       ?>
 
 <tr>
-  <td><? echo($auctions[$i]["start_time"]); ?></td>
+  <td><? echo(date("d.m.Y", strtotime($auctions[$i]["start_time"]))); ?></td>
   <td><? echo($auctions[$i]["amount_of_animals"]); ?></td>
   <td><? echo(formatPrice($auctions[$i]["min_entity_price"])); ?></td>
   <td><? echo(formatPrice($auctions[$i]["current_entity_price"])); ?></td>
@@ -62,8 +68,7 @@ if(count($auctions)>0){
 
   ?>
   
-</p>
-
+</div>
 </div>
 
 <? }else{
@@ -73,10 +78,16 @@ if(count($auctions)>0){
 
 <div id="next_offers">
 
-    <h2><? echo($texts['next_offers']); ?></h2>
-    <p>
+    <h2><? echo($texts['next_offers']); ?><?
+      if($category_id=='1'){
+      echo(' - '.$texts['pigs']." ".$texts['in']." ".$gBase->RawData["county_name"]);
+}else{
+  echo(' - '.$texts['ferkel']." ".$texts['in']." ".$gBase->RawData["county_name"]);
+}
+?> </h2>
+ 
 
-
+<div class="row">
       <?
 
 $auctions=$gBase->RawData;
@@ -106,7 +117,7 @@ if(count($auctions)>0){
       ?>
 
 <tr>
-  <td><? echo($auctions[$i]["created"]); ?></td>
+  <td><? echo(date("d.m.Y", strtotime($auctions[$i]["created"]))); ?></td>
   <td><? echo(formatPrice($auctions[$i]["amount_of_animals"])); ?></td>
   <td><? echo(formatPrice($auctions[$i]["min_entity_price"])); ?>
 <?
@@ -139,8 +150,8 @@ if($auctions[$i]["is_vezg"]=="yes"){
 
   ?>
   
-</p>
 
+</div>
 </div>
 
 

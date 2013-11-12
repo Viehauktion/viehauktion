@@ -43,7 +43,7 @@ function connectDB() {
 	
 		
 
-echo(date("Y-m-d H:i:s"));
+
 
 $lDB=connectDB();
 			if (!$lDB->failed){

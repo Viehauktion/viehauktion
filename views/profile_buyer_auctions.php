@@ -3,7 +3,7 @@
 
 
   <div id="won_auctions">
-    <h2><? echo($texts['profile_auctions_won']); ?></h2>
+
 
 
 
@@ -87,7 +87,7 @@ $counter++;
 
 
 
-
+    <h2><? echo($texts['profile_auctions_won']); ?></h2>
     
       <?
 

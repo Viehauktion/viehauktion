@@ -64,7 +64,6 @@
  <? echo($texts['backend_status'].": ".$status); ?><br/>
 
     </p>
-
 </div>
 
 
@@ -73,9 +72,9 @@
 <div id="user_addresses">
 
     <h2><? echo($texts['backend_user_addresses']); ?></h2>
-    <p>
+   
 
-
+<div class="row">
 
 
       <?
@@ -137,9 +136,9 @@ if(count($users)>0){
 
 
 
+</div>
 
-
-    </p>
+   
 
 </div>
 
@@ -149,9 +148,9 @@ if(count($users)>0){
 <div id="user_addresses">
 
     <h2><? echo($texts['backend_user_files']); ?></h2>
-    <p>
+  
 
-
+<div class="row">
 
 
       <?
@@ -206,9 +205,9 @@ if(count($users)>0){
 
 
 
+</div>
 
-
-    </p>
+  
 
 </div>
 
@@ -225,10 +224,10 @@ if($gBase->User["role"]=='admin'){
 <div id="user_ratings_from">
 
     <h2><? echo($texts['backend_user_ratings_from']); ?></h2>
-    <p>
 
 
 
+<div class="row">
 
       <?
 
@@ -287,6 +286,12 @@ echo "<td></td>";
 
 </table>
 
+
+
+
+
+
+
    <?
 
   }
@@ -294,12 +299,30 @@ echo "<td></td>";
   ?>
 
 
+</div>
+<div class="pagination">
+  <ul>
+<?
+  $pages=(int)$users["number_of_rows"]/$GLOBALS["VIEHAUKTION"]["SMALLPAGEELEMENTS"]+1;
+  $active=1;
+if ($_REQUEST['page']!='') {
+  $active=$_REQUEST['page'];
+}
+ for ($i=1; $i <= $pages; $i++) { 
+  if($i==$active){
+    echo('<li class="active"><a href="?view=show_full_user&action=get_ratings_from_user&user_id='.$users[$i]["writer_id"].'&page='.$i.'#userdata"  >'.$i.'</a></li>');
+  }else{
+   echo('<li ><a href="?view=show_full_user&action=get_ratings_from_user&user_id='.$users[$i]["writer_id"].'&page='.$i.'#userdata" >'.$i.'</a></li>');
+   }
+ }
+
+?>
+ 
+   
+  </ul>
+</div>
 
 
-
-
-
-    </p>
 
 </div>
 
@@ -319,9 +342,9 @@ echo "<td></td>";
 <div id="user_ratings_about">
 
     <h2><? echo($texts['backend_user_ratings_about']); ?></h2>
-    <p>
 
 
+<div class="row">
 
 
       <?
@@ -382,6 +405,9 @@ echo "<td></td>";
 
 </table>
 
+
+
+
    <?
 
   }
@@ -391,10 +417,32 @@ echo "<td></td>";
 
 
 
+</div>
 
 
+<div class="pagination">
+  <ul>
+<?
+  $pages=(int)$users["number_of_rows"]/$GLOBALS["VIEHAUKTION"]["SMALLPAGEELEMENTS"]+1;
+  $active=1;
+if ($_REQUEST['page']!='') {
+  $active=$_REQUEST['page'];
+}
+ for ($i=1; $i <= $pages; $i++) { 
+  if($i==$active){
+    echo('<li class="active"><a href="?view=show_full_user&action=get_ratings_about_user&user_id='.$users[$i]["about_id"].'&page='.$i.'#userdata"  >'.$i.'</a></li>');
+  }else{
+   echo('<li ><a href="?view=show_full_user&action=get_ratings_about_user&user_id='.$users[$i]["about_id"].'&page='.$i.'#userdata" >'.$i.'</a></li>');
+   }
+ }
 
-    </p>
+?>
+ 
+   
+  </ul>
+</div>
+
+
 
 </div>
 

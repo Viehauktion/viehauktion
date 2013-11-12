@@ -367,11 +367,16 @@ function displayResponse(data){
 								
 
 
+								
 								if(data.current_auction.is_buyer=="yes"){
 									$("#is_buyer").html("<? echo($texts["auction_is_buyer"]); ?>");
+									$("#highestBid").attr( "style", "background-color: #525252; color:#ffffff");
 								}else{
 									$("#is_buyer").html("");
+									$("#highestBid").attr( "style", "");
 								}
+
+
 
 								if(data.current_auction.is_seller=="yes"){
 									$("#is_seller").html("<? echo($texts["auction_is_seller"]); ?>");

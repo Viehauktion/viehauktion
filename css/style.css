@@ -124,9 +124,13 @@ td.rightSide {
   padding-left: 30px;
 }
 #highestBid {
+  background-color: #F3F3F3;
+  color: #000000;
+  font-size: 18px;
+}
+.ishighest {
   background-color: #525252;
   color: #ffffff;
-  font-size: 18px;
 }
 .mainbody {
   margin-top: 20px;

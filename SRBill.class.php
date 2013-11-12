@@ -7,15 +7,7 @@
 			//Logo
 				$this->Image(getcwd().'/img/syborgbill.jpg', 0, 0, 211, 22);
 			//Arial bold 15
-			$this->SetFont('Arial', 'B', 22);
-			//Move to the right
-			$this->Cell(150);
-			// Überschrift
-			$this->SetTextColor(150,150,150);
 			
-			$this->Cell(30, 40, 'Rechnung', 0, 0, 'L');
-			//Line break
-			$this->Ln(20);
 		}
 	
 
@@ -37,6 +29,20 @@
 
 
 return $priceString;
+
+	}
+
+	function setType($type){
+
+			$this->SetFont('Arial', 'B', 18);
+			//Move to the right
+			$this->Cell(120);
+			// Überschrift
+			$this->SetTextColor(150,150,150);
+			
+			$this->Cell(30, 0, $type, 0, 0, 'L');
+			//Line break
+			$this->Ln(20);
 
 	}
 	
@@ -129,6 +135,9 @@ return $priceString;
 		
 		function printBillData($pBillNo, $pAuctionID, $pUserID, $pDate, $pAmountOfAnimals, $pNettoPrice, $pVAT, $pFontSize) {
 			
+
+			$this->setType("Rechnung");
+	$this->SetTextColor(0,0,0);
 			$this->SetY(75);
 			$this->SetFont('Arial', 'B', $pFontSize);
 			$this->SetX(24);
@@ -203,6 +212,89 @@ return $priceString;
 
 		}
 
+
+
+
+function printReminderData($type, $reminderMoney, $pBillNo, $pAuctionID, $pUserID, $pDate, $pAmountOfAnimals, $pNettoPrice, $pVAT, $pFontSize) {
+			
+			$this->setType($type);
+	$this->SetTextColor(0,0,0);
+			$this->SetY(75);
+			$this->SetFont('Arial', 'B', $pFontSize);
+			$this->SetX(24);
+			$this->Cell(100, 4, "Rechnung-Nr.:", 0, 1, 'L');
+			$this->SetX(24);
+			$this->Cell(100, 4, "Auktions-Nr.:", 0, 1, 'L');
+			$this->Ln(3);
+			$this->SetX(24);
+			$this->Cell(100, 4, "Kunden-Nr.:", 0, 1, 'L');
+			$this->SetX(24);
+			$this->Cell(100, 4, "Datum:", 0, 1, 'L');
+			$this->SetX(24);
+			$this->Cell(100, 4, "Leistungszeitraum:", 0, 1, 'L');
+			
+			
+			
+			
+			$this->SetY(75);
+			$this->SetX(75);
+			$this->SetFont('Arial', '', $pFontSize);
+			$this->Cell(100, 4, $pBillNo, 0, 1, 'L');
+			$this->SetX(75);
+			$this->Cell(100, 4, $pAuctionID, 0, 1, 'L');
+			$this->Ln(3);
+			$this->SetX(75);
+			$this->Cell(100, 4, $pUserID, 0, 1, 'L');
+			$this->SetX(75);
+			$this->Cell(100, 4, $pDate, 0, 1, 'L');
+			$this->SetX(75);
+			$this->Cell(100, 4, $pDate, 0, 1, 'L');
+			$this->SetX(75);
+			
+		    $bruttoprice=$this->formatPrice(($pNettoPrice*(100+$pVAT))/100);
+			
+			$this->SetY(110);
+			$this->SetFont('Arial', '', '10');
+			$this->SetX(24);
+			
+			$this->Cell(80, 4, "Es wurden erfolgreich $pAmountOfAnimals Tiere auf viehauktion.com versteigert.", 0, 1, 'L');
+			$this->SetX(24);
+			$this->Cell(80, 4, "Wir berechnen pro Tier eine Provision von ".number_format($pNettoPrice, 2, '.', '')." € ( ".number_format($bruttoprice, 2, '.', '')." € inkl. Mehrwertsteuer ).", 0, 1, 'L');
+			$this->SetY(130);
+			$this->SetX(24);
+			$this->Cell(80, 4, "Daraus ergibt sich ein Rechnungbetrag von: ", 0, 1, 'L');
+			$totalNettoPrice=$this->formatPrice($pAmountOfAnimals*$pNettoPrice);
+			$this->SetY(140);
+			$this->SetX(24);
+
+			$this->Cell(80, 4, "Leistung:                                   ".$pAmountOfAnimals." Tiere á ".number_format($pNettoPrice, 2, '.', '')." €  =     ".number_format($totalNettoPrice, 2, '.', '')." €", 0, 1, 'L');
+				$this->SetX(24);
+			$this->Cell(80, 4, "Mahngebühr                                                                    ".number_format($reminderMoney, 2, '.', '')." €", 0, 1, 'L');
+			
+			$vatPrice=(($totalNettoPrice+$reminderMoney)/100)*19;
+			$this->SetX(24);
+			$this->Cell(80, 4, "Mehrwertsteuer ($pVAT %):                                                  +".number_format($vatPrice, 2, '.', '')." €", 0, 1, 'L');
+				$this->SetX(24);
+			$this->Cell(80, 4, "________________________________________________________", 0, 1, 'L');
+			$totalBruttoPrice=$vatPrice+$totalNettoPrice+$reminderMoney;
+			$this->SetX(24);
+			$this->SetFont('Arial', 'B', '10');
+			$this->Cell(80, 4, "Gesamtbetrag:                                                               ".number_format($totalBruttoPrice, 2, '.', '')." €", 0, 0, 'L');
+
+
+
+					$this->SetY(170);
+
+					$this->SetX(24);
+					$this->Cell(175, 4, "Bitte überweisen Sie den Gesamtbetrag unter Nennung der Rechnungs-Nr.", 0, 1, 'L');
+					$this->SetX(24);
+					$this->Cell(175, 4, "binnen 14 Tagen auf das untengenannte Konto.", 0, 1, 'L');
+
+
+
+
+
+		}
 
 
 

@@ -48,7 +48,7 @@ if($auctionToApprove){
     <?
     for($i=0; $i<count($auctions); $i++){
 
-      if( $auctions[$i]["is_auction"]=="no"){
+      if( $auctions[$i]["is_auction"]=="no" && $auctions[$i]['status']=="ended" ){
 $counter++;
 
             $metadata=json_decode($auctions[$i]["metadata"], true);

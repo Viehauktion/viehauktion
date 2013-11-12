@@ -95,6 +95,7 @@ if($endedAuctions=$lDB->getEndedAuction("ended","","")){
 
 
 	for($i=0; $i<count($endedAuctions); $i++){
+		if($endedAuctions[$i]['county_id']!=0){
 
 
 															$seller=$lDB->getUserWithAddressByID($endedAuctions[$i]["user_id"]);
@@ -257,7 +258,7 @@ if($endedAuctions=$lDB->getEndedAuction("ended","","")){
 
 
 						}
-
+}
 
 
 						$auctionsToConfirm=array();
@@ -271,7 +272,15 @@ if($auctionsToConfirm=$lDB->getEndedAuction("ended","ended_mail_complete", $pass
 
 	
 		$auctionsToConfirm[$i]["mail_status"]="confirmed";
+
 		$auctionsToConfirm[$i]["status"]="confirmed";
+		
+		if($auctionsToConfirm[$i]['bids']=="0" && $auctionsToConfirm[$i]['is_auction']=='yes'){
+			$auctionsToConfirm[$i]["mail_status"]="";
+
+			$auctionsToConfirm[$i]["status"]="confirmed";
+
+		}
 	
 		$lDB->updateAuction($auctionsToConfirm[$i]);
 		

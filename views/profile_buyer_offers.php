@@ -1,7 +1,7 @@
 <div id="won_offers_layer" class="sublayer hide" >
 
 <div id="won_offers" >
-    <h2><? echo($texts['profile_offers_won']); ?></h2>
+  
 
 
 
@@ -95,7 +95,7 @@ $counter=0;
 if(count($won_auctions)>1){
 
 ?>
-
+  <h2><? echo($texts['profile_offers_won']); ?></h2>
    <table class="table table-striped">
     <tr>
       <td><? echo($texts['profile_category']); ?></td>

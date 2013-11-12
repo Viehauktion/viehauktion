@@ -229,10 +229,11 @@ if($_REQUEST['is_auction']=="yes"){
   <h2><? echo($texts['seller']); ?></h2>
      <p>
      	<a href="?view=show_full_user&action=show_full_user&user_id=<? echo($gBase->CurrentAuction["auction"]["user_id"]);?>&auction_id=<? echo($gBase->CurrentAuction["auction"]["id"]);?>" ><? echo($gBase->CurrentAuction["seller"]["firstname"]." ".$gBase->CurrentAuction["seller"]["lastname"]); ?></a><br />
+		<br />	<strong><?= $texts['address_stall'] ?></strong><br />
 		<? echo($gBase->CurrentAuction["address"]["street"]." ".$gBase->CurrentAuction["address"]["number"]); ?><br />
 		<? echo($gBase->CurrentAuction["address"]["postcode"]." ".$gBase->CurrentAuction["address"]["city"]); ?><br />
-		
-		<? echo($texts['registration_phone'].": ".$gBase->CurrentAuction["seller"]["phone"]."<br />".$texts['registration_email'].": ".$gBase->CurrentAuction["seller"]["email"]); ?><br />
+		<br/>
+		<? echo($texts['registration_phone_label'].": ".$gBase->CurrentAuction["seller"]["phone"]."<br />".$texts['registration_email'].": ".$gBase->CurrentAuction["seller"]["email"]); ?><br />
      <br/>
   <a href="?view=show_full_user&action=show_full_user&user_id=<? echo($gBase->CurrentAuction["auction"]["user_id"]);?>&auction_id=<? echo($gBase->CurrentAuction["auction"]["id"]);?>" class="btn" type="button" ><? echo(
 $texts['show_seller_detail']); ?></a><br/><br/>
@@ -254,7 +255,7 @@ $texts['show_seller_detail']); ?></a><br/><br/>
 		<? echo($gBase->CurrentAuction["buyer"]["address"]["street"]." ".$gBase->CurrentAuction["buyer"]["address"]["number"]); ?><br />
 		<? echo($gBase->CurrentAuction["buyer"]["address"]["postcode"]." ".$gBase->CurrentAuction["buyer"]["address"]["city"]); ?><br />
 	
-		<? echo($texts['registration_phone'].": ".$gBase->CurrentAuction["buyer"]["phone"]."<br />".$texts['registration_email'].": ".$gBase->CurrentAuction["buyer"]["email"]); ?><br />
+		<? echo($texts['registration_phone_label'].": ".$gBase->CurrentAuction["buyer"]["phone"]."<br />".$texts['registration_email'].": ".$gBase->CurrentAuction["buyer"]["email"]); ?><br />
    <br/>
   <a href="?view=show_full_user&action=show_full_user&user_id=<? echo($gBase->CurrentAuction["auction"]["buyer_id"]);?>&auction_id=<? echo($gBase->CurrentAuction["auction"]["id"]);?>"  class="btn" type="button" ><? echo(
 $texts['show_buyer_detail']); ?></a><br/><br/>

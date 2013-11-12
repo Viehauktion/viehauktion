@@ -298,6 +298,10 @@ return $nextDates;
 					case 'get_user_invoices': getUserInvoices($gBase->User['id'], $_REQUEST['page']); break;
 					case 'get_ratings_about': getUserRatings($gBase->User['id'], true, $_REQUEST['page']); break;
 					case 'get_ratings_from': getUserRatings($gBase->User['id'], false, $_REQUEST['page']); break;
+
+					case 'get_ratings_about_user': getUserRatings($_REQUEST['user_id'], true, $_REQUEST['page']); break;
+					case 'get_ratings_from_user': getUserRatings($_REQUEST['user_id'], false, $_REQUEST['page']); break;
+
 					case 'get_latest_offers': getLatestAuctions(false, $_REQUEST['page']); break;
 
 					case 'get_user':	getUsers($_REQUEST['page']); break;
@@ -307,6 +311,8 @@ return $nextDates;
 					case 'confirm_user':	 changeUserStatus($_REQUEST['user_id'], 2); getBuyerToConfirm(1);  getUsers(1);  break;
 					case 'imitate_user':	 imitateUser($_REQUEST['user_id']); break;
 					case 'show_full_user':	getUserDetails($_REQUEST['user_id'], $_REQUEST['auction_id']); break;
+
+
 					case 'get_finished_offers': getFinishedOffers($_REQUEST['page']); break;
 					case 'get_finished_auctions': getFinishedAuctions($_REQUEST['page']); break;
 					case 'update_invoice':	updateInvoice($_REQUEST['invoice_id'], $_REQUEST['status']); getInvoices($_REQUEST['page']); break;
