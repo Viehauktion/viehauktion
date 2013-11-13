@@ -1225,7 +1225,7 @@ $lSQLQuery ="";
 					$nextEndTime=date("Y-m-d H:i:s", strtotime("+2 minutes 30 seconds"));
 
 
-					$lSQLQuery2 = "UPDATE  `auctions` SET  `status` =  'running',`end_time` = '".$nextEndTime."',`start_time` =  '".$nextStartTime."' WHERE  `start_time` < '".date('Y-m-d H:i:s', strtotime("+30 seconds"))."' AND `county_id`='".$county_id."' AND `category_id`='".$category_id."' AND `status`='scheduled' LIMIT 1;";
+					$lSQLQuery2 = "UPDATE  `auctions` SET  `status` =  'running',`end_time` = '".$nextEndTime."',`start_time` =  '".$nextStartTime."' WHERE  `start_time` <= '".date('Y-m-d H:i:s', strtotime("+30 seconds"))."' AND `county_id`='".$county_id."' AND `category_id`='".$category_id."' AND (`status`='scheduled' OR `status`='running') ORDER BY `id` ASC LIMIT 1;";
 
 
 					$lResult2 = $this->mysql_query_ex($lSQLQuery2);

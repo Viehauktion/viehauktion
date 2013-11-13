@@ -874,6 +874,118 @@ function getRunningAuction($county_id, $state_id, $auction_id, $category_id){
 
 
 
+function getRunningAuctionOLD($county_id, $state_id, $auction_id, $category_id){
+
+	global $gBase;
+		
+
+
+			if($auction_id!=""){
+
+				
+										$memcache = new Memcache;
+
+									
+										$memcache->connect('127.0.0.1', 11211);
+
+
+
+										if(!$gBase->CurrentAuction=$memcache->get($auction_id)){
+									
+													getCurrentAuctionFromDB($county_id, "", $category_id);
+													return;
+
+										}
+		
+										$gBase->RawData=$memcache->get($county_id);
+										$gBase->CurrentAuction['current_time']=date("H:i:s");
+										$gBase->CurrentAuction['running']="yes";
+
+
+										if($gBase->CurrentAuction["buyer_id"]==$gBase->User['id']){
+											$gBase->CurrentAuction["is_buyer"] ="yes";
+										}else{
+											$gBase->CurrentAuction["is_buyer"] ="no";
+
+
+										}
+										if($gBase->CurrentAuction["user_id"]==$gBase->User['id']){
+											$gBase->CurrentAuction["is_seller"] ="yes";
+										}else{
+											$gBase->CurrentAuction["is_seller"] ="no";
+
+
+										}
+										$gBase->CurrentAuction["user_id"]=""; 
+										$gBase->CurrentAuction["buyer_id"]=""; 
+
+										if(strtotime($gBase->CurrentAuction["start_time"])>time()){
+											$gBase->CurrentAuction['running']="no";
+										}
+	
+										if($gBase->CurrentAuction["end_time"]=="0000-00-00 00:00:00"){
+
+									
+
+											if(strtotime($gBase->CurrentAuction["start_time"])<=strtotime("+30 seconds")){
+											
+												$lDB=connectDB();
+													if (!$lDB->failed){
+												
+															$lDB->setFirstAuctionRunning($gBase->CurrentAuction['auction_id']);
+															getCurrentAuctionFromDB($county_id, $state_id, $category_id);
+
+													}
+											
+											}
+											return;
+
+										}else if(strtotime($gBase->CurrentAuction["end_time"])>time()) {
+								
+											return;
+											
+									
+
+										}else{
+
+											$lDB=connectDB();
+													if (!$lDB->failed){
+
+															$lDB->closeAuction($auction_id);
+															$memcache->delete($auction_id);
+
+
+
+															
+
+
+														
+
+
+													}
+
+										}
+										
+
+			}else{
+
+				$memcache = new Memcache;
+
+									
+				$memcache->connect('127.0.0.1', 11211);
+				$countyKey=$county_id."_".$category_id;
+				if($auction_id=$memcache->get($countyKey)){
+					//echo("test");
+					getRunningAuction($county_id, $state_id, $auction_id, $category_id);
+					return;
+				}else{
+			//echo("test2");
+					getCurrentAuctionFromDB($county_id, $state_id, $category_id);
+				}
+	}
+			
+		
+}
 	
 function getFinishedAuctions($page){
 
@@ -993,8 +1105,8 @@ global $gBase;
 										$key = $gBase->CurrentAuction["auction_id"]; 
 										$row = $gBase->CurrentAuction; 
 										$result=$memcache->connect('127.0.0.1', 11211);
-
-										
+										$countyKey=$county_id."_".$category_id;
+										$memcache->set($countyKey, $gBase->CurrentAuction["auction_id"], MEMCACHE_COMPRESSED, 400);
 										$memcache->set($key, $row, MEMCACHE_COMPRESSED, 400);
 
 
